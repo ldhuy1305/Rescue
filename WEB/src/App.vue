@@ -1,17 +1,36 @@
 <template>
-    <div>
-        <img alt="Vue logo" src="./assets/logo.png" />
-        <HelloWorld msg="Welcome to Your Vue.js App" />
-    </div>
+    <!-- <component :is="layout" /> -->
+    <router-view />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+// import MainLayout from '@/shared/main-layout';
+// import { mapActions, mapMutations, mapState } from 'vuex';
 
 export default {
     name: 'App',
-    components: {
-        HelloWorld
+    // components: { MainLayout },
+    data() {
+        return {
+            layout: null
+        };
+    },
+    created() {},
+    mounted() {
+        this.checkReload();
+    },
+    computed: {},
+    watch: {
+        $route(to) {
+            if (to.meta.layout !== undefined) {
+                this.layout = to.meta.layout;
+            } else {
+                this.layout = 'MainLayout';
+            }
+        }
+    },
+    methods: {
+        checkReload() {}
     }
 };
 </script>
