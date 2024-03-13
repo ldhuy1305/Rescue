@@ -1,3 +1,4 @@
+
 import messages, { MSG_TYPE, MSG_TITLE } from '@/utils/messages';
 export default {
     namespaced: true,
