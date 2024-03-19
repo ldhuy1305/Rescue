@@ -1,0 +1,118 @@
+<div id="landing-page">
+    <section class = "main">
+      <div class="layout-1">
+        <h3>
+          Education & Online Course
+        </h3>
+        <h1>
+          Learn Without Limits With Huyle
+        </h1>
+      </div>
+      <div class="layout-2">
+        <div class="intro-text">
+          <h2>
+            <span class="hear"> You can do it </span> <br />
+            <span class="connecting"> Come here to learn</span>
+          </h2>
+          <p>
+            Start, switch, or advance your career with more than 5,400 courses, Professional Certificates, and degrees from world-class universities and companies.<br />
+            This course was comprehensive and covered everything i needed to know about animation.
+          </p>
+          <a class="btn red" href="#">Join for free</a>
+          <a class="btn blue" href="#">Learn More</a>
+        </div>
+        <div class="i-frame">
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/sUmM_PFpsvQ"
+            title="YouTube video player"
+            frameborder="10"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+    <section class="course" id = "course">
+      <div class="title-course">
+        <h1>
+          The lastest test
+        </h1>
+        <h2>
+          The test set is always updated to match current trends
+        </h2>
+      </div>
+      <div class="course-container">
+        <table>
+          
+        </table>
+        <template v-for="(item,key) in data.course.slice(0,8)" :key="key" >
+          <div class="course-item">
+            <p class ="title">{{item.title}}</p>
+            <div class="first-row">
+              <span> <i class="fa-regular fa-clock"></i> {{item.time}}</span>
+              <span> Minutes</span>
+              <span> | </span>
+              <span> <i class="fa-solid fa-user-tie"></i>{{item.participation}}</span>
+              <span> | </span>
+              <span> <i class="fa-regular fa-comment"></i>{{item.comment}}  </span>
+            </div>
+            <div class="second-row">
+              <span>{{item.part}} </span> 
+              <span>Parts</span>
+              <span>|</span>
+              <span>{{item.question}}  </span>
+              <span>Questions</span>
+            </div>
+            <div class="third-row">
+              <button>Detail </button>
+            </div>
+          </div>
+      </div>
+    </section>
+    <section class="contact" id = "contact">
+      <div class="first">
+        <button><i class="fa-solid fa-thumbs-up"></i> Like</button>
+        <button>Share</button>
+      </div>
+      <div class="second">
+        <div class="container row">
+          <div class="col-2">
+            <h2>Huyle</h2>
+            <p>@2024</p>
+            <div class="social">
+              <a  href="https://www.facebook.com/ldhuy130502"> <i  class="fa-brands fa-facebook"></i></a>
+              <a  href="https://www.facebook.com/ldhuy130502"> <i class="fa-brands fa-instagram"></i></a>
+              <a  href="https://www.facebook.com/ldhuy130502"> <i class="fa-brands fa-x-twitter"></i></a>
+              <a  href="https://www.facebook.com/ldhuy130502">  <i class="fa-brands fa-linkedin"></i></a>
+              <a  href="https://www.facebook.com/ldhuy130502">  <i class="fa-brands fa-tiktok"></i></a>
+            </div>
+          </div>
+          <template v-for = "(item,key) in data.contact" :key="key">
+            <table class="col-2" >
+              <thead>
+                <th>{{item[0]}}</th>
+              </thead>
+              <tbody>
+                <div v-for = "(el,index) in item" :key="index">
+                  
+                <tr v-if="index >= 1">{{el}} </tr>
+                </div>
+              </tbody>
+            </table>
+          </template>
+        </div> 
+      </div>
+      <div class="infor">
+        <h5>Thông tin doanh nghiệp</h5>
+        <p>Công ty TNHH một thành viên
+          Giấy chứng nhận Đăng ký doanh nghiệp số: 0123456789 do Sở Kế hoạch và Đầu tư thành phố Đà Nẵng cấp ngày 19/03/2024.
+          Hotline: 0948942954
+          Email: ldhuydn1305@gmail.com.
+          Địa chỉ: K1/17 Hà Thị Thân, Phường An Hải Tây, Quận Sơn Trà, Thành phố Đà Nẵng, Việt Nam</p>
+      </div> 
+      <div class="copyright">
+        <p>@ 2024 - Bản quyền của Huy</p>
+      </div> 
+    </section>
+  </div>

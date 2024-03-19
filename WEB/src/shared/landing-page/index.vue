@@ -1,8 +1,9 @@
 <script>
 import template from './template.html';
 import './style.scss';
-const Header = {
-    name: 'Header',
+import data from '../../utils/mock_data';
+const LandingPage = {
+    name: 'LandingPage',
     template: template,
     beforeCreate() {},
     created() {},
@@ -14,17 +15,12 @@ const Header = {
     unmounted() {},
     data() {
         return {
-            links: [
-                { text: 'Home', url: '/home' },
-                { text: 'About', url: '/about' },
-                { text: 'Services', url: '/services' },
-                { text: 'Contact', url: '/contact' }
-            ]
+            data: data,
         };
     },
     computed: {},
     methods: {},
     watch: {}
 };
-export default Header;
+export default LandingPage;
 </script>

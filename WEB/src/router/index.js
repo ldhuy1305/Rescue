@@ -43,7 +43,7 @@ const baseRoutes = [
     },
     {
         path: '/:catchAll(.*)',
-        redirect: '/404'
+        redirect: '/home'
     }
 ];
 const routes = baseRoutes.concat(mainRouter);
