@@ -1,10 +1,13 @@
 <script>
 import template from './template.html';
+import Header from '@/shared/header';
+import LandingPage from '@/shared/landing-page';
+import './style.scss';
 
-export default {
-    name: 'MainLayout',
+const home = {
+    name: 'home',
     template: template,
-    components: {}
+    components: { Header,LandingPage }
 };
+export default home;
 </script>
-<style lang="scss"></style>
