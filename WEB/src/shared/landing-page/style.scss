@@ -55,7 +55,7 @@
             .btn {
                 margin-top: 1rem;
                 display: inline-block;
-                padding: 0.8rem 0.6rem;
+                padding: 10px 20px 10px 20px;
                 border: none;
                 font-size: 1.4rem;
                 border-radius: 5px;
@@ -82,10 +82,9 @@
             }
                 .i-frame {
                 position: relative;
-                width: 560px;
-                height: 315px;
-            
-                iframe {
+                // width: 500px;
+                // height: 500px;
+                img {
                     width: 100%;
                     height: 100%;
                 }
@@ -124,13 +123,14 @@
                 width:20%;
                 border : gray solid 1px;
                 border-radius: 5px;
-                margin: 0px 20px 20px 20px;
-                padding: 10px;
+                margin: 0px 20px 40px 20px;
+                padding: 20px;
                 display: flex;
                 justify-content: space-between;
                 flex-direction: column;     
                 .title{
                     font-weight: bold;
+                    height: 48px;
                 }
                 .first-row span{
                     margin: 0px 2px 0px 2px;
@@ -146,6 +146,7 @@
                     bottom: 0;
                     border-radius: 5px;
                     border: #6999f3 solid 2px ;
+                    margin-top: 10px;
                     button {          
                         width: 100%;      
                         background-color: white;
@@ -157,41 +158,106 @@
                         border: 0;
                     }
                 }
-            }
-        }
-    }
-    .contact {
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0px 0px 4px #030303;
-        padding: 0px 20px 0px 20px;
-        margin: 100px auto 0 auto;
-        gap: 10px;
-        .first {
-            button{
-                margin: 20px 10px 0px 10px;
-                padding : 2px 10px 2px 10px;
-                background-color: rgb(55, 55, 233);
-                border-radius: 5px;
-                border: 0;
-                color: white;
-            }
-        }
-        .second{
-            .social{
-                display: flex;
-                a{
-                    margin: 0px 2px 0px 2px;
+                &:hover {
+                    transform: translateY(-5px); 
+                    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+                    cursor: pointer;
+                    button:hover {          
+                        width: 100%;      
+                        background-color: #6999f3;
+                        color: white;
+                    }
                 }
             }
         }
-        .infor{
-            margin: 0px 2px 0px 2px;
+        .more{
+            width: 30%;      
+            background-color: white;
+            color: #6999f3;
+            font-size: 20px;
+            text-align: center;
+            padding: 2px 10px 2px 10px;
+            bottom: 0;
+            border-radius: 5px;
+            border: #6999f3 solid 1px;
+            &:hover{
+                background-color: 
+                $primaryColor;
+                color: white;
+            }
         }
-        .copyright{
+    }
+    .share {
+        margin: 100px auto 0 auto;
+        max-width: 1100px;
+        gap: 50px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        .title-share{       
             display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: column;     
+            h1{
+                width: 100%;
+                font-size: 50px;
+                font-weight: bold;
+            }
+            h2{
+                font-size: 20px;
+            }
+        }
+        .share-container{
+            width: 150%;
+            display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            margin: 0px 2px 0px 2px;
+            padding-top: 20px;
+            .share-item{
+                width:25%;
+                height: 100%;
+                border : gray solid 1px;
+                border-radius: 10px;
+                margin: 40px 20px 40px 20px;
+                padding: 20px 20px 0px 20px;
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;     
+                .avatar{
+                    width: 70%;
+                    height:40%;
+                    position: relative;
+                    text-align: center;
+                    transform: translate(45px,-100px);
+                    border-radius: 50%;
+                }
+                .name{
+                    text-align: center;
+                    transform: translateY(-50px);
+                    font-size: 30px;
+                }
+                .result{
+                    text-align: center;
+                    transform: translateY(-50px);
+                    font-size: 20px;
+                }
+                .quote{
+                    transform: translateY(-60px);
+                    .description{
+                        padding: 0px 40px 0px 40px;
+                        font-size: 18px;
+                        text-align: justify;
+                    }
+                    .fa{
+                        color: #095cf7;
+                        font-size: 40px;
+                    }
+                    .fa-quote-right{
+                        margin-left: 330px ;
+                    }
+                }
+            }
         }
     }
   }

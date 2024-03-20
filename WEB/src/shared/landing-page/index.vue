@@ -16,10 +16,19 @@ const LandingPage = {
     data() {
         return {
             data: data,
+            share: data.share,
+            index: 8
         };
     },
     computed: {},
-    methods: {},
+    methods: {
+        viewMore() {
+            this.index += 8;
+        },
+        viewDetail() {
+            console.log(1);
+        }
+    },
     watch: {}
 };
 export default LandingPage;
