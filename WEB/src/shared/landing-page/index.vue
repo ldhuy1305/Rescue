@@ -12,6 +12,16 @@ const LandingPage = {
     mounted() {
         const honorItemWidth = $('.honor-item').first().width();
         $('.content').width(honorItemWidth - 240);
+        $('.slide .avatar').each(function () {
+            const size =
+                $(this).height() > $(this).width()
+                    ? $(this).height()
+                    : $(this).width();
+            $(this).css({
+                width: size + 'px',
+                height: size + 'px'
+            });
+        });
     },
 
     beforeUpdate() {},
