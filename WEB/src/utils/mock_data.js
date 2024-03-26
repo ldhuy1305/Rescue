@@ -1881,7 +1881,7 @@ export default {
     ],
     honor: [
         {
-            avatar: 'https://scontent.fdad1-4.fna.fbcdn.net/v/t39.30808-6/336886031_181706830996033_546035113897309610_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeE67EG_qDK96KmZ5_Ukhf6nDDuXfyQ5lX0MO5d_JDmVfScgHlFeraW3-nVwP_hkiXAt1_hlvbr9MYSX4mYa2gZP&_nc_ohc=DXN7F4ILzckAX-m_4lP&_nc_ht=scontent.fdad1-4.fna&oh=00_AfC-eWrPKVpeOCYAytN9H0hHwYg1y2hnCjxmuvGj42ixrA&oe=66021256',
+            avatar: 'https://res.cloudinary.com/dcyg1qwdc/image/upload/test/honor/oowutvoddrrm2v4cudll.jpg',
             name: 'Lê Đức Huy',
             honor: 'N2',
             description: [
@@ -1891,7 +1891,7 @@ export default {
             ]
         },
         {
-            avatar: 'https://scontent.fdad1-4.fna.fbcdn.net/v/t39.30808-6/336886031_181706830996033_546035113897309610_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeE67EG_qDK96KmZ5_Ukhf6nDDuXfyQ5lX0MO5d_JDmVfScgHlFeraW3-nVwP_hkiXAt1_hlvbr9MYSX4mYa2gZP&_nc_ohc=DXN7F4ILzckAX-m_4lP&_nc_ht=scontent.fdad1-4.fna&oh=00_AfC-eWrPKVpeOCYAytN9H0hHwYg1y2hnCjxmuvGj42ixrA&oe=66021256',
+            avatar: 'https://res.cloudinary.com/dcyg1qwdc/image/upload/test/honor/mt1hdmuyrbvsf6oddghw.jpg',
             name: 'Nguyễn Thị Ngọc',
             honor: 'N2',
             description: [
@@ -1901,7 +1901,7 @@ export default {
             ]
         },
         {
-            avatar: 'https://scontent.fdad1-4.fna.fbcdn.net/v/t39.30808-6/336886031_181706830996033_546035113897309610_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeE67EG_qDK96KmZ5_Ukhf6nDDuXfyQ5lX0MO5d_JDmVfScgHlFeraW3-nVwP_hkiXAt1_hlvbr9MYSX4mYa2gZP&_nc_ohc=DXN7F4ILzckAX-m_4lP&_nc_ht=scontent.fdad1-4.fna&oh=00_AfC-eWrPKVpeOCYAytN9H0hHwYg1y2hnCjxmuvGj42ixrA&oe=66021256',
+            avatar: 'https://res.cloudinary.com/dcyg1qwdc/image/upload/test/honor/gkktxy9xpycwiez3bqb6.jpg',
             name: 'Nguyễn Thị Mai',
             honor: 'N4',
             description: [
