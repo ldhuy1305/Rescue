@@ -104,7 +104,7 @@ export default {
             }
         ]
     ],
-    course: [
+    test: [
         {
             id: 1,
             title: 'One-Armed Swordsman, The (Dubei dao)',
@@ -1877,6 +1877,38 @@ export default {
             comment: 15,
             part: 5,
             question: 59
+        }
+    ],
+    honor: [
+        {
+            avatar: 'https://scontent.fdad1-4.fna.fbcdn.net/v/t39.30808-6/336886031_181706830996033_546035113897309610_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeE67EG_qDK96KmZ5_Ukhf6nDDuXfyQ5lX0MO5d_JDmVfScgHlFeraW3-nVwP_hkiXAt1_hlvbr9MYSX4mYa2gZP&_nc_ohc=DXN7F4ILzckAX-m_4lP&_nc_ht=scontent.fdad1-4.fna&oh=00_AfC-eWrPKVpeOCYAytN9H0hHwYg1y2hnCjxmuvGj42ixrA&oe=66021256',
+            name: 'Lê Đức Huy',
+            honor: 'N2',
+            description: [
+                'Học sinh Trường THPT Tân Yên 1 - Tỉnh Bắc Giang.',
+                'Đạt giải NHẤT trong kỳ thi học sinh giỏi cấp tỉnh tại Tỉnh Quảng Trị, môn Toán, năm học 2023-2024.',
+                'Đồng thời đạt giải NHẤT môn Hóa (20/20) và môn Sinh (18.4/20).'
+            ]
+        },
+        {
+            avatar: 'https://scontent.fdad1-4.fna.fbcdn.net/v/t39.30808-6/336886031_181706830996033_546035113897309610_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeE67EG_qDK96KmZ5_Ukhf6nDDuXfyQ5lX0MO5d_JDmVfScgHlFeraW3-nVwP_hkiXAt1_hlvbr9MYSX4mYa2gZP&_nc_ohc=DXN7F4ILzckAX-m_4lP&_nc_ht=scontent.fdad1-4.fna&oh=00_AfC-eWrPKVpeOCYAytN9H0hHwYg1y2hnCjxmuvGj42ixrA&oe=66021256',
+            name: 'Nguyễn Thị Ngọc',
+            honor: 'N2',
+            description: [
+                'Học sinh Trường THPT Phan Đặng Lưu - Tỉnh Nghệ An.',
+                'Đạt giải NHẤT trong kỳ thi học sinh giỏi cấp tỉnh tại tỉnh Nghệ An, môn Toán với điểm số 17.5, năm học 2023-2024.',
+                'Đạt giải NHẤT trong kỳ thi học sinh giỏi cấp tỉnh tại TP Hải Phòng, môn Toán, năm học 2023-2024.'
+            ]
+        },
+        {
+            avatar: 'https://scontent.fdad1-4.fna.fbcdn.net/v/t39.30808-6/336886031_181706830996033_546035113897309610_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeE67EG_qDK96KmZ5_Ukhf6nDDuXfyQ5lX0MO5d_JDmVfScgHlFeraW3-nVwP_hkiXAt1_hlvbr9MYSX4mYa2gZP&_nc_ohc=DXN7F4ILzckAX-m_4lP&_nc_ht=scontent.fdad1-4.fna&oh=00_AfC-eWrPKVpeOCYAytN9H0hHwYg1y2hnCjxmuvGj42ixrA&oe=66021256',
+            name: 'Nguyễn Thị Mai',
+            honor: 'N4',
+            description: [
+                'Học sinh Trường THPT Tân Yên 1 - Tỉnh Bắc Giang.',
+                'Đạt giải NHẤT trong kỳ thi học sinh giỏi cấp tỉnh tại Tỉnh Quảng Trị, môn Toán, năm học 2023-2024.',
+                'Đồng thời đạt giải NHẤT môn Hóa (20/20) và môn Sinh (18.4/20).'
+            ]
         }
     ]
 };

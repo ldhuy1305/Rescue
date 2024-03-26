@@ -1,33 +1,35 @@
 <div id="landing-page">
     <section class = "main">
-      <div class="layout-1">
-        <h3>
-          KHÓA HỌC VÀ LUYỆN ĐỀ TRỰC TUYẾN
-        </h3>
-        <h1>
-          HỌC KHÔNG GIỚI HẠN CÙNG HUYLE
-        </h1>
-      </div>
-      <div class="layout-2">
-        <div class="intro-text">
-          <h2>
-            <span class="hear"> Bạn có thể làm được </span> <br />
-            <span class="connecting"> Hãy đến với chúng tôi để tốt hơn</span>
-          </h2>
-          <p>
-            Bắt đầu, chuyển đổi hoặc thăng tiến trong sự nghiệp của bạn với hơn 5.400 khóa học, chứng chỉ chuyên môn và bằng cấp từ các trường đại học và công ty đẳng cấp thế giới.<br />
-            Khóa học này rất toàn diện và bao gồm mọi thứ tôi cần biết về hoạt hình.
-          </p>
-          <a class="btn red" href="#">Tham gia</a>
-          <a class="btn blue" href="#">Tìm hiểu thêm</a>
+      <div class="main-layout">
+        <div class="layout-1">
+          <h3>
+            KHÓA HỌC VÀ LUYỆN ĐỀ TRỰC TUYẾN
+          </h3>
+          <h1>
+            HỌC KHÔNG GIỚI HẠN CÙNG HUYLE
+          </h1>
         </div>
-        <div class="i-frame">    
-          <img src="https://media.istockphoto.com/id/607929972/vi/vec-to/logo-e-learning-vector.jpg?s=612x612&w=0&k=20&c=8IDWTGo2MIYYTyoUAXE6BugCPLhUamMlQT64R-39bEw=" alt="IMG">
+        <div class="layout-2">
+          <div class="intro-text">
+            <h2>
+              <span class="hear"> Bạn có thể làm được </span> <br />
+              <span class="connecting"> Hãy đến với chúng tôi để tốt hơn</span>
+            </h2>
+            <p>
+              Bắt đầu, chuyển đổi hoặc thăng tiến trong sự nghiệp của bạn với hơn 5.400 khóa học, chứng chỉ chuyên môn và bằng cấp từ các trường đại học và công ty đẳng cấp thế giới.<br />
+              Khóa học này rất toàn diện và bao gồm mọi thứ tôi cần biết về hoạt hình.
+            </p>
+            <a class="btn red" href="#">Tham gia</a>
+            <a class="btn blue" href="#">Tìm hiểu thêm</a>
+          </div>
+          <div class="i-frame">    
+            <img src="https://www.the74million.org/wp-content/uploads/2023/08/easing-pressure-on-teachers.png" alt="IMG">
+          </div>
         </div>
       </div>
     </section>
-    <section class="course" id = "course">
-      <div class="title-course">
+    <section class="test" id = "test">
+      <div class="title-test">
         <h1>
           ĐỀ KIỂM TRA MỚI NHẤT
         </h1>
@@ -35,9 +37,9 @@
           Đề kiểm tra luôn được cập nhật để phù hợp với xu hướng hiện tại
         </h2>
       </div>
-      <div class="course-container">
-        <template v-for="(item,key) in data.course.slice(0,index)" :key="key" >
-          <div class="course-item" @click="viewDetail">
+      <div class="test-container">
+        <template v-for="(item,key) in data.test.slice(0,index)" :key="key" >
+          <div class="test-item" @click="viewDetail">
             <p class ="title">{{item.title}}</p>
             <div class="first-row">
               <span> <i class="fa-regular fa-clock"></i> {{item.time}}</span>
@@ -61,6 +63,32 @@
       </template>
       </div>
       <button class="more" @click = viewMore() > More </button>
+    </section>
+    <section class="honor" id = "honor">
+      <div class="title-honor">
+        <h1>
+          GÓC VINH DANH
+        </h1>
+        <h2>
+          Những tấm gương xuất sắc, có thành tích cao
+        </h2>
+      </div>
+      <div class="honor-container">
+        <button class="fa fa-caret-left"aria-hidden="true" @click="preSlide"></button>
+          <div class="honor-item">
+            <div class = "slide" v-for = "(item,index) in data.honor" :key="index" :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
+              <img class ="avatar" :src="item.avatar" alt="avatar">
+              <div class="content">
+                <h3>{{item.name}}</h3>
+                <p>{{item.honor}}</p>
+                <div class ="description" v-for ="(el,key) in item.description">
+                  <span>{{el}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <button class="fa fa-caret-right"aria-hidden="true" @click="nextSlide"></button>
+      </div>
     </section>
     <section class="share" id = "share">
       <div class="title-share">
