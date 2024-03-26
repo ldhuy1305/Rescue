@@ -1,0 +1,35 @@
+@import '@/assets/scss/common';
+#contact {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 4px #030303;
+    padding: 0px 20px 0px 20px;
+    margin: 100px auto 0 auto;
+    gap: 10px;
+    .first {
+        button{
+            margin: 20px 10px 0px 10px;
+            padding : 2px 10px 2px 10px;
+            background-color: rgb(55, 55, 233);
+            border-radius: 5px;
+            border: 0;
+            color: white;
+        }
+    }
+    .second{
+        .social{
+            display: flex;
+            a{
+                margin: 0px 2px 0px 2px;
+            }
+        }
+    }
+    .infor{
+        margin: 0px 2px 0px 2px;
+    }
+    .copyright{
+        display: flex;
+        justify-content: center;
+        margin: 0px 2px 0px 2px;
+    }
+}

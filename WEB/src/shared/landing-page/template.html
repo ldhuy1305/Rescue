@@ -1,118 +1,117 @@
 <div id="landing-page">
     <section class = "main">
-      <div class="layout-1">
-        <h3>
-          Education & Online Course
-        </h3>
-        <h1>
-          Learn Without Limits With Huyle
-        </h1>
-      </div>
-      <div class="layout-2">
-        <div class="intro-text">
-          <h2>
-            <span class="hear"> You can do it </span> <br />
-            <span class="connecting"> Come here to learn</span>
-          </h2>
-          <p>
-            Start, switch, or advance your career with more than 5,400 courses, Professional Certificates, and degrees from world-class universities and companies.<br />
-            This course was comprehensive and covered everything i needed to know about animation.
-          </p>
-          <a class="btn red" href="#">Join for free</a>
-          <a class="btn blue" href="#">Learn More</a>
+      <div class="main-layout">
+        <div class="layout-1">
+          <h3>
+            KHÓA HỌC VÀ LUYỆN ĐỀ TRỰC TUYẾN
+          </h3>
+          <h1>
+            HỌC KHÔNG GIỚI HẠN CÙNG HUYLE
+          </h1>
         </div>
-        <div class="i-frame">
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/sUmM_PFpsvQ"
-            title="YouTube video player"
-            frameborder="10"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          ></iframe>
+        <div class="layout-2">
+          <div class="intro-text">
+            <h2>
+              <span class="hear"> Bạn có thể làm được </span> <br />
+              <span class="connecting"> Hãy đến với chúng tôi để tốt hơn</span>
+            </h2>
+            <p>
+              Bắt đầu, chuyển đổi hoặc thăng tiến trong sự nghiệp của bạn với hơn 5.400 khóa học, chứng chỉ chuyên môn và bằng cấp từ các trường đại học và công ty đẳng cấp thế giới.<br />
+              Khóa học này rất toàn diện và bao gồm mọi thứ tôi cần biết về hoạt hình.
+            </p>
+            <a class="btn red" href="#">Tham gia</a>
+            <a class="btn blue" href="#">Tìm hiểu thêm</a>
+          </div>
+          <div class="i-frame">    
+            <img src="https://www.the74million.org/wp-content/uploads/2023/08/easing-pressure-on-teachers.png" alt="IMG">
+          </div>
         </div>
       </div>
     </section>
-    <section class="course" id = "course">
-      <div class="title-course">
+    <section class="test" id = "test">
+      <div class="title-test">
         <h1>
-          The lastest test
+          ĐỀ KIỂM TRA MỚI NHẤT
         </h1>
         <h2>
-          The test set is always updated to match current trends
+          Đề kiểm tra luôn được cập nhật để phù hợp với xu hướng hiện tại
         </h2>
       </div>
-      <div class="course-container">
-        <table>
-          
-        </table>
-        <template v-for="(item,key) in data.course.slice(0,8)" :key="key" >
-          <div class="course-item">
+      <div class="test-container">
+        <template v-for="(item,key) in data.test.slice(0,index)" :key="key" >
+          <div class="test-item" @click="viewDetail">
             <p class ="title">{{item.title}}</p>
             <div class="first-row">
               <span> <i class="fa-regular fa-clock"></i> {{item.time}}</span>
-              <span> Minutes</span>
+              <span>Phút</span>
               <span> | </span>
-              <span> <i class="fa-solid fa-user-tie"></i>{{item.participation}}</span>
+              <span> <i class="fa-solid fa-user-tie"></i> {{item.participation}}</span>
               <span> | </span>
-              <span> <i class="fa-regular fa-comment"></i>{{item.comment}}  </span>
+              <span> <i class="fa-regular fa-comment"></i> {{item.comment}}  </span>
             </div>
             <div class="second-row">
               <span>{{item.part}} </span> 
-              <span>Parts</span>
+              <span>Phần </span>
               <span>|</span>
-              <span>{{item.question}}  </span>
-              <span>Questions</span>
+              <span>{{item.question}}</span>
+              <span>Câu hỏi</span>
             </div>
             <div class="third-row">
-              <button>Detail </button>
+              <button>Chi tiết </button>
             </div>
           </div>
+      </template>
+      </div>
+      <button class="more" @click = viewMore() > More </button>
+    </section>
+    <section class="honor" id = "honor">
+      <div class="title-honor">
+        <h1>
+          GÓC VINH DANH
+        </h1>
+        <h2>
+          Những tấm gương xuất sắc, có thành tích cao
+        </h2>
+      </div>
+      <div class="honor-container">
+        <button class="fa fa-caret-left"aria-hidden="true" @click="preSlide"></button>
+          <div class="honor-item">
+            <div class = "slide" v-for = "(item,index) in data.honor" :key="index" :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
+              <img class ="avatar" :src="item.avatar" alt="avatar">
+              <div class="content">
+                <h3>{{item.name}}</h3>
+                <p>{{item.honor}}</p>
+                <div class ="description" v-for ="(el,key) in item.description">
+                  <span>{{el}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <button class="fa fa-caret-right"aria-hidden="true" @click="nextSlide"></button>
       </div>
     </section>
-    <section class="contact" id = "contact">
-      <div class="first">
-        <button><i class="fa-solid fa-thumbs-up"></i> Like</button>
-        <button>Share</button>
+    <section class="share" id = "share">
+      <div class="title-share">
+        <h1>
+          CHIA SẺ CỦA CÁC CỰU HỌC VIÊN
+        </h1>
+        <h2>
+          Lời nhắn nhủ tới các học viên đến thế hệ sau
+        </h2>
       </div>
-      <div class="second">
-        <div class="container row">
-          <div class="col-2">
-            <h2>Huyle</h2>
-            <p>@2024</p>
-            <div class="social">
-              <a  href="https://www.facebook.com/ldhuy130502"> <i  class="fa-brands fa-facebook"></i></a>
-              <a  href="https://www.facebook.com/ldhuy130502"> <i class="fa-brands fa-instagram"></i></a>
-              <a  href="https://www.facebook.com/ldhuy130502"> <i class="fa-brands fa-x-twitter"></i></a>
-              <a  href="https://www.facebook.com/ldhuy130502">  <i class="fa-brands fa-linkedin"></i></a>
-              <a  href="https://www.facebook.com/ldhuy130502">  <i class="fa-brands fa-tiktok"></i></a>
+      <div class="share-container">
+        <template v-for="(item,key) in share" :key="key" >
+          <div class="share-item">
+            <img class="avatar" :src="item.ava" alt="avatar">
+            <p class ="name">{{item.name}}</p>
+            <p class ="result">{{item.result}}</p>
+            <div class="quote"> 
+              <i class="fa fa-quote-left" aria-hidden="true"></i>
+              <p class ="description">{{item.description}}</p>
+              <i class="fa fa-quote-right" aria-hidden="true"></i>
             </div>
           </div>
-          <template v-for = "(item,key) in data.contact" :key="key">
-            <table class="col-2" >
-              <thead>
-                <th>{{item[0]}}</th>
-              </thead>
-              <tbody>
-                <div v-for = "(el,index) in item" :key="index">
-                  
-                <tr v-if="index >= 1">{{el}} </tr>
-                </div>
-              </tbody>
-            </table>
-          </template>
-        </div> 
+      </template>
       </div>
-      <div class="infor">
-        <h5>Thông tin doanh nghiệp</h5>
-        <p>Công ty TNHH một thành viên
-          Giấy chứng nhận Đăng ký doanh nghiệp số: 0123456789 do Sở Kế hoạch và Đầu tư thành phố Đà Nẵng cấp ngày 19/03/2024.
-          Hotline: 0948942954
-          Email: ldhuydn1305@gmail.com.
-          Địa chỉ: K1/17 Hà Thị Thân, Phường An Hải Tây, Quận Sơn Trà, Thành phố Đà Nẵng, Việt Nam</p>
-      </div> 
-      <div class="copyright">
-        <p>@ 2024 - Bản quyền của Huy</p>
-      </div> 
     </section>
   </div>

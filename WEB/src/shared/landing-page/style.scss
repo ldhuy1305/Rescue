@@ -1,105 +1,113 @@
 @import "../../assets/scss/var";
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 #landing-page {
-    .main{
-        margin: 100px auto 0 auto;
-        max-width: 1100px;
-        gap: 50px;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        .layout-1{
+    .main {       
+        background-image: url('https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        margin-top: -50px;
+        .main-layout{
+            margin: 100px auto 0 auto;
+            max-width: 1100px;
+            gap: 50px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
             flex-direction: column;
-            h1{
-                width: 100%;
-                font-size: 50px;
-                font-weight: bold;
-            }
-            h3{
-                color: rgb(26, 196, 26);
-                font-size: 20px;
-            }
-        }
-        .layout-2{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 20px;
-            .intro-text {
-                position: relative;
-                left:0;
-                top:0;
-                .h1{
-                    font-size: 48px;
-                    margin-bottom: 1rem;
-                }
-                .h2{
-                    font-size: 48px;
-                    margin-bottom: 1rem;
-                }
-                .hear {
-                color: $primaryColor;
-                }
-        
-                .connecting {
-                color: $dangerColor;
-                }
-        
-            .p {
-                line-height: 30px;
-            }
-        
-            .btn {
-                margin-top: 1rem;
-                display: inline-block;
-                padding: 0.8rem 0.6rem;
-                border: none;
-                font-size: 1.4rem;
-                border-radius: 5px;
-                color: #fff;
-                border-radius: 30px;
-                margin-left: 50px;
-                &.red {
-                    background-color: $dangerColor;
-                    margin-right: 1.5rem;
-                    &:hover{
-                        background-color: $dangerHoverColor;
-                        color: #fff;
-                    }
-                }
-        
-                &.blue {
-                    background-color: $primaryColor;
-                    &:hover {
-                        background-color: #095cf7;
-                        color: #fff;
-                    }
-                }
-            }
-            }
-                .i-frame {
-                position: relative;
-                width: 560px;
-                height: 315px;
-            
-                iframe {
+            .layout-1{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-direction: column;
+                margin-top: 20px;
+                h1{
                     width: 100%;
-                    height: 100%;
+                    font-size: 50px;
+                    font-weight: bold;
+                    color: $primaryColor;
+                }
+                h3{
+                    color: $dangerColor;
+                    font-size: 25px;
+                }
+            }
+            .layout-2{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-top: 20px;
+                .intro-text {
+                    position: relative;
+                    left:0;
+                    top:0;
+                    .h1{
+                        font-size: 48px;
+                        margin-bottom: 1rem;
+                    }
+                    .h2{
+                        font-size: 48px;
+                        margin-bottom: 1rem;
+                    }
+                    .hear {
+                    color: $primaryColor;
+                    }
+            
+                    .connecting {
+                    color: $dangerColor;
+                    }
+            
+                .p {
+                    line-height: 30px;
+                }
+            
+                .btn {
+                    margin-top: 1rem;
+                    display: inline-block;
+                    padding: 10px 20px 10px 20px;
+                    border: none;
+                    font-size: 1.4rem;
+                    border-radius: 5px;
+                    color: #fff;
+                    border-radius: 30px;
+                    margin-left: 50px;
+                    &.red {
+                        background-color: $dangerColor;
+                        margin-right: 1.5rem;
+                        &:hover{
+                            background-color: $dangerHoverColor;
+                            color: #fff;
+                        }
+                    }
+            
+                    &.blue {
+                        background-color: $primaryColor;
+                        &:hover {
+                            background-color: #095cf7;
+                            color: #fff;
+                        }
+                    }
+                }
+                }
+                    .i-frame {
+                    position: relative;
+                    // width: 500px;
+                    // height: 500px;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
                 }
             }
         }
     }
-    .course {
+    .test {
         margin: 100px auto 0 auto;
         max-width: 1100px;
         gap: 50px;
         display: flex;
         align-items: center;
         flex-direction: column;
-        .title-course{       
+        .title-test{       
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -113,24 +121,26 @@
                 font-size: 20px;
             }
         }
-        .course-container{
+        .test-container{
             width: 150%;
 
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             padding-top: 20px;
-            .course-item{
+            .test-item{
                 width:20%;
                 border : gray solid 1px;
+                background-color: #eeeeeef5;
                 border-radius: 5px;
-                margin: 0px 20px 20px 20px;
-                padding: 10px;
+                margin: 0px 20px 40px 20px;
+                padding: 20px;
                 display: flex;
                 justify-content: space-between;
                 flex-direction: column;     
                 .title{
                     font-weight: bold;
+                    height: 48px;
                 }
                 .first-row span{
                     margin: 0px 2px 0px 2px;
@@ -146,6 +156,7 @@
                     bottom: 0;
                     border-radius: 5px;
                     border: #6999f3 solid 2px ;
+                    margin-top: 10px;
                     button {          
                         width: 100%;      
                         background-color: white;
@@ -157,41 +168,194 @@
                         border: 0;
                     }
                 }
-            }
-        }
-    }
-    .contact {
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0px 0px 4px #030303;
-        padding: 0px 20px 0px 20px;
-        margin: 100px auto 0 auto;
-        gap: 10px;
-        .first {
-            button{
-                margin: 20px 10px 0px 10px;
-                padding : 2px 10px 2px 10px;
-                background-color: rgb(55, 55, 233);
-                border-radius: 5px;
-                border: 0;
-                color: white;
-            }
-        }
-        .second{
-            .social{
-                display: flex;
-                a{
-                    margin: 0px 2px 0px 2px;
+                &:hover {
+                    transform: translateY(-5px); 
+                    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+                    cursor: pointer;
+                    button:hover {       
+                        width: 100%;      
+                        background-color: #6999f3;
+                        color: white;
+                        border-radius: 0px;
+                    }
                 }
             }
         }
-        .infor{
-            margin: 0px 2px 0px 2px;
+        .more{
+            width: 30%;      
+            background-color: white;
+            color: #6999f3;
+            font-size: 20px;
+            text-align: center;
+            padding: 2px 10px 2px 10px;
+            bottom: 0;
+            border-radius: 5px;
+            border: #6999f3 solid 1px;
+            &:hover{
+                background-color: 
+                $primaryColor;
+                color: white;
+            }
         }
-        .copyright{
+    }
+    .honor {
+        margin: 100px auto 0 auto;
+        gap: 50px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background-image: url('https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        padding: 50px 20px 50px 20px;
+        .title-honor{       
             display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: column;     
+            h1{
+                width: 100%;
+                font-size: 50px;
+                font-weight: bold;
+            }
+            h2{
+                font-size: 20px;
+            }
+        }
+        .honor-container{
+            display: flex;
+            align-items: center;
             justify-content: center;
-            margin: 0px 2px 0px 2px;
+            width: 60%;
+            height: 70%;
+            .honor-item{
+                height: 400px; 
+                width: 100%;
+                display: flex;
+                overflow: hidden;
+                .slide{
+                    background-image: url('https://img.freepik.com/free-vector/blue-curve-background_53876-113112.jpg');
+                    background-repeat: no-repeat;
+                    background-attachment: scroll;
+                    background-size: cover;
+                    display: flex;
+                    align-items: center;
+                    height: 100%;
+                    width: 100%;
+                    transition: transform 2s ease;
+                    .avatar{
+                        height: 60%;
+                        margin: 0px 50px 0px 50px;
+                        border-radius: 50%;
+                    }
+                    .content{
+                        padding: 0px 10px 0px 10px;
+                        width: 500px;
+                        p{
+                            text-align: justify;
+                        }
+                        .description{
+                            margin-top: 5px;
+                        }
+                        span{
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+            button {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                font-size: 36px;   
+                z-index: 1;         
+                border: 0px;
+                color: 095cf7;
+                &.fa-caret-left {
+                    transform: translateX(25px);  
+                }
+                &.fa-caret-right {
+                    transform: translateX(-25px);  
+                }
+                &:hover{
+                    background-color: #095cf7;
+                    color: white;
+                }
+            }
+        }
+    }
+    .share {
+        margin: 100px auto 0 auto;
+        max-width: 1100px;
+        gap: 50px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        .title-share{       
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: column;     
+            h1{
+                width: 100%;
+                font-size: 50px;
+                font-weight: bold;
+            }
+            h2{
+                font-size: 20px;
+            }
+        }
+        .share-container{
+            width: 150%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding-top: 20px;
+            .share-item{
+                width:25%;
+                height: 100%;
+                border : gray solid 1px;
+                border-radius: 10px;
+                margin: 40px 20px 40px 20px;
+                padding: 20px 20px 0px 20px;
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;     
+                .avatar{
+                    width: 70%;
+                    height:40%;
+                    position: relative;
+                    text-align: center;
+                    transform: translate(45px,-100px);
+                    border-radius: 50%;
+                }
+                .name{
+                    text-align: center;
+                    transform: translateY(-50px);
+                    font-size: 30px;
+                }
+                .result{
+                    text-align: center;
+                    transform: translateY(-50px);
+                    font-size: 20px;
+                }
+                .quote{
+                    transform: translateY(-60px);
+                    .description{
+                        padding: 0px 40px 0px 40px;
+                        font-size: 18px;
+                        text-align: justify;
+                    }
+                    .fa{
+                        color: #095cf7;
+                        font-size: 40px;
+                    }
+                    .fa-quote-right{
+                        margin-left: 330px ;
+                    }
+                }
+            }
         }
     }
   }
