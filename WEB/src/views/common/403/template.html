@@ -1,13 +1,14 @@
-<div id="page403">
-    <div class="content-wrapper page-error">
-        <section id="search_card" class="ans-section mb-0">
-            <div class="row form-group">
-                <div class="col-sm-12 comment">
-                    <h3>403! Truy cập bị từ chối.</h3>
-                    <p>Bạn không có quyền truy cập trang này. Vui lòng liên hệ với quản trị viên của bạn.</p>
-                    <router-link :to="homeScreen" class="btn btn-lg btn-primary mt-2" title="Quay về">Quay về</router-link>
-                </div>
-            </div>
-        </section>
+<div id="page403" class = "error">
+    <div class="content row">
+        <div class="title col-7">
+            <h3>403! Truy cập bị từ chối.</h3>
+            <p>Bạn không có quyền truy cập trang này. Vui lòng liên hệ với quản trị viên của bạn.</p>
+        </div>
+        <img :src=img alt="403">
+    </div>
+    <hr>
+    <div class="return">
+        <p>Bạn có thể trở về trang chủ</p>
+        <router-link to="home" class="btn btn-lg btn-primary mt-2" title="Trang chủ">Trang chủ</router-link> 
     </div>
 </div>

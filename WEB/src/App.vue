@@ -1,24 +1,22 @@
 <template>
-    <!-- <component :is="layout" /> -->
-    <router-view />
+    <component :is="layout" />
+    <!-- <router-view /> -->
 </template>
 
 <script>
-// import MainLayout from '@/shared/main-layout';
+import MainLayout from '@/shared/main-layout';
 // import { mapActions, mapMutations, mapState } from 'vuex';
 
 export default {
     name: 'App',
-    // components: { MainLayout },
+    components: { MainLayout },
     data() {
         return {
             layout: null
         };
     },
     created() {},
-    mounted() {
-        this.checkReload();
-    },
+    mounted() {},
     computed: {},
     watch: {
         $route(to) {
@@ -28,9 +26,6 @@ export default {
                 this.layout = 'MainLayout';
             }
         }
-    },
-    methods: {
-        checkReload() {}
     }
 };
 </script>

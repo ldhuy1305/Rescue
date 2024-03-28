@@ -1,15 +1,29 @@
 <script>
 import template from './template.html';
-
-import Loading from '@/components/loading';
-import MainHeader from '@/shared/header';
-
+import Header from '@/shared/header';
+import Footer from '@/shared/footer';
+import $ from 'jquery';
 export default {
     name: 'MainLayout',
     template: template,
-    components: {
-        MainHeader,
-        Loading
+    components: { Header, Footer },
+    mounted() {
+        var totalHeight = 0;
+        $('#app').each(function () {
+            totalHeight += $(this).outerHeight(true);
+        });
+        var windowHeight = $(window).height();
+        if (totalHeight > windowHeight) {
+            if ($('#landing-page').length > 0)
+                $('#contact').css('position', 'sticky');
+        } else $('#contact').css('position', 'fixed');
+    },
+    watch: {
+        $route(to) {
+            if (to.name == 'home') {
+                $('#contact').css('position', 'sticky');
+            }
+        }
     }
 };
 </script>

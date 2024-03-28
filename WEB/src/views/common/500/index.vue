@@ -1,23 +1,17 @@
 <script>
 import template from './template.html';
-import { mapMutations, mapState } from 'vuex';
 
 var ServerError = {
     template: template,
-    created() {
-        // this.setScreenId(this.screenId);
-    },
+    created() {},
     data() {
         return {
-            screenId: '500'
+            // eslint-disable-next-line no-undef
+            img: process.env.VUE_APP_CLOUDINARY + '/common/500'
         };
     },
-    computed: {
-        ...mapState('app', ['homeScreen'])
-    },
-    methods: {
-        ...mapMutations('app', ['setScreenId'])
-    }
+    computed: {},
+    methods: {}
 };
 export default ServerError;
 </script>

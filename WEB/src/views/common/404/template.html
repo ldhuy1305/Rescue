@@ -1,14 +1,14 @@
-<div id="page404">
-    <div class="content-wrapper page-error">
-        <section id="search_card" class="ans-section mb-0">
-            <div class="row form-group">
-                <div class="col-sm-12 comment">
-                    <img src="https://static-00.iconduck.com/assets.00/404-page-not-found-illustration-2048x998-yjzeuy4v.png" alt="404">
-                    <h3>404! Không tìm thấy trang.</h3>
-                    <p>Chúng tôi xin lỗi vì sự bất tiện này. Có vẻ như bạn đang cố truy cập một trang đã bị xóa hoặc không tồn tại.</p>
-                    <router-link :to="homeScreen" class="btn btn-lg btn-primary mt-2" title="Trở về">Trở về</router-link>
-                </div>
-            </div>
-        </section>
+<div id="page404" class = "error">
+    <div class="content row">
+        <div class="title col-7">
+            <h3>404! Không tìm thấy trang.</h3>
+            <p>Chúng tôi xin lỗi vì sự bất tiện này. Có vẻ như bạn đang cố truy cập một trang đã bị xóa hoặc không tồn tại.</p>
+        </div>
+        <img class ="col-4" :src=img alt="404">
+    </div>
+    <hr>
+    <div class="return">
+        <p>Bạn có thể trở về trang chủ</p>
+        <router-link to="home" class="btn btn-lg btn-primary mt-2" title="Trang chủ">Trang chủ</router-link> 
     </div>
 </div>

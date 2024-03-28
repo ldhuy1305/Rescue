@@ -43,7 +43,7 @@ const baseRoutes = [
     },
     {
         path: '/:catchAll(.*)',
-        redirect: '/home'
+        redirect: '/404'
     }
 ];
 const routes = mainRouter.concat(baseRoutes);
@@ -52,5 +52,8 @@ const router = createRouter({
     history: createWebHistory(),
     routes
 });
-
+router.beforeEach((to, from, next) => {
+    document.title = to.meta.title;
+    next();
+});
 export default router;
