@@ -41,9 +41,7 @@ const LandingPage = {
         viewMore() {
             this.index += 8;
         },
-        viewDetail() {
-            console.log(1);
-        },
+        viewDetail() {},
         preSlide() {
             this.currentIndex =
                 (this.currentIndex - 1 + this.data.honor.length) %
