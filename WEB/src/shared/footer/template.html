@@ -1,49 +1,50 @@
-
-    <section class="contact" id = "contact">
-      <div class="first">
-        <button><i class="fa-solid fa-thumbs-up"></i> Like</button>
-        <button>Share</button>
-      </div>
-      <div class="second">
-        <div class="container row">
-          <div class="col-2">
-            <h2>Huyle</h2>
-            <p>@2024</p>
-            <div class="social">
-              <a  href="https://www.facebook.com/ldhuy130502"> <i  class="fa-brands fa-facebook"></i></a>
-              <a  href="https://www.facebook.com/ldhuy130502"> <i class="fa-brands fa-instagram"></i></a>
-              <a  href="https://www.facebook.com/ldhuy130502"> <i class="fa-brands fa-x-twitter"></i></a>
-              <a  href="https://www.facebook.com/ldhuy130502">  <i class="fa-brands fa-linkedin"></i></a>
-              <a  href="https://www.facebook.com/ldhuy130502">  <i class="fa-brands fa-tiktok"></i></a>
-            </div>
+<section class="contact" id = "contact">
+  <div class="contact-container">
+    
+    <div class="first">
+      <!-- <button><i class="fa-solid fa-thumbs-up"></i> Like</button>
+      <button>Share</button> -->
+    </div>
+    <div class="second">
+      <div class="container row">
+        <div class="col-5">
+          <h2>UBND Thành Phố Đà Nẵng</h2>
+          <p>@2024</p>
+          <div class="social">
+            <a  href="https://www.facebook.com/danang.gov.vn/"> <i class="fa-brands fa-facebook"></i></a>
+            <a  href="https://danang.gov.vn/"> <i class="fa fa-globe" aria-hidden="true"></i></a>
           </div>
-          <template v-for = "(item,key) in data.contact" :key="key">
-            <table class="col-2" >
-              <thead>
-                <th>{{item[0].title}}</th>
-              </thead>
-              <tbody>
-                <div v-for = "(el,index) in item" :key="index">
-                    <template v-if="index >= 1">
-                      <router-link :to="el.route" class="custom-link"> 
-                        <tr>{{ el.title }}</tr>
-                      </router-link>
-                    </template>
-                </div>
-              </tbody>
-            </table>
-          </template>
-        </div> 
-      </div>
-      <div class="infor">
-        <h5>Thông tin doanh nghiệp</h5>
-        <p>Công ty TNHH một thành viên
-          Giấy chứng nhận Đăng ký doanh nghiệp số: 0123456789 do Sở Kế hoạch và Đầu tư thành phố Đà Nẵng cấp ngày 19/03/2024.
-          Hotline: 0948942954
-          Email: ldhuydn1305@gmail.com.
-          Địa chỉ: K1/17 Hà Thị Thân, Phường An Hải Tây, Quận Sơn Trà, Thành phố Đà Nẵng, Việt Nam</p>
+        </div>
+        <template v-for = "(item,key) in data.contact" :key="key">
+          <table class="col-3" >
+            <thead>
+              <th>{{item[0].title}}</th>
+            </thead>
+            <tbody>
+              <div v-for = "(el,index) in item" :key="index">
+                  <template v-if="index >= 1">
+                    <router-link :to="el.route" class="custom-link text-white"> 
+                      <tr>{{ el.title }}</tr>
+                    </router-link>
+                  </template>
+              </div>
+            </tbody>
+          </table>
+        </template>
       </div> 
-      <div class="copyright">
-        <p>@ 2024 - Bản quyền của Huyle. Nghiêm cấm sao chép dưới mọi hình thức</p>
-      </div> 
-    </section>
+    </div>
+    <div class="infor">
+      <h5></h5>
+      <p>Công ty TNHH một thành viên
+        Giấy phép: 612/GP-STTTT cấp ngày 21 tháng 10 năm 2016.
+        Trưởng ban Ban biên tập: Trần Chí Cường, Phó Chủ tịch UBND thành phố.
+        Điện thoại: (+84.236) 3.893.777 - Email: toasoan@danang.gov.vn
+        Địa chỉ: 24 Trần Phú, P.Thạch Thang, Q. Hải Châu, TP. Đà Nẵng.
+        Ghi rõ nguồn Cổng Thông tin điện tử thành phố Đà Nẵng hoặc www.danang.gov.vn khi bạn phát hành lại thông tin từ Website này.
+      </p>
+    </div> 
+    <div class="copyright">
+      <p>@ 2024 - BẢN QUYỀN CỦA ỦY BAN NHÂN DÂN THÀNH PHỐ ĐÀ NẴNG</p>
+    </div> 
+  </div>
+</section>

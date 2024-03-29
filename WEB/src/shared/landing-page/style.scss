@@ -1,12 +1,9 @@
-@import "../../assets/scss/var";
+@import "../../assets/scss/common";
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 #landing-page {
     background-color: white;
     .main {       
-        background-image: url('https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
+        background-image: url('https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2020/7/9/818392/Lu-Lut-O-Nhat-Ban-16.jpg');
         margin-top: -50px; 
         .main-layout{
             margin: 100px auto 0 auto;
@@ -24,11 +21,11 @@
                 h1{
                     width: 100%;
                     font-size: 50px;
-                    font-weight: bold;
-                    color: $primaryColor;
+                    font-weight: bolder;
+                    color: WHITE;
                 }
                 h3{
-                    color: $dangerColor;
+                    color: WHITE;
                     font-size: 25px;
                 }
             }
@@ -36,30 +33,28 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                margin-top: 20px;
+                margin: 20px 0px 20px 0px;
+                width: 100%;
                 .intro-text {
                     position: relative;
                     left:0;
                     top:0;
-                    .h1{
+                    width: 90%;
+                    h1{
                         font-size: 48px;
-                        margin-bottom: 1rem;
+                        font-weight: bolder;
+                        color: white;
                     }
-                    .h2{
-                        font-size: 48px;
-                        margin-bottom: 1rem;
+                    h2{
+                        font-size: 36px;
+                        color: white;
+                        font-weight: bolder;
                     }
-                    .hear {
-                    color: $primaryColor;
+                    p {
+                        line-height: 30px;
+                        font-size: 20px;
+                        color: white;
                     }
-            
-                    .connecting {
-                    color: $dangerColor;
-                    }
-            
-                .p {
-                    line-height: 30px;
-                }
             
                 .btn {
                     margin-top: 1rem;
@@ -83,7 +78,7 @@
                     &.blue {
                         background-color: $primaryColor;
                         &:hover {
-                            background-color: #095cf7;
+                            background-color: #1959cf;
                             color: #fff;
                         }
                     }
@@ -91,24 +86,25 @@
                 }
                     .i-frame {
                     position: relative;
-                    // width: 500px;
-                    // height: 500px;
                     img {
                         width: 100%;
                         height: 100%;
+                        border-radius: 50%;
+                        margin-left: 50px;
                     }
                 }
             }
         }
     }
-    .test {
-        margin: 100px auto 0 auto;
+    .news {
+        margin: 0 auto 0 auto;
         max-width: 1100px;
         gap: 50px;
         display: flex;
         align-items: center;
         flex-direction: column;
-        .title-test{       
+        padding-top: 60px;
+        .title-news{       
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -122,51 +118,57 @@
                 font-size: 20px;
             }
         }
-        .test-container{
+        .news-container{
             width: 150%;
-
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            padding-top: 20px;
-            .test-item{
-                width:20%;
-                border : gray solid 1px;
-                background-color: #eeeeeef5;
-                border-radius: 5px;
+            padding: 20px;
+            .news-item{
+                width:40%;
                 margin: 0px 20px 40px 20px;
-                padding: 20px;
                 display: flex;
-                justify-content: space-between;
-                flex-direction: column;     
-                .title{
-                    font-weight: bold;
-                    height: 48px;
-                }
-                .first-row span{
-                    margin: 0px 2px 0px 2px;
-                }
-                .second-row span{
-                        margin: 0px 2px 0px 2px;
-                }
-                .third-row{
+                justify-content: center;
+                flex-direction: column; 
+                align-items: center;    
+                img{
                     width: 100%;
+                    height: 100%;
+                }
+                .title{
+                    width: 90%;
+                    max-height: 200px;
+                    background-color: white;
                     display: flex;
-                    justify-content: center;
-                    position: relative;
-                    bottom: 0;
-                    border-radius: 5px;
-                    border: #6999f3 solid 2px ;
-                    margin-top: 10px;
-                    button {          
-                        width: 100%;      
-                        background-color: white;
-                        color: #6999f3;
-                        text-align: center;
-                        padding: 2px 10px 2px 10px;
-                        bottom: 0;
-                        border-radius: 5px;
-                        border: 0;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    transform: translateY(-50px);
+                    padding: 40px;
+                    font-weight: bolder;
+                    h1{
+                        font-weight: bolder;
+                        height: 80%;
+                    }
+                    .detail{
+                        padding-top: 20px;
+                        height: 20%;
+                        font-size: 24px;
+                        span::after {
+                            content: '';
+                            position: absolute;
+                            width: 100%;
+                            transform: scaleX(0);
+                            height: 2px;
+                            bottom: 0;
+                            left: 0;
+                            background-color: $primaryHoverColor;
+                            transform-origin: bottom right;
+                            transition: transform 0.25s ease-out;
+                          }
+                          span:hover::after {
+                            transform: scaleX(1);
+                            transform-origin: bottom left;
+                          }
                     }
                 }
                 &:hover {
@@ -181,40 +183,36 @@
                     }
                 }
             }
-        }
-        .more{
-            width: 30%;      
-            background-color: white;
-            color: #6999f3;
-            font-size: 20px;
-            text-align: center;
-            padding: 2px 10px 2px 10px;
-            bottom: 0;
-            border-radius: 5px;
-            border: #6999f3 solid 1px;
-            &:hover{
-                background-color: 
-                $primaryColor;
-                color: white;
+            .more {
+                width: 80%;
+                text-align: right;
+                font-size: 28px;
+                padding: 2px 10px 2px 10px;
+                bottom: 0;
+                &:hover {
+                    color: $primaryColor;
+                    transform: translateY(-2px);
+                }
             }
         }
     }
     .honor {
-        margin: 100px auto 0 auto;
+        margin: 0 auto 0 auto;
         gap: 50px;
         display: flex;
         align-items: center;
         flex-direction: column;
-        background-image: url('https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+        background-image: url('https://cdn1.img.sputniknews.vn/img/07e6/09/1e/18209089_0:26:3072:1754_1920x0_80_0_0_f2183119640f0d40a8d7b1bf4bd4b3ce.jpg');
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: cover;
-        padding: 50px 20px 50px 20px;
+        padding: 60px 20px 50px 20px;
         .title-honor{       
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-direction: column;     
+            color: white;
             h1{
                 width: 100%;
                 font-size: 50px;
@@ -288,12 +286,13 @@
         }
     }
     .share {
-        margin: 100px auto 0 auto;
+        margin: 0 auto 0 auto;
         max-width: 1100px;
         gap: 50px;
         display: flex;
         align-items: center;
         flex-direction: column;
+        padding-top: 60px;
         .title-share{       
             display: flex;
             align-items: center;
