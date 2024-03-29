@@ -3,82 +3,40 @@ export default {
         {
             ava: 'https://www.verywellfamily.com/thmb/lmejCapkkBYa0LQoezl2RxBi1Z0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-911983386-d50a1de241d44f829b17053ace814f4e.jpg',
             name: 'Nguyễn Thị Mai',
-            result: 'Tester tại ANS ASIA',
+            result: 'Làm việc tại ANS ASIA',
             description:
-                'Website luyện thi online mang lại cho tôi một trải nghiệm học tập thuận tiện mà không cần phải di chuyển đến các trung tâm luyện thi truyền thống. Tôi có thể truy cập vào nền tảng học tập bất kỳ lúc nào và ở bất kỳ đâu chỉ với một kết nối internet. Điều này giúp tôi có thể linh hoạt sắp xếp thời gian học tập và tận dụng những khoảnh khắc rảnh rỗi trong ngày để ôn tập.'
+                'Trong những thời điểm khó khăn như thiên tai, việc hiểu biết và đồng cảm là điều cần thiết nhất. Bằng cách lắng nghe và chia sẻ nỗi đau của nhau, chúng ta tạo ra một môi trường đầy tình thương và sẵn sàng để hỗ trợ nhau vượt qua mọi khó khăn. Hãy để tình thương và sự đồng cảm dẫn dắt chúng ta trong việc hỗ trợ những người đang gặp khó khăn trong thiên tai.'
         },
         {
             ava: 'https://www.verywellfamily.com/thmb/lmejCapkkBYa0LQoezl2RxBi1Z0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-911983386-d50a1de241d44f829b17053ace814f4e.jpg',
             name: 'Nguyễn Thị Ngọc',
-            result: 'Tester tại ANS ASIA',
+            result: 'Làm việc  tại ANS ASIA',
             description:
-                'Một web luyện thi online thường cung cấp một loạt các tài nguyên học tập đa dạng như bài giảng video, tài liệu học, bài tập tự luận và trắc nghiệm. Điều này giúp tôi có thể học một cách toàn diện và linh hoạt, tùy thuộc vào phong cách học của bản thân. Nhờ vào các tài nguyên đa dạng này, tôi có thể chủ động xây dựng kế hoạch học tập phù hợp với mục tiêu và nhu cầu của mình.'
+                'Sự hỗ trợ trong thời kỳ thiên tai không chỉ là về lời nói. Đôi khi, một hành động nhỏ cũng có thể làm thay đổi cuộc đời của người khác. Hãy cùng nhau đóng góp, sẻ chia những gì chúng ta có, từ thời gian, tài chính, đến sự chăm sóc và sự ủng hộ tinh thần. Mỗi hành động nhỏ bé cũng là một bước tiến lớn trong việc xây dựng lại cộng đồng sau thiên tai.'
         },
         {
             ava: 'https://www.verywellfamily.com/thmb/lmejCapkkBYa0LQoezl2RxBi1Z0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-911983386-d50a1de241d44f829b17053ace814f4e.jpg',
             name: 'Nguyễn Thị Ngọc',
-            result: 'Tester tại ANS ASIA',
+            result: 'Làm việc tại ANS ASIA',
             description:
-                'Một điểm mạnh của các website luyện thi online là khả năng cung cấp phản hồi tức thì và cung cấp giải đáp thắc mắc một cách nhanh chóng. Tôi có thể kiểm tra kết quả bài tập và bài thi ngay sau khi hoàn thành, từ đó biết được điểm mạnh và điểm yếu của bản thân và điều chỉnh kế hoạch học tập một cách hiệu quả.'
+                'Trước mỗi thử thách, đoàn kết là chìa khóa của sự thành công. Hãy đứng vững bên nhau, hỗ trợ lẫn nhau và cùng nhau vượt qua mọi khó khăn. Sức mạnh của chúng ta khi kết hợp vượt qua mọi giới hạn. Hãy xây dựng lại từng phần của cộng đồng một cách kiên trì và đầy hy vọng, để chúng ta có thể tạo ra một tương lai tươi sáng hơn cho tất cả mọi người.'
         }
     ],
     contact: [
         [
             {
-                title: 'Khoá học online'
-            },
-            {
-                title: 'IELTS General Reading',
-                route: '/home'
-            },
-            {
-                title: 'IELTS General Listening',
-                route: '/home'
-            },
-            {
-                title: 'IELTS General Writing',
-                route: '/home'
-            },
-            {
-                title: 'IELTS General Speaking',
-                route: '/home'
-            }
-        ],
-        [
-            {
-                title: 'Khoá học online'
-            },
-            {
-                title: 'Thư viện đề thi',
-                route: '/home'
-            },
-            {
-                title: 'Blog',
-                route: '/home'
-            },
-            {
-                title: 'Nhóm học tập',
-                route: '/home'
-            }
-        ],
-        [
-            {
                 title: 'Hỗ trợ'
             },
             {
-                title: 'Hướng dẫn sử dụng',
+                title: 'Liên hệ',
                 route: '/home'
             },
             {
-                title: 'Hướng dẫn mua hàng',
+                title: 'Hoạt động',
                 route: '/home'
             },
             {
-                title: 'Chăm sóc khách hàng',
-                route: '/home'
-            },
-            {
-                title: 'Phản hồi khiếu nại',
+                title: 'Cách trợ giúp',
                 route: '/home'
             }
         ],
@@ -91,15 +49,7 @@ export default {
                 route: '/home'
             },
             {
-                title: 'Điều khoản bảo mật',
-                route: '/home'
-            },
-            {
-                title: 'Điều khoản sử dụng',
-                route: '/home'
-            },
-            {
-                title: 'Điều khoản và Điều Kiện Giao Dịch',
+                title: 'Góp ý',
                 route: '/home'
             }
         ]

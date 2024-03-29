@@ -13,22 +13,17 @@ export default {
             totalHeight += $(this).outerHeight(true);
         });
         var windowHeight = $(window).height();
-        if (totalHeight > windowHeight) {
-            if ($('#landing-page').length > 0)
-                $('#contact').css('position', 'sticky');
-        } else $('#contact').css('position', 'fixed');
+        if (totalHeight < windowHeight) $('#contact').css('position', 'fixed');
+        else $('#contact').css('position', '');
     },
     watch: {
         $route(to) {
             if (to.name == 'home') {
-                $('#contact').css('position', 'sticky');
+                $('#contact').css('position', '');
+            } else {
+                $('#contact').css('position', 'fixed');
             }
         }
     }
 };
 </script>
-<!-- <style lang="scss">
-@import 'handsontable/dist/handsontable.full.css';
-@import 'flatpickr/dist/flatpickr.css';
-@import 'https://fonts.googleapis.com/earlyaccess/sawarabigothic.css';
-</style> -->
