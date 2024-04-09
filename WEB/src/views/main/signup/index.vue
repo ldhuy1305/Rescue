@@ -19,8 +19,7 @@ const signup = {
         };
     },
     computed: {},
-    methods: {
-    },
+    methods: {},
     watch: {}
 };
 export default signup;

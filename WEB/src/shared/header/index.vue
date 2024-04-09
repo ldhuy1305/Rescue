@@ -15,7 +15,7 @@ const Header = {
     data() {
         return {
             links: [
-                { text: 'Home', url: '/home' },
+                { text: 'Trang', url: '/home' },
                 { text: 'About', url: '/about' },
                 { text: 'Services', url: '/services' },
                 { text: 'Contact', url: '/contact' }
