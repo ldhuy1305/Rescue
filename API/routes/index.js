@@ -1,4 +1,3 @@
-
 // const adminRoute = require('./admin');
 
 const globalErrorHandler = require("../controllers/errorController");
@@ -23,9 +22,9 @@ function route(app) {
   //   res.status(200).json({ message: "Welcome to homepage" });
   // });
   app.use("/user/orderHistory", orderControler.payment);
-  // app.all("/*", (req, res, next) => {
-  //   next(new appError(`Can't find ${req.originalUrl} on this server!`, 404));
-  // });
-  // app.use(globalErrorHandler);
+  app.all("/*", (req, res, next) => {
+    next(new appError(`Can't find ${req.originalUrl} on this server!`, 404));
+  });
+  app.use(globalErrorHandler);
 }
 module.exports = route;
