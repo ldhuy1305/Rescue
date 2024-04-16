@@ -16,21 +16,7 @@ const mysql = require('mysql');
 
 const app = express(); 
 require("dotenv").config();
-const port = 8080; 
-// var con = mysql.createConnection({
-//     host: "14.225.254.7",
-//     user: "administrator",
-//     password: "Vuhanh@1897!"
-// });
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: ""
-});
-con.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-});
+const port = 9090; 
 app.get('/', function(req, res){
     res.send("Hello World");
 })
