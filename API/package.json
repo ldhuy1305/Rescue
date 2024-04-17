@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "node index.js"
+    "serve": "nodemon --ext js,mjs,cjs,json,yaml index.js"
   },
   "author": "",
   "license": "ISC",
@@ -38,9 +38,14 @@
     "passport-google-oauth2": "^0.2.0",
     "passport-google-oauth20": "^2.0.0",
     "path": "^0.12.7",
-    "prettier": "^3.2.5",
     "request": "^2.88.2",
+    "swagger-ui-express": "^5.0.0",
     "validator": "^10.11.0",
-    "xss-clean": "^0.1.4"
+    "xss-clean": "^0.1.4",
+    "yaml": "^2.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5"
   }
 }
