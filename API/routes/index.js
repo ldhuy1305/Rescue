@@ -16,15 +16,15 @@ const globalErrorHandler = require("../controllers/errorController");
 const appError = require("../utils/appError");
 
 function route(app) {
-    app.use("/v1/api/role", roleRoute);
-    app.use("/v1/api/account", accountRoute);
-    app.use("/v1/api/district", districtRoute);
-    app.use("/v1/api/ward", wardRoute);
-    app.use("/v1/api/committee", committeeRoute);
-    app.use("/v1/api/user", userRoute);
-    app.use("/v1/api/transaction", transactionRoute);
-    app.use("/v1/api/approval", approvalRoute);
-    app.use("/v1/api/proof", proofRoute);
+    app.use("/api/v1/role", roleRoute);
+    app.use("/api/v1/account", accountRoute);
+    app.use("/api/v1/district", districtRoute);
+    app.use("/api/v1/ward", wardRoute);
+    app.use("/api/v1/committee", committeeRoute);
+    app.use("/api/v1/user", userRoute);
+    app.use("/api/v1/transaction", transactionRoute);
+    app.use("/api/v1/approval", approvalRoute);
+    app.use("/api/v1/proof", proofRoute);
 
     const file = fs.readFileSync("./swagger.yaml", "utf8");
     const swaggerDocument = YAML.parse(file);

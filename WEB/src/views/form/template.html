@@ -7,10 +7,13 @@
     <h1>123123</h1>
     <h1>123123</h1>
     <div>
-      <input
+      <!-- <input
         type="file"
         @change="onFileChanged($event)"
         accept="image/*"
         capture
-      />
+      /> -->
+      <input accept="image/*" type="file" @change="previewFiles($event)" />
+      <img alt="" :src="newImage || emptyImage" />
+      <button @click="onSave">click</button>
     </div>

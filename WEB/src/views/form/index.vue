@@ -1,6 +1,7 @@
 <script>
 import template from './template.html';
 import './style.scss';
+import { mapActions } from 'vuex';
 
 const form = {
     name: 'Form',
@@ -16,7 +17,11 @@ const form = {
     data() {},
     computed: {},
     methods: {
-        onFileChanged() {}
+        ...mapActions(['onSave']),
+        onFileChanged() {},
+        click() {
+            this.onSave({});
+        }
     },
     watch: {}
 };
