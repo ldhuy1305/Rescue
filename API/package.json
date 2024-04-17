@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "nodemon --ext js,mjs,cjs,json,yaml index.js"
+    "serve": "nodemon --ext js,mjs,cjs,json,yaml index.js",
+    "dev": "SET NODE_ENV=development &  nodemon index.js"
   },
   "author": "",
   "license": "ISC",
