@@ -1,0 +1,20 @@
+<div :class="itemClass">
+	<label :class="labelClass">{{label}}</label>
+	<div class="">
+		<select 
+			:id="newId"
+			:class=selectedClass
+			:required="isRequired"
+			:disabled="isDisabled"
+			:readonly="isReadonly"
+			ref="select"
+			@focus="focusInput"
+			@blur="blurInput"
+			@change="updateInput"
+		>
+			<option v-for="(option, i) in options" :key="i" :value="option.code" :selected="option.code == vewValue">
+				{{option.name}}
+			</option>
+		  </select>
+	</div>
+</div>

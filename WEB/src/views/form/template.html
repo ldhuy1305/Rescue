@@ -13,7 +13,15 @@
         accept="image/*"
         capture
       /> -->
-      <input accept="image/*" type="file" @change="previewFiles($event)" />
-      <img alt="" :src="newImage || emptyImage" />
-      <button @click="onSave">click</button>
+      <!-- <input accept="image/*" type="file" @change="previewFiles($event)" />
+      <img alt="" :src="newImage || emptyImage" /> -->
+      <Dropdown label="Quận/Huyện" :options=this.districts :onChange="setWard"></Dropdown>
+      <Dropdown label="Phường/Xã" :options=this.wards></Dropdown>
+      <!-- <image-upload action="create"
+      :image_style="{
+          border: 'rounded-circle',
+          height: '100',
+          width: '100'
+      }" -->
+      <button @click="onClick">click</button>
     </div>
