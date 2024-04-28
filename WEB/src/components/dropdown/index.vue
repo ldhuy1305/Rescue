@@ -29,7 +29,6 @@ var Dropdown = {
     computed: {
         vewValue() {
             const val = this.modelValue ? this.modelValue : this.value;
-            console.log(val);
             return val;
         }
     },

@@ -2,7 +2,7 @@
 import store from '@/store';
 import template from './template.html';
 import './style.scss';
-import { mapMutations, mapState } from 'vuex';
+import { mapMutations, mapState, mapActions } from 'vuex';
 import formStore from '@/views/form/store';
 import Dropdown from '@/components/dropdown';
 const form = {
@@ -14,24 +14,34 @@ const form = {
             store.registerModule('form', formStore);
         }
     },
-    created() {},
+    created() {
+        this.getInitData();
+    },
     beforeMount() {},
     mounted() {},
     beforeUpdate() {},
     updated() {},
     beforeUnmount() {},
     unmounted() {},
-    data() {},
-    computed: { ...mapState('form', ['detail', 'wards', 'districts']) },
+    data() {
+        return {
+            huy: 1
+        };
+    },
+    computed: {
+        ...mapState('form', ['location', 'detail', 'districts'])
+    },
     methods: {
-        ...mapMutations('form', ['setWard']),
-        // ...mapActions(['onSave']),
+        ...mapMutations('form', ['setWard', 'setDistricts']),
+        ...mapActions('form', ['getInitData', 'getDistricts', 'getWards']),
         onFileChanged() {},
-        onClick() {
-            // this.onSave({});
-            console.log(this.detail);
+        onClick() {},
+        setDistricts() {
+            this.getDistricts(this.detail.city);
         },
-        setWard() {}
+        setWards() {
+            this.getWards(this.detail.district);
+        }
     }
 };
 export default form;

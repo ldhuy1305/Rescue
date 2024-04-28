@@ -2,11 +2,12 @@
 import template from './template.html';
 import Header from '@/shared/header';
 import Footer from '@/shared/footer';
+import Loading from '@/components/loading';
 import $ from 'jquery';
 export default {
     name: 'MainLayout',
     template: template,
-    components: { Header, Footer },
+    components: { Header, Footer, Loading },
     mounted() {
         var totalHeight = 0;
         $('#app').each(function () {

@@ -1,43 +1,46 @@
 import repository from './repository';
-
+import store from '../../store';
+import map from '../../utils/map';
+// import _ from 'lodash';
 export default {
     namespaced: true,
     state: {
-        detail: {},
-        districts: [
-            { code: 1, name: 'Quận Sơn Trà' },
-            { code: 2, name: 'Quận Ngũ Hành Sơn' },
-            { code: 3, name: 'Quận Hải Châu' },
-            { code: 4, name: 'Quận Thanh Khê' },
-            { code: 5, name: 'Quận Liên Chiểu' }
-        ],
-        wards: {}
+        location: {
+            cities: [
+                {
+                    code: '0',
+                    name: 'Tỉnh/Thành'
+                }
+            ],
+            districts: [
+                {
+                    code: '0',
+                    name: 'Quận/Huyện'
+                }
+            ],
+            wards: [
+                {
+                    code: '0',
+                    name: 'Phường/Xã'
+                }
+            ]
+        },
+        detail: {
+            city: ''
+        }
     },
     mutations: {
-        setWard(context, code) {
-            const wards = [
-                [
-                    { code: 101, name: 'Phường Mân Thái' },
-                    { code: 102, name: 'Phường An Hải Đông' }
-                ],
-                [
-                    { code: 201, name: 'Phường Khuê Mỹ' },
-                    { code: 202, name: 'Phường Hòa Quý' }
-                ],
-                [
-                    { code: 301, name: 'Phường Thanh Bình' },
-                    { code: 302, name: 'Phường Thanh Khê Tây' }
-                ],
-                [
-                    { code: 401, name: 'Phường Xuân Hà' },
-                    { code: 402, name: 'Phường Chính Gián' }
-                ],
-                [
-                    { code: 501, name: 'Phường Hòa Hiệp Bắc' },
-                    { code: 502, name: 'Phường Hòa Hiệp Nam' }
-                ]
-            ];
-            context.state.wards = wards[code];
+        // setWard(context, code) {
+        //     context.state.wards = wards[code];
+        // },
+        setCities(state, payload) {
+            state.location.cities = payload;
+        },
+        setDistricts(state, payload) {
+            state.location.districts = payload;
+        },
+        setWards(state, payload) {
+            state.location.wards = payload;
         }
     },
     actions: {
@@ -46,6 +49,69 @@ export default {
                 repository.save(payload).then((res) => {
                     const { data } = res;
                     console.log(data);
+                });
+            } catch (e) {
+                console.log('Action: ' + e.message);
+            }
+        },
+        getInitData(context) {
+            try {
+                store.commit('app/showLoading');
+                map.getAllCities().then((res) => {
+                    let data = res.data.data;
+                    let newData = [
+                        {
+                            code: '0',
+                            name: 'Tỉnh/Thành'
+                        }
+                    ];
+                    data.forEach((item) => {
+                        newData.push({ name: item.full_name, code: item.id });
+                    });
+                    context.commit('setCities', newData);
+                    store.commit('app/hideLoading');
+                });
+            } catch (e) {
+                console.log('Action: ' + e.message);
+            }
+        },
+        getDistricts(context, id) {
+            try {
+                store.commit('app/showLoading');
+                map.getDistrictsByCity(id).then((res) => {
+                    let data = res.data.data;
+                    let newData = [
+                        {
+                            code: '0',
+                            name: 'Quận/Huyện'
+                        }
+                    ];
+                    data.forEach((item) => {
+                        newData.push({ name: item.full_name, code: item.id });
+                    });
+                    context.commit('setDistricts', newData);
+                    store.commit('app/hideLoading');
+                });
+            } catch (e) {
+                console.log('Action: ' + e.message);
+            }
+        },
+        getWards(context, id) {
+            try {
+                store.commit('app/showLoading');
+                map.getWardsByDistrict(id).then((res) => {
+                    let data = res.data.data;
+                    let newData = [
+                        {
+                            code: '0',
+                            name: 'Phường/Xã'
+                        }
+                    ];
+                    data.forEach((item) => {
+                        newData.push({ name: item.full_name, code: item.id });
+                    });
+                    context.commit('setWards', newData);
+                    store.commit('app/hideLoading');
                 });
             } catch (e) {
                 console.log('Action: ' + e.message);
