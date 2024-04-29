@@ -58,9 +58,6 @@ app.use(
     }),
 );
 const port = 9090;
-app.get("/", function (req, res) {
-    res.send("Hello World");
-});
 
 route(app);
 app.listen(port, () => {
