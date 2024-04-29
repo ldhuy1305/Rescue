@@ -4,7 +4,7 @@ import _ from 'lodash-uuid';
 
 import template from './template.html';
 
-var AnsInput = {
+var Input = {
     template: template,
     props: {
         id: String,
@@ -23,17 +23,12 @@ var AnsInput = {
         isDisabled: Boolean,
         isDisabledIcon: Boolean,
         isReadonly: Boolean,
-        isMobile: {
-            type: Boolean,
-            default: false
-        },
         type: String,
         isDecimal: {
             type: Boolean,
             default: false
         },
         decimal: Number,
-        isNegative: Boolean,
         maxLength: Number,
         cols: Number,
         rows: Number,
@@ -48,14 +43,10 @@ var AnsInput = {
     data() {
         return {
             isFocus: false,
-            newId: _.uuid(),
             realMaxLength: undefined
         };
     },
     mounted() {
-        if (this.id && this.id != '') {
-            this.newId = this.id;
-        }
         this.realMaxLength = this.getRealMaxLength();
     },
     computed: {
@@ -66,7 +57,11 @@ var AnsInput = {
                 );
                 if (this.isFocus && !this.isDisabled && !this.isReadonly) {
                     // eslint-disable-next-line prettier/prettier
-                    return this.type == 'money' ? val.replace(/,/g, '') : this.type == 'postcode' ? val.replace(/-/g, '') : val;
+                    return this.type == 'money'
+                        ? val.replace(/,/g, '')
+                        : this.type == 'postcode'
+                          ? val.replace(/-/g, '')
+                          : val;
                 }
                 return val;
             },
@@ -184,15 +179,7 @@ var AnsInput = {
                     (this.maxLength % 3 > 0 ? 0 : -1))
             );
         },
-        /**
-         * event forcus on input
-         * -----------------------------------------
-         * @author : QuyPN - 2023/03/28 - create
-         * @params :
-         * @access : private
-         */
         focusInput(e) {
-            //e.target.select();
             this.isFocus = true;
             this.realMaxLength = this.maxLength;
             if (this.onFocus) {
@@ -202,13 +189,6 @@ var AnsInput = {
         focusItem() {
             this.$refs.input.focus();
         },
-        /**
-         * event blur on input
-         * -----------------------------------------
-         * @author : QuyPN - 2023/03/28 - create
-         * @params :
-         * @access : private
-         */
         blurInput(e) {
             this.isFocus = false;
             this.realMaxLength = this.getRealMaxLength(e);
@@ -216,13 +196,6 @@ var AnsInput = {
                 this.onBlur(e);
             }
         },
-        /**
-         * event keydown on input
-         * -----------------------------------------
-         * @author : QuyPN - 2023/03/28 - create
-         * @params :
-         * @access : private
-         */
         inputKeydown(e) {
             if (this.type == 'number' && this.isDecimal) {
                 return this.inputOnlyDecimal(e);
@@ -377,8 +350,8 @@ var AnsInput = {
                 this.type == 'money'
                     ? val.replace(/,/g, '')
                     : this.type == 'katakana'
-                        ? val.replace(/[^ァ-ンーｧ-ﾝﾞﾟ0-9]/gi, '')
-                        : val;
+                      ? val.replace(/[^ァ-ンーｧ-ﾝﾞﾟ0-9]/gi, '')
+                      : val;
             this.$emit('update:modelValue', value);
             if (this.onChange) {
                 this.onChange(e, value);
@@ -386,5 +359,5 @@ var AnsInput = {
         }
     }
 };
-export default AnsInput;
+export default Input;
 </script>

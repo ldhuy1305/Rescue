@@ -1,8 +1,9 @@
-<div :class="itemClass">
-	<label :class="labelClass">{{label}}</label>
-	<div class="">
+<div :class="itemClass" class="row group">
+	<label :class="labelClass" class="col-4 label">{{label}}</label>
+	<div class="col-8 input" :class="{'full-width': !label}">
 		<select 
 			:id="id"
+			class="form-select"
 			:class=selectedClass
 			:required="isRequired"
 			:disabled="isDisabled"

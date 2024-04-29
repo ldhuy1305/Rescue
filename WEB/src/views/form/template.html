@@ -18,6 +18,7 @@
       <Dropdown id="city" label="Tỉnh/Thành" :options=this.location.cities :onChangeEvent="setDistricts" v-model="this.detail.city"></Dropdown>
       <Dropdown id="district" label="Quận/Huyện" :options=this.location.districts :onChangeEvent="setWards" v-model="this.detail.district"></Dropdown>
       <Dropdown id="ward" label="Phường/Xã" :options=this.location.wards v-model="this.detail.ward"> </Dropdown>
+      
       <!-- <image-upload action="create"
       :image_style="{
           border: 'rounded-circle',

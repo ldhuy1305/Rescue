@@ -5,10 +5,11 @@ import './style.scss';
 import { mapMutations, mapState, mapActions } from 'vuex';
 import formStore from '@/views/form/store';
 import Dropdown from '@/components/dropdown';
+import Input from '@components/input';
 const form = {
     name: 'Form',
     template: template,
-    components: { Dropdown },
+    components: { Dropdown, Input },
     beforeCreate() {
         if (!store.hasModule('form')) {
             store.registerModule('form', formStore);
