@@ -23,7 +23,7 @@ const database = {
                     if (err) {
                         reject(err);
                     } else {
-                        resolve(result);
+                        resolve(JSON.parse(JSON.stringify(result)));
                     }
                 },
             );

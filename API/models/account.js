@@ -1,15 +1,27 @@
 const sql = require("../utils/db");
-var bcrypt = require("bcryptjs");
+const { objectToArray } = require("../utils/helpers");
 
 class Account {
     async createAccount(params) {
         try {
-            params = [params.email, params.params.password, 2];
-            const rs = await sql.executeSPC("get_all_accounts", [20, 1]);
+            params = objectToArray(params);
+            params.push(2);
+            const rs = await sql.executeSPC("create_account", params);
             return rs;
-        } catch (error) {
-            console.error("Error creating user:", error);
-        }
+        } catch (err) {}
+    }
+    async login(params) {
+        try {
+            const rs = await sql.executeSPC("login", params);
+            return rs;
+        } catch (err) {}
+    }
+    async checkMail(params) {
+        try {
+            params = objectToArray(params);
+            const rs = await sql.executeSPC("check_email", params);
+            return rs[0][0];
+        } catch (err) {}
     }
 }
 
