@@ -1,4 +1,3 @@
-
 import messages, { MSG_TYPE, MSG_TITLE } from '@/utils/messages';
 export default {
     namespaced: true,
@@ -10,8 +9,8 @@ export default {
             type: MSG_TYPE.ERROR,
             title: '',
             content: '',
-            okText: 'はい',
-            cancelText: 'いいえ',
+            okText: 'Ok',
+            cancelText: 'Cancel',
             callback: () => {}
         }
     },
