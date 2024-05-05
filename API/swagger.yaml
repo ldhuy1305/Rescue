@@ -12,7 +12,7 @@ externalDocs:
   description: Find out more about Swagger
   url: http://swagger.io
 servers:
-  - url: http://localhost:9090/v1/api
+  - url: http://localhost:9090/api/v1
 tags:
   - name: account
   - name: user
@@ -160,11 +160,11 @@ paths:
                   $ref: '#/components/examples/data_invalid'
                 Exception:
                   $ref: '#/components/examples/exception'
-  /user:
+  /account:
     post:
       tags:
         - user
-      summary: Create User
+      summary: Create Account
       description: ''
       operationId: ''
       requestBody:
@@ -172,7 +172,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/user'
+              $ref: '#/components/schemas/account'
       responses:
         '200':
           description: Successful
