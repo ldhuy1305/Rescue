@@ -1,7 +1,6 @@
 import messages from './messages';
 import store from '@/store';
 import moment from 'moment';
-import $ from 'jquery';
 const helpers = {
     insertComma: (val) => {
         return (val + '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -51,42 +50,25 @@ const helpers = {
                                 ($(`#${key}`)?.last()?.is('select') &&
                                     data[key] == '0')
                             ) {
+                                console.log(key);
                                 // eslint-disable-next-line no-undef
-                                $(`#${key}`).last().ItemError(err_msg);
+                                $(`#${key}`).last().ItemError(messages.E006);
                                 // eslint-disable-next-line no-undef
-                                $(`[id^="${key}_"]`).ItemError(err_msg);
+                                $(`[id^="${key}_"]`);
                                 isValid = false;
                             }
                         }
                         if (checks[0] == 'email') {
-                            if (
-                                !helpers.isEmail(data[key]) &&
-                                data[key] != '@'
-                            ) {
+                            if (!helpers.isEmail(data[key])) {
                                 // eslint-disable-next-line no-undef
-                                $(`#${key}`).last().ItemError(messages.E002);
-                                // eslint-disable-next-line no-undef
-                                $(`#${key}_part2`)
-                                    .last()
-                                    .ItemError(messages.E002);
+                                $(`#${key}`).last();
                                 isValid = false;
                             }
                         }
                         if (checks[0] == 'phone') {
-                            if (
-                                !helpers.isPhone(data[key]) &&
-                                data[key] != '--'
-                            ) {
+                            if (!helpers.isPhone(data[key])) {
                                 // eslint-disable-next-line no-undef
-                                $(`#${key}`).last().ItemError(messages.E012);
-                                // eslint-disable-next-line no-undef
-                                $(`#${key}_part2`)
-                                    .last()
-                                    .ItemError(messages.E012);
-                                // eslint-disable-next-line no-undef
-                                $(`#${key}_part3`)
-                                    .last()
-                                    .ItemError(messages.E012);
+                                $(`#${key}`).last();
                                 isValid = false;
                             }
                         }

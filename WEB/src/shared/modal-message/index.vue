@@ -15,6 +15,7 @@ const ModalMessage = {
                 return this.isShowModalMessage;
             },
             set(value) {
+                console.log(value);
                 this.updateShowModalMessage(value);
             }
         },
