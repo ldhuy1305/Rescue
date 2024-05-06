@@ -22,10 +22,10 @@ class accountController {
         }
         const account = await accountModel.checkMail({ email });
         if (account == undefined || account == null) {
-            return next(new appError("Email không hợp lệ", 401));
+            return next(new appError("Email không hợp lệ", 400));
         }
         if (!(await helpers.isCorrectPassword(account.password, password))) {
-            return next(new appError("Mật khẩu không hợp lệ", 401));
+            return next(new appError("Mật khẩu không hợp lệ", 400));
         }
         jwtToken.generateAndSendJWTToken(account, 200, res, req);
     });

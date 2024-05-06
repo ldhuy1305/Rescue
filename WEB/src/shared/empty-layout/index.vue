@@ -1,11 +1,11 @@
 <script>
 import template from './template.html';
-import Header from '@/shared/header';
-import Footer from '@/shared/footer';
+import Loading from '@/components/loading';
+import ModalMessage from '@/shared/modal-message';
 export default {
-    name: 'MainLayout',
+    name: 'EmptyLayout',
     template: template,
-    components: { Header, Footer },
+    components: { Loading, ModalMessage },
     mounted() {},
     watch: {}
 };

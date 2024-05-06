@@ -44,6 +44,7 @@ export default {
         },
         showModalMessage(state, message) {
             state.isShowModalMessage = true;
+            console.log(message);
             if (message) {
                 if (message.type) {
                     state.modalMessage.type = message.type;
@@ -59,12 +60,12 @@ export default {
                 if (message.okText) {
                     state.modalMessage.okText = message.okText;
                 } else {
-                    state.modalMessage.okText = 'はい';
+                    state.modalMessage.okText = 'Ok';
                 }
                 if (message.cancelText) {
                     state.modalMessage.cancelText = message.cancelText;
                 } else {
-                    state.modalMessage.cancelText = 'いいえ';
+                    state.modalMessage.cancelText = 'Cancel';
                 }
                 state.modalMessage.callback = message.callback;
             } else {

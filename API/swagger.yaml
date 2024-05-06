@@ -24,7 +24,7 @@ tags:
   - name: committee
   - name: approval
 paths:
-  /login:
+  /account/login:
     post:
       tags:
         - account

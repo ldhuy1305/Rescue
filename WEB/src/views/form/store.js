@@ -89,7 +89,7 @@ export default {
                     data.forEach((item) => {
                         newData.push({ name: item.full_name, code: item.id });
                     });
-                    context.commit('setDistricts', newData);
+                    context.commit('form/setDistricts', newData);
                     store.commit('app/hideLoading');
                 });
             } catch (e) {
@@ -110,7 +110,7 @@ export default {
                     data.forEach((item) => {
                         newData.push({ name: item.full_name, code: item.id });
                     });
-                    context.commit('setWards', newData);
+                    context.commit('form/setWards', newData);
                     store.commit('app/hideLoading');
                 });
             } catch (e) {

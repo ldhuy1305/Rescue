@@ -12,7 +12,6 @@ const signToken = (id) => {
     );
 };
 exports.generateAndSendJWTToken = (user, statusCode, res) => {
-    console.log(user);
     const token = signToken(user._id);
     res.cookie("jwt", token, {
         expires: new Date(

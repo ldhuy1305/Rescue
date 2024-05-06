@@ -1,8 +1,16 @@
-<div v-if="alert" class="container">
-    <div class="m-3">
-        <div class="alert alert-dismissable" :class="alert.type">
-            <button @click="alertStore.clear()" class="btn btn-link close">&times;</button>
-            {{alert.message}}
+<template>
+    <transition name="modal-fade">
+      <div v-model="showModal" class="modal-container">
+        <div class="content">
+            <h5 class="mb-0 text-center message-title" v-if="showTitle"><span v-html="modalMessage.title"></span></h5>
+            <br v-if="showTitle">
+            <p class="mb-0 text-center message-content" v-html="modalMessage.content"></p>
+            <br v-if="showTitle">
         </div>
-    </div>
-</div>
+          <div class="modal-footer">
+            <button class="hover:bg-gray-400" @click="onClickOk">Đồng ý</button>
+            <button class="hover:bg-gray-400" @click="onClickCancel" v-if="showCancel">Hủy bỏ</button>
+          </div>
+        </div>
+    </transition>
+</template>

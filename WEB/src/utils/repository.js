@@ -1,10 +1,15 @@
 import axios from 'axios';
 import store from '@/store';
+import messages, { MSG_TYPE, MSG_TITLE } from './messages';
 
 const baseUrl =
-    (import.meta.env.VUE_APP_BASE_DOMAIN ?? 'http://localhost:9090') +
-    (import.meta.env.VUE_APP_BASE_PATH ?? '/api/v1');
-const timeout = import.meta.env.VUE_APP_API_TIMEOUT ?? 60000;
+    // eslint-disable-next-line no-undef
+    (process.env.VUE_APP_BASE_DOMAIN ?? 'http://localhost:9090') +
+    // eslint-disable-next-line no-undef
+    (process.env.VUE_APP_BASE_PATH ?? '/api/v1');
+
+// eslint-disable-next-line no-undef
+const timeout = process.env.VUE_APP_API_TIMEOUT ?? 60000;
 
 var repository = axios.create({
     baseURL: baseUrl,
@@ -37,62 +42,26 @@ repository.interceptors.response.use(
         store.commit('app/decreaseCountLoading');
         const { data } = response;
         if (data.Code !== 200) {
-            if (data.Code === 422) {
-                try {
-                    for (const key in data.DataErrors) {
-                        if (
-                            Object.prototype.hasOwnProperty.call(
-                                data.DataErrors,
-                                key
-                            )
-                        ) {
-                            try {
-                                // eslint-disable-next-line no-undef
-                                // $(`#${key}, [name="${key}"]`).ItemError(
-                                //     messages[data.DataErrors[key][0]]
-                                // );
-                            } catch (ex) {
-                                console.log(ex);
-                            }
-                        }
+            store.commit('app/showModalMessage', {
+                type: MSG_TYPE.ERROR,
+                title: MSG_TITLE.E999,
+                content:
+                    data.Code === 401
+                        ? messages.E401
+                        : data.Code === 403
+                          ? messages.E403
+                          : messages.E999,
+                callback: () => {
+                    if (data.Code === 401) {
+                        sessionStorage.setItem(
+                            'beforeUrl',
+                            window.location.pathname
+                        );
+                        sessionStorage.removeItem('token');
+                        sessionStorage.removeItem('tokenTimeout');
                     }
-                } catch (ex) {
-                    console.log(ex);
                 }
-            } else if (data.Code === 423 || data.Code === 999) {
-                // store.commit('app/showModalMessage', {
-                //     type: MSG_TYPE.ERROR,
-                //     content: data.Message,
-                //     callback: () => {
-                //         if (appData.onApiError) {
-                //             appData.onApiError();
-                //         }
-                //     }
-                // });
-            } else {
-                store.commit('app/showModalMessage', {
-                    // type: MSG_TYPE.ERROR,
-                    // title: MSG_TITLE.E999,
-                    // // eslint-disable-next-line prettier/prettier
-                    // content:
-                    //     data.Code === 401
-                    //         ? messages.E401
-                    //         : data.Code === 403
-                    //           ? messages.E403
-                    //           : messages.E999,
-                    // callback: () => {
-                    //     if (data.Code === 401) {
-                    //         sessionStorage.setItem(
-                    //             'beforeUrl',
-                    //             window.location.pathname
-                    //         );
-                    //         sessionStorage.removeItem('token');
-                    //         sessionStorage.removeItem('tokenTimeout');
-                    //         Router.push(appData.loginScreen);
-                    //     }
-                    // }
-                });
-            }
+            });
             store.commit('app/hideForceLoading');
         }
         return response;
@@ -104,10 +73,11 @@ repository.interceptors.response.use(
             store.commit('app/hideForceLoading');
         }
         store.commit('app/decreaseCountLoading');
-        // store.commit('app/showModalMessage', {
-        //     type: MSG_TYPE.ERROR,
-        //     content: messages.E999
-        // });
+        store.commit('app/showModalMessage', {
+            type: MSG_TYPE.ERROR,
+            content: messages.E999
+        });
+        console.log(error);
         return Promise.reject(error);
     }
 );

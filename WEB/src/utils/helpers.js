@@ -1,17 +1,8 @@
 import messages from './messages';
-import label from './label';
 import store from '@/store';
 import moment from 'moment';
-
+import $ from 'jquery';
 const helpers = {
-    removeJapaneseCharacter: (str) => {
-        if (str == undefined || str == null) {
-            return '';
-        }
-        const regex =
-            /[\u3000-\u303F]|[\u3040-\u309F]|[\u30A0-\u30FF]|[\uFF00-\uFFEF]|[\u4E00-\u9FAF]|[\u2605-\u2606]|[\u2190-\u2195]|\u203B/g;
-        return str.replace(regex, '');
-    },
     insertComma: (val) => {
         return (val + '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     },
@@ -33,43 +24,15 @@ const helpers = {
             .toLowerCase()
             .match(/^\d{1,5}-\d{1,5}-\d{1,5}$/);
     },
-    isZipCode: (str) => {
-        if (helpers.isNullOrEmpty(str)) {
-            return true;
-        }
-        return String(str)
-            .toLowerCase()
-            .match(/^\d{3}-\d{4}$/);
-    },
-    isKatakana: (str) => {
-        if (helpers.isNullOrEmpty(str)) {
-            return true;
-        }
-        return String(str)
-            .toLowerCase()
-            .match(/[ァ-ンｧ-ﾝﾞﾟ0-9ー]$/);
-    },
-    isValidData: (
-        data,
-        rules,
-        includeName = false,
-        valueBase = null,
-        csrId = undefined
-    ) => {
+    isValidData: (data, rules) => {
         try {
             let isValid = true;
-            const screenId = csrId ?? store.state.app.screenId;
             // eslint-disable-next-line no-undef
-            $(`.item-error`).RemoveError();
             for (const key in rules) {
                 if (Object.prototype.hasOwnProperty.call(rules, key)) {
-                    let tbl = label[screenId] ? label[screenId][key] : '';
                     const value = rules[key];
                     const values = value.split('|');
                     const length = values.length;
-                    if (tbl == undefined || tbl == null || tbl == '') {
-                        tbl = '項目';
-                    }
                     for (let i = 0; i < length; i++) {
                         const rule = values[i];
                         const checks = rule.split(':');
@@ -88,14 +51,6 @@ const helpers = {
                                 ($(`#${key}`)?.last()?.is('select') &&
                                     data[key] == '0')
                             ) {
-                                // if (isValid) {
-                                //     store.commit('app/showHeaderError', [
-                                //         tbl + messages.E001
-                                //     ]);
-                                // }
-                                const err_msg = includeName
-                                    ? key + messages.E010
-                                    : messages.E006;
                                 // eslint-disable-next-line no-undef
                                 $(`#${key}`).last().ItemError(err_msg);
                                 // eslint-disable-next-line no-undef
@@ -108,11 +63,6 @@ const helpers = {
                                 !helpers.isEmail(data[key]) &&
                                 data[key] != '@'
                             ) {
-                                // if (isValid) {
-                                //     store.commit('app/showHeaderError', [
-                                //         messages.E002
-                                //     ]);
-                                // }
                                 // eslint-disable-next-line no-undef
                                 $(`#${key}`).last().ItemError(messages.E002);
                                 // eslint-disable-next-line no-undef
@@ -127,11 +77,6 @@ const helpers = {
                                 !helpers.isPhone(data[key]) &&
                                 data[key] != '--'
                             ) {
-                                // if (isValid) {
-                                //     store.commit('app/showHeaderError', [
-                                //         messages.E012
-                                //     ]);
-                                // }
                                 // eslint-disable-next-line no-undef
                                 $(`#${key}`).last().ItemError(messages.E012);
                                 // eslint-disable-next-line no-undef
@@ -142,59 +87,6 @@ const helpers = {
                                 $(`#${key}_part3`)
                                     .last()
                                     .ItemError(messages.E012);
-                                isValid = false;
-                            }
-                        }
-                        if (checks[0] == 'zipcode') {
-                            if (
-                                !helpers.isZipCode(data[key]) &&
-                                data[key] != '-'
-                            ) {
-                                // if (isValid) {
-                                //     store.commit('app/showHeaderError', [
-                                //         messages.E013
-                                //     ]);
-                                // }
-                                // eslint-disable-next-line no-undef
-                                $(`#${key}`).last().ItemError(messages.E013);
-                                // eslint-disable-next-line no-undef
-                                $(`#${key}_part2`)
-                                    .last()
-                                    .ItemError(messages.E013);
-                                isValid = false;
-                            }
-                        }
-                        if (checks[0] == 'katakana') {
-                            if (!helpers.isKatakana(data[key])) {
-                                // if (isValid) {
-                                //     store.commit('app/showHeaderError', [
-                                //         messages.E014
-                                //     ]);
-                                // }
-                                // eslint-disable-next-line no-undef
-                                $(`#${key}`).last().ItemError(messages.E014);
-                                isValid = false;
-                            }
-                        }
-                        if (checks[0] == 'isBaseAnother') {
-                            if (valueBase == null || valueBase == '') {
-                                // eslint-disable-next-line no-undef
-                                $(`#${key}`).last().ItemError(messages.E006);
-                                isValid = false;
-                            }
-                            if (valueBase == 'E056') {
-                                // eslint-disable-next-line no-undef
-                                $(`#${key}`).last().ItemError(messages.E056);
-                                isValid = false;
-                            }
-                            if (valueBase == 'E057') {
-                                // eslint-disable-next-line no-undef
-                                $(`#${key}`).last().ItemError(messages.E057);
-                                isValid = false;
-                            }
-                            if (valueBase == 'E061') {
-                                // eslint-disable-next-line no-undef
-                                $(`#${key}`).last().ItemError(messages.E061);
                                 isValid = false;
                             }
                         }
