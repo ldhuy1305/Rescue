@@ -13,6 +13,28 @@
         width: 100%;
     }
 }
+.custom-modal {
+    z-index: 10000;
+}
+.modal-second {
+    z-index: 10004 !important;
+}
+
+.modal-thirst {
+    z-index: 10006 !important;
+}
+
+.modal-four {
+    z-index: 10008 !important;
+}
+
+.modal-five {
+    z-index: 10010 !important;
+}
+
+.modal-six {
+    z-index: 10012 !important;
+}
 .form-select {
     border-color: #ced4da;
     &:disabled {
@@ -76,5 +98,59 @@
                 background-color: $primaryColor;
             }
         }
+    }
+}
+.modal-message {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+    .content {
+        border-radius: 0.5rem;
+        background-color: $white;
+        padding: -1rem;
+        min-width: 530px;
+        min-height: 250px;
+        .message-content {
+            margin-top: 10px;
+            background-color: $white;
+            margin-bottom: 0;
+            padding: 1rem;
+        }
+        
+    .modal-footer {
+        .app-btn {
+            width: 150px;
+            height: 35px;
+            background-color: $primaryColor;
+            border-radius: 5rem;
+            font-size: 120%;
+            color: $white;
+            font-weight: bold;
+            border: none;
+            &:hover {
+                background-color: $primaryHoverColor;
+            }
+        }
+        .cncl-btn {
+            width: 150px;
+            height: 35px;
+            background-color: $dangerColor;
+            border-radius: 5rem;
+            font-size: 120%;
+            color: $white;
+            font-weight: bold;
+            border: none;
+            &:hover {
+                background-color: $dangerHoverColor;
+            }
+        }
+    }
     }
 }

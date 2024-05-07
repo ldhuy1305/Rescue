@@ -2,7 +2,6 @@
 import { mapState, mapMutations } from 'vuex';
 
 import { MSG_TYPE } from '@/utils/messages';
-
 import template from './template.html';
 
 const ModalMessage = {
@@ -15,7 +14,6 @@ const ModalMessage = {
                 return this.isShowModalMessage;
             },
             set(value) {
-                console.log(value);
                 this.updateShowModalMessage(value);
             }
         },

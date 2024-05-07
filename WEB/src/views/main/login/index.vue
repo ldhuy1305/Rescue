@@ -33,14 +33,9 @@ const login = {
     unmounted() {},
     data() {
         return {
-            links: [
-                { text: 'Home', url: '/' },
-                { text: 'About', url: '/about' },
-                { text: 'Services', url: '/services' },
-                { text: 'Contact', url: '/contact' }
-            ],
             isHidePassword: false,
-            type: 'password'
+            type: 'password',
+            saveAccount: false
         };
     },
     computed: {
@@ -48,6 +43,9 @@ const login = {
     },
     methods: {
         ...mapActions('login', ['login']),
+        saveAccount() {
+            this.saveAccount = !this.saveAccount;
+        },
         hidePassword() {
             this.isHidePassword = true;
             this.type = 'text';

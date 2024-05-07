@@ -77,7 +77,6 @@ repository.interceptors.response.use(
             type: MSG_TYPE.ERROR,
             content: messages.E999
         });
-        console.log(error);
         return Promise.reject(error);
     }
 );

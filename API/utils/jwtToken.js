@@ -12,7 +12,7 @@ const signToken = (id) => {
     );
 };
 exports.generateAndSendJWTToken = (user, statusCode, res) => {
-    const token = signToken(user._id);
+    const token = signToken(user);
     res.cookie("jwt", token, {
         expires: new Date(
             Date.now() + process.env.JWT_COOKIE_TTL * 24 * 60 * 60 * 1000,
@@ -20,11 +20,12 @@ exports.generateAndSendJWTToken = (user, statusCode, res) => {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
     });
-    res.status(statusCode).json({
-        status: "success",
-        token: token,
-        data: {
-            user: user,
+    res.status(200).json({
+        Code: 200,
+        Data: {
+            access_token: token,
+            timeout: 18000,
+            user,
         },
     });
 };

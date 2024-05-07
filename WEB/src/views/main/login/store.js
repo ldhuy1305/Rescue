@@ -4,10 +4,10 @@ import Router from '@/router';
 export default {
     namespaced: true,
     state: {
-        saveAccount: false,
         detail: {
             email: '',
-            password: ''
+            password: '',
+            saveAccount: false
         },
         validRules: {
             email: 'required|email',
@@ -19,23 +19,23 @@ export default {
             try {
                 repository.checkAccount(user).then((res) => {
                     const { data } = res;
-                    if (data.Code === 200 && data.Data.token) {
-                        sessionStorage.setItem('token', data.Data.token);
+                    if (data.Code === 200 && data.Data.access_token) {
+                        sessionStorage.setItem('token', data.Data.access_token);
                         sessionStorage.setItem(
                             'tokenTimeout',
                             new Date(
                                 new Date().getTime() + data.Data.timeout * 60000
                             )
                         );
-                        if (data.Data.role_id == 1)
+                        if (data.Data.user.role_id == 1)
                             Router.push({
                                 name: 'home'
                             });
                         else
                             Router.push({
-                                name: 'admin'
+                                name: 'signup'
                             });
-                        if (context.state.saveAccount) {
+                        if (context.state.detail.saveAccount) {
                             localStorage.setItem(
                                 'email',
                                 btoa(context.state.detail.email)
@@ -45,7 +45,8 @@ export default {
                                 btoa(context.state.detail.password)
                             );
                         } else {
-                            localStorage.removeItem('account');
+                            localStorage.removeItem('email');
+                            localStorage.removeItem('password');
                         }
                     }
                 });
