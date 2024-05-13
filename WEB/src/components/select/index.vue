@@ -4,7 +4,7 @@ import template from './template.html';
 /**
  * Define content of select component
  */
-var Dropdown = {
+var Select = {
     template: template,
     props: {
         id: String,
@@ -55,5 +55,5 @@ var Dropdown = {
         }
     }
 };
-export default Dropdown;
+export default Select;
 </script>

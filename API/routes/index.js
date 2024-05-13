@@ -4,6 +4,7 @@ const swaggerUi = require("swagger-ui-express");
 
 const roleRoute = require("./role");
 const accountRoute = require("./account");
+const authRoute = require("./auth");
 const districtRoute = require("./district");
 const wardRoute = require("./ward");
 const committeeRoute = require("./committee");
@@ -16,6 +17,7 @@ const globalErrorHandler = require("../controllers/errorController");
 const appError = require("../utils/appError");
 
 function route(app) {
+    app.use("/api/v1", authRoute);
     app.use("/api/v1/role", roleRoute);
     app.use("/api/v1/account", accountRoute);
     app.use("/api/v1/district", districtRoute);

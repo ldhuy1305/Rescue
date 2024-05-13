@@ -6,14 +6,19 @@ const jwtToken = require("../utils/jwtToken");
 const helpers = require("../utils/helpers");
 
 class accountController {
-    createAccount = catchAsync(async (req, res) => {
+    createAccount = catchAsync(async (req, res, next) => {
         var payload = req.body;
         payload.password = await helpers.createHashPassword(payload.password);
-        const rs = await accountModel.createAccount(payload);
-        res.status(200).json({
-            Code: 200,
-            Data: rs,
+        const rs = await accountModel.createAccount({
+            email: payload.email,
+            password: payload.password,
         });
+        req.account = rs[0][0];
+        next();
+        // res.status(200).json({
+        //     Code: 200,
+        //     Data: rs,
+        // });
     });
     login = catchAsync(async (req, res, next) => {
         var { email, password } = req.body;

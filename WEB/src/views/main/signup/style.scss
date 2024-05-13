@@ -1,0 +1,41 @@
+#signup{
+    width: 100vw;
+    height: 100vh;
+    background: #9053c7;
+    background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: linear-gradient(-135deg, #c850c0, #4158d0);
+    .container {
+        background-color: white;
+        width: 80%;   
+        height: 90%;  
+        display: grid;
+        gap: 10px; /* Khoảng cách giữa các hàng */
+        align-items: center; /* Căn giữa theo chiều dọc */
+        padding: 20px;
+        Input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+    
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        
+            &:hover {
+                background-color: #0056b3;
+            }
+        }
+    }
+      
+}

@@ -424,7 +424,7 @@ paths:
         - user
       summary: Create user
       description: This can only be done by the logged in user.
-      operationId: createUser
+      operationId: createAccount
       requestBody:
         description: Created user object
         content:
@@ -453,7 +453,7 @@ paths:
         - user
       summary: Creates list of users with given input array
       description: Creates list of users with given input array
-      operationId: createUsersWithListInput
+      operationId: createAccountsWithListInput
       requestBody:
         content:
           application/json:

@@ -1,0 +1,19 @@
+<div id="signup">
+    <div class ="container">
+        <Input id="email" placeholder="Email" :maxLength="30" v-model="detail.email"/>
+        <Input id="password"  placeholder="Mật khẩu" :maxLength="30" v-model="detail.password"/>
+        <Input id="confirmPassword" placeholder="Xác nhận mật khẩu" :maxLength="30" v-model="detail.confirmPassword"/>
+        <div class = 'name'>
+            <Input id="lastName" placeholder="Họ" :maxLength="30" v-model="detail.lastName"/>
+            <Input id="firstName" placeholder="Tên" :maxLength="30" v-model="detail.firstName"/>
+        </div>
+        <Input id="tel" placeholder="Số điện thoại" :maxLength="30" v-model="detail.tel"/>
+        <div class = 'address'>
+            <Select id="city" :options=this.location.cities :onChangeEvent="setDistricts" v-model="detail.city"></Select>
+            <Select id="district" :options=this.location.districts :onChangeEvent="setWards" v-model="detail.district"></Select>
+            <Select id="ward" :options=this.location.wards v-model="detail.ward"> </Select>
+        </div>
+        <Input id="address" placeholder="Địa chỉ cụ thể" :maxLength="30" v-model="detail.address"/>
+        <button @click="signUpUser">Đăng ký</button>
+    </div>
+</div>

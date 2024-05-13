@@ -5,6 +5,9 @@ const helpers = {
     insertComma: (val) => {
         return (val + '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     },
+    isPassword: (val) => {
+        return val.match('^(?=.*[A-Za-z])(?=.*d).{8,}$');
+    },
     isEmail: (str) => {
         if (helpers.isNullOrEmpty(str)) {
             return true;
@@ -68,6 +71,13 @@ const helpers = {
                             if (!helpers.isPhone(data[key])) {
                                 // eslint-disable-next-line no-undef
                                 $(`#${key}`).last().ItemError(messages.E012);
+                                isValid = false;
+                            }
+                        }
+                        if (checks[0] == 'password') {
+                            if (!helpers.isPassword(data[key])) {
+                                // eslint-disable-next-line no-undef
+                                $(`#${key}`).last().ItemError(messages.E063);
                                 isValid = false;
                             }
                         }

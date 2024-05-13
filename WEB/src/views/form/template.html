@@ -15,9 +15,9 @@
       /> -->
       <!-- <input accept="image/*" type="file" @change="previewFiles($event)" />
       <img alt="" :src="newImage || emptyImage" /> -->
-      <Dropdown id="city" label="Tỉnh/Thành" :options=this.location.cities :onChangeEvent="setDistricts" v-model="this.detail.city"></Dropdown>
-      <Dropdown id="district" label="Quận/Huyện" :options=this.location.districts :onChangeEvent="setWards" v-model="this.detail.district"></Dropdown>
-      <Dropdown id="ward" label="Phường/Xã" :options=this.location.wards v-model="this.detail.ward"> </Dropdown>
+      <Select id="city" label="Tỉnh/Thành" :options=this.location.cities :onChangeEvent="setDistricts" v-model="this.detail.city"></Select>
+      <Select id="district" label="Quận/Huyện" :options=this.location.districts :onChangeEvent="setWards" v-model="this.detail.district"></Select>
+      <Select id="ward" label="Phường/Xã" :options=this.location.wards v-model="this.detail.ward"> </Select>
       
       <!-- <image-upload action="create"
       :image_style="{

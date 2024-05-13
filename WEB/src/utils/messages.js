@@ -60,6 +60,8 @@ export default {
     E060: 'No target person',
     E061: 'Please select holiday work application from the search button',
     E062: 'Because a valid "starting month" and "starting week" are not set, the process will be forced to close.<br/> <br/>Please register on the system settings screen. ',
+    E063: 'Password is invalid',
+    E064: 'Việc đăng kí đã quá hạn!',
     // Confirm message
     C001: '',
     C002: 'Do you want to mark the start of the break? ',
