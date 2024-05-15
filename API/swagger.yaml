@@ -24,6 +24,79 @@ tags:
   - name: committee
   - name: approval
 paths:
+  /send-email:
+    post:
+      tags:
+        - account
+      summary: ''
+      description: ''
+      operationId: ''
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: object 
+              properties:
+                email:
+                  type: string
+                  example: ldhuydn1305@gmail.com
+                password:
+                  type: string
+                  example: duchuy123
+                firstName:
+                  type: string
+                  example: Huy
+                lastName:
+                  type: string
+                  example: Le
+                phoneNumber:
+                  type: string
+                  example: 0123456789
+                address:
+                  type: string
+                  example: T19
+                avatar:
+                  type: string
+                  example: https:/123123
+      responses:
+        '200':
+          description: Successful authentication
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Code:
+                    type: integer
+                    example: 200
+                  Data:
+                    type: object
+                  Message:
+                    type: string
+                  DataErrors :
+                    type: object
+              examples:
+                Success:
+                  summary: Successful
+                  value:
+                    Code: 200
+                    Data:
+                      access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ.DV7wFnZrk6qTYXLw4rAosU9CmwVlWzb17aL86R-RYhg
+                      refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ.DV7wFnZrk6qTYXLw4rAosU9CmwVlWzb17aL86R-RYhg
+                      timeout: 18000
+                    Message: ""
+                    DataErrors: {}
+                Bad request:
+                  $ref: '#/components/examples/bad_request'
+                Not authentication:
+                  $ref: '#/components/examples/not_auth'
+                Not access:
+                  $ref: '#/components/examples/not_access'
+                Data invalid:
+                  $ref: '#/components/examples/data_invalid'
+                Exception:
+                  $ref: '#/components/examples/exception'
   /account/login:
     post:
       tags:
@@ -253,9 +326,15 @@ components:
     user:
       type: object
       properties:
-        email:
+        firstName:
           type: string
-        password:
+        lastName:
+          type: string
+        phoneNumber:
+          type: string
+        address:
+          type: string
+        avatar:
           type: string
     proof:
       type: object
