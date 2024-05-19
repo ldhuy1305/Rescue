@@ -6,7 +6,6 @@ import store from './store';
 import ImageUploadVue from 'image-upload-vue';
 // Create the app instance
 const app = createApp(App);
-
 // Mount the app to the DOM
 app.use(store);
 app.use(router);

@@ -1,6 +1,8 @@
 import repository from './repository';
 import store from '../../store';
 import map from '../../utils/map';
+import helpers from '@/utils/helpers';
+// import axios from 'axios';
 // import _ from 'lodash';
 export default {
     namespaced: true,
@@ -26,8 +28,15 @@ export default {
             ]
         },
         detail: {
-            city: ''
-        }
+            title: '1',
+            start_date: new Date(),
+            end_date: new Date(),
+            city: '89',
+            district: '886',
+            ward: '30337',
+            address: '2'
+        },
+        contents: []
     },
     mutations: {
         // setWard(context, code) {
@@ -41,9 +50,31 @@ export default {
         },
         setWards(state, payload) {
             state.location.wards = payload;
+        },
+        addContent(state) {
+            state.contents.push({});
+        },
+        removeContent(state, index) {
+            state.contents.splice(index, 1);
+        },
+        removeNullContent(state) {
+            state.contents.filter((item) => Object.keys(item).length !== 0);
         }
     },
     actions: {
+        removeContent(context, index) {
+            try {
+                if (context.state.contents[index].file != '') {
+                    const publicId = helpers.getPublicIdFromUrl(
+                        context.state.contents[index].file
+                    );
+                    repository.delete(publicId).then(() => {});
+                }
+            } catch (e) {
+                console.log('Action: ' + e.message);
+            }
+            context.commit('removeContent', index);
+        },
         onSave(context, payload) {
             try {
                 repository.save(payload).then((res) => {
@@ -89,7 +120,7 @@ export default {
                     data.forEach((item) => {
                         newData.push({ name: item.full_name, code: item.id });
                     });
-                    context.commit('form/setDistricts', newData);
+                    context.commit('setDistricts', newData);
                     store.commit('app/hideLoading');
                 });
             } catch (e) {
@@ -110,8 +141,19 @@ export default {
                     data.forEach((item) => {
                         newData.push({ name: item.full_name, code: item.id });
                     });
-                    context.commit('form/setWards', newData);
+                    context.commit('setWards', newData);
                     store.commit('app/hideLoading');
+                });
+            } catch (e) {
+                console.log('Action: ' + e.message);
+            }
+        },
+        save(context, payload) {
+            try {
+                repository.save(payload).then((res) => {
+                    console.log(payload);
+                    // let data = res.data.data;
+                    console.log(res);
                 });
             } catch (e) {
                 console.log('Action: ' + e.message);

@@ -17,6 +17,9 @@ con.connect(function (err) {
 const database = {
     async executeSPC(spc, params) {
         return new Promise((resolve, reject) => {
+            console.log(
+                `CALL ${spc}(${params.map((val) => `'${val}'`).join(",")})`,
+            );
             con.query(
                 `CALL ${spc}(${params.map((val) => `'${val}'`).join(",")})`,
                 function (err, result) {

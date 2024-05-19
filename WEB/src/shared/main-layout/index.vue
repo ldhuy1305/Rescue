@@ -15,7 +15,8 @@ export default {
             totalHeight += $(this).outerHeight(true);
         });
         var windowHeight = $(window).height();
-        if (totalHeight < windowHeight) $('#contact').css('position', 'fixed');
+        if (totalHeight < windowHeight || $('#app').hasClass('form'))
+            $('#contact').css('position', 'fixed');
         else $('#contact').css('position', '');
     },
     watch: {

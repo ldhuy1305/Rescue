@@ -1,0 +1,25 @@
+<div class="file-upload">
+    <div class="file-upload__area">
+    <div v-if="!file.isUploaded">
+        <input type="file" name="" id="" @change="handleFileChange($event)" />
+        <div v-if="errors.length > 0">
+        <div
+            class="file-upload__error"
+            v-for="(error, index) in errors"
+            :key="index"
+        >
+            <span>{{ error }}</span>
+        </div>
+        </div>
+    </div>
+    <div v-if="file.isUploaded" class="upload-preview">
+        <img :src="file.url" v-if="file.isImage" class="file-image" alt="" />
+        <div v-if="!file.isImage" class="file-extention">
+        {{ file.fileExtention }}
+        </div>
+        <span class="file-name" @click="resetFileInput">
+        {{ file.name }}{{ file.isImage ? `.${file.fileExtention}` : "" }}
+        </span>
+    </div>
+    </div>
+</div>

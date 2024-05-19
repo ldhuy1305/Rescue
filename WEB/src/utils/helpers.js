@@ -208,6 +208,13 @@ const helpers = {
         }
         return false;
     },
+    getPublicIdFromUrl(url) {
+        console.log(url);
+        const parts = url.split('/');
+        const lastPart = parts[parts.length - 1];
+        const publicId = lastPart.substring(0, lastPart.lastIndexOf('.'));
+        return publicId;
+    },
     encodeParams: (params) => {
         try {
             if (params == undefined || params == null || params.length == 0) {
