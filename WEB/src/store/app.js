@@ -1,4 +1,6 @@
 import messages, { MSG_TYPE, MSG_TITLE } from '@/utils/messages';
+// import axios from 'axios';
+import repository from '@/repository';
 export default {
     namespaced: true,
     state: {
@@ -13,7 +15,8 @@ export default {
             okText: 'Ok',
             cancelText: 'Cancel',
             callback: () => {}
-        }
+        },
+        user: {}
     },
     mutations: {
         showLoading(state) {
@@ -94,6 +97,23 @@ export default {
                     callback: () => {}
                 };
             }, 250);
+        },
+        setUser(state, user) {
+            state.user = user;
+        }
+    },
+    actions: {
+        getUser(context) {
+            try {
+                repository.getUser().then((res) => {
+                    const { data } = res;
+                    if (data.Code === 200) {
+                        context.commit('setUser', data.Data ?? {});
+                    }
+                });
+            } catch (e) {
+                console.log('Action getAppState: ' + e.message);
+            }
         }
     }
 };

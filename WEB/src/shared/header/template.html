@@ -16,9 +16,40 @@
         <a href="#honor" class = "item">Vinh danh</a>  
         <a href="#share" class = "item">Tâm sự</a>
     </div>
-    <div class ="header-item">
+    <!-- <div class ="header-item">
       <router-link to ="login">  <button class = "button login"> Login</button></router-link>
       <router-link to ="sign-up">  <button class = "button signup"> Sign up</button></router-link>
+    </div> -->
+    <div class="header-item">
+      <template v-if="user == {}">
+        <div class="account-menu" @click="toggleDropdown">
+          <img class="avatar" :src=user.avatar alt="Avatar">
+          <span>{{user.last_name}} {{user.first_name}}</span>
+          <div v-if="dropdownVisible" class="dropdown">
+            <button style="width: 100%;">
+              <div class="dropdown-item">
+                <i class="fa-solid fa-user"></i>
+                <label class="text">Thông tin cá nhân </label>
+              </div>
+            </button>
+            
+            <button style="width: 100%;" @click=logout>
+              <div class="dropdown-item">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <label class="text">Đăng xuất </label>
+              </div>
+            </button>
+          </div>
+        </div>
+      </template>
+      <template v-else>
+        <router-link to="login">
+          <button class="button login">Login</button>
+        </router-link>
+        <router-link to="sign-up">
+          <button class="button signup">Sign up</button>
+        </router-link>
+      </template>
     </div>
   </div>
 </div>

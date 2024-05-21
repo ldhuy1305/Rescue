@@ -24,6 +24,62 @@
       flex-direction: row ;
       align-items: center;
       justify-content: space-between;
+      .account-menu{
+        margin-right: 20px;
+        cursor: pointer;
+        .avatar{
+          border: 1px solid #d7d7d7;
+          border-radius: 50%;
+          height: 40px;
+          width: 40px;
+          margin-right: 10px;
+        } 
+        span {
+          align-items: center;
+          // &::after {
+          //   content: "▼"; 
+          //   margin-left: 8px; 
+          //   font-size: 12px; 
+          //   color: #333;
+          // }
+        }
+        .dropdown{
+          background-clip: padding-box;
+          background-color: #fff;
+          border: 1px solid #00000026;;
+          border-radius: 3px;
+          color: #464646;
+          float: left;
+          font-size: .875rem;
+          right: 20px;
+          list-style: none;
+          margin: .125rem 0 0;
+          position: absolute;
+          text-align: left;
+          top: 100%;
+          z-index: 1000;
+          width: 180px;
+          button{
+            cursor: pointer;
+            border: 0;
+            &:hover{
+              background-color: #e0e0e0;
+            }
+            .dropdown-item{
+              align-items: center;
+              display: flex;
+              padding: 10px 12px;
+              border: 0;
+              i{
+                margin-right: 10px;
+              }
+              .text {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
       .item{    
         padding: 10px 0px 10px 0px;
         max-height: 80%;

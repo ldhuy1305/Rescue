@@ -9,7 +9,6 @@ const crypto = require("crypto");
 class userController {
     createUser = catchAsync(async (req, res) => {
         payload.account_id = req.account.id;
-        console.log(req.account);
         const user = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -24,6 +23,16 @@ class userController {
         //     Code: 200,
         //     Data: rs,
         // });
+    });
+    getUserByMe = catchAsync(async (req, res) => {
+        if (req.user != undefined) {
+            res.status(200).json({
+                Code: 200,
+                Data: req.user,
+            });
+        } else {
+            //
+        }
     });
 }
 

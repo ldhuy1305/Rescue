@@ -2,6 +2,8 @@ import repository from './repository';
 import store from '../../store';
 import map from '../../utils/map';
 import helpers from '@/utils/helpers';
+import { MSG_TYPE } from '@/utils/messages';
+import router from '@/router';
 // import axios from 'axios';
 // import _ from 'lodash';
 export default {
@@ -28,13 +30,13 @@ export default {
             ]
         },
         detail: {
-            title: '1',
+            title: '',
             start_date: new Date(),
             end_date: new Date(),
-            city: '89',
-            district: '886',
-            ward: '30337',
-            address: '2'
+            city: '',
+            district: '',
+            ward: '',
+            address: ''
         },
         contents: []
     },
@@ -151,9 +153,18 @@ export default {
         save(context, payload) {
             try {
                 repository.save(payload).then((res) => {
-                    console.log(payload);
-                    // let data = res.data.data;
-                    console.log(res);
+                    let data = res.data;
+                    if (data.Code == 200) {
+                        store.commit('app/showModalMessage', {
+                            type: MSG_TYPE.SUCCESS,
+                            content: 'Bài đăng ký đã được gửi đi',
+                            callback: (ok) => {
+                                if (ok) {
+                                    router.push('/home');
+                                }
+                            }
+                        });
+                    }
                 });
             } catch (e) {
                 console.log('Action: ' + e.message);

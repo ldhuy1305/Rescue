@@ -7,6 +7,7 @@ const Email = require("../utils/email");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const helpers = require("../utils/helpers");
+const userModel = require("../models/user");
 exports.sendEmailVerify = catchAsync(async (req, res, next) => {
     try {
         const payload = { ...req.body, cre_at: new Date().toISOString() };
@@ -138,27 +139,6 @@ exports.verifiedToken = catchAsync(async (req, res, next) => {
         message: "Mã của bạn là chính xác. Hãy đặt lại mật khẩu của bạn!",
     });
 });
-
-exports.googleLogin = passport.authenticate("google", {
-    scope: ["profile", "email"],
-});
-exports.googleLoginCallback = (req, res, next) => {
-    passport.authenticate(
-        "google",
-        { failureRedirect: "/login" },
-        (err, user) => {
-            if (err) {
-                return next(err);
-            }
-            jwtToken.generateAndSendJWTToken(user, 200, res, req);
-        },
-    )(req, res, next);
-};
-
-exports.logout = catchAsync((req, res, next) => {
-    res.cookie("jwt", "", { expires: new Date(Date.now() - 10 * 1000) });
-    res.status(200).json({ status: "success" });
-});
 exports.protect = catchAsync(async (req, res, next) => {
     //1. Read the token & check if it exists
     let token = req.cookies.jwt;
@@ -171,19 +151,12 @@ exports.protect = catchAsync(async (req, res, next) => {
     // 2. validate the token
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
     // 3. If the user is exits
-    const user = await User.findById(decoded.id);
+    const user = await userModel.findById(decoded.id.id);
     if (!user) {
         return next(new appError("Người dùng không tồn tại!", 401));
     }
-    if (user.role == "Shipper" && user.isAccepted == false)
-        return next(new appError("Người giao hàng chờ phê duyệt!", 401));
-    if (user.role == "Owner" && user.isAccepted == false)
-        return next(new appError("Chủ cửa hàng chờ phê duyệt!", 401));
-    if (!token) {
-        return next(new appError("Người dùng chưa đăng nhập!", 403));
-    }
     // 4. Allow the user to access routes
-    req.user = user;
+    req.user = user[0][0];
     next();
 });
 exports.restrict = (...roles) => {

@@ -283,43 +283,5 @@ const helpers = {
         }
         return (value = negative + values[0] + dot + afterDot);
     },
-    getUserFromToken() {
-        try {
-            const token = sessionStorage.getItem('token');
-            const data = helpers.parseJwt(token);
-            const logindata = JSON.parse(data.logindata ?? '{}');
-            logindata.switchUser = {};
-            if (sessionStorage.getItem('switchUser')) {
-                logindata.switchUser = JSON.parse(
-                    // eslint-disable-next-line no-undef
-                    Base64.decode(sessionStorage.getItem('switchUser'))
-                );
-            }
-            return logindata;
-        } catch (e) {
-            console.log('getUserFromToken: ' + e.message);
-        }
-        return [];
-    },
-    parseJwt(token) {
-        if (token) {
-            var base64Url = token.split('.')[1];
-            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-            var jsonPayload = decodeURIComponent(
-                window
-                    .atob(base64)
-                    .split('')
-                    .map(function (c) {
-                        return (
-                            '%' +
-                            ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-                        );
-                    })
-                    .join('')
-            );
-            return JSON.parse(jsonPayload);
-        }
-        return {};
-    }
 };
 export default helpers;

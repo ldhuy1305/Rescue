@@ -87,8 +87,8 @@ export default {
         async uploadFile(file) {
             const formData = new FormData();
             formData.append('file', file);
-            formData.append('upload_preset', 'qfuacxsd'); // Replace with your upload preset
-
+            formData.append('upload_preset', 'qfuacxsd');
+            formData.append('folder', 'mock_data');
             this.uploading = true;
             this.uploadError = null;
 
