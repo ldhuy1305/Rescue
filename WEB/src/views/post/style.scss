@@ -1,0 +1,94 @@
+@import "../../assets/scss/var";
+#post{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(224, 224, 224);
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 50px;
+    padding-bottom: 20px;
+    .container{
+        display: flex;
+        justify-content: space-between;
+        .main-col{
+            background-color: #fff;
+            padding: 20px;
+            width: 60%;
+            float: left;
+            .title{    
+                font-size: 2rem;
+                line-height: 3rem;
+                font-weight: 700;
+                font-family: roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+                margin-bottom: 10px;
+            }
+            .sapo{
+                font-size: 1rem;
+                line-height: 1.3rem;
+                font-weight: 700;
+                margin-bottom: 10px;
+            }
+            .related{}
+            .body{
+                overflow-wrap: break-word;
+                font-size: 1.6rem;
+                line-height: 2.4rem;
+                .image img{
+                    max-width: 100%;
+                    display: block;
+                    margin: auto;
+                    transform: translate3d(0, 0, 0);}
+                .content p{             
+                    margin: 0px 0px 15px;
+                    padding: 0px;
+                    border: 0px;
+                    text-align: justify;
+                    font-size: 18px;
+                    font-family: roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+                }
+            }
+            .help{
+                display: flex;
+                justify-content: center;
+                button{
+                    border: 0 solid #000;
+                    border-radius: 50px;
+                    font-weight: bold;
+                    padding: 5px 20px 5px 20px;
+                    margin: 0px 20px 0px 20px;
+                    background-color: $primaryColor;
+                    color: white;
+                  }
+            }
+        }
+        .sub-col{
+            position: relative;
+            width: 35%;
+            height: 525px;
+            overflow: hidden;
+            .slider{
+                width: 256px;
+                height:512px;
+                margin:50px auto;
+                overflow:hidden;
+                border-left:1px solid #ccc;
+                border-right:1px solid #ccc;
+                &__row{
+                  display:flex;
+                  flex-direction: column;
+                  
+                  position:relative;
+                  top: 0;
+                  left: 0;
+                  height: 1536px;
+                  overflow:hidden;
+                  
+                  transition:.5s;
+                  .row__item{
+                  }
+                }
+              }       
+            }
+        }
+    }

@@ -9,6 +9,15 @@ class Approval {
             return rs;
         } catch (err) {}
     }
+    
+    async getApproval(params) {
+        try {
+            params = objectToArray(params);
+            const rs = await sql.executeSPC("get_approval", params);
+            console.log(rs);
+            return rs;
+        } catch (err) {}
+    }
 }
 
 module.exports = new Approval();

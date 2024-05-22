@@ -8,6 +8,13 @@ class Proof {
             const rs = await sql.executeSPC("create_proof", params);
             return rs;
         } catch (err) {}
+    }    
+    async getProof(params) {
+        try {
+            params = objectToArray(params);
+            const rs = await sql.executeSPC("create_proof", params);
+            return rs;
+        } catch (err) {}
     }
 }
 

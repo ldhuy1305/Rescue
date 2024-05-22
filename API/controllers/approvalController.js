@@ -13,6 +13,16 @@ class approvalController {
         req.body.approvalId = rs[0][0].id;
         next();
     });
+    getApproval = catchAsync(async (req, res) => {
+        const rs = await approvalModel.getApproval(req.params);
+        res.status(200).json({
+            Code: 200,
+            Data: {
+                detail: rs[0][0],
+                content: rs[1],
+            },
+        });
+    });
 }
 
 module.exports = new approvalController();
