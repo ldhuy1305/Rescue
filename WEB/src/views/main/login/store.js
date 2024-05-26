@@ -1,6 +1,6 @@
 import repository from './repository';
 import Router from '@/router';
-
+import store from '@/store';
 export default {
     namespaced: true,
     state: {
@@ -20,6 +20,7 @@ export default {
                 repository.checkAccount(user).then((res) => {
                     const { data } = res;
                     if (data.Code === 200 && data.Data.access_token) {
+                        store.commit('app/setUser', data.Data.user);
                         sessionStorage.setItem('token', data.Data.access_token);
                         sessionStorage.setItem(
                             'tokenTimeout',

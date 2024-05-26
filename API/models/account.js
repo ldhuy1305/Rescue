@@ -23,6 +23,19 @@ class Account {
             return rs[0][0];
         } catch (err) {}
     }
+    async changePass(params) {
+        try {
+            params = objectToArray(params);
+            const rs = await sql.executeSPC("change_pass", params);
+            return rs[0][0];
+        } catch (err) {}
+    }
+    async getAccount(id) {
+        try {
+            const rs = await sql.executeSPC("get_account", [id]);
+            return rs[0][0];
+        } catch (err) {}
+    }
 }
 
 module.exports = new Account();

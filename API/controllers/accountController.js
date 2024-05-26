@@ -15,10 +15,6 @@ class accountController {
         });
         req.account = rs[0][0];
         next();
-        // res.status(200).json({
-        //     Code: 200,
-        //     Data: rs,
-        // });
     });
     login = catchAsync(async (req, res, next) => {
         var { email, password } = req.body;
@@ -33,6 +29,30 @@ class accountController {
             return next(new appError("Mật khẩu không hợp lệ", 400));
         }
         jwtToken.generateAndSendJWTToken(account, 200, res, req);
+    });
+    changePass = catchAsync(async (req, res, next) => {
+        if (req.user != undefined) {
+            const { oldPass, newPass, confirmedPass } = req.body;
+            if (confirmedPass != newPass)
+                next(new appError("Mật khẩu xác nhận không trùng khớp!", 404));
+
+            const account = await accountModel.getAccount(req.user.account_id);
+            if (!(await helpers.isCorrectPassword(account.password, oldPass)))
+                next(new appError("Mật khẩu không đúng", 404));
+
+            const hashedPassword =
+                await helpers.createHashPassword(confirmedPass);
+            const rs = await accountModel.changePass({
+                id: req.user.account_id,
+                password: hashedPassword,
+            });
+            res.status(200).json({
+                Code: 200,
+                Data: rs,
+            });
+        } else {
+            return next(new appError("Không tìm thấy người dùng!", 404));
+        }
     });
 }
 

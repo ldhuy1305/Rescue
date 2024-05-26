@@ -1,12 +1,30 @@
-<div v-if = "showModal" class="custom-modal modal-five modal-message">
-  <div class="content">
-      <h5 class="mb-0 text-center message-title" v-if="showTitle"><span v-html="modalMessage.title"></span></h5>
-      <br v-if="showTitle">
-      <p class="mb-0 text-center message-content" v-html="modalMessage.content" v-if=""></p>
-      <br v-if="showTitle">
-    <div class="modal-footer flex-nowrap justify-content-center p-20">
-      <button type="button" class="text-center app-btn" @click="onClickOk">Đồng ý</button>
-      <button type="button" class="text-center cncl-btn"  @click="onClickCancel" v-if="showCancel">Hủy bỏ</button>
+<div v-if="showModal" class="custom-modal modal-five modal-message">
+    <div class="content">
+        <h5 class="mb-0 text-center message-title" v-if="showTitle">
+            <span v-html="modalMessage.title"></span>
+        </h5>
+        <br v-if="showTitle" />
+        <p
+            class="mb-0 text-center message-content"
+            v-html="modalMessage.content"
+        ></p>
+        <br v-if="showTitle" />
+        <div class="modal-footer flex-nowrap justify-content-center p-20">
+            <button
+                type="button"
+                class="text-center app-btn"
+                @click="onClickOk"
+            >
+                Đồng ý
+            </button>
+            <button
+                type="button"
+                class="text-center cncl-btn"
+                @click="onClickCancel"
+                v-if="showCancel"
+            >
+                Hủy bỏ
+            </button>
+        </div>
     </div>
-  </div>
 </div>

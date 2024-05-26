@@ -15,6 +15,20 @@ class User {
             return rs;
         } catch (err) {}
     }
+    async updateUser(params) {
+        try {
+            params = objectToArray(params);
+            const rs = await sql.executeSPC("update_user", params);
+            return rs;
+        } catch (err) {}
+    }
+    async updateUser(params) {
+        try {
+            params = objectToArray(params);
+            const rs = await sql.executeSPC("update_user", params);
+            return rs;
+        } catch (err) {}
+    }
 }
 
 module.exports = new User();

@@ -6,11 +6,12 @@ import { mapMutations, mapState, mapActions } from 'vuex';
 import postStore from '@/views/post/store';
 import Select from '@/components/select';
 import Input from '@/components/input';
+import PopupAmount from './popup';
 // import helpers from '@/utils/helpers';
 const Post = {
     name: 'Post',
     template: template,
-    components: { Select, Input },
+    components: { Select, Input, PopupAmount },
     beforeCreate() {
         if (!store.hasModule('post')) {
             store.registerModule('post', postStore);
@@ -27,8 +28,9 @@ const Post = {
     unmounted() {},
     data() {
         return {
-            params: { id: 18 },
-            toTop: 0
+        params: { id: 30 },
+            toTop: 0,
+            showPopup: false
             // helpers.decodeParams(this.$route.query.p)
         };
     },
@@ -62,16 +64,15 @@ const Post = {
             this.fileSelected = true;
             this.file = file;
         },
-        // removeContent(index) {
-        //     this.removeImage();
-        //     // this.removeDescription(index);
-        // },
         saveData() {
             this.removeNullContent();
             this.save({
                 post: this.detail,
                 content: this.contents
             });
+        },
+        showPopupAmount() {
+            this.showPopup = true;
         }
         // autoPlay() {
         //     timer = setTimeout(function () {

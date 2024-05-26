@@ -55,6 +55,32 @@ const router = createRouter({
 });
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title;
+    const checkPermission = () => {
+        return true;
+    };
+    const publicPages = ['/login', '/signup', 'home'];
+    const authRequired = !publicPages.includes(to.path);
+    const token = sessionStorage.getItem('token');
+    const tokenTimeout = sessionStorage.getItem('tokenTimeout');
+    let loggedIn = false;
+    if (token && tokenTimeout && new Date(tokenTimeout) >= new Date()) {
+        loggedIn = true;
+    } else {
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('tokenTimeout');
+    }
+    if (!authRequired && loggedIn) {
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('tokenTimeout');
+    }
+    if (authRequired && !loggedIn) {
+        return next('/login');
+    }
+    if (!to.meta.forAll) {
+        if (authRequired && !checkPermission(to)) {
+            return next('/403');
+        }
+    }
     next();
 });
 export default router;

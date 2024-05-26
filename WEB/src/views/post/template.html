@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="help" >
-        <button @click="addHelp"> Hỗ trợ</button>
+        <button @click="showPopupAmount"> Hỗ trợ</button>
       </div>
     </div>
     <div class="sub-col">
@@ -32,5 +32,8 @@
         </div>
       </div>
     </div>
+  </div>
+  <div v-if="showPopup" class="popup-container">
+    <popup-amount :params="detailParams" :onClose="() => { showPopup = false }"/>
   </div>
 </div>

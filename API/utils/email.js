@@ -12,16 +12,11 @@ module.exports = class Email {
 
     async newTransport() {
         try {
-            const oAuth2Client = new google.auth.OAuth2(
-                process.env.GOOGLE_CLIENT_ID,
-                process.env.GOOGLE_CLIENT_SECRET,
-                process.env.REDIRECT_URI,
-            );
             return nodemailer.createTransport({
                 service: "gmail",
                 auth: {
                     type: "OAuth2",
-                    user: "ldhuydn1305@gmail.com",
+                    user: "bongmaxuyentuong1@gmail.com",
                     clientId: process.env.GOOGLE_CLIENT_ID,
                     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
                     refreshToken: process.env.GOOGLE_REFRESEH_TOKEN,

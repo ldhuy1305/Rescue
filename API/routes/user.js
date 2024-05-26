@@ -8,5 +8,12 @@ router
     .post(accountController.createAccount, userController.createUser);
 
 router.use(authController.protect);
-router.route("/").get(userController.getUserByMe);
+router
+    .route("/me")
+    .get(userController.getUserByMe)
+    .put(userController.updateUser);
+router
+    .route("/me/photo")
+    .patch(userController.updateImage, userController.updateAvatar);
+router.route("/me/change-password").post(accountController.changePass);
 module.exports = router;

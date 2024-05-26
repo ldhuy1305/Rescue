@@ -1,0 +1,204 @@
+<div id="user">
+    <div class="now-detail-profile">
+        <div class="header-user-profile">Thông tin người dùng</div>
+        <div class="content-user-profile">
+            <div class="user-profile-update">
+                <div class="title-user">Tải ảnh đại diện</div>
+                <div class="row">
+                    <div class="col-3">
+                        <div class="user-avatar-image">
+                            <img :src="user.avatar" alt="" id="avatar_user" />
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <div class="form-group">
+                            <span>Tải lên từ</span>
+                            <div class="custom-file-image">
+                                <input
+                                    type="file"
+                                    id="validatedCustomFile"
+                                    class="input-custom"
+                                    accept="image/*"
+                                    style="display: none"
+                                />
+                                <label
+                                    class="label-custom"
+                                    for="validatedCustomFile"
+                                    >Chọn</label
+                                >
+                                <span class="font-italic font13"
+                                    >Chấp nhận GIF, JPEG, PNG, BMP với kích
+                                    thước tối đa 5.0MB</span
+                                >
+                            </div>
+                        </div>
+                        <button
+                            class="btn btn-blue-4"
+                            type="button"
+                            @click="saveAvatar"
+                        >
+                            Cập nhật
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="user-profile-update">
+                <div class="title-user">Thay đổi thông tin</div>
+                <div class="row form-group align-items-center">
+                    <div class="col-3 txt-bold">
+                        Tên<span class="txt-red font-weight-bold">*</span>
+                    </div>
+                    <div class="col-4">
+                        <div class="input-group">
+                            <input
+                                name="firstName"
+                                type="text"
+                                class="form-control"
+                                required=""
+                                v-model="user.first_name"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group align-items-center">
+                    <div class="col-3 txt-bold">
+                        Họ<span class="txt-red font-weight-bold">*</span>
+                    </div>
+                    <div class="col-4">
+                        <div class="input-group">
+                            <input
+                                name="lastName"
+                                type="text"
+                                class="form-control"
+                                required=""
+                                v-model="user.last_name"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group align-items-center">
+                    <div class="col-3 txt-bold">
+                        Địa chỉ<span class="txt-red font-weight-bold">*</span>
+                    </div>
+                    <div class="col-8">
+                        <div class="input-group">
+                            <textarea
+                                name="address"
+                                type="text"
+                                class="form-control"
+                                required=""
+                                style="
+                                    overflow-wrap: break-word;
+                                    resize: vertical;
+                                "
+                            >{{user.address}}</textarea
+                            >
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group align-items-center">
+                    <div class="col-3 txt-bold">
+                        Số điện thoại<span class="txt-red font-weight-bold"
+                            >*</span
+                        >
+                    </div>
+                    <div class="col-4">
+                        <div class="input-group">
+                            <input
+                                name="phoneNumber"
+                                type="text"
+                                class="form-control"
+                                maxlength="10"
+                                required=""
+                                v-model="user.tel"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <button
+                            class="btn btn-blue-4 btn-block"
+                            @click="saveData"
+                        >
+                            Lưu thay đổi
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="user-profile-update">
+                <div class="title-user">Đổi mật khẩu</div>
+                <div class="form-group verify-pass">
+                    <div class="row align-items-center m-b-10">
+                        <div class="col-3 txt-bold">
+                            Mật khẩu cũ<span class="txt-red font-weight-bold"
+                                >*</span
+                            >
+                        </div>
+                        <div class="col-4">
+                            <div class="input-group validate-pass">
+                                <input
+                                    name="oldPass"
+                                    placeholder="Mật khẩu cũ"
+                                    type="password"
+                                    class="form-control"
+                                    required=""
+                                    v-model="pass.oldPass"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center m-b-10">
+                        <div class="col-3 txt-bold">
+                            Mật khẩu mới<span class="txt-red font-weight-bold"
+                                >*</span
+                            >
+                        </div>
+                        <div class="col-4">
+                            <div class="input-group validate-pass">
+                                <input
+                                    name="newPass"
+                                    placeholder="Mật khẩu mới"
+                                    type="password"
+                                    class="form-control"
+                                    required=""
+                                    v-model="pass.newPass"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-3 txt-bold">
+                            Xác nhận mật khẩu<span
+                                class="txt-red font-weight-bold"
+                                >*</span
+                            >
+                        </div>
+                        <div class="col-4">
+                            <div class="input-group validate-pass">
+                                <input
+                                    name="confirmedPass"
+                                    placeholder="Xác nhận mật khẩu"
+                                    type="password"
+                                    class="form-control"
+                                    required=""
+                                    v-model="pass.confirmedPass"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <button
+                            class="btn btn-blue-4 btn-block"
+                            @click="changePassword"
+                        >
+                            Đổi mật khẩu
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

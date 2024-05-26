@@ -12,7 +12,6 @@ exports.sendEmailVerify = catchAsync(async (req, res, next) => {
     try {
         const payload = { ...req.body, cre_at: new Date().toISOString() };
         const url = `${process.env.URL_WEBSITE}?p=${helpers.encodeParams(payload)}`;
-        console.log(helpers.decodeParams(helpers.encodeParams(payload)));
         await new Email(payload.email, payload.firstName, url).sendWelcome();
         res.status(200).json({
             message: "Mã đã được gửi đến email!",

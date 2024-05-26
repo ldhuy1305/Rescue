@@ -28,7 +28,6 @@ const home = {
         if (this.$route.query.p) {
             const now = new Date().getTime();
             const cre_at = new Date(this.params.cre_at).getTime();
-            console.log(this.$route.query.p);
             delete this.params.cre_at;
             const isValid = now - cre_at <= 1000 * 60 * 10;
             if (isValid) {

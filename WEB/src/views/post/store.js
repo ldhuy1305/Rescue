@@ -32,6 +32,17 @@ export default {
             } catch (e) {
                 console.log('Action: ' + e.message);
             }
+        },
+        aaa(context, payload) {
+            try {
+                repository.getPost(payload).then((res) => {
+                    let data = res.data.Data;
+                    context.commit('setDetail', data.detail);
+                    context.commit('setContent', data.content);
+                });
+            } catch (e) {
+                console.log('Action: ' + e.message);
+            }
         }
     }
 };

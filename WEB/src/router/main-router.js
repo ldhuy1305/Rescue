@@ -1,6 +1,7 @@
 const home = () => import('@/views/main/home');
 const login = () => import('@/views/main/login');
 const signup = () => import('@/views/main/signup');
+const user = () => import('@/views/user');
 export default [
     {
         path: '/home',
@@ -24,8 +25,16 @@ export default [
         name: 'signup',
         component: signup,
         meta: {
-            title: 'Sign Up',
+            title: 'Đăng ký',
             layout: 'EmptyLayout'
+        }
+    },
+    {
+        path: `/user`,
+        name: 'user',
+        component: user,
+        meta: {
+            title: 'Thông tin cá nhân'
         }
     }
 ];

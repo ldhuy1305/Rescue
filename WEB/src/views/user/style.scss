@@ -1,0 +1,188 @@
+@import '@/assets/scss/util';
+#user {
+    background-color: rgb(224, 224, 224);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    margin-top: 50px;
+
+    .now-detail-profile {
+        float: right;
+        width: 827px;
+        min-height: 428px;
+        position: relative;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 0 3px 0 rgba(50, 50, 50, 0.3);
+        margin-top: 35px;
+        .header-user-profile {
+            font-size: 18px;
+            color: #000;
+            font-weight: 700;
+            padding: 16px 15px;
+            border-bottom: 1px solid #ebebeb;
+            position: relative;
+            background: #f5f5f5;
+            .card-type {
+                zoom: 0.5;
+                vertical-align: middle;
+                margin-left: 10px;
+            }
+        }
+        .content-user-profile {
+            .user-profile-update {
+                padding: 30px;
+                position: relative;
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 30px;
+                    right: 30px;
+                    height: 1px;
+                    background-color: #d7d7d7;
+                }
+
+                &:last-child:after {
+                    height: 0;
+                }
+
+                .title-user {
+                    font-weight: 700;
+                    font-size: 15px;
+                    color: var(--primary-color);
+                    padding-bottom: 20px;
+                    position: relative;
+
+                    .btn {
+                        position: absolute;
+                        top: -4px;
+                        right: 0;
+                    }
+                }
+
+                .user-avatar-image {
+                    img {
+                        width: 115px;
+                        height: 115px;
+                        border-radius: 50%;
+                    }
+                }
+
+                .custom-file-image {
+                    display: inline-block;
+                    margin-left: 3px;
+                }
+
+                .custom-radio {
+                    [type='radio'] {
+                        &:checked + label:before,
+                        &:not(:checked) + label:before {
+                            border-color: #c2c2c2;
+                        }
+
+                        &:checked + label:after {
+                            border-color: #6cc942;
+                            background-color: #6cc942;
+                        }
+                    }
+                }
+
+                .change-pass {
+                    font-size: 14px;
+                    font-weight: 700;
+                    color: #4073a7;
+                    cursor: pointer;
+                    margin-left: 100px;
+                    border: 0;
+                    border-bottom: 1px solid #4073a7;
+                    background-color: transparent;
+                    padding: 0;
+                }
+
+                .show-error {
+                    font-size: 13px;
+                    font-style: italic;
+                    color: #cf2127;
+                    white-space: nowrap;
+                    position: absolute;
+                    left: 100%;
+                    top: 4px;
+                    margin-left: 15px;
+                }
+
+                .validate-pass {
+                    .form-control {
+                        padding-right: 15px;
+                    }
+                }
+
+                .validate {
+                    position: absolute;
+                    right: 3px;
+                    top: 4px;
+                    color: #6cc942;
+                }
+
+                .not-validate {
+                    position: absolute;
+                    right: 3px;
+                    top: 4px;
+                    color: #cf2127;
+                }
+
+                .list-phone {
+                    margin-bottom: 20px;
+
+                    .list-phone-row {
+                        padding: 5px 0;
+
+                        .phone-verified .fas {
+                            margin-right: 8px;
+                        }
+
+                        .btn-update-phone-number {
+                            margin-top: 20px;
+
+                            button {
+                                padding-left: 20px;
+                                padding-right: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .txt-bold {
+            font-weight: 700 !important;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+            .custom-file-image {
+                .label-custom {
+                    background-color: #ebebeb;
+                    border-radius: 3px;
+                    color: #000;
+                    cursor: pointer;
+                    font-size: 14px;
+                    margin-bottom: 0;
+                    margin-right: 10px;
+                    padding: 3px 18px 4px;
+                    text-transform: capitalize;
+                }
+                .font-italic.font13 {
+                    font-style: italic !important;
+                    font-size: 0.813rem !important;
+                }
+            }
+        }
+        .txt-red {
+            color: red;
+        }
+        .mb-10 {
+            margin-bottom: 5px !important;
+        }
+    }
+}

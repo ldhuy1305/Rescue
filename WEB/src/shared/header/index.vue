@@ -2,7 +2,7 @@
 import template from './template.html';
 import './style.scss';
 // import store from '@/store';
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState, mapMutations } from 'vuex';
 const Header = {
     name: 'Header',
     template: template,
@@ -10,6 +10,7 @@ const Header = {
     created() {
         if (sessionStorage.getItem('token')) {
             this.getUser();
+            this.isUser = true;
         }
     },
     beforeMount() {},
@@ -26,29 +27,29 @@ const Header = {
                 { text: 'Services', url: '/services' },
                 { text: 'Contact', url: '/contact' }
             ],
-            dropdownVisible: false
+            dropdownVisible: false,
+            isUser: false
         };
     },
     computed: {
         ...mapState('app', ['user'])
-        // isAuthenticated() {
-        //     if (sessionStorage.getItem('token')) {
-        //         this.getUser();
-        //         // console.log(this.user);
-        //     }
-        //     return !!sessionStorage.getItem('token');
-        // }
     },
     methods: {
         toggleDropdown() {
             this.dropdownVisible = !this.dropdownVisible;
         },
         logout() {
-            console.log(1);
+            this.isUser = false;
             sessionStorage.removeItem('token');
+            sessionStorage.removeItem('tokenTimeout');
+            this.setUser({});
             this.$router.push('/home');
         },
-        ...mapActions('app', ['getUser'])
+        goToProfile() {
+            this.$router.push('/user');
+        },
+        ...mapActions('app', ['getUser']),
+        ...mapMutations('app', ['setUser'])
     },
     watch: {}
 };
