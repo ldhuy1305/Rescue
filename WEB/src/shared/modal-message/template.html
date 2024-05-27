@@ -1,11 +1,11 @@
 <div v-if="showModal" class="custom-modal modal-five modal-message">
     <div class="content">
-        <h5 class="mb-0 text-center message-title" v-if="showTitle">
+        <h5 class="m-t-20 text-center message-title" v-if="showTitle">
             <span v-html="modalMessage.title"></span>
         </h5>
         <br v-if="showTitle" />
         <p
-            class="mb-0 text-center message-content"
+            class="mb-0 text-center message-content fs-18"
             v-html="modalMessage.content"
         ></p>
         <br v-if="showTitle" />

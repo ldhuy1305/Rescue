@@ -4,7 +4,7 @@ const devErrors = (res, err) => {
     res.status(200).json({
         Code: err.statusCode,
         Data: {},
-        Message: "Server error",
+        Message: err.message,
         DataErrors: err.stack,
     });
 };

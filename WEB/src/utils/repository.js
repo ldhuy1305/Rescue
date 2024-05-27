@@ -1,6 +1,7 @@
 import axios from 'axios';
 import store from '@/store';
 import messages, { MSG_TYPE, MSG_TITLE } from './messages';
+import helpers from './helpers';
 
 const baseUrl =
     // eslint-disable-next-line no-undef
@@ -45,12 +46,13 @@ repository.interceptors.response.use(
             store.commit('app/showModalMessage', {
                 type: MSG_TYPE.ERROR,
                 title: MSG_TITLE.E999,
-                content:
-                    data.Code === 401
-                        ? messages.E401
-                        : data.Code === 403
-                          ? messages.E403
-                          : messages.E999,
+                content: !helpers.isNullOrEmpty(data.Message)
+                    ? data.Message
+                    : data.Code === 401
+                      ? messages.E401
+                      : data.Code === 403
+                        ? messages.E403
+                        : messages.E999,
                 callback: () => {
                     if (data.Code === 401) {
                         sessionStorage.setItem(

@@ -158,18 +158,17 @@ export default {
     S009: 'Grant history deletion completed',
     S010: 'Completed changing annual leave entitlement history',
     // api error
-    E400: 'An error has occurred. Say that again, please. ',
-    E401: 'Your login session has expired. Please log in again. ',
-    E403: 'You do not have permission to access this feature. ',
-    E404: 'An error has occurred. Say that again, please. ',
-    E422: 'An error has occurred. Say that again, please. ',
-    E423: 'An error has occurred. Say that again, please. ',
-    E500: 'An error has occurred. Say that again, please. ',
-    E999: 'An error has occurred. Say that again, please. '
+    E400: 'Yêu cầu không hợp lệ. Vui lòng kiểm tra và thử lại.',
+    E401: 'Bạn chưa được cấp quyền truy cập. Vui lòng đăng nhập và thử lại.',
+    E403: 'Bạn không có quyền truy cập vào tài nguyên này. Vui lòng liên hệ với quản trị viên nếu cần thiết.',
+    E404: 'Không tìm thấy tài nguyên yêu cầu. Vui lòng kiểm tra đường dẫn và thử lại.',
+    E422: 'Dữ liệu gửi lên không thể xử lý được. Vui lòng kiểm tra và thử lại.',
+    E423: 'Tài nguyên bạn yêu cầu hiện đang bị khóa. Vui lòng thử lại sau.',
+    E500: 'Có lỗi xảy ra trên máy chủ. Vui lòng thử lại sau hoặc liên hệ với bộ phận hỗ trợ.',
+    E999: 'Có lỗi không xác định xảy ra. Vui lòng thử lại sau hoặc liên hệ với bộ phận hỗ trợ.'
 };
 export const MSG_TITLE = {
-    E999: '',
-    C001: ''
+    E999: 'RVN Thông báo'
 };
 
 export const MSG_TYPE = {
