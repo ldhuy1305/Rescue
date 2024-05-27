@@ -5,6 +5,11 @@ const helpers = {
     insertComma: (val) => {
         return (val + '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     },
+    isVietnamese: (val) => {
+        return val.match(
+            /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$/gm
+        );
+    },
     isPassword: (val) => {
         return val.match('^(?=.*[A-Za-z])(?=.*d).{8,}$');
     },
@@ -24,7 +29,9 @@ const helpers = {
         }
         return String(str)
             .toLowerCase()
-            .match(/^\d{1,5}-\d{1,5}-\d{1,5}$/);
+            .match(
+                /^(0|84)(2(0[3-9]|1[0-6|8|9]|2[0-2|5-9]|3[2-9]|4[0-9]|5[1|2|4-9]|6[0-3|9]|7[0-7]|8[0-9]|9[0-4|6|7|9])|3[2-9]|5[5|6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])([0-9]{7})$/
+            );
     },
     isValidData: (data, rules) => {
         try {
@@ -70,7 +77,15 @@ const helpers = {
                         if (checks[0] == 'phone') {
                             if (!helpers.isPhone(data[key])) {
                                 // eslint-disable-next-line no-undef
-                                $(`#${key}`).last().ItemError(messages.E012);
+                                $(`#${key}`).last().ItemError(messages.E005);
+                                isValid = false;
+                            }
+                        }
+                        if (checks[0] == 'name') {
+                            if (!helpers.isVietnamese(data[key])) {
+                                // eslint-disable-next-line no-undef
+                                $(`#${key}`).last().ItemError(messages.E004);
+                                console.log(key, data[key]);
                                 isValid = false;
                             }
                         }
@@ -282,6 +297,6 @@ const helpers = {
             values[0] = 0;
         }
         return (value = negative + values[0] + dot + afterDot);
-    },
+    }
 };
 export default helpers;

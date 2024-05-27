@@ -7,7 +7,11 @@
                 <div class="row">
                     <div class="col-3">
                         <div class="user-avatar-image">
-                            <img :src="user.avatar" alt="" id="avatar_user" />
+                            <img
+                                :src="userData.avatar"
+                                alt=""
+                                id="avatar_user"
+                            />
                         </div>
                     </div>
                     <div class="col-9">
@@ -20,6 +24,7 @@
                                     class="input-custom"
                                     accept="image/*"
                                     style="display: none"
+                                    @change="onFileChange"
                                 />
                                 <label
                                     class="label-custom"
@@ -52,10 +57,11 @@
                         <div class="input-group">
                             <input
                                 name="firstName"
+                                id="firstName"
                                 type="text"
                                 class="form-control"
                                 required=""
-                                v-model="user.first_name"
+                                v-model="userData.first_name"
                             />
                         </div>
                     </div>
@@ -68,10 +74,11 @@
                         <div class="input-group">
                             <input
                                 name="lastName"
+                                id="lastName"
                                 type="text"
                                 class="form-control"
                                 required=""
-                                v-model="user.last_name"
+                                v-model="userData.last_name"
                             />
                         </div>
                     </div>
@@ -84,6 +91,7 @@
                         <div class="input-group">
                             <textarea
                                 name="address"
+                                id="address"
                                 type="text"
                                 class="form-control"
                                 required=""
@@ -91,7 +99,8 @@
                                     overflow-wrap: break-word;
                                     resize: vertical;
                                 "
-                            >{{user.address}}</textarea
+                            >
+{{userData.address}}</textarea
                             >
                         </div>
                     </div>
@@ -108,9 +117,10 @@
                                 name="phoneNumber"
                                 type="text"
                                 class="form-control"
+                                id="phoneNumber"
                                 maxlength="10"
                                 required=""
-                                v-model="user.tel"
+                                v-model="userData.tel"
                             />
                         </div>
                     </div>
@@ -139,6 +149,7 @@
                             <div class="input-group validate-pass">
                                 <input
                                     name="oldPass"
+                                    id="oldPass"
                                     placeholder="Mật khẩu cũ"
                                     type="password"
                                     class="form-control"
@@ -158,6 +169,7 @@
                             <div class="input-group validate-pass">
                                 <input
                                     name="newPass"
+                                    id="newPass"
                                     placeholder="Mật khẩu mới"
                                     type="password"
                                     class="form-control"
@@ -178,6 +190,7 @@
                             <div class="input-group validate-pass">
                                 <input
                                     name="confirmedPass"
+                                    id="confirmedPass"
                                     placeholder="Xác nhận mật khẩu"
                                     type="password"
                                     class="form-control"

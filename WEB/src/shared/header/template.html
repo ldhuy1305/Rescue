@@ -23,8 +23,8 @@
         <div class="header-item">
             <template v-if="isUser">
                 <div class="account-menu" @click="toggleDropdown">
-                    <!-- <img class="avatar" :src="user.avatar" alt="Avatar" />
-                    <span>{{user.last_name}} {{user.first_name}}</span> -->
+                    <img class="avatar" :src="user.avatar" alt="Avatar" />
+                    <span>{{user.last_name}} {{user.first_name}}</span>
                     <div v-if="dropdownVisible" class="dropdown">
                         <button style="width: 100%">
                             <div class="dropdown-item" @click="goToProfile">

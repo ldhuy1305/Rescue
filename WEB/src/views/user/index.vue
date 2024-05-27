@@ -1,11 +1,12 @@
 <script>
 import { mapActions, mapMutations, mapState } from 'vuex';
-
+import messages, { MSG_TITLE, MSG_TYPE } from '@/utils/messages';
 import template from './template.html';
 import './style.scss';
 
 import store from '@/store';
 import userStore from '@/views/user/store';
+import helpers from '@/utils/helpers';
 
 const User = {
     name: 'User',
@@ -15,37 +16,93 @@ const User = {
             store.registerModule('user', userStore);
         }
     },
-    created() {},
+    created() {
+        // this.initializeUserData();
+    },
     beforeMount() {},
     mounted() {},
     beforeUpdate() {},
     updated() {},
     beforeUnmount() {},
     unmounted() {},
-    data() {},
+    data() {
+        return {
+            userData: {},
+            avatar: null
+        };
+    },
     computed: {
         ...mapState('app', ['user']),
-        ...mapState('user', ['pass'])
+        ...mapState('user', ['pass', 'validRules1', 'validRules2'])
     },
     methods: {
-        ...mapMutations('app', []),
+        ...mapMutations('app', ['showModalMessage']),
         ...mapActions('app', []),
-        ...mapActions('user', ['save', 'updateAvatar', 'changePassword']),
-        // changePassword() {}
+        ...mapActions('user', ['save', 'updateAvatar', 'changePass']),
+        changePassword() {
+            if (!helpers.isValidData(this.pass, this.validRules2)) {
+                return;
+            }
+            if (this.pass.newPass != this.pass.confirmedPass) {
+                console.log(1);
+                helpers.setItemError('confirmedPass', messages.E007);
+                return;
+            }
+            this.changePass();
+        },
         saveAvatar() {
-            this.updateAvatar();
+            if (this.avatar) {
+                const formData = new FormData();
+                formData.append('avatar', this.avatar);
+                this.updateAvatar(formData);
+            }
         },
         saveData() {
             const payload = {
-                firstName: this.user.first_name,
-                lastName: this.user.last_name,
-                tel: this.user.tel,
-                address: this.user.address
+                firstName: this.userData.first_name,
+                lastName: this.userData.last_name,
+                phoneNumber: this.userData.tel,
+                address: this.userData.address
             };
-            this.save(payload);
+            if (!helpers.isValidData(payload, this.validRules1)) {
+                return;
+            }
+            this.showModalMessage({
+                type: MSG_TYPE.CONFIRM,
+                title: MSG_TITLE.C999,
+                content: messages.C002,
+                callback: (ok) => {
+                    if (ok) {
+                        this.save(payload);
+                    }
+                }
+            });
+        },
+        createUserCopy() {
+            return { ...this.user };
+        },
+        onFileChange(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    this.userData.avatar = e.target.result;
+                };
+                reader.readAsDataURL(file);
+                this.avatar = file;
+            }
         }
     },
-    watch: {}
+    watch: {
+        user: {
+            handler(newVal) {
+                if (newVal && Object.keys(newVal).length) {
+                    this.userData = this.createUserCopy();
+                }
+            },
+            immediate: true
+        }
+    }
 };
 export default User;
 </script>

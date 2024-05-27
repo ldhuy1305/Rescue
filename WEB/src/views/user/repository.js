@@ -6,7 +6,7 @@ export default {
         return repository.put(`${resource}/me`, payload);
     },
     updateAvatar: (avatar) => {
-        return repository.patch(`${resource}/me`, avatar, {
+        return repository.patch(`${resource}/me/photo`, avatar, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

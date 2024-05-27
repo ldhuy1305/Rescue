@@ -43,29 +43,41 @@ repository.interceptors.response.use(
         store.commit('app/decreaseCountLoading');
         const { data } = response;
         if (data.Code !== 200) {
-            store.commit('app/showModalMessage', {
-                type: MSG_TYPE.ERROR,
-                title: MSG_TITLE.E999,
-                content: !helpers.isNullOrEmpty(data.Message)
-                    ? data.Message
-                    : data.Code === 401
-                      ? messages.E401
-                      : data.Code === 403
-                        ? messages.E403
-                        : messages.E999,
-                callback: () => {
-                    if (data.Code === 401) {
-                        sessionStorage.setItem(
-                            'beforeUrl',
-                            window.location.pathname
-                        );
-                        sessionStorage.removeItem('token');
-                        sessionStorage.removeItem('tokenTimeout');
+            if (data.Code == 500)
+                store.commit('app/showModalMessage', {
+                    type: MSG_TYPE.ERROR,
+                    title: MSG_TITLE.E999,
+                    content: messages.E500
+                });
+            else
+                store.commit('app/showModalMessage', {
+                    type: MSG_TYPE.ERROR,
+                    title: MSG_TITLE.E999,
+                    content: !helpers.isNullOrEmpty(data.Message)
+                        ? data.Message
+                        : data.Code === 401
+                          ? messages.E401
+                          : data.Code === 403
+                            ? messages.E403
+                            : messages.E999,
+                    callback: () => {
+                        if (data.Code === 401) {
+                            sessionStorage.setItem(
+                                'beforeUrl',
+                                window.location.pathname
+                            );
+                            sessionStorage.removeItem('token');
+                            sessionStorage.removeItem('tokenTimeout');
+                        }
                     }
-                }
-            });
+                });
             store.commit('app/hideForceLoading');
-        }
+        } else if (!helpers.isNullOrEmpty(data.Message))
+            store.commit('app/showModalMessage', {
+                type: MSG_TYPE.SUCCESS,
+                title: MSG_TITLE.C999,
+                content: data.Message
+            });
         return response;
     },
     function (error) {

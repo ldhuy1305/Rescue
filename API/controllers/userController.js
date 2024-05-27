@@ -40,7 +40,10 @@ class userController {
             const rs = await userModel.updateUser(body);
             res.status(200).json({
                 Code: 200,
-                Data: rs[0][0],
+                Data: {
+                    user: rs[0][0],
+                },
+                Message:"Cập nhật thành công thông tin cá nhân"
             });
         } else {
             return next(new appError("Không tìm thấy người dùng!", 404));
@@ -66,7 +69,9 @@ class userController {
                 cloudinary.uploader.destroy(id);
                 res.status(200).json({
                     Code: 200,
-                    Data: rs[0][0],
+                    Data: {
+                        user: rs[0][0],
+                    },
                 });
             } catch (err) {
                 if (req.file) {

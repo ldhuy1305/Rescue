@@ -9,10 +9,22 @@ const initData = {
 export default {
     namespaced: true,
     state: {
+        userData: {},
         pass: {
             oldPass: '',
             newPass: '',
             confirmedPass: ''
+        },
+        validRules1: {
+            lastName: 'required|name',
+            firstName: 'required|name',
+            phoneNumber: 'required|phone',
+            address: 'required'
+        },
+        validRules2: {
+            oldPass: 'required',
+            newPass: 'required',
+            confirmedPass: 'required'
         }
     },
     mutations: {
@@ -45,7 +57,7 @@ export default {
                 console.log('Action update avatar: ' + e.message);
             }
         },
-        changePassword(context) {
+        changePass(context) {
             try {
                 repository.changePass(context.state.pass).then((res) => {
                     const { data } = res;
