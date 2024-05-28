@@ -1,8 +1,31 @@
-<div v-if="alert" class="container">
-    <div class="m-3">
-        <div class="alert alert-dismissable" :class="alert.type">
-            <button @click="alertStore.clear()" class="btn btn-link close">&times;</button>
-            {{alert.message}}
+<div v-if="showModal" class="custom-modal modal-five modal-message">
+    <div class="content">
+        <h5 class="m-t-20 text-center message-title" v-if="showTitle">
+            <span v-html="modalMessage.title"></span>
+        </h5>
+        <br v-if="showTitle" />
+        <p
+            class="mb-0 text-center message-content fs-18"
+            v-html="modalMessage.content"
+        ></p>
+        <br v-if="showTitle" />
+        <div class="modal-footer flex-nowrap justify-content-center p-20">
+            <button
+                type="button"
+                class="text-center app-btn"
+                :class="showCancel ? 'm-r-40' : ''"
+                @click="onClickOk"
+            >
+                Đồng ý
+            </button>
+            <button
+                type="button"
+                class="text-center cncl-btn"
+                @click="onClickCancel"
+                v-if="showCancel"
+            >
+                Hủy bỏ
+            </button>
         </div>
     </div>
 </div>

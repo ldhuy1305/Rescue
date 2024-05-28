@@ -1,19 +1,26 @@
-
-    <h1>123123</h1>
-    <h1>123123</h1>
-    <h1>123123</h1>
-    <h1>123123</h1>
-    <h1>123123</h1>
-    <h1>123123</h1>
-    <h1>123123</h1>
-    <div>
-      <!-- <input
-        type="file"
-        @change="onFileChanged($event)"
-        accept="image/*"
-        capture
-      /> -->
-      <input accept="image/*" type="file" @change="previewFiles($event)" />
-      <img alt="" :src="newImage || emptyImage" />
-      <button @click="onSave">click</button>
-    </div>
+<div id="form">
+  <div class="main">
+      <div class="address">
+        <Select id="city" :options=this.location.cities :onChangeEvent="setDistricts" v-model="this.detail.city"></Select>
+        <Select id="district" :options=this.location.districts :onChangeEvent="setWards" v-model="this.detail.district"></Select>
+        <Select id="ward" :options=this.location.wards v-model="this.detail.ward"> </Select>
+      </div>
+      <Input id ='address' placeholder="Địa chỉ cụ thể" v-model ='detail.address'></Input>
+      <hr>
+      <div class="post">
+        <Input id ='title' placeholder="Tiêu đề" v-model ='detail.title'></Input>
+        <div v-for="(content, index) in contents" :key="index" :id="'content-' + index" class="content">
+          <button @click="removeContent(index)">X</button>
+          <fileUpload :maxSize="5" accept="jpg" @file-uploaded="getUploadedData" v-model ='contents[index].file'></fileUpload>
+          <Input type="textarea" :rows = '5' :id="'description-' + index" placeholder="Nội dung" v-model ='contents[index].description'></Input>
+        </div>
+      </div>
+      
+      <div class ='add-content'>
+        <button class="btn" @click="addContent"> Thêm nội dung</button>
+      </div>
+      <div class ='save'>
+        <button class="btn" @click="saveData"> Gửi đăng kí</button>
+      </div>
+  </div>
+</div>

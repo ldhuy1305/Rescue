@@ -1,0 +1,15 @@
+<div class="ans-paging">
+    <div class="d-flex">	
+        <div class="nomal-font">{{paging.record}}</div>
+        <div class="div-left-arrow">
+            <button type="button" class="listtop" :disabled="isDisabled || !canPrev" @click="updateInput(-1)">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="div-right-arrow">
+            <button type="button" class="listtop" :disabled="isDisabled || !canNext" @click="updateInput(1)">
+                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</div>

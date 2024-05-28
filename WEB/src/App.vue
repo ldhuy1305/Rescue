@@ -1,15 +1,15 @@
 <template>
     <component :is="layout" />
-    <!-- <router-view /> -->
 </template>
 
 <script>
 import MainLayout from '@/shared/main-layout';
+import EmptyLayout from '@/shared/empty-layout';
 // import { mapActions, mapMutations, mapState } from 'vuex';
 
 export default {
     name: 'App',
-    components: { MainLayout },
+    components: { MainLayout, EmptyLayout },
     data() {
         return {
             layout: null

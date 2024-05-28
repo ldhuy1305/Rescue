@@ -1,23 +1,47 @@
-<div id ="header">
-  <div class = "header-container">
-    <img class="logo"  src="https://danang.gov.vn/o/danang-portlet/images/footer/logo-footer.png" alt="IMG">
-    <div class="header-item">
-        <!-- <router-link to ="home" class="item ">Home</router-link> 
-        <router-link to ="course" class="item ">Courses</router-link>  
-        <router-link to ="contact" class="item ">Contact</router-link>  
-        <router-link to ="about-us" class="item ">About us</router-link>  -->
-        <!-- <router-link to ="home" class="item ">Home</router-link> 
-        <router-link to ="course" class="item ">Courses</router-link>  
-        <router-link to ="contact" class="item ">Contact</router-link>  
-        <router-link to ="about-us" class="item ">About us</router-link>  -->
-        <a href="/home" class = "item">Home</a>
-        <a href="#news" class = "item">News</a>  
-        <a href="#honor" class = "item">Honor</a>  
-        <a href="#share" class = "item">Share</a>
+<div id="header">
+    <div class="header-container">
+        <img
+            class="logo"
+            src="https://danang.gov.vn/o/danang-portlet/images/footer/logo-footer.png"
+            alt="IMG"
+        />
+        <div class="header-item">
+            <a href="/home" class="item">Trang chủ</a>
+            <a href="#news" class="item">Tin tức</a>
+            <a href="/post" class="item">Bài viết</a>
+            <a href="#honor" class="item">Vinh danh</a>
+            <a href="#share" class="item">Tâm sự</a>
+        </div>
+        <div class="header-item">
+            <template v-if="isUser">
+                <div class="account-menu" @click="toggleDropdown">
+                    <img class="avatar" :src="user.avatar" alt="Avatar" />
+                    <span>{{user.last_name}} {{user.first_name}}</span>
+                    <div v-if="dropdownVisible" class="dropdown">
+                        <button style="width: 100%">
+                            <div class="dropdown-item" @click="goToProfile">
+                                <i class="fa-solid fa-user"></i>
+                                <label class="text">Thông tin cá nhân </label>
+                            </div>
+                        </button>
+
+                        <button style="width: 100%" @click="logout">
+                            <div class="dropdown-item">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <label class="text">Đăng xuất </label>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </template>
+            <template v-else>
+                <router-link to="login">
+                    <button class="button login">Login</button>
+                </router-link>
+                <router-link to="signup">
+                    <button class="button signup">Sign up</button>
+                </router-link>
+            </template>
+        </div>
     </div>
-    <div class ="header-item">
-      <router-link to ="login">  <button class = "button login"> Login</button></router-link>
-      <router-link to ="sign-up">  <button class = "button signup"> Sign up</button></router-link>
-    </div>
-  </div>
 </div>

@@ -1,73 +1,48 @@
 <div
-    class="row ans-item-group"
+    class="row"
     :class="itemClass"
 >
     <label
-        class="col-4 ans-item-label"
+        class="item-label"
         :class="labelClass"
         v-if="label && label != ''"
         >{{label}}</label
     >
-    <div class="col-8 ans-item-input" :class="{'full-width': !label}">
-        <div
-            :class="((labelBefore  && labelBefore != '') || (labelAfter && labelAfter) ? 'group-label' : '')"
-        >
-            <span class="labelBefore" v-if="labelBefore  && labelBefore != ''"
-                >{{ labelBefore }}</span
-            >
-            <div class="input-group-sm" :class="{'input-group': isInputGroup}">
-                <input
-                    v-if="type != 'textarea'"
-                    :id="newId"
-                    :type="type == 'number' || type == 'money' ? 'tel' : (type && type != 'katakana') ? type : 'text'"
-                    class="form-control ans-custom-input"
-                    :class="(inputClass ? inputClass : '') + (isRequired ? ' required' : '') + ' ' + (type == 'number' || type == 'money' ? type : '') + (type == 'postcode' ? 'number' : '') + ' ' + (isMobile && vewValue ? 'removebg' : '')"
-                    :placeholder="placeholder"
-                    :value="vewValue"
-                    :required="isRequired"
-                    :disabled="isDisabled"
-                    :readonly="isReadonly"
-                    :maxlength="realMaxLength"
-                    :style="style"
-                    ref="input"
-                    @focus="focusInput"
-                    @blur="blurInput"
-                    @change="updateInput"
-                    @keydown="inputKeydown"
-                    @keyup="inputKeyup"
-                />
-                <button
-                    type="button"
-                    class="btn"
-                    :class="(buttonClass ? buttonClass : 'btn-primary')"
-                    :disabled="isDisabledIcon"
-                    @click="onClick"
-                    v-if="isInputGroup"
-                >
-                    <span :class="icon"></span>
-                </button>
-                <textarea
-                    v-if="type == 'textarea'"
-                    v-model="vewValue"
-                    :id="newId"
-                    class="form-control custom-textarea"
-                    :class="(inputClass ? inputClass : '') + (isRequired ? ' required' : '') + ' ' + (type == 'number' || type == 'money' ? type : '')"
-                    :placeholder="placeholder"
-                    :required="isRequired"
-                    :disabled="isDisabled"
-                    :readonly="isReadonly"
-                    :maxlength="realMaxLength"
-                    :cols="cols"
-                    :rows="rows"
-                    ref="input"
-                    @focus="focusInput"
-                    @blur="blurInput"
-                    @change="updateInput"
-                ></textarea>
-            </div>
-            <span v-if="labelAfter && labelAfter != ''"
-                >&nbsp;{{ labelAfter }}</span
-            >
-        </div>
+    <span v-if="isRequired" style="color: red;">*</span>
+    <div class="input-group-sm" :class="{'input-group': isInputGroup}">
+        <input
+            v-if="type != 'textarea'"
+            :id="id"
+            class="form-control ans-custom-input"
+            :class="(inputClass ? inputClass : '')"
+            :placeholder="placeholder"
+            :value="vewValue"
+            :required="isRequired"
+            :disabled="isDisabled"
+            :readonly="isReadonly"
+            :maxlength="realMaxLength"
+            :style="style"
+            ref="input"
+            @focus="focusInput"
+            @blur="blurInput"
+            @change="updateInput"
+        />
+        <textarea
+            v-if="type == 'textarea'"
+            v-model="vewValue"
+            :id="newId"
+            class="form-control custom-textarea"
+            :placeholder="placeholder"
+            :required="isRequired"
+            :disabled="isDisabled"
+            :readonly="isReadonly"
+            :maxlength="realMaxLength"
+            :cols="cols"
+            :rows="rows"
+            ref="input"
+            @focus="focusInput"
+            @blur="blurInput"
+            @change="updateInput"
+        ></textarea>
     </div>
 </div>

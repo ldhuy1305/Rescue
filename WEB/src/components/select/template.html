@@ -1,0 +1,23 @@
+<div :class="itemClass" class="row">
+	<!-- <label :class="labelClass" class="col-4 label">{{label}}</label> -->
+	<label :class="labelClass">{{label}}</label>
+	<!-- <div class="col-8 input" :class="{'full-width': !label}"> -->
+		<div :class="{'full-width': !label}">
+		<select 
+			:id="id"
+			class="form-select"
+			:class=selectedClass
+			:required="isRequired"
+			:disabled="isDisabled"
+			:readonly="isReadonly"
+			ref="select"
+			@focus="focusInput"
+			@blur="blurInput"
+			@change="updateInput"
+		>
+			<option v-for="(option, i) in options" :key="i" :value="option.code" :selected="option.code == vewValue">
+				{{option.name}}
+			</option>
+		  </select>
+	</div>
+</div>

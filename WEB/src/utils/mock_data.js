@@ -1,4 +1,9 @@
 export default {
+    backgrounds: [
+        'https://static.kinhtedothi.vn/w960/images/upload/2022/10/14/da-nang-ngap-pho.jpg',
+        'https://cafefcdn.com/203337114487263232/2022/9/28/photo-19-1664339694792393111300.jpg',
+        'https://media.vneconomy.vn/images/upload/2022/09/28/z3756378687393-c0093fdb5b2b124d7e2af9c1234ee81a.jpg'
+    ],
     share: [
         {
             ava: 'https://www.verywellfamily.com/thmb/lmejCapkkBYa0LQoezl2RxBi1Z0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-911983386-d50a1de241d44f829b17053ace814f4e.jpg',

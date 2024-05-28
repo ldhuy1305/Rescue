@@ -1,0 +1,135 @@
+<div id="news">
+    <div class="container">
+        <div class="main-col">
+            <div id="list-news">
+                <article>
+                    <h1>News Item 1</h1>
+                    <i>Posted 2 days ago by FanClubAdmin</i>
+                    <div class="photo">
+                        <img src="http://placehold.it/800x400&text=Image" />
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nullam laoreet commodo magna, id dictum dolor lacinia
+                        sed. Cras in dolor ultricies, tempus elit eget,
+                        tincidunt nibh. Nunc lobortis commodo nisl et tristique.
+                        Mauris lacinia elit vitae mauris volutpat molestie.
+                    </p>
+                    <div class="readmore">
+                        <a href="#">Read More→</a>
+                    </div>
+                </article>
+
+                <article>
+                    <h1>News Item 2</h1>
+                    <i>Posted 2 days ago by FanClubAdmin</i>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nullam laoreet commodo magna, id dictum dolor lacinia
+                        sed. Cras in dolor ultricies, tempus elit eget,
+                        tincidunt nibh. Nunc lobortis commodo nisl et tristique.
+                        Mauris lacinia elit vitae mauris volutpat molestie.
+                    </p>
+                    <div class="readmore">
+                        <a href="#">Read More→</a>
+                    </div>
+                </article>
+
+                <article>
+                    <h1>News Item 3</h1>
+                    <i>Posted 2 days ago by FanClubAdmin</i>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nullam laoreet commodo magna, id dictum dolor lacinia
+                        sed. Cras in dolor ultricies, tempus elit eget,
+                        tincidunt nibh. Nunc lobortis commodo nisl et tristique.
+                        Mauris lacinia elit vitae mauris volutpat molestie.
+                    </p>
+                    <div class="readmore">
+                        <a href="#">Read More→</a>
+                    </div>
+                </article>
+                <article>
+                    <h1>
+                        News Item with a longer title that could span two lines
+                    </h1>
+                    <i>Posted 2 days ago by FanClubAdmin</i>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nullam laoreet commodo magna, id dictum dolor lacinia
+                        sed. Cras in dolor ultricies, tempus elit eget,
+                        tincidunt nibh. Nunc lobortis commodo nisl et tristique.
+                        Mauris lacinia elit vitae mauris volutpat molestie.
+                    </p>
+                    <div class="readmore">
+                        <a href="#">Read More→</a>
+                    </div>
+                </article>
+                <article>
+                    <h1>News Item 3</h1>
+                    <i>Posted 2 days ago by FanClubAdmin</i>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nullam laoreet commodo magna, id dictum dolor lacinia
+                        sed. Cras in dolor ultricies, tempus elit eget,
+                        tincidunt nibh. Nunc lobortis commodo nisl et tristique.
+                        Mauris lacinia elit vitae mauris volutpat molestie.
+                    </p>
+                    <div class="readmore">
+                        <a href="#">Read More→</a>
+                    </div>
+                </article>
+            </div>
+            <div class="pagination">
+                <td class="td-paging">
+                    <paging
+                        v-if="listData.list.length > 0"
+                        v-model="listData.page"
+                        :onChange="() => getData(listData.page.page, this.conditions.検索条件)"
+                    />
+                </td>
+            </div>
+        </div>
+        <div class="sub-col">
+            <div id="side-tour" class="bit-wrapper">
+                <h1>Tour</h1>
+                <div class="bit-constrictor480">
+                    <div class="narrow">
+                        <a
+                            href="http://www.bandsintown.com/Trivium"
+                            class="bit-widget-initializer narrow"
+                            data-artist="Trivium"
+                            data-notify-me="false"
+                            data-share-links="false"
+                            data-facebook-comments="false"
+                            data-display-limit="5"
+                            data-bandsintown-footer-link="false"
+                            data-force-narrow-layout="true"
+                            >Bandsintown</a
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div id="photos" class="block">
+                <h1>Recent Photo</h1>
+                <img src="http://placehold.it/800x800&text=Image" />
+            </div>
+
+            <div id="videos" class="block">
+                <h1>Recent Video</h1>
+                <img src="https://s.cdpn.io/17920/youtube-placeholder.jpg" />
+            </div>
+
+            <div id="music" class="block">
+                <h1>Recent Album</h1>
+                <div class="album">
+                    <img
+                        src="http://placehold.it/800x800&text=Image"
+                    /><br />Album Title goes here
+                </div>
+            </div>
+            <!-- End Sidebar -->
+        </div>
+    </div>
+</div>

@@ -1,41 +1,20 @@
 <div id="signup">
-    <div class="wrap-content">
-      <div class="pic js-tilt" data-tilt>
-        <img src="https://media.istockphoto.com/id/607929972/vi/vec-to/logo-e-learning-vector.jpg?s=612x612&w=0&k=20&c=8IDWTGo2MIYYTyoUAXE6BugCPLhUamMlQT64R-39bEw=" alt="IMG">
-      </div>
-      <form class="form">
-			<span class="form-title">Đăng nhập </span>
-			<div class="wrap-input">
-				<input class="input" type="text" name="email" placeholder="Email" v-model="email">
-					<i class="fa fa-envelope first-icon" aria-hidden="true"></i>
-			</div>
-			<div class="wrap-input validate-input" data-validate = "Password is required">
-				<i class="fa fa-lock first-icon" aria-hidden="true"></i>
-				<input class="input" :type="this.type" name="pass" placeholder="Password" v-model="password">
-				<i v-if ="isHidePassword" class="fa fa-eye-slash hide-icon" aria-hidden="true" @click=unHidePassword ></i>
-				<i v-else class="fa fa-eye hide-icon " aria-hidden="true" @click=hidePassword ></i>
-			</div>
-          	<div class="container-btn">
-						<button class="btn">
-							Login
-						</button>
-					</div>
-
-					<div class="text-center pt-5">
-						<span class="txt1">
-							Forgot
-						</span>
-						<a class="txt2" href="#">
-							Username / Password?
-						</a>
-					</div>
-
-					<div class="text-center">
-						<a class="txt2 spacing" href="#">
-							Create your Account
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-						</a>
-					</div>
-      </form>
+    <div class ="container">
+        <h3 class = "text-center"> ĐĂNG KÍ</h3>
+        <Input id="email" placeholder="Email" :maxLength="30" v-model="detail.email"/>
+        <Input id="password"  placeholder="Mật khẩu" :maxLength="30" v-model="detail.password"/>
+        <Input id="confirmPassword" placeholder="Xác nhận mật khẩu" :maxLength="30" v-model="detail.confirmPassword"/>
+        <div class = 'group'>
+            <Input class="col-sm-6" id="lastName" placeholder="Họ" :maxLength="30" v-model="detail.lastName"/>
+            <Input class="col-sm-6" id="firstName" placeholder="Tên" :maxLength="30" v-model="detail.firstName"/>
+        </div>
+        <Input id="phoneNumber" placeholder="Số điện thoại" :maxLength="30" v-model="detail.phoneNumber"/>
+        <div class = 'group'>
+            <Select class="col-sm-4" id="city" :options=this.location.cities :onChangeEvent="setDistricts" v-model="detail.city"></Select>
+            <Select class="col-sm-4" id="district" :options=this.location.districts :onChangeEvent="setWards" v-model="detail.district"></Select>
+            <Select class="col-sm-4" id="ward" :options=this.location.wards v-model="detail.ward"> </Select>
+        </div>
+        <Input id="address" placeholder="Địa chỉ cụ thể" :maxLength="30" v-model="detail.address"/>
+        <button @click="signUpUser">Đăng ký</button>
     </div>
 </div>

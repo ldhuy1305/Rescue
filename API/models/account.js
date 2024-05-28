@@ -1,31 +1,41 @@
-const sql = require("./db.js");
-var bcrypt = require("bcryptjs");
+const sql = require("../utils/db");
+const { objectToArray } = require("../utils/helpers");
 
 class Account {
-    constructor(email, password) {
-      this.email = email;
-      this.password = password;
+    async createAccount(params) {
+        try {
+            params = objectToArray(params);
+            params.push(2);
+            const rs = await sql.executeSPC("create_account", params);
+            return rs;
+        } catch (err) {}
     }
-  
-    async createUser() {
-      try {
-        const saltRounds = 10;
-        const salt = await bcrypt.genSalt(saltRounds);
-        const hashedPassword = await bcrypt.hash(this.password, salt);
-        console.log(1)
-        // Assuming you have a 'users' table in your database
-        // const sql = "INSERT INTO users (email, password) VALUES (?, ?)";
-        // const values = [this.email, hashedPassword];
-  
-        // con.query(sql, values, (err, result) => {
-        //   if (err) throw err;
-        //   console.log("User created successfully:", result);
-        // });
-        
-      } catch (error) {
-        console.error("Error creating user:", error);
-      }
+    async login(params) {
+        try {
+            const rs = await sql.executeSPC("login", params);
+            return rs;
+        } catch (err) {}
     }
-  }
-  
-  module.exports = new Account();
+    async checkMail(params) {
+        try {
+            params = objectToArray(params);
+            const rs = await sql.executeSPC("check_email", params);
+            return rs[0][0];
+        } catch (err) {}
+    }
+    async changePass(params) {
+        try {
+            params = objectToArray(params);
+            const rs = await sql.executeSPC("change_pass", params);
+            return rs[0][0];
+        } catch (err) {}
+    }
+    async getAccount(id) {
+        try {
+            const rs = await sql.executeSPC("get_account", [id]);
+            return rs[0][0];
+        } catch (err) {}
+    }
+}
+
+module.exports = new Account();

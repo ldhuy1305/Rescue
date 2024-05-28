@@ -10,6 +10,7 @@ const LandingPage = {
     created() {},
     beforeMount() {},
     mounted() {
+        this.startAutoChange();
         const honorItemWidth = $('.honor-item').first().width();
         $('.content').width(honorItemWidth - 240);
         $('.slide .avatar').each(function () {
@@ -22,6 +23,10 @@ const LandingPage = {
                 height: size + 'px'
             });
         });
+        $('.main-layout').css(
+            'background-image',
+            `url(${data.backgrounds[this.currentImage]})`
+        );
     },
 
     beforeUpdate() {},
@@ -32,12 +37,17 @@ const LandingPage = {
         return {
             data: data,
             share: data.share,
-            index: 8,
-            currentIndex: 0
+            currentIndex: 0,
+            currentImage: 0
         };
     },
     computed: {},
     methods: {
+        startAutoChange() {
+            this.autoChangeInterval = setInterval(() => {
+                this.changeImage();
+            }, 5000);
+        },
         viewMore() {
             this.index += 8;
         },
@@ -56,9 +66,19 @@ const LandingPage = {
             this.currentIndex =
                 (this.currentIndex + 1) % this.data.honor.length;
         },
-        setAva() {}
+        changeImage() {
+            this.currentImage =
+                (this.currentImage + 1) % this.data.backgrounds.length;
+            $('.main-layout').css(
+                'background-image',
+                `url(${data.backgrounds[this.currentImage]})`
+            );
+        }
     },
-    watch: {}
+    watch: {},
+    beforeDestroy() {
+        clearInterval(this.autoChangeInterval);
+    }
 };
 export default LandingPage;
 </script>
