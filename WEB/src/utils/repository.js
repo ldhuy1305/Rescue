@@ -18,7 +18,7 @@ var repository = axios.create({
 });
 repository.interceptors.request.use(
     function (config) {
-        const token = sessionStorage.getItem('token');
+        const token = localStorage.getItem('token');
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
@@ -62,12 +62,12 @@ repository.interceptors.response.use(
                             : messages.E999,
                     callback: () => {
                         if (data.Code === 401) {
-                            sessionStorage.setItem(
+                            localStorage.setItem(
                                 'beforeUrl',
                                 window.location.pathname
                             );
-                            sessionStorage.removeItem('token');
-                            sessionStorage.removeItem('tokenTimeout');
+                            localStorage.removeItem('token');
+                            localStorage.removeItem('tokenTimeout');
                         }
                     }
                 });

@@ -4,6 +4,7 @@ import { mapState, mapMutations, mapActions } from 'vuex';
 import template from './template.html';
 import Input from '@/components/input/index.vue';
 import Select from '@/components/select/index.vue';
+import messages from '@/utils/messages';
 import './style.scss';
 
 import store from '@/store';
@@ -50,10 +51,40 @@ const signup = {
             this.getWards(this.detail.district);
         },
         signUpUser() {
-            if (helpers.isValidData(this.detail, this.validRules)) {
-                // this.sendEmail(this.detail);
+            if (this.detail.password != this.detail.confirmPassword) {
+                helpers.setItemError('confirmPassword', messages.E007);
+                return;
             }
-            this.sendEmail(this.detail);
+            if (!helpers.isValidData(this.detail, this.validRules)) {
+                return;
+            }
+
+            let wardName = helpers.findObjectInArrayByKey(
+                this.location.wards,
+                'code',
+                this.detail.ward
+            ).name;
+            let districtName = helpers.findObjectInArrayByKey(
+                this.location.districts,
+                'code',
+                this.detail.district
+            ).name;
+            let cityName = helpers.findObjectInArrayByKey(
+                this.location.cities,
+                'code',
+                this.detail.city
+            ).name;
+            const payload = {
+                email: this.detail.email,
+                password: this.detail.password,
+                firstName: encodeURI(this.detail.firstName),
+                lastName: encodeURI(this.detail.lastName),
+                phoneNumber: this.detail.phoneNumber,
+                address: encodeURI(
+                    `${this.detail.address}, ${wardName} , ${districtName}, ${cityName}`
+                )
+            };
+            this.sendEmail(payload);
         }
     },
     watch: {}

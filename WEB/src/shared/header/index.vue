@@ -8,7 +8,7 @@ const Header = {
     template: template,
     beforeCreate() {},
     created() {
-        if (sessionStorage.getItem('token')) {
+        if (localStorage.getItem('token')) {
             this.getUser();
             this.isUser = true;
         }
@@ -40,8 +40,8 @@ const Header = {
         },
         logout() {
             this.isUser = false;
-            sessionStorage.removeItem('token');
-            sessionStorage.removeItem('tokenTimeout');
+            localStorage.removeItem('token');
+            localStorage.removeItem('tokenTimeout');
             this.setUser({});
             this.$router.push('/home');
         },

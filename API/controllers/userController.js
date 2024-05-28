@@ -18,7 +18,7 @@ class userController {
             account_id: req.account.id,
         };
         const rs = await userModel.createUser(user);
-        jwtToken.generateAndSendJWTToken(rs[0][0], 200, res, req);
+        jwtToken.generateAndSendJWTToken(req.account, 200, res, req, true);
     });
     getUserByMe = catchAsync(async (req, res) => {
         if (req.user != undefined) {
@@ -27,7 +27,7 @@ class userController {
                 Data: req.user,
             });
         } else {
-            //
+            return next(new appError("Không tìm thấy người dùng!", 404));
         }
     });
     updateUser = catchAsync(async (req, res) => {
@@ -43,7 +43,7 @@ class userController {
                 Data: {
                     user: rs[0][0],
                 },
-                Message:"Cập nhật thành công thông tin cá nhân"
+                Message: "Cập nhật thành công thông tin cá nhân",
             });
         } else {
             return next(new appError("Không tìm thấy người dùng!", 404));

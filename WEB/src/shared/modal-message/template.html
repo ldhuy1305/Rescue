@@ -12,7 +12,8 @@
         <div class="modal-footer flex-nowrap justify-content-center p-20">
             <button
                 type="button"
-                class="text-center app-btn m-r-40"
+                class="text-center app-btn"
+                :class="showCancel ? 'm-r-40' : ''"
                 @click="onClickOk"
             >
                 Đồng ý

@@ -21,8 +21,8 @@ export default {
                     const { data } = res;
                     if (data.Code === 200 && data.Data.access_token) {
                         store.commit('app/setUser', data.Data.user);
-                        sessionStorage.setItem('token', data.Data.access_token);
-                        sessionStorage.setItem(
+                        localStorage.setItem('token', data.Data.access_token);
+                        localStorage.setItem(
                             'tokenTimeout',
                             new Date(
                                 new Date().getTime() + data.Data.timeout * 60000
@@ -34,7 +34,7 @@ export default {
                             });
                         else
                             Router.push({
-                                name: 'signup'
+                                name: 'home'
                             });
                         if (context.state.detail.saveAccount) {
                             localStorage.setItem(

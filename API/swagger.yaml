@@ -1,569 +1,721 @@
 openapi: 3.0.3
 info:
-  title: Swagger PBL7 - OpenAPI 3.0
-  description: ''
-  contact:
-    email: ldhuydn1305@gmail.com
-  license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 1.0.11
+    title: Swagger PBL7 - OpenAPI 3.0
+    description: ""
+    contact:
+        email: ldhuydn1305@gmail.com
+    license:
+        name: Apache 2.0
+        url: http://www.apache.org/licenses/LICENSE-2.0.html
+    version: 1.0.11
 externalDocs:
-  description: Find out more about Swagger
-  url: http://swagger.io
+    description: Find out more about Swagger
+    url: http://swagger.io
 servers:
-  - url: http://localhost:9090/api/v1
+    - url: http://localhost:9090/api/v1
 tags:
-  - name: account
-  - name: user
-  - name: role
-  - name: proof
-  - name: district
-  - name: ward
-  - name: transaction
-  - name: committee
-  - name: approval
+    - name: account
+    - name: user
+    - name: role
+    - name: proof
+    - name: district
+    - name: ward
+    - name: transaction
+    - name: committee
+    - name: approval
 paths:
-  /login:
-    post:
-      tags:
-        - account
-      summary: ''
-      description: ''
-      operationId: loginUser
-      requestBody:
-        description: ''
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/account'
-      responses:
-        '200':
-          description: Successful authentication
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Code:
-                    type: integer
-                    example: 200
-                  Data:
-                    type: object
-                  Message:
-                    type: string
-                  DataErrors :
-                    type: object
-              examples:
-                Success:
-                  summary: Successful
-                  value:
-                    Code: 200
-                    Data:
-                      access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ.DV7wFnZrk6qTYXLw4rAosU9CmwVlWzb17aL86R-RYhg
-                      refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ.DV7wFnZrk6qTYXLw4rAosU9CmwVlWzb17aL86R-RYhg
-                      timeout: 18000
-                      account: {
-                        id: 1,
-                        email: admin001@gmail.com,
-                        password: eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ,
-                        role_id: 1
-                      }
-                    Message: ""
-                    DataErrors: {}
-                Bad request:
-                  $ref: '#/components/examples/bad_request'
-                Not authentication:
-                  $ref: '#/components/examples/not_auth'
-                Not access:
-                  $ref: '#/components/examples/not_access'
-                Data invalid:
-                  $ref: '#/components/examples/data_invalid'
-                Exception:
-                  $ref: '#/components/examples/exception'
-  /forgot-password:
-    post:
-      tags:
-        - account
-      summary: ''
-      description: ''
-      requestBody:
-        description: ''
-        content:
-          application/json:
-            schema:
-              type: string
-              format: email
-              example: 'bongmaxuyentuong1@gmail.com'
-      responses:
-        '200':
-          description: Successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Code:
-                    type: integer
-                    example: 200
-                  Data:
-                    type: object
-                  Message:
-                    type: string
-                  DataErrors :
-                    type: object
-              examples:
-                Success:
-                  summary: Successful
-                  value:
-                    Code: 200
-                    Data:
-                      access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ.DV7wFnZrk6qTYXLw4rAosU9CmwVlWzb17aL86R-RYhg
-                      refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ.DV7wFnZrk6qTYXLw4rAosU9CmwVlWzb17aL86R-RYhg
-                      timeout: 18000
-                      account: {
-                        id: 1,
-                        email: admin001@gmail.com,
-                        password: eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ,
-                        role_id: 1
-                      }
-                    Message: ""
-                    DataErrors: {}
-                Bad request:
-                  $ref: '#/components/examples/bad_request'
-                Not authentication:
-                  $ref: '#/components/examples/not_auth'
-                Not access:
-                  $ref: '#/components/examples/not_access'
-                Data invalid:
-                  $ref: '#/components/examples/data_invalid'
-                Exception:
-                  $ref: '#/components/examples/exception'
-  /user/me/change-password:
-    post:
-      tags:
-        - user
-      summary: ''
-      description: ''
-      security: 
-        - bearerAuth: []
-      requestBody:
-        description: ''
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                oldPass:
-                  type: string
-                  example: 'user001'
-                newPass:
-                  type: string
-                  example: 'user0012'
-                confirmedPass:
-                  type: string
-                  example: 'user0012'
-      responses:
-        '200':
-          description: Successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Code:
-                    type: integer
-                    example: 200
-                  Data:
-                    type: object
-                  Message:
-                    type: string
-                  DataErrors :
-                    type: object
-              examples:
-                Success:
-                  summary: Successful
-                  value:
-                    Code: 200
-                    Data:
-                      account: {
-                        id: 1,
-                        email: admin001@gmail.com,
-                        password: eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ,
-                        role_id: 1
-                      }
-                    Message: ""
-                    DataErrors: {}
-                Bad request:
-                  $ref: '#/components/examples/bad_request'
-                Not authentication:
-                  $ref: '#/components/examples/not_auth'
-                Not access:
-                  $ref: '#/components/examples/not_access'
-                Data invalid:
-                  $ref: '#/components/examples/data_invalid'
-                Exception:
-                  $ref: '#/components/examples/exception'
-  /users:
-    get:
-      tags:
-        - user
-      summary: ''
-      description: ''
-      operationId: ''
-      security: 
-        - bearerAuth: []
-      responses:
-        '200':
-          description: Successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Code:
-                    type: integer
-                    example: 200
-                  Data:
-                    type: object
-                  Message:
-                    type: string
-                  DataErrors :
-                    type: object
-              examples:
-                Success:
-                  summary: Successful
-                  value:
-                    Code: 200
-                    Data: 
-                      users: [
-                        {
-                          
-                          id: 1,
-                          first_name: "Huy",
-                          last_name: "Lê Đức",
-                          avatar: "https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg",
-                          tel: "0948942954",
-                          address: "K1/17 Hà Thị Thân, Sơn Trà, Đà Nẵng",
-                          account_id: 1,
-                        },
-                        {
-                          id: 2,
-                          first_name: "Huy",
-                          last_name: "Lê Đức",
-                          avatar: "https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg",
-                          tel: "0948942954",
-                          address: "K1/15 Hà Thị Thân, Sơn Trà, Đà Nẵng",
-                          account_id: 2,
-                        },
-                      ]
-                    Message: ""
-                    DataErrors: {}
-                Bad request:
-                  $ref: '#/components/examples/bad_request'
-                Not authentication:
-                  $ref: '#/components/examples/not_auth'
-                Not access:
-                  $ref: '#/components/examples/not_access'
-                Data invalid:
-                  $ref: '#/components/examples/data_invalid'
-                Exception:
-                  $ref: '#/components/examples/exception'
-  /user/me:
-    get:
-      tags:
-        - user
-      summary: ''
-      description: ''
-      operationId: ''
-      security: 
-        - bearerAuth: []
-      responses:
-        '200':
-          description: Successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Code:
-                    type: integer
-                    example: 200
-                  Data:
-                    type: object
-                  Message:
-                    type: string
-                  DataErrors :
-                    type: object
-              examples:
-                Success:
-                  summary: Successful
-                  value:
-                    Code: 200
-                    Data: 
-                      user:
-                        {
-                          
-                          id: 1,
-                          first_name: "Huy",
-                          last_name: "Lê Đức",
-                          avatar: "https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg",
-                          tel: "0948942954",
-                          address: "K1/17 Hà Thị Thân, Sơn Trà, Đà Nẵng",
-                          account_id: 1,
-                        }
-                    Message: ""
-                    DataErrors: {}
-                Bad request:
-                  $ref: '#/components/examples/bad_request'
-                Not authentication:
-                  $ref: '#/components/examples/not_auth'
-                Not access:
-                  $ref: '#/components/examples/not_access'
-                Data invalid:
-                  $ref: '#/components/examples/data_invalid'
-                Exception:
-                  $ref: '#/components/examples/exception'
-    put:
-      tags:
-        - user
-      summary: ''
-      description: ''
-      operationId: ''
-      security: 
-        - bearerAuth: []
-      requestBody:
-        description: ''
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/user' 
-            example:
-              first_name: "Huy"
-              last_name: "Lê Đức"
-              avatar: "https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg"
-              tel: "0948942954"
-              address: "K1/17 Hà Thị Thân, Sơn Trà, Đà Nẵng"
-      responses:
-        '200':
-          description: Successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Code:
-                    type: integer
-                    example: 200
-                  Data:
-                    type: object
-                  Message:
-                    type: string
-                  DataErrors :
-                    type: object
-              examples:
-                Success:
-                  summary: Successful
-                  value:
-                    Code: 200
-                    Data:
-                      id: 1
-                      first_name: "Huy"
-                      last_name: "Lê Đức"
-                      avatar: "https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg"
-                      tel: "0948942954"
-                      address: "K1/17 Hà Thị Thân, Sơn Trà, Đà Nẵng"
-                      account_id: 1
-                    Message: ""
-                    DataErrors: {}
-                Bad request:
-                  $ref: '#/components/examples/bad_request'
-                Not authentication:
-                  $ref: '#/components/examples/not_auth'
-                Not access:
-                  $ref: '#/components/examples/not_access'
-                Data invalid:
-                  $ref: '#/components/examples/data_invalid'
-                Exception:
-                  $ref: '#/components/examples/exception'
-  /user/me/photo:
-    patch:
-      tags:
-        - user
-      summary: ''
-      description: ''
-      operationId: ''
-      security: 
-        - bearerAuth: []
-      requestBody:
-        description: ''
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                avatar:
-                  type: string
-                  format: binary
-      responses:
-        '200':
-          description: Successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Code:
-                    type: integer
-                    example: 200
-                  Data:
-                    type: object
-                  Message:
-                    type: string
-                  DataErrors :
-                    type: object
-              examples:
-                Success:
-                  summary: Successful
-                  value:
-                    Code: 200
-                    Data:
-                      id: 1
-                      first_name: "Huy"
-                      last_name: "Lê Đức"
-                      avatar: "https://example.com/new-avatar.jpg"
-                      tel: "0948942954"
-                      address: "K1/17 Hà Thị Thân, Sơn Trà, Đà Nẵng"
-                      account_id: 1
-                    Message: ""
-                    DataErrors: {}
-                Bad request:
-                  $ref: '#/components/examples/bad_request'
-                Not authentication:
-                  $ref: '#/components/examples/not_auth'
-                Not access:
-                  $ref: '#/components/examples/not_access'
-                Data invalid:
-                  $ref: '#/components/examples/data_invalid'
-                Exception:
-                  $ref: '#/components/examples/exception'
-  /proof:
-    post:
-      tags:
-        - proof
-      summary: ''
-      description: ''
-      operationId: ''
-      requestBody:
-        description: ''
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                image:
-                  type: string
-                  format: binary
-      responses:
-        '200':
-          description: Successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Code:
-                    type: integer
-                    example: 200
-                  Data:
-                    type: object
-                    properties:
-                      image:
-                        type: string
-                        example :  https://res.cloudinary.com/dcyg1qwdc/image/upload/v1711419867/cld-sample-2.jpg
+    /send-email:
+        post:
+            tags:
+                - account
+            summary: Send email
+            description: ""
+            operationId: sendEmail
+            requestBody:
+                description: ""
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: string
+                                    example: bongmaxuyentuong1@gmail.com
+                                password:
+                                    type: string
+                                    example: duchuy123@
+                                firstName:
+                                    type: string
+                                    example: Huy
+                                lastName:
+                                    type: string
+                                    example: Lê Đức
+                                phoneNumber:
+                                    type: string
+                                    example: 0948942954
+                                address:
+                                    type: string
+                                    example: K1/17 Hà Thị Thân, Phường An Hải Tây, Quận Sơn Trà, Thành phố Đà Nẵng
+            responses:
+                "200":
+                    description: Email sent successfully
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                    Data:
+                                        type: object
+                                    Message:
+                                        type: string
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            url: "http://example.com/verify?token=abc123"
+                                        Message: "Mã đã được gửi đến email! Vui lòng kiểm tra"
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+
+    /account/signup:
+        post:
+            tags:
+                - account
+            summary: "Create a new account"
+            description: ""
+            operationId: Sign up User
+            requestBody:
+                description: ""
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: string
+                                    example: bongmaxuyentuong1@gmail.com
+                                password:
+                                    type: string
+                                    example: duchuy123@
+                                firstName:
+                                    type: string
+                                    example: Huy
+                                lastName:
+                                    type: string
+                                    example: Lê Đức
+                                phoneNumber:
+                                    type: string
+                                    example: 0948942954
+                                address:
+                                    type: string
+                                    example: K1/17 Hà Thị Thân, Phường An Hải Tây, Quận Sơn Trà, Thành phố Đà Nẵng
+            responses:
+                "200":
+                    description: Successful signup
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                        example: 200
+                                    Data:
+                                        type: object
+                                    Message:
+                                        type: string
+                                    DataErrors:
+                                        type: object
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ.DV7wFnZrk6qTYXLw4rAosU9CmwVlWzb17aL86R-RYhg
+                                            refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ.DV7wFnZrk6qTYXLw4rAosU9CmwVlWzb17aL86R-RYhg
+                                            timeout: 18000
+                                            account:
+                                                {
+                                                    id: 1,
+                                                    email: admin001@gmail.com,
+                                                    password: eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ,
+                                                    role_id: 1,
+                                                }
+                                        Message: ""
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+    /account/login:
+        post:
+            tags:
+                - account
+            summary: ""
+            description: ""
+            operationId: loginUser
+            requestBody:
+                description: ""
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: string
+                                    format: email
+                                    example: "admin001@gmail.com"
+                                password:
+                                    type: string
+                                    example: "admin001"
+            responses:
+                "200":
+                    description: Successful authentication
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                        example: 200
+                                    Data:
+                                        type: object
+                                    Message:
+                                        type: string
+                                    DataErrors:
+                                        type: object
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ.DV7wFnZrk6qTYXLw4rAosU9CmwVlWzb17aL86R-RYhg
+                                            refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ.DV7wFnZrk6qTYXLw4rAosU9CmwVlWzb17aL86R-RYhg
+                                            timeout: 18000
+                                            account:
+                                                {
+                                                    id: 1,
+                                                    email: admin001@gmail.com,
+                                                    password: eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ,
+                                                    role_id: 1,
+                                                }
+                                        Message: ""
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+    /account/forgot-password:
+        post:
+            tags:
+                - account
+            summary: ""
+            description: ""
+            requestBody:
+                description: ""
+                content:
+                    application/json:
+                        schema:
+                            type: string
+                            format: email
+                            example: "bongmaxuyentuong1@gmail.com"
+            responses:
+                "200":
+                    description: Successful
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                        example: 200
+                                    Data:
+                                        type: object
+                                    Message:
+                                        type: string
+                                    DataErrors:
+                                        type: object
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ.DV7wFnZrk6qTYXLw4rAosU9CmwVlWzb17aL86R-RYhg
+                                            refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ.DV7wFnZrk6qTYXLw4rAosU9CmwVlWzb17aL86R-RYhg
+                                            timeout: 18000
+                                            account:
+                                                {
+                                                    id: 1,
+                                                    email: admin001@gmail.com,
+                                                    password: eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ,
+                                                    role_id: 1,
+                                                }
+                                        Message: ""
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+    /user/me/change-password:
+        post:
+            tags:
+                - user
+            summary: ""
+            description: ""
+            security:
+                - bearerAuth: []
+            requestBody:
+                description: ""
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                oldPass:
+                                    type: string
+                                    example: "user001"
+                                newPass:
+                                    type: string
+                                    example: "user0012"
+                                confirmedPass:
+                                    type: string
+                                    example: "user0012"
+            responses:
+                "200":
+                    description: Successful
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                        example: 200
+                                    Data:
+                                        type: object
+                                    Message:
+                                        type: string
+                                    DataErrors:
+                                        type: object
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            account:
+                                                {
+                                                    id: 1,
+                                                    email: admin001@gmail.com,
+                                                    password: eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ,
+                                                    role_id: 1,
+                                                }
+                                        Message: ""
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+    /users:
+        get:
+            tags:
+                - user
+            summary: ""
+            description: ""
+            operationId: ""
+            security:
+                - bearerAuth: []
+            responses:
+                "200":
+                    description: Successful
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                        example: 200
+                                    Data:
+                                        type: object
+                                    Message:
+                                        type: string
+                                    DataErrors:
+                                        type: object
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            users:
+                                                [
+                                                    {
+                                                        id: 1,
+                                                        first_name: "Huy",
+                                                        last_name: "Lê Đức",
+                                                        avatar: "https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg",
+                                                        tel: "0948942954",
+                                                        address: "K1/17 Hà Thị Thân, Sơn Trà, Đà Nẵng",
+                                                        account_id: 1,
+                                                    },
+                                                    {
+                                                        id: 2,
+                                                        first_name: "Huy",
+                                                        last_name: "Lê Đức",
+                                                        avatar: "https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg",
+                                                        tel: "0948942954",
+                                                        address: "K1/15 Hà Thị Thân, Sơn Trà, Đà Nẵng",
+                                                        account_id: 2,
+                                                    },
+                                                ]
+                                        Message: ""
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+    /user/me:
+        get:
+            tags:
+                - user
+            summary: ""
+            description: ""
+            operationId: ""
+            security:
+                - bearerAuth: []
+            responses:
+                "200":
+                    description: Successful
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                        example: 200
+                                    Data:
+                                        type: object
+                                    Message:
+                                        type: string
+                                    DataErrors:
+                                        type: object
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            user:
+                                                {
+                                                    id: 1,
+                                                    first_name: "Huy",
+                                                    last_name: "Lê Đức",
+                                                    avatar: "https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg",
+                                                    tel: "0948942954",
+                                                    address: "K1/17 Hà Thị Thân, Sơn Trà, Đà Nẵng",
+                                                    account_id: 1,
+                                                }
+                                        Message: ""
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+        put:
+            tags:
+                - user
+            summary: ""
+            description: ""
+            operationId: ""
+            security:
+                - bearerAuth: []
+            requestBody:
+                description: ""
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/user"
+                        example:
+                            first_name: "Huy"
+                            last_name: "Lê Đức"
+                            avatar: "https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg"
+                            tel: "0948942954"
+                            address: "K1/17 Hà Thị Thân, Sơn Trà, Đà Nẵng"
+            responses:
+                "200":
+                    description: Successful
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                        example: 200
+                                    Data:
+                                        type: object
+                                    Message:
+                                        type: string
+                                    DataErrors:
+                                        type: object
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            id: 1
+                                            first_name: "Huy"
+                                            last_name: "Lê Đức"
+                                            avatar: "https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg"
+                                            tel: "0948942954"
+                                            address: "K1/17 Hà Thị Thân, Sơn Trà, Đà Nẵng"
+                                            account_id: 1
+                                        Message: ""
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+    /user/me/photo:
+        patch:
+            tags:
+                - user
+            summary: ""
+            description: ""
+            operationId: ""
+            security:
+                - bearerAuth: []
+            requestBody:
+                description: ""
+                content:
+                    multipart/form-data:
+                        schema:
+                            type: object
+                            properties:
+                                avatar:
+                                    type: string
+                                    format: binary
+            responses:
+                "200":
+                    description: Successful
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                        example: 200
+                                    Data:
+                                        type: object
+                                    Message:
+                                        type: string
+                                    DataErrors:
+                                        type: object
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            id: 1
+                                            first_name: "Huy"
+                                            last_name: "Lê Đức"
+                                            avatar: "https://example.com/new-avatar.jpg"
+                                            tel: "0948942954"
+                                            address: "K1/17 Hà Thị Thân, Sơn Trà, Đà Nẵng"
+                                            account_id: 1
+                                        Message: ""
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+    /proof:
+        post:
+            tags:
+                - proof
+            summary: ""
+            description: ""
+            operationId: ""
+            requestBody:
+                description: ""
+                content:
+                    multipart/form-data:
+                        schema:
+                            type: object
+                            properties:
+                                image:
+                                    type: string
+                                    format: binary
+            responses:
+                "200":
+                    description: Successful
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                        example: 200
+                                    Data:
+                                        type: object
+                                        properties:
+                                            image:
+                                                type: string
+                                                example: https://res.cloudinary.com/dcyg1qwdc/image/upload/v1711419867/cld-sample-2.jpg
 components:
-  schemas:
-    role:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-    account:
-      type: object
-      properties:
-        id:
-          type: integer
-        email:
-          type: string
-        password:
-          type: string
-        role_id:
-          type: integer
-    user:
-      type: object
-      properties:
-        id:
-          type: integer
-        first_name:
-          type: string
-        last_name:
-          type: string
-        avatar:
-          type: string
-        tel:
-          type: string
-        address:
-          type: string
-        account_id:
-          type: integer
-    proof:
-      type: object
-      properties:
-        image:
-          type: string
-  examples:
-    'bad_request':
-      value:
-        Code: 400
-        Data: {}
-        Message: Bad request
-        DataErrors: {}
-    'not_auth':
-      value:
-        Code: 401
-        Data: {}
-        Message: Not authenticated
-        DataErrors: {}
-    'not_access':
-      value:
-        Code: 403
-        Data: {}
-        Message: Forbidden access
-        DataErrors: {}
-    'data_invalid':
-      value:
-        Code: 422
-        Data: {}
-        Message: Validation error
-        DataErrors: {
-          "email" : "email is error"
-        }
-    'exception':
-      value:
-        Code: 500
-        Data: {}
-        Message: Server error
-        DataErrors: {
-          Instance: ErrorException,
-          Line: 37,
-          File: account.js,
-          Code: 0,
-          Message: "Undefined mail"
-        }
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
+    schemas:
+        role:
+            type: object
+            properties:
+                id:
+                    type: integer
+                name:
+                    type: string
+        account:
+            type: object
+            properties:
+                id:
+                    type: integer
+                email:
+                    type: string
+                password:
+                    type: string
+                role_id:
+                    type: integer
+        user:
+            type: object
+            properties:
+                id:
+                    type: integer
+                first_name:
+                    type: string
+                last_name:
+                    type: string
+                avatar:
+                    type: string
+                tel:
+                    type: string
+                address:
+                    type: string
+                account_id:
+                    type: integer
+        proof:
+            type: object
+            properties:
+                image:
+                    type: string
+    examples:
+        "bad_request":
+            value:
+                Code: 400
+                Data: {}
+                Message: Bad request
+                DataErrors: {}
+        "not_auth":
+            value:
+                Code: 401
+                Data: {}
+                Message: Not authenticated
+                DataErrors: {}
+        "not_access":
+            value:
+                Code: 403
+                Data: {}
+                Message: Forbidden access
+                DataErrors: {}
+        "data_invalid":
+            value:
+                Code: 422
+                Data: {}
+                Message: Validation error
+                DataErrors: { "email": "email is error" }
+        "exception":
+            value:
+                Code: 500
+                Data: {}
+                Message: Server error
+                DataErrors:
+                    {
+                        Instance: ErrorException,
+                        Line: 37,
+                        File: account.js,
+                        Code: 0,
+                        Message: "Undefined mail",
+                    }
+    securitySchemes:
+        bearerAuth:
+            type: http
+            scheme: bearer
+            bearerFormat: JWT

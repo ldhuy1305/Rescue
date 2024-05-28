@@ -58,23 +58,23 @@ router.beforeEach((to, from, next) => {
     const checkPermission = () => {
         return true;
     };
-    const publicPages = ['/login', '/signup', 'home'];
+    const publicPages = ['/login', '/signup', '/home', '/403', '/404', '/500'];
     const authRequired = !publicPages.includes(to.path);
-    const token = sessionStorage.getItem('token');
-    const tokenTimeout = sessionStorage.getItem('tokenTimeout');
+    const token = localStorage.getItem('token');
+    const tokenTimeout = localStorage.getItem('tokenTimeout');
     let loggedIn = false;
     if (token && tokenTimeout && new Date(tokenTimeout) >= new Date()) {
         loggedIn = true;
     } else {
-        sessionStorage.removeItem('token');
-        sessionStorage.removeItem('tokenTimeout');
-    }
-    if (!authRequired && loggedIn) {
-        sessionStorage.removeItem('token');
-        sessionStorage.removeItem('tokenTimeout');
+        localStorage.removeItem('token');
+        localStorage.removeItem('tokenTimeout');
     }
     if (authRequired && !loggedIn) {
         return next('/login');
+    }
+    if (!authRequired && !loggedIn) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('tokenTimeout');
     }
     if (!to.meta.forAll) {
         if (authRequired && !checkPermission(to)) {

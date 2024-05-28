@@ -14,7 +14,11 @@ exports.sendEmailVerify = catchAsync(async (req, res, next) => {
         const url = `${process.env.URL_WEBSITE}?p=${helpers.encodeParams(payload)}`;
         await new Email(payload.email, payload.firstName, url).sendWelcome();
         res.status(200).json({
-            message: "Mã đã được gửi đến email!",
+            Code: 200,
+            Data: {
+                url,
+            },
+            Message: "Mã đã được gửi đến email! Vui lòng kiểm tra",
         });
     } catch (err) {
         console.log(err);
@@ -24,37 +28,6 @@ exports.sendEmailVerify = catchAsync(async (req, res, next) => {
         );
     }
 });
-exports.verifiedSignUp = (Model) =>
-    catchAsync(async (req, res, next) => {
-        // 1) Get user based on the token
-        const code = req.body.signUpToken.toString();
-        const hashedToken = crypto
-            .createHash("sha256")
-            .update(code)
-            .digest("hex");
-        const doc = await Model.findOne({ email: req.params.email }).select(
-            "+signUpExpires",
-        );
-        // 2) If token has not expired, and there is doc, set the new password
-        if (
-            !doc ||
-            doc.signUpToken !== hashedToken ||
-            !doc.signUpExpires > Date.now()
-        ) {
-            return next(new appError("Mã không hợp lệ hoặc đã hết hạn", 400));
-        }
-        doc.isVerified = true;
-        doc.signUpToken = undefined;
-        doc.signUpExpires = undefined;
-        doc.code = undefined;
-        await doc.save({ validateBeforeSave: false });
-
-        res.status(200).json({
-            message: "Đăng kí thành công!",
-            doc,
-        });
-    });
-
 exports.forgotPassword = catchAsync(async (req, res, next) => {
     // 1) Get user based on POSTed email
     const doc = await User.findOne({ email: req.body.email });

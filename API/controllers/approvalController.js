@@ -23,6 +23,16 @@ class approvalController {
             },
         });
     });
+    getAllApprovals = catchAsync(async (req, res) => {
+        const rs = await approvalModel.getAllApprovals(req.body);
+        res.status(200).json({
+            Code: 200,
+            Data: {
+                detail: rs[0][0],
+                content: rs[1],
+            },
+        });
+    });
 }
 
 module.exports = new approvalController();

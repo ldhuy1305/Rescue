@@ -85,7 +85,6 @@ const helpers = {
                             if (!helpers.isVietnamese(data[key])) {
                                 // eslint-disable-next-line no-undef
                                 $(`#${key}`).last().ItemError(messages.E004);
-                                console.log(key, data[key]);
                                 isValid = false;
                             }
                         }
@@ -297,6 +296,16 @@ const helpers = {
             values[0] = 0;
         }
         return (value = negative + values[0] + dot + afterDot);
+    },
+    findObjectInArrayByKey(array, key, value) {
+        var rs = {};
+        array.forEach((el) => {
+            if (el[key] == value) {
+                rs = el;
+                return;
+            }
+        });
+        return rs;
     }
 };
 export default helpers;

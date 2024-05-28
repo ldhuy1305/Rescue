@@ -14,16 +14,7 @@ export default {
     C003: 'Bạn có muốn đổi mật khẩu không?',
 
     // Success message
-    S001: 'Batch registration completed. ',
-    S002: 'The office master has been imported. ',
-    S003: 'Organization master has been imported. ',
-    S004: 'Job type master has been imported. ',
-    S005: 'Position master has been imported. ',
-    S006: 'Employee master has been imported. ',
-    S007: 'The reason classification master has been imported. ',
-    S008: 'Data registration completed',
-    S009: 'Grant history deletion completed',
-    S010: 'Completed changing annual leave entitlement history',
+    S001: 'Đăng kí thành công. Vui lòng tải lại trang!',
     // api error
     E400: 'Yêu cầu không hợp lệ. Vui lòng kiểm tra và thử lại.',
     E401: 'Bạn chưa được cấp quyền truy cập. Vui lòng đăng nhập và thử lại.',

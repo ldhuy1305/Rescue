@@ -44,7 +44,6 @@ const User = {
                 return;
             }
             if (this.pass.newPass != this.pass.confirmedPass) {
-                console.log(1);
                 helpers.setItemError('confirmedPass', messages.E007);
                 return;
             }
