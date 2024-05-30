@@ -6,7 +6,7 @@ import './style.scss';
 
 import store from '@/store';
 import newsStore from '@/views/news/store';
-// import helpers from '@/utils/helpers';
+import helpers from '@/utils/helpers';
 
 import Paging from '@/components/pagination';
 const News = {
@@ -36,10 +36,18 @@ const News = {
     methods: {
         ...mapMutations('app', ['showModalMessage']),
         ...mapActions('app', []),
-        ...mapActions('news', ['save', 'getInitData'])
+        ...mapActions('news', ['save', 'getInitData']),
+        readMore(news) {
+            this.$router.push({
+                name: 'post',
+                query: {
+                    // p: encodeURI(news.title)
+                    p: helpers.encodeParams(news.id)
+                }
+            });
+        }
     },
-    watch: {
-    }
+    watch: {}
 };
 export default News;
 </script>

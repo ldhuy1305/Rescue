@@ -4,6 +4,8 @@ export default {
     state: {
         detail: {
             title: '',
+            image: '',
+            sapo: '',
             start_date: new Date(),
             end_date: new Date(),
             city: '',
@@ -33,12 +35,11 @@ export default {
                 console.log('Action: ' + e.message);
             }
         },
-        aaa(context, payload) {
+        createTransaction(context, payload) {
             try {
-                repository.getPost(payload).then((res) => {
-                    let data = res.data.Data;
-                    context.commit('setDetail', data.detail);
-                    context.commit('setContent', data.content);
+                repository.addTransaction(payload).then((res) => {
+                    let data = res.data;
+                    console.log(data);
                 });
             } catch (e) {
                 console.log('Action: ' + e.message);

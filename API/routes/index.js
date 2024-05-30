@@ -12,6 +12,7 @@ const userRoute = require("./user");
 const transactionRoute = require("./transaction");
 const approvalRoute = require("./approval");
 const proofRoute = require("./proof");
+const helpRoute = require("./help");
 
 const globalErrorHandler = require("../controllers/errorController");
 const appError = require("../utils/appError");
@@ -27,6 +28,7 @@ function route(app) {
     app.use("/api/v1/transaction", transactionRoute);
     app.use("/api/v1/approval", approvalRoute);
     app.use("/api/v1/proof", proofRoute);
+    app.use("/api/v1/help", helpRoute);
 
     const file = fs.readFileSync("./swagger.yaml", "utf8");
     const swaggerDocument = YAML.parse(file);

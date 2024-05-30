@@ -7,7 +7,7 @@ import postStore from '@/views/post/store';
 import Select from '@/components/select';
 import Input from '@/components/input';
 import PopupAmount from './popup';
-// import helpers from '@/utils/helpers';
+import helpers from '@/utils/helpers';
 const Post = {
     name: 'Post',
     template: template,
@@ -18,7 +18,7 @@ const Post = {
         }
     },
     created() {
-        this.getInitData(this.params.id);
+        this.getInitData(this.params);
     },
     beforeMount() {},
     mounted() {},
@@ -28,10 +28,10 @@ const Post = {
     unmounted() {},
     data() {
         return {
-        params: { id: 30 },
-            toTop: 0,
-            showPopup: false
-            // helpers.decodeParams(this.$route.query.p)
+            params: helpers.decodeParams(this.$route.query.p),
+            showPopup: false,
+            paramSends: {}
+            // params: decodeURI(this.$route.query.p)
         };
     },
     computed: {
@@ -72,6 +72,10 @@ const Post = {
             });
         },
         showPopupAmount() {
+            this.paramSends = {
+                id: this.params,
+                title: this.detail.title
+            };
             this.showPopup = true;
         }
         // autoPlay() {

@@ -7,22 +7,22 @@
   <div id="popup">
       <div class="donation-amount">
         <div class="form-item" tabindex="0">
-          <input type="button" @click="handleClick" :class="isSelect ? 'select': '' " id="edit-submitted-donation-amount-1" value="60">     
+          <input type="button" @click="handleClick" :class="isSelect ? 'select': '' " id="edit-submitted-donation-amount-1" value="10.000 đồng">     
         </div>
         <div class="form-item" tabindex="0">
-          <input type="button" @click="handleClick" :class="isSelect ? 'select': '' " id="edit-submitted-donation-amount-2" value="110">
+          <input type="button" @click="handleClick" :class="isSelect ? 'select': '' " id="edit-submitted-donation-amount-2" value="20.000 đồng">
         </div>
         <div class="form-item" tabindex="0">
-          <input type="button" @click="handleClick" :class="isSelect1 ? 'select': '' " id="edit-submitted-donation-amount-3" value="150">       
+          <input type="button" @click="handleClick" :class="isSelect ? 'select': '' " id="edit-submitted-donation-amount-3" value="50.000 đồng">       
         </div>
         <div class="form-item" tabindex="0">
-          <input type="button" @click="handleClick" :class="isSelect ? 'select': '' " id="edit-submitted-donation-amount-4" value="200">        
+          <input type="button" @click="handleClick" :class="isSelect ? 'select': '' " id="edit-submitted-donation-amount-4" value="100.000 đồng">        
         </div>
         <div class="form-item" tabindex="0">
-          <input type="button" @click="handleClick" :class="isSelect ? 'select': '' " id="edit-submitted-donation-amount-5" value="500">        
+          <input type="button" @click="handleClick" :class="isSelect ? 'select': '' " id="edit-submitted-donation-amount-5" value="200.000 đồng">        
         </div>
         <div class="form-item" id="webform-component-donation--other-amount" style="display: block;">
-          <input class="input-other" @focus="handleFocus" type="text" id="edit-submitted-donation-other-amount"value="" size="10" maxlength="128" inputmode="numeric" placeholder="Số tiền khác" tabindex="-1">
+          <input class="text-center input-other" @focus="handleFocus" @input="format" @blur="addCurrency" type="text" id="edit-submitted-donation-other-amount" v-model="formattedValue"  size="10" maxlength="128" inputmode="numeric" placeholder="Số tiền khác" tabindex="-1">
       </div>
   </div>
   

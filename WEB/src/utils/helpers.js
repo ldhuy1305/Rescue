@@ -226,8 +226,10 @@ const helpers = {
         console.log(url);
         const parts = url.split('/');
         const lastPart = parts[parts.length - 1];
-        const publicId = lastPart.substring(0, lastPart.lastIndexOf('.'));
-        return publicId;
+        const folder = parts[parts.length - 2];
+        if (folder == 'mock_data') {
+            return `${lastPart.substring(0, lastPart.lastIndexOf('.'))}?folder=${folder}`;
+        } else return lastPart.substring(0, lastPart.lastIndexOf('.'));
     },
     encodeParams: (params) => {
         try {
