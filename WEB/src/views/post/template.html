@@ -1,39 +1,69 @@
 <div id="post">
-  <div class="container">
-    <div class="main-col">
-      <div class="title">{{this.detail.title}}</div>
-      <div class="sapo">
-        (Mặt trận) - Chiều 21/5, tiếp tục quy trình làm nhân sự, Ủy ban Thường vụ Quốc hội sẽ trình Quốc hội danh sách đề cử để Quốc hội bầu Chủ tịch nước vào cuối phiên làm việc buổi chiều. Sau đó, các đại biểu thảo luận tại Đoàn về nội dung này.
-      </div>
-      <div class="related"></div>
-      <div class="body" v-for="(el,key) in this.content" :index="key">
-        <div class="image" v-if="el.image!=null">
-          <img :src=el.image alt="image">
+    <div class="container">
+        <div class="main-col">
+            <div class="title">{{this.detail.title}}</div>
+            <div class="sapo">{{this.detail.sapo}}</div>
+            <div class="related"></div>
+            <div class="body" v-for="(el,key) in this.content" :index="key">
+                <div class="image" v-if="el.image!=null">
+                    <img :src="el.image" alt="image" />
+                </div>
+                <div class="content" v-if="el.description!=null">
+                    <p>{{el.description}}</p>
+                </div>
+            </div>
+            <div class="help">
+                <button @click="showPopupAmount">Hỗ trợ</button>
+            </div>
         </div>
-        <div class="content" v-if="el.description!=null">
-          <p>{{el.description}}</p>
+        <div class="sub-col">
+            <div class="slider">
+                <div class="slider__row" id="row">
+                    <div class="row__item">
+                        <img
+                            src="https://cdn0.iconfinder.com/data/icons/famous-character-vol-1-colored/48/JD-21-256.png"
+                            alt="01"
+                        />
+                    </div>
+                    <div class="row__item">
+                        <img
+                            src="https://cdn0.iconfinder.com/data/icons/famous-character-vol-1-colored/48/JD-09-256.png"
+                            alt="02"
+                        />
+                    </div>
+                    <div class="row__item">
+                        <img
+                            src="https://cdn0.iconfinder.com/data/icons/famous-character-vol-1-colored/48/JD-18-256.png"
+                            alt="03"
+                        />
+                    </div>
+                    <div class="row__item">
+                        <img
+                            src="https://cdn0.iconfinder.com/data/icons/famous-character-vol-1-colored/48/JD-14-256.png"
+                            alt="04"
+                        />
+                    </div>
+                    <div class="row__item">
+                        <img
+                            src="https://cdn0.iconfinder.com/data/icons/famous-character-vol-1-colored/48/JD-22-256.png"
+                            alt="05"
+                        />
+                    </div>
+                    <div class="row__item">
+                        <img
+                            src="https://cdn4.iconfinder.com/data/icons/famous-characters-add-on-vol-1-flat/48/Famous_Character_-_Add_On_1-24-256.png"
+                            alt="06"
+                        />
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="help" >
-        <button @click="showPopupAmount"> Hỗ trợ</button>
-      </div>
     </div>
-    <div class="sub-col">
-      <div class="slider">
-        <div class="slider__row" id="row">
-          <div class="row__item">
-            <img src="https://cdn0.iconfinder.com/data/icons/famous-character-vol-1-colored/48/JD-21-256.png" alt="01"></div>
-          <div class="row__item">
-            <img src="https://cdn0.iconfinder.com/data/icons/famous-character-vol-1-colored/48/JD-09-256.png" alt="02"></div>
-          <div class="row__item"><img src="https://cdn0.iconfinder.com/data/icons/famous-character-vol-1-colored/48/JD-18-256.png" alt="03"></div>
-          <div class="row__item"><img src="https://cdn0.iconfinder.com/data/icons/famous-character-vol-1-colored/48/JD-14-256.png" alt="04"></div>
-          <div class="row__item"><img src="https://cdn0.iconfinder.com/data/icons/famous-character-vol-1-colored/48/JD-22-256.png" alt="05"></div>
-          <div class="row__item"><img src="https://cdn4.iconfinder.com/data/icons/famous-characters-add-on-vol-1-flat/48/Famous_Character_-_Add_On_1-24-256.png" alt="06"></div>
-        </div>
-      </div>
+    <div v-if="showPopup" class="popup-container">
+        <popup-amount
+            v-model="showPopup"
+            :paramSends="this.paramSends"
+            :onClose="() => { showPopup = false }"
+        />
     </div>
-  </div>
-  <div v-if="showPopup" class="popup-container">
-    <popup-amount :params="detailParams" :onClose="() => { showPopup = false }"/>
-  </div>
 </div>

@@ -2,25 +2,20 @@
     <div class="container">
         <div class="main-col">
             <div id="list-news">
-                <article>
-                    <h1>News Item 1</h1>
-                    <i>Posted 2 days ago by FanClubAdmin</i>
-                    <div class="photo">
-                        <img src="http://placehold.it/800x400&text=Image" />
-                    </div>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Nullam laoreet commodo magna, id dictum dolor lacinia
-                        sed. Cras in dolor ultricies, tempus elit eget,
-                        tincidunt nibh. Nunc lobortis commodo nisl et tristique.
-                        Mauris lacinia elit vitae mauris volutpat molestie.
-                    </p>
-                    <div class="readmore">
-                        <a href="#">Read More→</a>
-                    </div>
-                </article>
-
-                <article>
+                <div v-for="(news,index) in listData.list" :key="index">
+                    <article>
+                        <h1>{{news.title}}</h1>
+                        <!-- <i>Posted 2 days ago by FanClubAdmin</i> -->
+                        <div class="photo">
+                            <img :src="news.image" />
+                        </div>
+                        <p>{{news.sapo}}</p>
+                        <div class="readmore">
+                            <a @click="readMore(news)">Read More→</a>
+                        </div>
+                    </article>
+                </div>
+                <!-- <article>
                     <h1>News Item 2</h1>
                     <i>Posted 2 days ago by FanClubAdmin</i>
                     <p>
@@ -78,7 +73,7 @@
                     <div class="readmore">
                         <a href="#">Read More→</a>
                     </div>
-                </article>
+                </article> -->
             </div>
             <div class="pagination">
                 <td class="td-paging">

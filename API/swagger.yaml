@@ -633,7 +633,83 @@ paths:
                                         properties:
                                             image:
                                                 type: string
-                                                example: https://res.cloudinary.com/dcyg1qwdc/image/upload/v1711419867/cld-sample-2.jpg
+
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            image: https://res.cloudinary.com/dcyg1qwdc/image/upload/v1711419867/cld-sample-2.jpg
+                                        Message: ""
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+    /proof/{id}:
+        delete:
+            tags:
+                - proof
+            summary: "Delete image in cloudinary"
+            description: ""
+            operationId: ""
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  description: The ID of the image to delete.
+                  schema:
+                      type: string
+                - name: folder
+                  in: query
+                  required: false
+                  description: The folder in Cloudinary where the image is located.
+                  schema:
+                      type: string
+            responses:
+                "200":
+                    description: Successful
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                        example: 200
+                                    Data:
+                                        type: object
+                                        properties:
+                                            message:
+                                                type: string
+
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            message: SUCCESS
+                                        Message: ""
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+
 components:
     schemas:
         role:

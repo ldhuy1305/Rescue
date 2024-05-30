@@ -4,8 +4,8 @@ import repository from './repository';
 import moment from 'moment';
 const initCondition = {
     keyword: '',
-    start_date: moment().format('YYYY MM DD'),
-    end_date: moment().add(1, 'month').format('YYYY MM DD'),
+    start_date: moment().format('YYYY-MM-DD'),
+    end_date: moment().add(1, 'month').format('YYYY-MM-DD'),
     page: 10,
     size: 1
 };
@@ -36,8 +36,8 @@ export default {
             try {
                 repository.getInit(context.state.conditions).then((res) => {
                     const { data } = res;
-                    if (data.Code === 200 && data.Data) {
-                        context.commit('listData', data.Data);
+                    if (data.Code === 200 && data.Data.list) {
+                        context.commit('setData', data.Data.list);
                     }
                 });
             } catch (e) {

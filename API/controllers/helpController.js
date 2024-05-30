@@ -1,18 +1,20 @@
 require("dotenv").config();
-const transactionModel = require("../models/transaction");
+const helpModel = require("../models/help");
 const appError = require("../utils/appError");
 const catchAsync = require("../utils/catchAsync");
-class transactionController {
-    checkout = catchAsync(async (req, res, next) => {
-        const accountId = req.user.id;
+const moment = require("moment");
+class helpController {
+    createHelp = catchAsync(async (req, res, next) => {
+        const userId = req.user.id;
         const { id } = req.params;
         const { title, amount } = req.body;
-        
+        const params = [userId, id, amount];
+        const rs = await helpModel.createHelp(params);
+
         process.env.TZ = "Asia/Ho_Chi_Minh";
 
         let date = new Date();
         let createDate = moment(date).format("YYYYMMDDHHmmss");
-
         let env = process.env;
 
         let tmnCode = env.vnp_TmnCode;
@@ -31,7 +33,7 @@ class transactionController {
         vnp_Params["vnp_TmnCode"] = tmnCode;
         vnp_Params["vnp_Locale"] = "vn";
         vnp_Params["vnp_CurrCode"] = currCode;
-        vnp_Params["vnp_TxnRef"] = id;
+        vnp_Params["vnp_TxnRef"] = rs[0][0].id;
         vnp_Params["vnp_OrderInfo"] = `Hỗ trợ cho ${title}`;
         vnp_Params["vnp_OrderType"] = "billpayment";
         vnp_Params["vnp_Amount"] = amount * 100;
@@ -54,26 +56,28 @@ class transactionController {
         res.status(200).json({
             Code: 200,
             Data: {
+                help: rs[0][0],
                 url: vnpUrl,
             },
         });
     });
-    payment = catchAsync(async (req, res, next) => {
-        const vnp_Params = req.query;
-        const transaction = await Transaction.findOne({
-            vnp_TxnRef: vnp_Params.vnp_TxnRef,
-        });
-        if (req.query.vnp_TransactionStatus != "00") {
-            await Order.findByIdAndDelete(req.query.vnp_TxnRef);
-            return next(new appError("Thanh toán không thành công!"), 404);
-        }
-        if (!transaction) await Transaction.create(vnp_Params);
-        await order.save();
-        res.status(200).json({
-            status: "success",
-            data: vnp_Params,
-        });
-    });
 }
-
-module.exports = new transactionController();
+function sortObject(obj) {
+    let sorted = {};
+    let str = [];
+    let key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            str.push(encodeURIComponent(key));
+        }
+    }
+    str.sort();
+    for (key = 0; key < str.length; key++) {
+        sorted[str[key]] = encodeURIComponent(obj[str[key]]).replace(
+            /%20/g,
+            "+",
+        );
+    }
+    return sorted;
+}
+module.exports = new helpController();

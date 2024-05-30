@@ -20,7 +20,7 @@ class Approval {
     async getAllApprovals(params) {
         try {
             params = objectToArray(params);
-            const rs = await sql.executeSPC("get_all_approval", params);
+            const rs = await sql.executeSPC("get_all_news", params);
             return rs;
         } catch (err) {}
     }

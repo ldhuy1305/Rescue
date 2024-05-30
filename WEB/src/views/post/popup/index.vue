@@ -1,17 +1,14 @@
 <script>
-import store from '@/store';
 import template from './template.html';
 import './style.scss';
 import { mapMutations, mapState, mapActions } from 'vuex';
-import postStore from '@/views/post/store';
+import repository from '@/utils/repository';
 import $ from 'jquery';
-// import helpers from '@/utils/helpers';
 const Amount = {
     template: template,
-    beforeCreate() {
-        if (!store.hasModule('post')) {
-            store.registerModule('post', postStore);
-        }
+    props: {
+        modelValue: Boolean,
+        paramSends: Object
     },
     created() {},
     beforeMount() {},
@@ -31,7 +28,9 @@ const Amount = {
                 { value: 200 },
                 { value: 500 },
                 { value: 'other' }
-            ]
+            ],
+            value: '',
+            formattedValue: ''
         };
     },
     computed: {
@@ -47,10 +46,10 @@ const Amount = {
         ...mapMutations('post', []),
         ...mapActions('post', []),
         close() {
-            // this.$emit('update:modelValue', false);
-            // if (this.onClose) {
-            //     this.onClose();
-            // }
+            this.$emit('update:modelValue', false);
+            if (this.onClose) {
+                this.onClose();
+            }
             this.showModal = false;
         },
         onShow() {
@@ -63,11 +62,6 @@ const Amount = {
                 this.otherAmount = '';
             }
         },
-        updateOtherAmount() {
-            if (this.otherAmount < 10) {
-                //
-            }
-        },
         handleClick(event) {
             $('.form-item input').removeClass('selected');
             $('.form-item').removeClass('selected');
@@ -75,9 +69,42 @@ const Amount = {
             parentElement.addClass('selected');
             $(event.target).addClass('selected');
         },
-        handleFocus() {
+        handleFocus(event) {
             $('.form-item input').removeClass('selected');
             $('.form-item').removeClass('selected');
+            $(event.target).addClass('selected');
+        },
+        format() {
+            let numericValue = this.formattedValue.replace(/\D/g, '');
+
+            let formattedValue = numericValue.replace(
+                /\B(?=(\d{3})+(?!\d))/g,
+                '.'
+            );
+            this.formattedValue = formattedValue;
+            this.value = numericValue;
+        },
+        addCurrency() {
+            const arr = this.formattedValue.split('đồng');
+            if (this.formattedValue.length > 0 && arr.length <= 1) {
+                this.formattedValue += ' đồng';
+            }
+        },
+        payment() {
+            var val = $('input.selected').val().replace(/\D/g, '');
+            const payload = {
+                title: this.paramSends.title,
+                amount: val
+            };
+            repository
+                .post(`help/post/${this.paramSends.id}`, payload)
+                .then((res) => {
+                    let data = res.data;
+                    if (data.Code == 200 && data.Data) {
+                        const url = data.Data.url;
+                        window.open(url, '_blank');
+                    }
+                });
         }
     }
 };

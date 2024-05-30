@@ -1,6 +1,8 @@
 <script>
 import axios from 'axios';
 import template from './template.html';
+import helpers from '@/utils/helpers';
+import repository from '@/repository';
 import './style.scss';
 export default {
     name: 'FileUpload',
@@ -133,21 +135,28 @@ export default {
             }
         },
         resetFileInput() {
-            this.uploadReady = false;
-            this.$nextTick(() => {
-                this.uploadReady = true;
-                this.file = {
-                    name: '',
-                    size: 0,
-                    type: '',
-                    data: '',
-                    fileExtention: '',
-                    url: '',
-                    isImage: false,
-                    isUploaded: false
-                };
-                this.$emit('update:modelValue', null);
-            });
+            try {
+                this.uploadReady = false;
+                this.$nextTick(async () => {
+                    this.uploadReady = true;
+                    const publicId = helpers.getPublicIdFromUrl(this.file.url);
+                    await repository.delete(publicId).then(() => {
+                        this.file = {
+                            name: '',
+                            size: 0,
+                            type: '',
+                            data: '',
+                            fileExtention: '',
+                            url: '',
+                            isImage: false,
+                            isUploaded: false
+                        };
+                        this.$emit('update:modelValue', null);
+                    });
+                });
+            } catch (e) {
+                console.log('Remove image in file upload: ' + e.message);
+            }
         }
     }
 };

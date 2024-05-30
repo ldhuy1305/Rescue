@@ -9,6 +9,8 @@
       <hr>
       <div class="post">
         <Input id ='title' placeholder="Tiêu đề" v-model ='detail.title'></Input>
+        <fileUpload id ='image' :maxSize="5" accept="jpg" @file-uploaded="getUploadedData" v-model ='detail.image'></fileUpload>
+        <Input type="textarea" :rows = '3' id ='sapo' placeholder="Tóm tắt nội dung" v-model ='detail.sapo'></Input>
         <div v-for="(content, index) in contents" :key="index" :id="'content-' + index" class="content">
           <button @click="removeContent(index)">X</button>
           <fileUpload :maxSize="5" accept="jpg" @file-uploaded="getUploadedData" v-model ='contents[index].file'></fileUpload>

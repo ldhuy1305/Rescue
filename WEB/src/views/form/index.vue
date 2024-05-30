@@ -3,6 +3,8 @@ import store from '@/store';
 import template from './template.html';
 import './style.scss';
 import { mapMutations, mapState, mapActions } from 'vuex';
+import helpers from '@/utils/helpers';
+
 import formStore from '@/views/form/store';
 import Select from '@/components/select';
 import Input from '@/components/input';
@@ -67,9 +69,29 @@ const form = {
         //     // this.removeDescription(index);
         // },
         saveData() {
+            let wardName = helpers.findObjectInArrayByKey(
+                this.location.wards,
+                'code',
+                this.detail.ward
+            ).name;
+            let districtName = helpers.findObjectInArrayByKey(
+                this.location.districts,
+                'code',
+                this.detail.district
+            ).name;
+            let cityName = helpers.findObjectInArrayByKey(
+                this.location.cities,
+                'code',
+                this.detail.city
+            ).name;
+            const payload = {
+                ...this.detail,
+                address: `${this.detail.address}, ${wardName} , ${districtName}, ${cityName}`
+            };
             this.removeNullContent();
+            console.log(payload);
             this.save({
-                post: this.detail,
+                post: payload,
                 content: this.contents
             });
         }

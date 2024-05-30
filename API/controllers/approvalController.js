@@ -24,12 +24,12 @@ class approvalController {
         });
     });
     getAllApprovals = catchAsync(async (req, res) => {
-        const rs = await approvalModel.getAllApprovals(req.body);
+        console.log(req.query);
+        const rs = await approvalModel.getAllApprovals(req.query);
         res.status(200).json({
             Code: 200,
             Data: {
-                detail: rs[0][0],
-                content: rs[1],
+                list: rs[0],
             },
         });
     });

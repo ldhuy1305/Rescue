@@ -31,6 +31,8 @@ export default {
         },
         detail: {
             title: '',
+            image: '',
+            sapo: '',
             start_date: new Date(),
             end_date: new Date(),
             city: '',
@@ -41,9 +43,6 @@ export default {
         contents: []
     },
     mutations: {
-        // setWard(context, code) {
-        //     context.state.wards = wards[code];
-        // },
         setCities(state, payload) {
             state.location.cities = payload;
         },
@@ -61,6 +60,9 @@ export default {
         },
         removeNullContent(state) {
             state.contents.filter((item) => Object.keys(item).length !== 0);
+        },
+        removeImage(state) {
+            state.detail.image = '';
         }
     },
     actions: {

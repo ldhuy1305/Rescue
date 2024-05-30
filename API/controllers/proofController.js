@@ -9,12 +9,6 @@ const cloudinary = require("cloudinary").v2;
 class proofController {
     // updateImage = fileUploader.array("images", 10);
     createProof = catchAsync(async (req, res, next) => {
-        // console.log(req.files);
-        // if (req.files) {
-        //     req.files.forEach((file) => {
-        //         cloudinary.uploader.destroy(file.filename);
-        //     });
-        // }
         for (let i = 0; i < req.body.content.length; i++) {
             let params = {
                 ...req.body.content[i],
@@ -33,7 +27,12 @@ class proofController {
             api_key: process.env.CLOUDINARY_KEY,
             api_secret: process.env.CLOUDINARY_SECRET,
         });
-        await cloudinary.uploader.destroy(req.params.publicId);
+        try {
+            const id = req.query.folder
+                ? `${req.query.folder}/${req.params.publicId}`
+                : req.params.publicId;
+            await cloudinary.uploader.destroy(id);
+        } catch (error) {}
         res.status(200).json({
             Code: 200,
             Data: req.params.publicId,
