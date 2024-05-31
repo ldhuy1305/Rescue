@@ -20,7 +20,7 @@ class userController {
         const rs = await userModel.createUser(user);
         jwtToken.generateAndSendJWTToken(req.account, 200, res, req, true);
     });
-    getUserByMe = catchAsync(async (req, res) => {
+    getUserByMe = catchAsync(async (req, res, next) => {
         if (req.user != undefined) {
             res.status(200).json({
                 Code: 200,
@@ -30,7 +30,7 @@ class userController {
             return next(new appError("Không tìm thấy người dùng!", 404));
         }
     });
-    updateUser = catchAsync(async (req, res) => {
+    updateUser = catchAsync(async (req, res, next) => {
         if (req.user != undefined) {
             let body = {
                 id: req.user.id,

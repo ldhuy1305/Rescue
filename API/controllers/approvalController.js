@@ -24,7 +24,6 @@ class approvalController {
         });
     });
     getAllApprovals = catchAsync(async (req, res) => {
-        console.log(req.query);
         const rs = await approvalModel.getAllApprovals(req.query);
         res.status(200).json({
             Code: 200,

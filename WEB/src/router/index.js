@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import mainRouter from './main-router';
 import formRouter from './form-router';
+import userRouter from './user-router';
 // import store from '@/store';
 // import _ from 'lodash';
 
@@ -47,7 +48,10 @@ const baseRoutes = [
         redirect: '/404'
     }
 ];
-const routes = mainRouter.concat(baseRoutes).concat(formRouter);
+const routes = mainRouter
+    .concat(baseRoutes)
+    .concat(formRouter)
+    .concat(userRouter);
 const router = createRouter({
     // eslint-disable-next-line no-undef
     history: createWebHistory(),

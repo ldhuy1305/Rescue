@@ -1,4 +1,5 @@
 import repository from './repository';
+import Router from '@/router';
 export default {
     namespaced: true,
     state: {
@@ -27,9 +28,15 @@ export default {
         getInitData(context, payload) {
             try {
                 repository.getPost(payload).then((res) => {
-                    let data = res.data.Data;
-                    context.commit('setDetail', data.detail);
-                    context.commit('setContent', data.content);
+                    let data = res.data;
+                    if (
+                        data.Code == 200 &&
+                        data.Data.detail &&
+                        data.Data.content
+                    ) {
+                        context.commit('setDetail', data.Data.detail);
+                        context.commit('setContent', data.Data.content);
+                    } else Router.push('/404');
                 });
             } catch (e) {
                 console.log('Action: ' + e.message);
