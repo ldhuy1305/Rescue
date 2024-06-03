@@ -2,13 +2,16 @@
     <div class="container">
         <div class="main-col">
             <div class="title">{{this.detail.title}}</div>
+            <div class="image">
+                <img :src="this.detail.image" alt="image" />
+            </div>
             <div class="sapo">{{this.detail.sapo}}</div>
             <div class="related"></div>
             <div class="body" v-for="(el,key) in this.content" :index="key">
-                <div class="image" v-if="el.image!=null">
+                <div class="image" v-if="el.image != null && el.image !=''">
                     <img :src="el.image" alt="image" />
                 </div>
-                <div class="content" v-if="el.description!=null">
+                <div class="content" v-if="el.description!=null && el.description !=''">
                     <p>{{el.description}}</p>
                 </div>
             </div>

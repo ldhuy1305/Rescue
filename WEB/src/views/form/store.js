@@ -2,8 +2,9 @@ import repository from './repository';
 import store from '../../store';
 import map from '../../utils/map';
 import helpers from '@/utils/helpers';
-import { MSG_TYPE } from '@/utils/messages';
+import { MSG_TITLE, MSG_TYPE } from '@/utils/messages';
 import router from '@/router';
+import moment from 'moment';
 // import axios from 'axios';
 // import _ from 'lodash';
 export default {
@@ -33,8 +34,8 @@ export default {
             title: '',
             image: '',
             sapo: '',
-            start_date: new Date(),
-            end_date: new Date(),
+            dateFrom: moment().format('YYYY-MM-DD'),
+            dateTo: moment().add(7, 'days').format('YYYY-MM-DD'),
             city: '',
             district: '',
             ward: '',
@@ -60,6 +61,12 @@ export default {
         },
         removeNullContent(state) {
             state.contents.filter((item) => Object.keys(item).length !== 0);
+        },
+        addDataNull(state) {
+            state.contents = state.contents.map((item) => ({
+                image: item.image || '',
+                description: item.description || ''
+            }));
         },
         removeImage(state) {
             state.detail.image = '';
@@ -159,6 +166,7 @@ export default {
                     if (data.Code == 200) {
                         store.commit('app/showModalMessage', {
                             type: MSG_TYPE.SUCCESS,
+                            title: MSG_TITLE.C999,
                             content: 'Bài đăng ký đã được gửi đi',
                             callback: (ok) => {
                                 if (ok) {
