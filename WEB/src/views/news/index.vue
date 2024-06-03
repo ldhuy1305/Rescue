@@ -14,7 +14,7 @@ import Paging from '@/components/pagination';
 import Input from '@/components/input';
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
-import Select from '@/components/select'
+import Select from '@/components/select';
 const News = {
     name: 'News',
     template: template,
@@ -41,13 +41,21 @@ const News = {
     },
     methods: {
         ...mapMutations('app', ['showModalMessage']),
+        ...mapMutations('news', ['setPageAndSize']),
         ...mapActions('app', []),
         ...mapActions('news', [
-            'save',
             'getInitData',
             'getDistricts',
-            'getWards'
+            'getWards',
+            'search'
         ]),
+
+        setDistricts() {
+            this.getDistricts(this.conditions.city);
+        },
+        setWards() {
+            this.getWards(this.conditions.district);
+        },
         readMore(news) {
             this.$router.push({
                 name: 'post',
@@ -71,7 +79,14 @@ const News = {
             return date.toISOString().split('T')[0];
         },
         handleSearch() {
-            this.getInitData();
+            this.changeCurrentPage({
+                currentPage: 1,
+                perPage: this.listData.pagination.size
+            });
+        },
+        changeCurrentPage(data) {
+            this.setPageAndSize(data);
+            this.search();
         }
     },
     watch: {}

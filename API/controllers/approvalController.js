@@ -20,6 +20,7 @@ class approvalController {
             Data: {
                 detail: rs[0][0],
                 content: rs[1],
+                users: rs[2],
             },
         });
     });

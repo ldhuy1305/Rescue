@@ -22,6 +22,10 @@ export default {
         },
         setContent(state, payload) {
             state.content = payload;
+        },
+        setUsers(state, payload) {
+            state.users = payload;
+            console.log(payload);
         }
     },
     actions: {
@@ -32,10 +36,12 @@ export default {
                     if (
                         data.Code == 200 &&
                         data.Data.detail &&
-                        data.Data.content
+                        data.Data.content &&
+                        data.Data.users
                     ) {
                         context.commit('setDetail', data.Data.detail);
                         context.commit('setContent', data.Data.content);
+                        context.commit('setUsers', data.Data.users);
                     } else Router.push('/404');
                 });
             } catch (e) {

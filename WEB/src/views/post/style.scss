@@ -1,59 +1,86 @@
-@import "../../assets/scss/var";
+@import '../../assets/scss/var';
 
-.image img{
+.image img {
     max-width: 100%;
     display: block;
     margin: auto;
-    transform: translate3d(0, 0, 0);}
-#post{
+    transform: translate3d(0, 0, 0);
+}
+#post {
     display: flex;
     flex-wrap: wrap;
     background-color: rgb(224, 224, 224);
     display: flex;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
     margin-top: 50px;
     padding-bottom: 20px;
-    .container{
+    .container {
         display: flex;
         justify-content: space-between;
-        .main-col{
+        .main-col {
             background-color: #fff;
             padding: 20px;
             width: 60%;
             float: left;
-            .title{    
+            .title {
                 font-size: 2rem;
                 line-height: 3rem;
                 font-weight: 700;
-                font-family: roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+                font-family:
+                    roboto,
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    'Segoe UI',
+                    Roboto,
+                    'Helvetica Neue',
+                    Arial,
+                    sans-serif,
+                    'Apple Color Emoji',
+                    'Segoe UI Emoji',
+                    'Segoe UI Symbol',
+                    'Noto Color Emoji';
                 margin-bottom: 10px;
             }
 
-            .sapo{
+            .sapo {
                 font-size: 1rem;
                 line-height: 1.3rem;
                 font-weight: 700;
                 margin-bottom: 10px;
             }
-            .related{}
-            .body{
+            .related {
+            }
+            .body {
                 overflow-wrap: break-word;
                 font-size: 1.6rem;
                 line-height: 2.4rem;
-                .content p{             
+                margin-top: 20px;
+                .content p {
                     margin: 0px 0px 15px;
                     padding: 0px;
                     border: 0px;
                     text-align: justify;
                     font-size: 18px;
-                    font-family: roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+                    font-family:
+                        roboto,
+                        -apple-system,
+                        BlinkMacSystemFont,
+                        'Segoe UI',
+                        Roboto,
+                        'Helvetica Neue',
+                        Arial,
+                        sans-serif,
+                        'Apple Color Emoji',
+                        'Segoe UI Emoji',
+                        'Segoe UI Symbol',
+                        'Noto Color Emoji';
                 }
             }
-            .help{
+            .help {
                 display: flex;
                 justify-content: center;
-                button{
+                button {
                     border: 0 solid #000;
                     border-radius: 50px;
                     font-weight: bold;
@@ -61,46 +88,116 @@
                     margin: 0px 20px 0px 20px;
                     background-color: $primaryColor;
                     color: white;
-                  }
+                }
             }
         }
-        .sub-col{
-            position: relative;
+        .sub-col {
+            position: sticky;
+            top: 50px;
             width: 35%;
             height: 525px;
             overflow: hidden;
-            .slider{
-                width: 256px;
-                height:512px;
-                margin:50px auto;
-                overflow:hidden;
-                border-left:1px solid #ccc;
-                border-right:1px solid #ccc;
-                &__row{
-                  display:flex;
-                  flex-direction: column;
-                  
-                  position:relative;
-                  top: 0;
-                  left: 0;
-                  height: 1536px;
-                  overflow:hidden;
-                  
-                  transition:.5s;
+            background-color: #fff;
+            padding: 20px;
+            // .slider {
+            //     margin: 50px auto;
+            //     overflow: hidden;
+            //     .marquee {
+            //         .user {
+            //             animation: marquee 8s linear infinite;
+            //             margin-top: 15px;
+            //             display: flex;
+            //             align-items: center;
+            //             .avatar {
+            //                 border: 1px solid #d7d7d7;
+            //                 border-radius: 50%;
+            //                 height: 60px;
+            //                 width: 60px;
+            //                 margin-right: 10px;
+            //             }
+            //             p{
+            //                 margin: 0 !important;
+            //             }
+            //         }
+            //     }
+
+            //     @keyframes marquee {
+            //         from {
+            //             transform: translateY(-100%);
+            //         }
+
+            //         to {
+            //             transform: translateY(0);
+            //         }
+            //     }
+            // }
+            .header {
+                font-size: 2rem;
+                font-weight: bold;
+                align-self: center;
+                z-index: 1;
+                position: relative;
+            }
+            .slider {
+                overflow: hidden;
+                z-index: 0;
+                position: relative;
+                height: 100%;
+                .marquee {
+                    display: flex;
+                    flex-direction: column;
+                    top: 0;
+                    animation: marquee 8s linear infinite;
+                    .user {
+                        margin-top: 15px;
+                        display: flex;
+                        align-items: center;
+                        font-size: 24px;
+                        .avatar {
+                            border: 1px solid #d7d7d7;
+                            border-radius: 50%;
+                            height: 80px;
+                            width: 80px;
+                            margin-right: 20px;
+                        }
+
+                        p {
+                            margin: 0 !important;
+                        }
+                        .amount{
+                            margin-top: 10px;
+                            font-weight: 500;
+                            font-size: 24px;
+                        }
+                    }
                 }
-              }       
+
+                @keyframes marquee {
+                    0% {
+                        transform: translateY(100%);
+                    }
+                    100% {
+                        transform: translateY(-100%);
+                    }
+                }
             }
         }
-        .popup-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); // Optional: for a semi-transparent background
-            z-index: 1000;
-          }
     }
+    .popup-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(
+            0,
+            0,
+            0,
+            0.5
+        ); // Optional: for a semi-transparent background
+        z-index: 1000;
+    }
+}

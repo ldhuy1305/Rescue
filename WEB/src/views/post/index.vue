@@ -35,7 +35,7 @@ const Post = {
         };
     },
     computed: {
-        ...mapState('post', ['detail', 'content'])
+        ...mapState('post', ['detail', 'content','users'])
     },
     methods: {
         ...mapMutations('post', [
@@ -54,6 +54,15 @@ const Post = {
         ]),
         onFileChanged() {},
         onClick() {},
+        format(value) {
+            let formattedValue = value
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            if (formattedValue.length > 0) {
+                formattedValue += ' đồng';
+            }
+            return formattedValue;
+        },
         setDistricts() {
             this.getDistricts(this.detail.city);
         },
