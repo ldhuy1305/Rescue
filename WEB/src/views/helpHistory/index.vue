@@ -1,18 +1,20 @@
 <script>
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
-import Input from '@/components/input';
+import moment from 'moment';
 
 import { mapActions, mapMutations, mapState } from 'vuex';
 import messages from '@/utils/messages';
 import template from './template.html';
 import './style.scss';
-
 import store from '@/store';
-import helpHistoryStore from '@/views/helpHistory/store';
-import moment from 'moment';
 import helpers from '@/utils/helpers';
 import label from './label';
+import helpHistoryStore from '@/views/helpHistory/store';
+
+import Paging from '@/components/pagination';
+import Input from '@/components/input';
+import Select from '@/components/select';
 const helpHistory = {
     name: 'helpHistory',
     template: template,
@@ -25,7 +27,7 @@ const helpHistory = {
         this.getListHelps();
     },
 
-    components: { VueDatePicker, Input },
+    components: { VueDatePicker, Input, Paging, Select },
     beforeMount() {},
     mounted() {},
     beforeUpdate() {},
@@ -37,13 +39,13 @@ const helpHistory = {
     },
     computed: {
         ...mapState('app', ['user']),
-        ...mapState('helpHistory', ['conditions', 'listData'])
+        ...mapState('helpHistory', ['conditions', 'listData', 'options'])
     },
     methods: {
         ...mapMutations('app', ['showModalMessage']),
         ...mapActions('app', []),
         ...mapActions('helpHistory', ['getListHelps']),
-
+        ...mapMutations('helpHistory', ['setPageAndSize']),
         validateDate() {
             if (
                 moment(this.conditions.dateTo) <
@@ -76,7 +78,20 @@ const helpHistory = {
             return date.toISOString().split('T')[0];
         },
         handleSearch() {
+            this.changeCurrentPage({
+                currentPage: 1,
+                perPage: this.listData.pagination.size
+            });
+        },
+        changeCurrentPage(data) {
+            this.setPageAndSize(data);
             this.getListHelps();
+        },
+        changePerPage() {
+            this.changeCurrentPage({
+                currentPage: 1,
+                perPage: this.listData.pagination.size
+            });
         }
     }
 };

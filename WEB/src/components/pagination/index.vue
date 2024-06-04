@@ -18,6 +18,7 @@ var Pagination = {
             type: [Number],
             default: 1
         },
+        options: Array,
         isDisabled: Boolean,
         onChange: Function
     },
@@ -36,6 +37,11 @@ var Pagination = {
                     currentPage: this.currentPage,
                     perPage: parseInt(this.perPage)
                 });
+            }
+        },
+        size(val) {
+            if (val) {
+                this.perPage =  parseInt(val);
             }
         },
         page(val) {

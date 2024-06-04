@@ -43,6 +43,19 @@
                         {{label.search}}
                     </button>
                 </div>
+            
+            </div>
+            <div class="pagination flex-r">
+                <Select class="col-sm-3 ms-2 m-b-16" id="ward" :options=options v-model="listData.pagination.size" :onChangeEvent="changePerPage"> </Select>
+                <td class="td-paging">
+                    <paging
+                        v-if="listData.list.length > 0"
+                        :size="listData.pagination.size"
+                        :total="listData.pagination.total"
+                        :page="listData.pagination.page"
+                        @change-page="changeCurrentPage"
+                    />
+                </td>
             </div>
                 <table class="history-table table table-sm table-bordered">
                     <thead class="table-secondary fix-header">
