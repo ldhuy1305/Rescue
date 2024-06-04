@@ -65,8 +65,14 @@
             }
 
             tr:nth-child(even) {
-                background-color: #ffffff; /* Màu trắng cho các dòng chẵn */
+                background-color: #ffffff; 
             }
         }
     }
+}
+.page-link.active, .active > .page-link {
+    z-index: 0;
+    color: var(--bs-pagination-active-color);
+    background-color: var(--bs-pagination-active-bg);
+    border-color: var(--bs-pagination-active-border-color);
 }

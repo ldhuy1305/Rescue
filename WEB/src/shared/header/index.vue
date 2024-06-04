@@ -21,12 +21,6 @@ const Header = {
     unmounted() {},
     data() {
         return {
-            links: [
-                { text: 'Trang', url: '/home' },
-                { text: 'About', url: '/about' },
-                { text: 'Services', url: '/services' },
-                { text: 'Contact', url: '/contact' }
-            ],
             dropdownVisible: false,
             isUser: false
         };
@@ -47,6 +41,9 @@ const Header = {
         },
         goToProfile() {
             this.$router.push('/user');
+        },
+        goToHelpHistory() {
+            this.$router.push('/user/helpHistory');
         },
         ...mapActions('app', ['getUser']),
         ...mapMutations('app', ['setUser'])
