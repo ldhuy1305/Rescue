@@ -6,50 +6,55 @@ var Pagination = {
     props: {
         id: String,
         itemClass: String,
-        modelValue: {
-            type: Object,
-            default: {
-                totalRecord: 0,
-                record: '',
-                page: 1,
-                maxpage: 1
-            }
+        size: {
+            type: [String, Number],
+            default: 10
         },
+        total: {
+            type: [String, Number],
+            default: 0
+        },
+        page: {
+            type: [Number],
+            default: 1
+        },
+        options: Array,
         isDisabled: Boolean,
         onChange: Function
     },
-    emits: ['update:modelValue'],
-    computed: {
-        paging() {
-            return {
-                totalRecord: parseInt(`${this.modelValue.totalRecord ?? 0}`),
-                record: this.modelValue.record ?? '',
-                page: parseInt(`${this.modelValue.page ?? 1}`),
-                maxpage: parseInt(`${this.modelValue.maxpage ?? 1}`)
-            };
-        },
-        canNext() {
-            return (this.paging.page ?? 1) < (this.paging.maxpage ?? 1);
-        },
-        canPrev() {
-            return (this.paging.page ?? 1) > 1;
-        }
+    data() {
+        return {
+            currentPage: this.page,
+            perPage: this.size
+        };
     },
-    data() {},
-    mounted() {
-    },
-    methods: {
-        updateInput(step) {
-            this.paging.page = (this.paging.page ?? 1) + step;
-            if (this.paging.page < 1) {
-                this.paging.page = 1;
+    mounted() {},
+    watch: {
+        perPage(val) {
+            if (val) {
+                this.currentPage = 1;
+                this.$emit('changePage', {
+                    currentPage: this.currentPage,
+                    perPage: parseInt(this.perPage)
+                });
             }
-            if (this.paging.page > (this.paging.maxpage ?? 1)) {
-                this.paging.page = this.paging.maxpage ?? 1;
+        },
+        size(val) {
+            if (val) {
+                this.perPage =  parseInt(val);
             }
-            this.$emit('update:modelValue', this.paging);
-            if (this.onChange) {
-                this.onChange(this.paging.page, this.paging);
+        },
+        page(val) {
+            if (val) {
+                this.currentPage = this.page;
+            }
+        },
+        currentPage(val) {
+            if (val) {
+                this.$emit('changePage', {
+                    currentPage: this.currentPage,
+                    perPage: parseInt(this.perPage)
+                });
             }
         }
     }

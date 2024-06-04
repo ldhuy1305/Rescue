@@ -61,6 +61,20 @@ class helpController {
             },
         });
     });
+    getAllHelps = catchAsync(async (req, res) => {
+        const userId = req.user.id;
+        const payload = {
+            userId,
+            ...req.query,
+        };
+        const rs = await helpModel.getAllHelps(payload);
+        res.status(200).json({
+            Code: 200,
+            Data: {
+                list: rs[0],
+            },
+        });
+    });
 }
 function sortObject(obj) {
     let sorted = {};

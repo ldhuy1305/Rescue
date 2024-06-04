@@ -2,13 +2,19 @@
     <div class="container">
         <div class="main-col">
             <div class="title">{{this.detail.title}}</div>
+            <div class="image">
+                <img :src="this.detail.image" alt="image" />
+            </div>
             <div class="sapo">{{this.detail.sapo}}</div>
             <div class="related"></div>
             <div class="body" v-for="(el,key) in this.content" :index="key">
-                <div class="image" v-if="el.image!=null">
+                <div class="image" v-if="el.image != null && el.image !=''">
                     <img :src="el.image" alt="image" />
                 </div>
-                <div class="content" v-if="el.description!=null">
+                <div
+                    class="content"
+                    v-if="el.description!=null && el.description !=''"
+                >
                     <p>{{el.description}}</p>
                 </div>
             </div>
@@ -17,44 +23,28 @@
             </div>
         </div>
         <div class="sub-col">
+            <div class="header">Danh sách người đã hỗ trợ</div>
             <div class="slider">
-                <div class="slider__row" id="row">
-                    <div class="row__item">
-                        <img
-                            src="https://cdn0.iconfinder.com/data/icons/famous-character-vol-1-colored/48/JD-21-256.png"
-                            alt="01"
-                        />
-                    </div>
-                    <div class="row__item">
-                        <img
-                            src="https://cdn0.iconfinder.com/data/icons/famous-character-vol-1-colored/48/JD-09-256.png"
-                            alt="02"
-                        />
-                    </div>
-                    <div class="row__item">
-                        <img
-                            src="https://cdn0.iconfinder.com/data/icons/famous-character-vol-1-colored/48/JD-18-256.png"
-                            alt="03"
-                        />
-                    </div>
-                    <div class="row__item">
-                        <img
-                            src="https://cdn0.iconfinder.com/data/icons/famous-character-vol-1-colored/48/JD-14-256.png"
-                            alt="04"
-                        />
-                    </div>
-                    <div class="row__item">
-                        <img
-                            src="https://cdn0.iconfinder.com/data/icons/famous-character-vol-1-colored/48/JD-22-256.png"
-                            alt="05"
-                        />
-                    </div>
-                    <div class="row__item">
-                        <img
-                            src="https://cdn4.iconfinder.com/data/icons/famous-characters-add-on-vol-1-flat/48/Famous_Character_-_Add_On_1-24-256.png"
-                            alt="06"
-                        />
-                    </div>
+                <div class="marquee">
+                    <template v-for="(item,key) in this.users">
+                        <div class="user" aria-hidden="true">
+                            <img
+                                class="avatar"
+                                :src="item.avatar"
+                                alt="image"
+                            />
+                            <div class="infor">
+                                <p>{{item.last_name}} {{item.first_name}}</p>
+                                <p>{{item.tel}}</p>
+
+                                <div class="amount">
+                                    <p>
+                                        Đã hỗ trợ {{format(item.total_amount)}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
                 </div>
             </div>
         </div>

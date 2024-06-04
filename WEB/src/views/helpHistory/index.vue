@@ -1,32 +1,33 @@
 <script>
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
+import moment from 'moment';
+
 import { mapActions, mapMutations, mapState } from 'vuex';
 import messages from '@/utils/messages';
 import template from './template.html';
 import './style.scss';
-import label from './label';
-
 import store from '@/store';
-import newsStore from '@/views/news/store';
 import helpers from '@/utils/helpers';
-import moment from 'moment';
+import label from './label';
+import helpHistoryStore from '@/views/helpHistory/store';
 
 import Paging from '@/components/pagination';
 import Input from '@/components/input';
-import VueDatePicker from '@vuepic/vue-datepicker';
-import '@vuepic/vue-datepicker/dist/main.css';
 import Select from '@/components/select';
-const News = {
-    name: 'News',
+const helpHistory = {
+    name: 'helpHistory',
     template: template,
-    components: { Paging, Input, Select, VueDatePicker },
     beforeCreate() {
-        if (!store.hasModule('news')) {
-            store.registerModule('news', newsStore);
+        if (!store.hasModule('helpHistory')) {
+            store.registerModule('helpHistory', helpHistoryStore);
         }
     },
     created() {
-        this.getInitData();
+        this.getListHelps();
     },
+
+    components: { VueDatePicker, Input, Paging, Select },
     beforeMount() {},
     mounted() {},
     beforeUpdate() {},
@@ -34,36 +35,17 @@ const News = {
     beforeUnmount() {},
     unmounted() {},
     data() {
-        return { label: label };
+        return { date: null, label: label };
     },
     computed: {
-        ...mapState('news', ['listData', 'conditions', 'location'])
+        ...mapState('app', ['user']),
+        ...mapState('helpHistory', ['conditions', 'listData', 'options'])
     },
     methods: {
         ...mapMutations('app', ['showModalMessage']),
-        ...mapMutations('news', ['setPageAndSize']),
         ...mapActions('app', []),
-        ...mapActions('news', [
-            'getInitData',
-            'getDistricts',
-            'getWards',
-            'search'
-        ]),
-
-        setDistricts() {
-            this.getDistricts(this.conditions.city);
-        },
-        setWards() {
-            this.getWards(this.conditions.district);
-        },
-        readMore(news) {
-            this.$router.push({
-                name: 'post',
-                query: {
-                    p: helpers.encodeParams(news.id)
-                }
-            });
-        },
+        ...mapActions('helpHistory', ['getListHelps']),
+        ...mapMutations('helpHistory', ['setPageAndSize']),
         validateDate() {
             if (
                 moment(this.conditions.dateTo) <
@@ -73,6 +55,23 @@ const News = {
             }
             // eslint-disable-next-line no-undef
             else $(`.item-error`).RemoveError();
+        },
+        goToPost(id) {
+            this.$router.push({
+                name: 'post',
+                query: {
+                    p: helpers.encodeParams(id)
+                }
+            });
+        },
+        format(value) {
+            let formattedValue = value
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            if (formattedValue.length > 0) {
+                formattedValue += ' đồng';
+            }
+            return formattedValue;
         },
         formatDate(dateString) {
             const date = new Date(dateString);
@@ -86,10 +85,15 @@ const News = {
         },
         changeCurrentPage(data) {
             this.setPageAndSize(data);
-            this.search();
+            this.getListHelps();
+        },
+        changePerPage() {
+            this.changeCurrentPage({
+                currentPage: 1,
+                perPage: this.listData.pagination.size
+            });
         }
-    },
-    watch: {}
+    }
 };
-export default News;
+export default helpHistory;
 </script>

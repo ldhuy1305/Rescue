@@ -1,0 +1,78 @@
+@import '@/assets/scss/util';
+@import '@/assets/scss/var';
+
+.history-switch {
+    display: -ms-flexbox;
+    display: flex;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.history-switch .active.now {
+    font-size: 18px;
+    font-weight: 700;
+    padding: 5px 25px;
+    border-radius: 5px 5px 0 0;
+    cursor: default;
+    background-color: #fff;
+    margin-bottom: -1px;
+    border: 1px solid #ebebeb;
+    border-bottom: 0;
+    color: $primaryColor;
+}
+
+.filter-table {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin: 10px;
+    width: 100%;
+    .filter-table-item {
+        display: flex;
+        align-items: center;
+        flex: 0 0 auto;
+        width: auto;
+        max-width: none;
+        min-width: 0;
+        margin: 0 15px;
+        white-space: nowrap !important;
+        .filter-table-label {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .filter-table-input {
+            display: inline-block;
+            width: 150px;
+        }
+
+        button.btn-sm {
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            &:hover {
+                background-color: #0056b3;
+            }
+        }
+    }
+    .history-table {
+        tbody {
+            tr:nth-child(odd) {
+                background-color: #f0f0f0; /* Màu xám cho các dòng lẻ */
+            }
+
+            tr:nth-child(even) {
+                background-color: #ffffff; 
+            }
+        }
+    }
+}
+.page-link.active, .active > .page-link {
+    z-index: 0;
+    color: var(--bs-pagination-active-color);
+    background-color: var(--bs-pagination-active-bg);
+    border-color: var(--bs-pagination-active-border-color);
+}

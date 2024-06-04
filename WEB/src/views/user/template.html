@@ -6,7 +6,7 @@
                 <div class="title-user">Tải ảnh đại diện</div>
                 <div class="row">
                     <div class="col-3">
-                        <div class="user-avatar-image">
+                        <div v-if="userData" class="user-avatar-image">
                             <img
                                 :src="userData.avatar"
                                 alt=""

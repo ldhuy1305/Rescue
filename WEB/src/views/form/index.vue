@@ -1,19 +1,24 @@
 <script>
+import moment from 'moment';
+import { mapMutations, mapState, mapActions } from 'vuex';
+
 import store from '@/store';
 import template from './template.html';
 import './style.scss';
-import { mapMutations, mapState, mapActions } from 'vuex';
 import helpers from '@/utils/helpers';
-
 import formStore from '@/views/form/store';
+import messages from '@/utils/messages';
+
 import Select from '@/components/select';
 import Input from '@/components/input';
 import fileUpload from '@/components/fileUpload';
-// import Input from '@components/input';
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
+
 const form = {
     name: 'Form',
     template: template,
-    components: { Select, Input, fileUpload },
+    components: { Select, Input, fileUpload, VueDatePicker },
     beforeCreate() {
         if (!store.hasModule('form')) {
             store.registerModule('form', formStore);
@@ -42,8 +47,8 @@ const form = {
             'setWard',
             'setDistricts',
             'addContent',
-            // 'removeDescription',
-            'removeNullContent'
+            'removeNullContent',
+            'addDataNull'
         ]),
         ...mapActions('form', [
             'getInitData',
@@ -64,10 +69,14 @@ const form = {
             this.fileSelected = true;
             this.file = file;
         },
-        // removeContent(index) {
-        //     this.removeImage();
-        //     // this.removeDescription(index);
-        // },
+
+        validateDate() {
+            if (moment(this.detail.dateTo) < moment(this.detail.dateFrom)) {
+                helpers.setItemError('dateFrom', messages.E008);
+            }
+            // eslint-disable-next-line no-undef
+            else $(`.item-error`).RemoveError();
+        },
         saveData() {
             let wardName = helpers.findObjectInArrayByKey(
                 this.location.wards,
@@ -89,7 +98,7 @@ const form = {
                 address: `${this.detail.address}, ${wardName} , ${districtName}, ${cityName}`
             };
             this.removeNullContent();
-            console.log(payload);
+            this.addDataNull();
             this.save({
                 post: payload,
                 content: this.contents

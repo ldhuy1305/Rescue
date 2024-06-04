@@ -1,14 +1,8 @@
-<div
-    class="row"
-    :class="itemClass"
->
-    <label
-        class="item-label"
-        :class="labelClass"
-        v-if="label && label != ''"
+<div :class="itemClass ?? row">
+    <label class="item-label" :class="labelClass" v-if="label && label != ''"
         >{{label}}</label
     >
-    <span v-if="isRequired" style="color: red;">*</span>
+    <span v-if="isRequired" style="color: red">*</span>
     <div class="input-group-sm" :class="{'input-group': isInputGroup}">
         <input
             v-if="type != 'textarea'"

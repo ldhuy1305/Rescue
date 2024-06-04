@@ -20,11 +20,11 @@ class approvalController {
             Data: {
                 detail: rs[0][0],
                 content: rs[1],
+                users: rs[2],
             },
         });
     });
     getAllApprovals = catchAsync(async (req, res) => {
-        console.log(req.query);
         const rs = await approvalModel.getAllApprovals(req.query);
         res.status(200).json({
             Code: 200,
