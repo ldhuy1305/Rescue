@@ -13,9 +13,14 @@ export default {
     C001: '',
     C002: 'Bạn có muốn lưu thông tin cá nhân không?',
     C003: 'Bạn có muốn đổi mật khẩu không?',
+    C004: 'Bạn có muốn phê duyệt bài viết này không?',
+    C005: 'Bạn có muốn từ chối bài viết này không?',
 
     // Success message
     S001: 'Đăng kí thành công. Vui lòng tải lại trang!',
+    S002: 'Đơn đã được duyệt thành công',
+    S003: 'Đơn đã được từ chối thành công',
+    
     // api error
     E400: 'Yêu cầu không hợp lệ. Vui lòng kiểm tra và thử lại.',
     E401: 'Bạn chưa được cấp quyền truy cập. Vui lòng đăng nhập và thử lại.',

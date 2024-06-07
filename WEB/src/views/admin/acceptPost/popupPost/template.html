@@ -1,0 +1,40 @@
+<div v-model="showModal" class="custom-modal post">
+    <div class="custom-modal-header">
+        <h5 class="modal-title">Thông tin bài viết</h5>
+        <button
+            type="button"
+            class="btn-close-popup"
+            aria-label="Close"
+            @click="close"
+        >
+            ×
+        </button>
+    </div>
+    <div class="custom-modal-body">
+        <div class="title">{{this.paramSends.detail?.title}}</div>
+        <div class="image">
+            <img :src="this.paramSends.detail?.image" alt="image" />
+        </div>
+        <div class="sapo">{{this.paramSends.detail?.sapo}}</div>
+        <div class="related"></div>
+        <div
+            class="body"
+            v-for="(el,key) in this.paramSends.content"
+            :index="key"
+        >
+            <div class="image" v-if="el.image != null && el.image !=''">
+                <img :src="el.image" alt="image" />
+            </div>
+            <div
+                class="content"
+                v-if="el.description!=null && el.description !=''"
+            >
+                <p>{{el.description}}</p>
+            </div>
+        </div>
+        <div class="approve">
+            <button class="app-btn" @click="approvePost(true)">Phê duyệt</button>
+            <button class="cncl-btn" @click="approvePost(false)">Từ chối</button>
+        </div>
+    </div>
+</div>

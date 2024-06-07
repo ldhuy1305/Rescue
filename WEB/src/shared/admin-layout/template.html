@@ -1,0 +1,13 @@
+<div class="dashboard" :class="[{'collapsed' : collapsed}]">
+    <sidebar-menu
+        :collapsed="collapsed"
+        :menu="menu"
+        :theme="selectedTheme"
+        :show-one-child="true"
+        @update:collapsed="onCollapse"
+        @itemClick="onItemClick"
+    ></sidebar-menu>
+    <router-view />
+</div>
+<modal-message />
+<Loading></Loading>

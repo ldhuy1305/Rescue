@@ -1,0 +1,30 @@
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+@import '@/assets/scss/common';
+* {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+#manage-user {
+    padding: 50px;
+    .header {
+        margin: 0px;
+        line-height: 1.5;
+        font-size: 24px;
+        font-weight: 400;
+    }
+}
+
+.status {
+    padding: 2px 10px;
+    border-radius: 30px;
+    width: 80%;
+    height: 100%;
+    &.red {
+        background: #f44336;
+    }
+    &.green {
+        background: #4caf50;
+    }
+    .text-status {
+        padding: 0px 5px;
+    }
+}

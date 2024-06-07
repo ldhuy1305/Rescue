@@ -1,0 +1,52 @@
+<div id="manage-user">
+    <div class="header">Lịch sử hỗ trợ</div>
+    <div class="content">
+        <div class="history-table-container">
+            <div class="pagination flex-r">
+                <SelectBox
+                    class="col-sm-3 ms-2 m-b-16"
+                    id="ward"
+                    :options="options"
+                    v-model="listData.pagination.size"
+                ></SelectBox>
+                <td class="td-paging">
+                    <paging
+                        v-if="listData.list.length > 0"
+                        :size="listData.pagination.size"
+                        :total="listData.pagination.total"
+                        :page="listData.pagination.page"
+                        @change-page="changeCurrentPage"
+                    />
+                </td>
+            </div>
+            <table class="custom-table">
+                <thead class="fix-header">
+                    <tr>
+                        <th class="text-center">STT</th>
+                        <th class="text-center">Thời gian</th>
+                        <th class="text-left">Tên bài viết</th>
+                        <th class="text-left">Người hỗ trợ</th>
+                        <th class="text-center">Số tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-if="listData.list.length == 0">
+                        <td class="bg-gray-100 h-10 text-center" colspan="6">
+                            Không tìm thấy dữ liệu
+                        </td>
+                    </tr>
+                    <tr
+                        class="tr-hover"
+                        v-for="(item, i) in this.listData.list"
+                    >
+                        <td class="text-center">{{i + 1}}</td>
+                        <td class="text-center">{{formatDate(item.cre_at)}}</td>
+                        <td class="text-left">{{item.title}}</td>
+                        <td class="text-left">{{item.name}}</td>
+                        <td class="text-center">{{format(item.amount)}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

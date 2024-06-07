@@ -5,11 +5,12 @@
 <script>
 import MainLayout from '@/shared/main-layout';
 import EmptyLayout from '@/shared/empty-layout';
+import AdminLayout from '@/shared/admin-layout';
 // import { mapActions, mapMutations, mapState } from 'vuex';
 
 export default {
     name: 'App',
-    components: { MainLayout, EmptyLayout },
+    components: { MainLayout, EmptyLayout, AdminLayout },
     data() {
         return {
             layout: null

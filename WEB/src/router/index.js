@@ -2,19 +2,12 @@ import { createRouter, createWebHistory } from 'vue-router';
 import mainRouter from './main-router';
 import formRouter from './form-router';
 import userRouter from './user-router';
-// import store from '@/store';
-// import _ from 'lodash';
+import adminRouter from './admin-router';
 
-/**
- * Import component of view
- */
 const NotAccess = () => import('../views/common/403');
 const PageNotFound = () => import('../views/common/404');
 const ServerError = () => import('../views/common/500');
 
-/**
- * Defined some base router
- */
 const baseRoutes = [
     {
         path: '/404',
@@ -51,6 +44,7 @@ const baseRoutes = [
 const routes = mainRouter
     .concat(baseRoutes)
     .concat(formRouter)
+    .concat(adminRouter)
     .concat(userRouter);
 const router = createRouter({
     // eslint-disable-next-line no-undef
@@ -62,7 +56,16 @@ router.beforeEach((to, from, next) => {
     const checkPermission = () => {
         return true;
     };
-    const publicPages = ['/login', '/signup', '/home', '/403', '/404', '/500'];
+    const publicPages = [
+        '/login',
+        '/signup',
+        '/home',
+        '/403',
+        '/404',
+        '/500',
+        '/news',
+        '/form'
+    ];
     const authRequired = !publicPages.includes(to.path);
     const token = localStorage.getItem('token');
     const tokenTimeout = localStorage.getItem('tokenTimeout');
