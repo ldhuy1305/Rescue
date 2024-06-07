@@ -83,6 +83,26 @@ class userController {
             return next(new appError("Không tìm thấy người dùng!", 404));
         }
     });
+    getAllUsers = catchAsync(async (req, res, next) => {
+        const payload = req.query;
+        const rs = await userModel.getAllUsers(payload);
+        res.status(200).json({
+            Code: 200,
+            Data: {
+                list: rs[0],
+            },
+        });
+    });
+    getAllUsersByApprovalId = catchAsync(async (req, res, next) => {
+        const params = [req.params.id,req.query.page,req.query.size]
+        const rs = await userModel.getAllUsersByApprovalId(params);
+        res.status(200).json({
+            Code: 200,
+            Data: {
+                list: rs[0],
+            },
+        });
+    });
 }
 
 module.exports = new userController();

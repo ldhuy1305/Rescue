@@ -9,7 +9,7 @@
 			</div>
 			<div class="wrap-input" data-validate = "Password is required">
 				<i class="fa fa-lock first-icon" aria-hidden="true"></i>
-				<input class="input" id="password" :type="this.type" name="pass" placeholder="Mật khẩu" v-model="this.detail.password">
+				<input class="input" id="password" :type="this.type" name="pass" placeholder="Mật khẩu" v-model="this.detail.password" @keyup.enter="checkForm">
 				<i v-if ="isHidePassword" class="fa fa-eye-slash hide-icon" aria-hidden="true" @click=unHidePassword ></i>
 				<i v-else class="fa fa-eye hide-icon " aria-hidden="true" @click=hidePassword ></i>
 			</div>

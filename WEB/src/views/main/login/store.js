@@ -29,9 +29,10 @@ export default {
                             )
                         );
                         if (data.Data.user.role_id == 1)
-                            Router.push({
-                                name: 'home'
-                            });
+                            // Router.push({
+                            //     name: 'manageUser'
+                            // });
+                            Router.push('/admin/manage-user');
                         else
                             Router.push({
                                 name: 'home'

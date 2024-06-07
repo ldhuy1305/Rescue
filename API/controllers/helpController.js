@@ -75,6 +75,19 @@ class helpController {
             },
         });
     });
+
+    getAllHelpsByCommittee = catchAsync(async (req, res) => {
+        const payload = {
+            ...req.query,
+        };
+        const rs = await helpModel.getAllHelpsByCommittee(payload);
+        res.status(200).json({
+            Code: 200,
+            Data: {
+                list: rs[0],
+            },
+        });
+    });
 }
 function sortObject(obj) {
     let sorted = {};

@@ -87,19 +87,6 @@ const Post = {
             };
             this.showPopup = true;
         }
-        // autoPlay() {
-        //     timer = setTimeout(function () {
-        //         var row = document.getElementById('row');
-        //         this.toTop = this.toTop - 128;
-        //         if (this.toTop < -1152) {
-        //             this.toTop = 0;
-        //             clearTimeout(timer);
-        //             row.onmouseover = clearTimeout(timer);
-        //         }
-        //         row.style.top = this.toTop + 'px';
-        //         autoPlay();
-        //     }, 3000);
-        // }
     }
 };
 export default Post;

@@ -33,6 +33,26 @@ class approvalController {
             },
         });
     });
+
+    getAllApprovalsByCommittee = catchAsync(async (req, res) => {
+        const rs = await approvalModel.getAllApprovalsByCommittee(req.query);
+        res.status(200).json({
+            Code: 200,
+            Data: {
+                list: rs[0],
+            },
+        });
+    });
+
+    acceptApproval = catchAsync(async (req, res) => {
+        const params = [req.user.id, req.params.id, req.query.accept];
+        const rs = await approvalModel.acceptApproval(params);
+        console.log(rs);
+        res.status(200).json({
+            Code: 200,
+            Data: { rs },
+        });
+    });
 }
 
 module.exports = new approvalController();

@@ -14,6 +14,17 @@ class Help {
             return rs;
         } catch (err) {}
     }
+    async getAllHelpsByCommittee(params) {
+        try {
+            params = objectToArray(params);
+            const rs = await sql.executeSPC(
+                "get_all_helps_by_committee",
+                params,
+            );
+            return rs;
+        } catch (err) {}
+    }
+
     // async getHelp(id) {
     //     try {
     //         const rs = await sql.executeSPC("get_help", [id]);

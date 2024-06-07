@@ -1,0 +1,45 @@
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+@import '@/assets/scss/common';
+* {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+#manage-user {
+    padding: 50px;
+    .header {
+        margin: 0px;
+        line-height: 1.5;
+        font-size: 24px;
+        font-weight: 400;
+    }
+}
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        .fix-header {
+            background-color: #e9ecef;
+        }
+    }
+
+    tbody {
+        tr {
+            &:nth-child(odd) {
+                background-color: #f8f9fa;
+            }
+
+            &:nth-child(even) {
+                background-color: #ffffff;
+            }
+
+            &:hover {
+                background-color: #e0e0e0;
+            }
+
+            td {
+                padding: 8px;
+                border: 1px solid #ddd;
+            }
+        }
+    }
+}

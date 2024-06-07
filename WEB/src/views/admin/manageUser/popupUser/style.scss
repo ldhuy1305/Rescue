@@ -1,0 +1,167 @@
+@import '@/assets/scss/var';
+.custom-modal {
+    z-index: 1000;
+    width: 80%;
+    height: 80%;
+    overflow: auto;
+    .custom-modal-header {
+        background-color: #f5f5f5;
+        padding: 1rem;
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .modal-title {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .btn-close-popup {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            &:hover {
+                color: #ff0000;
+            }
+        }
+    }
+    .custom-modal-body {
+        background-color: #fff;
+        .now-detail-profile {
+            padding: 2rem;
+            float: right;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            box-shadow: 0 0 3px 0 rgba(50, 50, 50, 0.3);
+            .content-user-profile {
+                .user-avatar-image {
+                    display: flex;
+                    justify-content: center;
+                    img {
+                        width: 115px;
+                        height: 115px;
+                        border-radius: 50%;
+                    }
+                    margin: 20px 0;
+                }
+                .user-profile-update {
+                    padding: 30px;
+                    position: relative;
+
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        bottom: 0;
+                        left: 30px;
+                        right: 30px;
+                        height: 1px;
+                        background-color: #d7d7d7;
+                    }
+
+                    &:last-child:after {
+                        height: 0;
+                    }
+
+                    .title-user {
+                        font-weight: 700;
+                        font-size: 15px;
+                        color: var(--primary-color);
+                        padding-bottom: 20px;
+                        position: relative;
+
+                        .btn {
+                            position: absolute;
+                            top: -4px;
+                            right: 0;
+                        }
+                    }
+
+                    .show-error {
+                        font-size: 13px;
+                        font-style: italic;
+                        color: #cf2127;
+                        white-space: nowrap;
+                        position: absolute;
+                        left: 100%;
+                        top: 4px;
+                        margin-left: 15px;
+                    }
+
+                    .validate-pass {
+                        .form-control {
+                            padding-right: 15px;
+                        }
+                    }
+
+                    .validate {
+                        position: absolute;
+                        right: 3px;
+                        top: 4px;
+                        color: #6cc942;
+                    }
+
+                    .not-validate {
+                        position: absolute;
+                        right: 3px;
+                        top: 4px;
+                        color: #cf2127;
+                    }
+
+                    .list-phone {
+                        margin-bottom: 20px;
+
+                        .list-phone-row {
+                            padding: 5px 0;
+
+                            .phone-verified .fas {
+                                margin-right: 8px;
+                            }
+
+                            .btn-update-phone-number {
+                                margin-top: 20px;
+
+                                button {
+                                    padding-left: 20px;
+                                    padding-right: 20px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .txt-bold {
+                font-weight: 700 !important;
+            }
+            .form-group {
+                margin-bottom: 1rem;
+                .custom-file-image {
+                    .label-custom {
+                        background-color: #ebebeb;
+                        border-radius: 3px;
+                        color: #000;
+                        cursor: pointer;
+                        font-size: 14px;
+                        margin-bottom: 0;
+                        margin-right: 10px;
+                        padding: 3px 18px 4px;
+                        text-transform: capitalize;
+                    }
+                    .font-italic.font13 {
+                        font-style: italic !important;
+                        font-size: 0.813rem !important;
+                    }
+                }
+            }
+            .txt-red {
+                color: red;
+            }
+            .mb-10 {
+                margin-bottom: 5px !important;
+            }
+        }
+    }
+}

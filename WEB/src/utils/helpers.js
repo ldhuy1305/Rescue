@@ -1,6 +1,6 @@
 import messages from './messages';
 // import store from '@/store';
-// import moment from 'moment';
+import moment from 'moment';
 const helpers = {
     insertComma: (val) => {
         return (val + '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -308,6 +308,10 @@ const helpers = {
             }
         });
         return rs;
+    },
+    formatDate(date) {
+        const momentDate = moment.utc(date);
+        return momentDate.format('YYYY-MM-DD HH:mm:ss');
     }
 };
 export default helpers;

@@ -7,7 +7,7 @@ export default [
         name: 'home',
         component: home,
         meta: {
-            title: 'Home'
+            title: 'Trang chủ'
         }
     },
     {
@@ -15,7 +15,7 @@ export default [
         name: 'login',
         component: login,
         meta: {
-            title: 'Log in',
+            title: 'Đăng nhập',
             layout: 'EmptyLayout'
         }
     },

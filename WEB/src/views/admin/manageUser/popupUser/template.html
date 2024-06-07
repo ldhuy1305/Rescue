@@ -1,0 +1,87 @@
+<div v-model="showModal" class="custom-modal">
+    <div class="custom-modal-header">
+        <h5 class="modal-title">Thông tin người dùng</h5>
+        <button
+            type="button"
+            class="btn-close-popup"
+            aria-label="Close"
+            @click="close"
+        >
+            ×
+        </button>
+    </div>
+    <div class="custom-modal-body">
+        <div class="now-detail-profile">
+            <div class="content-user-profile">
+                <div class="user-avatar-image">
+                    <img :src="this.paramSends.avatar" alt="img" />
+                </div>
+                <div class="row form-group align-items-center">
+                    <div class="col-3 txt-bold">Họ và tên</div>
+                    <div class="col-4">
+                        <div class="input-group">
+                            <input
+                                name="name"
+                                id="name"
+                                type="text"
+                                class="form-control"
+                                disabled
+                                v-model="paramSends.name"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group align-items-center">
+                    <div class="col-3 txt-bold">Email</div>
+                    <div class="col-4">
+                        <div class="input-group">
+                            <input
+                                name="lastName"
+                                id="lastName"
+                                type="text"
+                                class="form-control"
+                                disabled
+                                v-model="paramSends.email"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group align-items-center">
+                    <div class="col-3 txt-bold">Số điện thoại</div>
+                    <div class="col-4">
+                        <div class="input-group">
+                            <input
+                                name="phoneNumber"
+                                type="text"
+                                class="form-control"
+                                id="phoneNumber"
+                                disabled
+                                v-model="paramSends.phoneNumber"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group align-items-center">
+                    <div class="col-3 txt-bold">Địa chỉ</div>
+                    <div class="col-6">
+                        <div class="input-group">
+                            <textarea
+                                name="address"
+                                id="address"
+                                type="text"
+                                class="form-control"
+                                cols="3"
+                                disabled
+                                style="
+                                    overflow-wrap: break-word;
+                                    resize: vertical;
+                                "
+                            >{{paramSends.address}}</textarea
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

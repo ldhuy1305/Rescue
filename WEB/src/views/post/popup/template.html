@@ -1,33 +1,88 @@
-<b-modal v-model="showModal" hide-header hide-footer class="custom-modal" :no-close-on-esc="true" :no-close-on-backdrop="true" @show="showPopup" @hidden="hidePopup">
-<div class="custom-modal-header">
-  <h5 class="modal-title">Chọn mức hỗ trợ</h5>
-  <button type="button" class="btn-close-popup" aria-label="Close" @click="close">×</button>
+<div v-model="showModal" class="custom-modal">
+    <div class="custom-modal-header">
+        <h5 class="modal-title">Chọn mức hỗ trợ</h5>
+        <button
+            type="button"
+            class="btn-close-popup"
+            aria-label="Close"
+            @click="close"
+        >
+            ×
+        </button>
+    </div>
+    <div class="custom-modal-body">
+        <div id="popup">
+            <div class="donation-amount">
+                <div class="form-item" tabindex="0">
+                    <input
+                        type="button"
+                        @click="handleClick"
+                        :class="isSelect ? 'select': '' "
+                        id="edit-submitted-donation-amount-1"
+                        value="10.000 đồng"
+                    />
+                </div>
+                <div class="form-item" tabindex="0">
+                    <input
+                        type="button"
+                        @click="handleClick"
+                        :class="isSelect ? 'select': '' "
+                        id="edit-submitted-donation-amount-2"
+                        value="20.000 đồng"
+                    />
+                </div>
+                <div class="form-item" tabindex="0">
+                    <input
+                        type="button"
+                        @click="handleClick"
+                        :class="isSelect ? 'select': '' "
+                        id="edit-submitted-donation-amount-3"
+                        value="50.000 đồng"
+                    />
+                </div>
+                <div class="form-item" tabindex="0">
+                    <input
+                        type="button"
+                        @click="handleClick"
+                        :class="isSelect ? 'select': '' "
+                        id="edit-submitted-donation-amount-4"
+                        value="100.000 đồng"
+                    />
+                </div>
+                <div class="form-item" tabindex="0">
+                    <input
+                        type="button"
+                        @click="handleClick"
+                        :class="isSelect ? 'select': '' "
+                        id="edit-submitted-donation-amount-5"
+                        value="200.000 đồng"
+                    />
+                </div>
+                <div
+                    class="form-item"
+                    id="webform-component-donation--other-amount"
+                    style="display: block"
+                >
+                    <input
+                        class="text-center input-other"
+                        @focus="handleFocus"
+                        @input="format"
+                        @blur="addCurrency"
+                        type="text"
+                        id="edit-submitted-donation-other-amount"
+                        v-model="formattedValue"
+                        size="10"
+                        maxlength="128"
+                        inputmode="numeric"
+                        placeholder="Số tiền khác"
+                        tabindex="-1"
+                    />
+                </div>
+            </div>
+
+            <div class="payment">
+                <button @click="payment">Thanh toán</button>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="custom-modal-body">
-  <div id="popup">
-      <div class="donation-amount">
-        <div class="form-item" tabindex="0">
-          <input type="button" @click="handleClick" :class="isSelect ? 'select': '' " id="edit-submitted-donation-amount-1" value="10.000 đồng">     
-        </div>
-        <div class="form-item" tabindex="0">
-          <input type="button" @click="handleClick" :class="isSelect ? 'select': '' " id="edit-submitted-donation-amount-2" value="20.000 đồng">
-        </div>
-        <div class="form-item" tabindex="0">
-          <input type="button" @click="handleClick" :class="isSelect ? 'select': '' " id="edit-submitted-donation-amount-3" value="50.000 đồng">       
-        </div>
-        <div class="form-item" tabindex="0">
-          <input type="button" @click="handleClick" :class="isSelect ? 'select': '' " id="edit-submitted-donation-amount-4" value="100.000 đồng">        
-        </div>
-        <div class="form-item" tabindex="0">
-          <input type="button" @click="handleClick" :class="isSelect ? 'select': '' " id="edit-submitted-donation-amount-5" value="200.000 đồng">        
-        </div>
-        <div class="form-item" id="webform-component-donation--other-amount" style="display: block;">
-          <input class="text-center input-other" @focus="handleFocus" @input="format" @blur="addCurrency" type="text" id="edit-submitted-donation-other-amount" v-model="formattedValue"  size="10" maxlength="128" inputmode="numeric" placeholder="Số tiền khác" tabindex="-1">
-      </div>
-  </div>
-  
-  <div class="payment" >
-    <button @click="payment">Thanh toán</button>
-  </div>
-</div>
-</b-modal>
