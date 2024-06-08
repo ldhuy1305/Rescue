@@ -1,5 +1,5 @@
 @import '@/assets/scss/util';
-@import '@/assets/scss/var';
+@import '@/assets/scss/common';
 
 .history-switch {
     display: -ms-flexbox;
@@ -58,19 +58,9 @@
             }
         }
     }
-    .history-table {
-        tbody {
-            tr:nth-child(odd) {
-                background-color: #f0f0f0; /* Màu xám cho các dòng lẻ */
-            }
-
-            tr:nth-child(even) {
-                background-color: #ffffff; 
-            }
-        }
-    }
 }
-.page-link.active, .active > .page-link {
+.page-link.active,
+.active > .page-link {
     z-index: 0;
     color: var(--bs-pagination-active-color);
     background-color: var(--bs-pagination-active-bg);

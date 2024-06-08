@@ -5,10 +5,10 @@
         <Input id="password"  placeholder="Mật khẩu" :maxLength="30" v-model="detail.password"/>
         <Input id="confirmPassword" placeholder="Xác nhận mật khẩu" :maxLength="30" v-model="detail.confirmPassword"/>
         <div class = 'group'>
-            <Input class="col-sm-6" id="lastName" placeholder="Họ" :maxLength="30" v-model="detail.lastName"/>
-            <Input class="col-sm-6" id="firstName" placeholder="Tên" :maxLength="30" v-model="detail.firstName"/>
+            <Input class="col-sm-5" id="lastName" placeholder="Họ" :maxLength="30" v-model="detail.lastName"/>
+            <Input class="col-sm-5" id="firstName" placeholder="Tên" :maxLength="30" v-model="detail.firstName"/>
         </div>
-        <Input id="phoneNumber" placeholder="Số điện thoại" :maxLength="30" v-model="detail.phoneNumber"/>
+        <Input id="phoneNumber" placeholder="Số điện thoại" :maxLength="10" v-model="detail.phoneNumber"/>
         <div class = 'group'>
             <Select class="col-sm-4" id="city" :options=this.location.cities :onChangeEvent="setDistricts" v-model="detail.city"></Select>
             <Select class="col-sm-4" id="district" :options=this.location.districts :onChangeEvent="setWards" v-model="detail.district"></Select>

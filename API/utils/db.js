@@ -2,12 +2,11 @@ const mysql = require("mysql");
 
 const config = {
     db: {
-        host: "localhost",
+        host: "14.225.218.151",
         user: "root",
-        password: "",
+        password: "duchuy123",
         database: "PBL7",
     },
-    listPerPage: 10,
 };
 
 const con = mysql.createConnection(config.db);

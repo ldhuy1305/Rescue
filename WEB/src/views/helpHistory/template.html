@@ -46,7 +46,8 @@
             
             </div>
             <div class="pagination flex-r">
-                <Select class="col-sm-3 ms-2 m-b-16" id="ward" :options=options v-model="listData.pagination.size" :onChangeEvent="changePerPage"> </Select>
+                <Select 
+                v-if="listData.list.length > 0" class="col-sm-3 ms-2 m-b-16" id="ward" :options=options v-model="listData.pagination.size" :onChangeEvent="changePerPage"> </Select>
                 <td class="td-paging">
                     <paging
                         v-if="listData.list.length > 0"
@@ -57,8 +58,8 @@
                     />
                 </td>
             </div>
-                <table class="history-table table table-sm table-bordered">
-                    <thead class="table-secondary fix-header">
+            <table class="custom-table">
+                <thead class="fix-header">
                         <tr>
                             <th class="text-center">STT</th>
                             <th class="text-center">Thời gian</th>
@@ -68,10 +69,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <template v-for="(item, i) in this.listData.list">
-                            <tr class="tr-hover">
+                        <tr v-if="this.listData.list.length == 0">
+                            <td class="bg-gray-100 h-10 text-center" colspan="6">
+                                Không tìm thấy dữ liệu
+                            </td>
+                        </tr>
+                        <tr
+                        class="tr-hover"
+                        v-for="(item, i) in this.listData.list"
+                    >
                                 <td class="text-center" style="width: 2%">
-                                    {{i}}
+                                    {{i + 1}}
                                 </td>
                                 <td class="text-left" style="width: 10%">
                                     {{formatDate(item.cre_at)}}
@@ -86,7 +94,6 @@
                                     {{format(item.amount)}} 
                                 </td>
                             </tr>
-                        </template>
                     </tbody>
                 </table>
         </div>

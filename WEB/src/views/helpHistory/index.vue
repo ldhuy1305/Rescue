@@ -74,9 +74,7 @@ const helpHistory = {
             return formattedValue;
         },
         formatDate(dateString) {
-            // const date = new Date(dateString);
-            // return date.toISOString().split('T')[0];
-            return helpers.formatDate(dateString);
+            return moment(dateString).format('YYYY-MM-DD HH:mm:ss');
         },
         handleSearch() {
             this.changeCurrentPage({
