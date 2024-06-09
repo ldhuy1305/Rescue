@@ -1,0 +1,1453 @@
+openapi: 3.0.3
+info:
+    title: Swagger PBL7 - OpenAPI 3.0
+    description: ""
+    contact:
+        email: ldhuydn1305@gmail.com
+    license:
+        name: Apache 2.0
+        url: http://www.apache.org/licenses/LICENSE-2.0.html
+    version: 1.0.11
+externalDocs:
+    description: Find out more about Swagger
+    url: http://swagger.io
+servers:
+    - url: http://localhost:9090/api/v1
+    - url: https://esgoo.net/api-tinhthanh
+tags:
+    - name: account
+    - name: user
+    - name: proof
+    - name: district
+    - name: ward
+    - name: transaction
+    - name: committee
+    - name: approval
+    - name: help
+paths:
+    /send-email:
+        post:
+            tags:
+                - account
+            summary: Send email
+            description: ""
+            operationId: sendEmail
+            requestBody:
+                description: ""
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: string
+                                    example: bongmaxuyentuong1@gmail.com
+                                password:
+                                    type: string
+                                    example: duchuy123@
+                                firstName:
+                                    type: string
+                                    example: Huy
+                                lastName:
+                                    type: string
+                                    example: Lê Đức
+                                phoneNumber:
+                                    type: string
+                                    example: 0948942954
+                                address:
+                                    type: string
+                                    example: K1/17 Hà Thị Thân, Phường An Hải Tây, Quận Sơn Trà, Thành phố Đà Nẵng
+            responses:
+                "200":
+                    description: Email sent successfully
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                    Data:
+                                        type: object
+                                    Message:
+                                        type: string
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            url: "http://localhost:8080/home?p=eyJlbWFpbCI6ImxkaHV5ZG4xMzA1QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiIiwiZmlyc3ROYW1lIjoiSHV5IiwiY3JlX2F0IjoiZnVuY3Rpb24gYXBwbHkoKSB7IFtuYXRpdmUgY29kZV0gfSJ90"
+                                        Message: "Mã đã được gửi đến email! Vui lòng kiểm tra"
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+
+    /account/signup:
+        post:
+            tags:
+                - account
+            summary: "Create a new account"
+            description: ""
+            operationId: Sign up User
+            requestBody:
+                description: ""
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: string
+                                    example: bongmaxuyentuong1@gmail.com
+                                password:
+                                    type: string
+                                    example: duchuy123@
+                                firstName:
+                                    type: string
+                                    example: Huy
+                                lastName:
+                                    type: string
+                                    example: Lê Đức
+                                phoneNumber:
+                                    type: string
+                                    example: 0948942954
+                                address:
+                                    type: string
+                                    example: K1/17 Hà Thị Thân, Phường An Hải Tây, Quận Sơn Trà, Thành phố Đà Nẵng
+            responses:
+                "200":
+                    description: Successful signup
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                        example: 200
+                                    Data:
+                                        type: object
+                                    Message:
+                                        type: string
+                                    DataErrors:
+                                        type: object
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ.DV7wFnZrk6qTYXLw4rAosU9CmwVlWzb17aL86R-RYhg
+                                            refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ.DV7wFnZrk6qTYXLw4rAosU9CmwVlWzb17aL86R-RYhg
+                                            timeout: 18000
+                                            account:
+                                                {
+                                                    id: 1,
+                                                    email: admin001@gmail.com,
+                                                    password: eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ,
+                                                    role_id: 1,
+                                                }
+                                        Message: ""
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+    /account/login:
+        post:
+            tags:
+                - account
+            summary: ""
+            description: ""
+            operationId: loginUser
+            requestBody:
+                description: ""
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: string
+                                    format: email
+                                    example: "admin001@gmail.com"
+                                password:
+                                    type: string
+                                    example: "admin001"
+            responses:
+                "200":
+                    description: Successful authentication
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                        example: 200
+                                    Data:
+                                        type: object
+                                    Message:
+                                        type: string
+                                    DataErrors:
+                                        type: object
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ.DV7wFnZrk6qTYXLw4rAosU9CmwVlWzb17aL86R-RYhg
+                                            refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ.DV7wFnZrk6qTYXLw4rAosU9CmwVlWzb17aL86R-RYhg
+                                            timeout: 18000
+                                            account:
+                                                {
+                                                    id: 1,
+                                                    email: admin001@gmail.com,
+                                                    password: eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ,
+                                                    role_id: 1,
+                                                }
+                                        Message: ""
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+    /account/forgot-password:
+        post:
+            tags:
+                - account
+            summary: ""
+            description: ""
+            requestBody:
+                description: ""
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: string
+                                    format: email
+                                    example: "bongmaxuyentuong1@gmail.com"
+            responses:
+                "200":
+                    description: Successful
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                        example: 200
+                                    Data:
+                                        type: object
+                                    Message:
+                                        type: string
+                                    DataErrors:
+                                        type: object
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            url: http://localhost:8080/home?p=eyJlbWFpbCI6ImxkaHV5ZG4xMzA1QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiIiwiZmlyc3ROYW1lIjoiSHV5IiwiY3JlX2F0IjoiZnVuY3Rpb24gYXBwbHkoKSB7IFtuYXRpdmUgY29kZV0gfSJ90
+                                            pass: kaHV5ZG4xMzA1QGdtYWlsLmNvb
+                                        Message: ""
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+    /user/me/change-password:
+        post:
+            tags:
+                - user
+            summary: ""
+            description: ""
+            security:
+                - bearerAuth: []
+            requestBody:
+                description: ""
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                oldPass:
+                                    type: string
+                                    example: "user001"
+                                newPass:
+                                    type: string
+                                    example: "user0012"
+                                confirmedPass:
+                                    type: string
+                                    example: "user0012"
+            responses:
+                "200":
+                    description: Successful
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                        example: 200
+                                    Data:
+                                        type: object
+                                    Message:
+                                        type: string
+                                    DataErrors:
+                                        type: object
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            account:
+                                                {
+                                                    id: 1,
+                                                    email: admin001@gmail.com,
+                                                    password: eyJpZCI6IjY1NTVkMjNkYmJiYTlhMDAwOGE4MTIzMCIsImlhdCI6MTcxMzAwMjkyMCwiZXhwIjoxNzEzODY2OTIwfQ,
+                                                    role_id: 1,
+                                                }
+                                        Message: ""
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+    /users:
+        get:
+            tags:
+                - user
+            summary: ""
+            description: ""
+            operationId: ""
+            security:
+                - bearerAuth: []
+            responses:
+                "200":
+                    description: Successful
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                        example: 200
+                                    Data:
+                                        type: object
+                                    Message:
+                                        type: string
+                                    DataErrors:
+                                        type: object
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            users:
+                                                [
+                                                    {
+                                                        id: 1,
+                                                        first_name: "Huy",
+                                                        last_name: "Lê Đức",
+                                                        avatar: "https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg",
+                                                        tel: "0948942954",
+                                                        address: "K1/17 Hà Thị Thân, Sơn Trà, Đà Nẵng",
+                                                        account_id: 1,
+                                                    },
+                                                    {
+                                                        id: 2,
+                                                        first_name: "Huy",
+                                                        last_name: "Lê Đức",
+                                                        avatar: "https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg",
+                                                        tel: "0948942954",
+                                                        address: "K1/15 Hà Thị Thân, Sơn Trà, Đà Nẵng",
+                                                        account_id: 2,
+                                                    },
+                                                ]
+                                        Message: ""
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+    /user/me:
+        get:
+            tags:
+                - user
+            summary: ""
+            description: ""
+            operationId: ""
+            security:
+                - bearerAuth: []
+            responses:
+                "200":
+                    description: Successful
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                        example: 200
+                                    Data:
+                                        type: object
+                                    Message:
+                                        type: string
+                                    DataErrors:
+                                        type: object
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            user:
+                                                {
+                                                    id: 1,
+                                                    first_name: "Huy",
+                                                    last_name: "Lê Đức",
+                                                    avatar: "https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg",
+                                                    tel: "0948942954",
+                                                    address: "K1/17 Hà Thị Thân, Sơn Trà, Đà Nẵng",
+                                                    account_id: 1,
+                                                }
+                                        Message: ""
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+        put:
+            tags:
+                - user
+            summary: ""
+            description: ""
+            operationId: ""
+            security:
+                - bearerAuth: []
+            requestBody:
+                description: ""
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/user"
+                        example:
+                            first_name: "Huy"
+                            last_name: "Lê Đức"
+                            avatar: "https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg"
+                            tel: "0948942954"
+                            address: "K1/17 Hà Thị Thân, Sơn Trà, Đà Nẵng"
+            responses:
+                "200":
+                    description: Successful
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                        example: 200
+                                    Data:
+                                        type: object
+                                    Message:
+                                        type: string
+                                    DataErrors:
+                                        type: object
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            id: 1
+                                            first_name: "Huy"
+                                            last_name: "Lê Đức"
+                                            avatar: "https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg"
+                                            tel: "0948942954"
+                                            address: "K1/17 Hà Thị Thân, Sơn Trà, Đà Nẵng"
+                                            account_id: 1
+                                        Message: ""
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+    /user/me/photo:
+        patch:
+            tags:
+                - user
+            summary: ""
+            description: ""
+            operationId: ""
+            security:
+                - bearerAuth: []
+            requestBody:
+                description: ""
+                content:
+                    multipart/form-data:
+                        schema:
+                            type: object
+                            properties:
+                                avatar:
+                                    type: string
+                                    format: binary
+            responses:
+                "200":
+                    description: Successful
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                        example: 200
+                                    Data:
+                                        type: object
+                                    Message:
+                                        type: string
+                                    DataErrors:
+                                        type: object
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            id: 1
+                                            first_name: "Huy"
+                                            last_name: "Lê Đức"
+                                            avatar: "https://example.com/new-avatar.jpg"
+                                            tel: "0948942954"
+                                            address: "K1/17 Hà Thị Thân, Sơn Trà, Đà Nẵng"
+                                            account_id: 1
+                                        Message: ""
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+    /proof:
+        post:
+            tags:
+                - proof
+            summary: ""
+            description: ""
+            operationId: ""
+            requestBody:
+                description: ""
+                content:
+                    multipart/form-data:
+                        schema:
+                            type: object
+                            properties:
+                                image:
+                                    type: string
+                                    format: binary
+            responses:
+                "200":
+                    description: Successful
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                        example: 200
+                                    Data:
+                                        type: object
+                                        properties:
+                                            image:
+                                                type: string
+
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            image: https://res.cloudinary.com/dcyg1qwdc/image/upload/v1711419867/cld-sample-2.jpg
+                                        Message: ""
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+    /proof/{id}:
+        delete:
+            tags:
+                - proof
+            summary: "Delete image in cloudinary"
+            description: ""
+            operationId: ""
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  description: The ID of the image to delete.
+                  schema:
+                      type: string
+                - name: folder
+                  in: query
+                  required: false
+                  description: The folder in Cloudinary where the image is located.
+                  schema:
+                      type: string
+            responses:
+                "200":
+                    description: Successful
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                        example: 200
+                                    Data:
+                                        type: object
+                                        properties:
+                                            message:
+                                                type: string
+
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            message: SUCCESS
+                                        Message: ""
+                                        DataErrors: {}
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+    /approval:
+        get:
+            tags:
+                - approval
+            summary: "Retrieve approval list"
+            description: "Retrieve a list of approvals based on specified query parameters."
+            operationId: "getApprovals"
+            parameters:
+                -   name: keyword
+                    in: query
+                    required: false
+                    description: "Keyword to search approvals"
+                    schema:
+                        type: string
+                -   name: dateFrom
+                    in: query
+                    required: false
+                    description: "Start date for the approval list"
+                    schema:
+                        type: string
+                        format: date
+                        example: "2024-05-01"
+                -   name: dateTo
+                    in: query
+                    required: false
+                    description: "End date for the approval list"
+                    schema:
+                        type: string
+                        format: date
+                        example: "2024-06-01"
+                -   name: page
+                    in: query
+                    required: false
+                    description: "Page number for pagination"
+                    schema:
+                        type: integer
+                        example: 1
+                -   name: size
+                    in: query
+                    required: false
+                    description: "Number of records per page"
+                    schema:
+                        type: integer
+                        example: 10
+            responses:
+                "200":
+                    description: Successful
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    Code:
+                                        type: integer
+                                        example: 200
+                                    Data:
+                                        type: object
+                            examples:
+                                Success:
+                                    summary: Successful
+                                    value:
+                                        Code: 200
+                                        Data:
+                                            list:
+                                                -   id: 38
+                                                    title: "Nhân rộng mô hình câu lạc bộ liên thế hệ tự giúp nhau"
+                                                    image: "https://res.cloudinary.com/dcyg1qwdc/image/upload/v1716969569/mock_data/06_4_cpy4jl.jpg"
+                                                    sapo: "(ĐCSVN) - Mô hình CLB Liên thế hệ tự giúp nhau theo Đề án 1533/QĐ-TTg giai đoạn 2016-2020 được triển khai mạnh mẽ và hoạt động rất hiệu quả tại các địa phương trong cả nước. Tại Tuyên Quang, việc triển khai thực hiện đã đạt được những kết quả đáng khích lệ, trở thành điểm đến, là sân chơi bổ ích, thiết thực, phù hợp với nhu cầu, tâm lý, lứa tuổi của người cao tuổi tại địa phương."
+                                                    start_date: "2024-05-29T17:00:00.000Z"
+                                                    end_date: "2024-05-29T17:00:00.000Z"
+                                                    records_on_page: 2
+                                                    page: 1
+                                                    total_records: 2
+                                                -   id: 39
+                                                    title: "Nhân rộng mô hình câu lạc bộ liên thế hệ tự giúp nhau"
+                                                    image: "https://res.cloudinary.com/dcyg1qwdc/image/upload/v1716969569/mock_data/06_4_cpy4jl.jpg"
+                                                    sapo: "(ĐCSVN) - Mô hình CLB Liên thế hệ tự giúp nhau theo Đề án 1533/QĐ-TTg giai đoạn 2016-2020 được triển khai mạnh mẽ và hoạt động rất hiệu quả tại các địa phương trong cả nước. Tại Tuyên Quang, việc triển khai thực hiện đã đạt được những kết quả đáng khích lệ, trở thành điểm đến, là sân chơi bổ ích, thiết thực, phù hợp với nhu cầu, tâm lý, lứa tuổi của người cao tuổi tại địa phương."
+                                                    start_date: "2024-05-29T17:00:00.000Z"
+                                                    end_date: "2024-05-29T17:00:00.000Z"
+                                                    records_on_page: 2
+                                                    page: 1
+                                                    total_records: 2
+                                Bad request:
+                                    $ref: "#/components/examples/bad_request"
+                                Not authentication:
+                                    $ref: "#/components/examples/not_auth"
+                                Not access:
+                                    $ref: "#/components/examples/not_access"
+                                Data invalid:
+                                    $ref: "#/components/examples/data_invalid"
+                                Exception:
+                                    $ref: "#/components/examples/exception"
+        post:
+          tags:
+            - approval
+          summary: "Tạo mới 1 đơn hỗ trợ"
+          description: ""
+          operationId: ""
+          requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      example: "Nhân rộng mô hình câu lạc bộ liên thế hệ tự giúp nhau"
+                    image:
+                      type: string
+                      example: "https://res.cloudinary.com/dcyg1qwdc/image/upload/v1716969569/mock_data/06_4_cpy4jl.jpg"
+                    sapo:
+                      type: string
+                      example: "(ĐCSVN) - Mô hình CLB Liên thế hệ tự giúp nhau theo Đề án 1533/QĐ-TTg giai đoạn 2016-2020 được triển khai mạnh mẽ và hoạt động rất hiệu quả tại các địa phương trong cả nước. Tại Tuyên Quang, việc triển khai thực hiện đã đạt được những kết quả đáng khích lệ, trở thành điểm đến, là sân chơi bổ ích, thiết thực, phù hợp với nhu cầu, tâm lý, lứa tuổi của người cao tuổi tại địa phương."
+                    address:
+                      type: string
+                      example: "K1/ 17 Hà Thị Thân, Phường An Hải Tây , Quận Sơn Trà, Thành phố Đà Nẵng"
+                    start_date:
+                      type: string
+                      format: date-time
+                      example: "2024-05-29T17:00:00.000Z"
+                    end_date:
+                      type: string
+                      format: date-time
+                      example: "2024-05-29T17:00:00.000Z"
+                    city:
+                      type: string
+                      example: "48"
+                    district:
+                      type: string
+                      example: "493"
+                    ward:
+                      type: string
+                      example: "20278"
+                    content:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          description:
+                            type: string
+                            description: "A detailed description associated with the approval."
+                            example: "Bà Hà Thị Ngọ, Trưởng Ban đại diện Hội Người cao tuổi tỉnh cho biết: Thực hiện Kế hoạch số 68/KH-UBND ngày 23/6/2020 của Ủy ban nhân dân tỉnh, sự chỉ đạo của Trung ương Hội Người cao tuổi Việt Nam. Ban đại diện Hội Người cao tuổi tỉnh phối hợp với Ban côn"
+                          image:
+                            type: string
+                            description: "URL of the image associated with this content."
+                            example: "https://res.cloudinary.com/dcyg1qwdc/image/upload/v1716969571/mock_data/08_1_y6que2.jpg"
+          responses:
+            "200":
+              description: ''
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      Code:
+                        type: integer
+                        example: 200
+                      Data:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 38
+                          title:
+                            type: string
+                            example: "Nhân rộng mô hình câu lạc bộ liên thế hệ tự giúp nhau"
+                          image:
+                            type: string
+                            example: "https://res.cloudinary.com/dcyg1qwdc/image/upload/v1716969569/mock_data/06_4_cpy4jl.jpg"
+                          sapo:
+                            type: string
+                            example: "(ĐCSVN) - Mô hình CLB Liên thế hệ tự giúp nhau theo Đề án 1533/QĐ-TTg giai đoạn 2016-2020 được triển khai mạnh mẽ và hoạt động rất hiệu quả tại các địa phương trong cả nước. Tại Tuyên Quang, việc triển khai thực hiện đã đạt được những kết quả đáng khích lệ, trở thành điểm đến, là sân chơi bổ ích, thiết thực, phù hợp với nhu cầu, tâm lý, lứa tuổi của người cao tuổi tại địa phương."
+                          address:
+                            type: string
+                            example: "K1/ 17 Hà Thị Thân, Phường An Hải Tây , Quận Sơn Trà, Thành phố Đà Nẵng"
+                          start_date:
+                            type: string
+                            format: date-time
+                            example: "2024-05-29T17:00:00.000Z"
+                          end_date:
+                            type: string
+                            format: date-time
+                            example: "2024-05-29T17:00:00.000Z"
+                          is_accepted:
+                            type: integer
+                            example: 1
+                          committee_id:
+                            type: integer
+                            nullable: true
+                            example: null
+                          city:
+                            type: string
+                            description: "The city code where the approval is located."
+                            example: "48"
+                          district:
+                            type: string
+                            description: "The district code where the approval is located."
+                            example: "493"
+                          ward:
+                            type: string
+                            description: "The ward code where the approval is located."
+                            example: "20278"
+                          content:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                description:
+                                  type: string
+                                  description: "A detailed description associated with the approval."
+                                  example: "Bà Hà Thị Ngọ, Trưởng Ban đại diện Hội Người cao tuổi tỉnh cho biết: Thực hiện Kế hoạch số 68/KH-UBND ngày 23/6/2020 của Ủy ban nhân dân tỉnh, sự chỉ đạo của Trung ương Hội Người cao tuổi Việt Nam. Ban đại diện Hội Người cao tuổi tỉnh phối hợp với Ban côn"
+                                image:
+                                  type: string
+                                  description: "URL of the image associated with this content."
+                                  example: "https://res.cloudinary.com/dcyg1qwdc/image/upload/v1716969571/mock_data/08_1_y6que2.jpg"
+            "400":
+              description: Bad Request
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      Code:
+                        type: integer
+                        example: 400
+                      Message:
+                        type: string
+                        example: "Invalid input data"
+            "500":
+              description: Internal Server Error
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      Code:
+                        type: integer
+                        example: 500
+                      Message:
+                        type: string
+                        example: "An unexpected error occurred"
+    /approval/{id}:
+      get:
+        tags:
+          - approval
+        summary: "Retrieve approval details by ID"
+        description: "Retrieve detailed information of a specific approval by its ID."
+        operationId: "getApprovalById"
+        parameters:
+          - name: id
+            in: path
+            required: true
+            description: "The ID of the approval to retrieve."
+            schema:
+              type: integer
+        responses:
+          "200":
+            description: Successful
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    Code:
+                      type: integer
+                      example: 200
+                    Data:
+                      type: object
+                examples:
+                  Success:
+                    summary: Successful
+                    value:
+                      Code: 200
+                      Data:
+                        detail:
+                          id: 38
+                          title: "Nhân rộng mô hình câu lạc bộ liên thế hệ tự giúp nhau"
+                          image: "https://res.cloudinary.com/dcyg1qwdc/image/upload/v1716969569/mock_data/06_4_cpy4jl.jpg"
+                          sapo: "(ĐCSVN) - Mô hình CLB Liên thế hệ tự giúp nhau theo Đề án 1533/QĐ-TTg giai đoạn 2016-2020 được triển khai mạnh mẽ và hoạt động rất hiệu quả tại các địa phương trong cả nước. Tại Tuyên Quang, việc triển khai thực hiện đã đạt được những kết quả đáng khích lệ, trở thành điểm đến, là sân chơi bổ ích, thiết thực, phù hợp với nhu cầu, tâm lý, lứa tuổi của người cao tuổi tại địa phương."
+                          address: "K1/ 17 Hà Thị Thân, Phường An Hải Tây , Quận Sơn Trà, Thành phố Đà Nẵng"
+                          start_date: "2024-05-29T17:00:00.000Z"
+                          end_date: "2024-05-29T17:00:00.000Z"
+                          is_accepted:
+                            type: "Buffer"
+                            data: [1]
+                          committee_id: null
+                          city: "48"
+                          district: "493"
+                          ward: "20278"
+                        content:
+                          - description: "Bà Hà Thị Ngọ, Trưởng Ban đại diện Hội Người cao tuổi tỉnh cho biết: Thực hiện Kế hoạch số 68/KH-UBND ngày 23/6/2020 của Ủy ban nhân dân tỉnh, sự chỉ đạo của Trung ương Hội Người cao tuổi Việt Nam. Ban đại diện Hội Người cao tuổi tỉnh phối hợp với Ban côn"
+                            image: "https://res.cloudinary.com/dcyg1qwdc/image/upload/v1716969571/mock_data/08_1_y6que2.jpg"
+                          - description: "Trong thời gian tới ban đại diện Hội Người cao tuổi tỉnh sẽ tổ chức tập huấn, hướng dẫn nghiệp vụ nhằm nâng cao chất lượng hiệu quả hoạt động, nhân rộng Câu lạc bộ cho Ban Chủ nhiệm Câu lạc bộ, cán bộ Hội Người cao tuổi các cấp và cá nhân có liên quan; Th"
+                            image: "https://res.cloudinary.com/dcyg1qwdc/image/upload/v1716969574/mock_data/9510966a86a14dff14b0_kyg8g9.jpg\r\n"
+    /1/0.htm:
+      get:
+        tags:
+          - city
+        summary: ""
+        description: ""
+        operationId: ""
+        responses:
+          "200":
+            description: Successful
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    error:
+                      type: integer
+                      example: 0
+                    error_text:
+                      type: string
+                      example: "Lấy dữ liệu tỉnh thành thành công..!"
+                    data_name:
+                      type: string
+                      example: "Tỉnh thành Việt Nam"
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          name_en:
+                            type: string
+                          full_name:
+                            type: string
+                          full_name_en:
+                            type: string
+                          latitude:
+                            type: string
+                          longitude:
+                            type: string
+                examples:
+                  Success:
+                    summary: Successful
+                    value:
+                      error: 0
+                      error_text: "Lấy dữ liệu tỉnh thành thành công..!"
+                      data_name: "Tỉnh thành Việt Nam"
+                      data: 
+                        - id: "89"
+                          name: "An Giang"
+                          name_en: "An Giang"
+                          full_name: "Tỉnh An Giang"
+                          full_name_en: "An Giang Province"
+                          latitude: "10.5392057"
+                          longitude: "105.2312822"
+                        - id: "77"
+                          name: "Bà Rịa - Vũng Tàu"
+                          name_en: "Ba Ria - Vung Tau"
+                          full_name: "Tỉnh Bà Rịa - Vũng Tàu"
+                          full_name_en: "Ba Ria - Vung Tau Province"
+                          latitude: "10.5738801"
+                          longitude: "107.3284362"
+
+    /2/{city_id}.htm:
+      get:
+        tags: 
+          - district
+        summary: Lấy dữ liệu quận huyện
+        parameters:
+          - name: city_id
+            in: path
+            required: true
+            schema:
+              type: string
+            description: ID của thành phố
+        responses:
+          '200':
+            description: Thành công
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    error:
+                      type: integer
+                      example: 0
+                    error_text:
+                      type: string
+                      example: "Lấy dữ liệu quận huyện thành công..!"
+                    data_name:
+                      type: string
+                      example: "Tỉnh An Giang"
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: "886"
+                          name:
+                            type: string
+                            example: "An Phú"
+                          name_en:
+                            type: string
+                            example: "An Phu"
+                          full_name:
+                            type: string
+                            example: "Huyện An Phú"
+                          full_name_en:
+                            type: string
+                            example: "An Phu District"
+                          latitude:
+                            type: string
+                            example: "10.835033150000001"
+                          longitude:
+                            type: string
+                            example: "105.10362474984248"
+    
+    /3/{district_cd}.htm:
+      get:
+        tags: 
+          - ward
+        summary: Lấy dữ liệu phường xã
+        parameters:
+          - name: district_cd
+            in: path
+            required: true
+            schema:
+              type: string
+            description: ID của quận huyện
+        responses:
+          '200':
+            description: Thành công
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    error:
+                      type: integer
+                      example: 0
+                    error_text:
+                      type: string
+                      example: "Lấy dữ liệu phường xã thành công..!"
+                    data_name:
+                      type: string
+                      example: "Huyện An Phú"
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          name_en:
+                            type: string
+                          full_name:
+                            type: string
+                          full_name_en:
+                            type: string
+                          latitude:
+                            type: string
+                          longitude:
+                            type: string
+                examples:
+                  Success:
+                    summary: Successful
+                    value:
+                      error: 0
+                      error_text: "Lấy dữ liệu tỉnh thành thành công..!"
+                      data_name: "Tỉnh thành Việt Nam"
+                      data: 
+                        - id: "30337"
+                          name: "An Phú"
+                          name_en: "An Phu"
+                          full_name: "Thị trấn An Phú"
+                          full_name_en: "An Phu Township"
+                          latitude: "10.8156859"
+                          longitude: "105.0906468"
+                        - id: "30373"
+                          name: "Đa Phước"
+                          name_en: "Da Phuoc"
+                          full_name: "Thị trấn Đa Phước"
+                          full_name_en: "Da Phuoc Township"
+                          latitude: "10.742935200000002"
+                          longitude: "105.11829060081865"
+    /help:
+      get:
+        tags:
+          - help
+        summary: "Danh sách hỗ trợ"
+        security:
+            - bearerAuth: []
+        parameters:
+          - name: title
+            in: query
+            required: false
+            schema:
+              type: string
+          - name: dateFrom
+            in: query
+            required: false
+            schema:
+              type: string
+              format: date
+          - name: dateTo
+            in: query
+            required: false
+            schema:
+              type: string
+              format: date
+          - name: page
+            in: query
+            required: false
+            schema:
+              type: integer
+              default: 1
+          - name: size
+            in: query
+            required: false
+            schema:
+              type: integer
+              default: 10
+        responses:
+          "200":
+            description: Successful
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    Code:
+                      type: integer
+                      example: 200
+                    Data:
+                      type: object
+                      properties:
+                        list:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              cre_at:
+                                type: string
+                                format: date-time
+                              title:
+                                type: string
+                              id:
+                                type: integer
+                              sapo:
+                                type: string
+                              amount:
+                                type: integer
+                              records_on_page:
+                                type: integer
+                              page:
+                                type: integer
+                              total_records:
+                                type: integer
+                examples:
+                  Success:
+                    summary: Successful
+                    value:
+                        Code: 200
+                        Data:
+                            list:
+                            - cre_at: "2024-05-30T17:00:00.000Z"
+                              title: "Nhân rộng mô hình câu lạc bộ liên thế hệ tự giúp nhau"
+                              id: 38
+                              sapo: "(ĐCSVN) - Mô hình CLB Liên thế hệ tự giúp nhau theo Đề án 1533/QĐ-TTg giai đoạn 2016-2020 được triển khai mạnh mẽ và hoạt động rất hiệu quả tại các địa phương trong cả nước. Tại Tuyên Quang, việc triển khai thực hiện đã đạt được những kết quả đáng khích lệ, trở thành điểm đến, là sân chơi bổ ích, thiết thực, phù hợp với nhu cầu, tâm lý, lứa tuổi của người cao tuổi tại địa phương."
+                              amount: 10000
+                              records_on_page: 1
+                              page: 1
+                              total_records: 1
+                        Message: ""
+                        DataErrors: {}
+                  Bad request:
+                      $ref: "#/components/examples/bad_request"
+                  Not authentication:
+                      $ref: "#/components/examples/not_auth"
+                  Not access:
+                      $ref: "#/components/examples/not_access"
+                  Data invalid:
+                      $ref: "#/components/examples/data_invalid"
+                  Exception:
+                      $ref: "#/components/examples/exception"
+    /help/post/{id}:
+      post:
+        tags:
+          - help
+        summary: "Hỗ trợ"
+        security:
+            - bearerAuth: []
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: integer
+        requestBody:
+                description: ""
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                amount:
+                                    type: integer
+                                    example: 100000
+        responses:
+          "200":
+            description: Successful
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    Code:
+                      type: integer
+                      example: 200
+                    Data:
+                      type: object
+                      properties:
+                        help:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            user_id:
+                              type: integer
+                            approval_id:
+                              type: integer
+                            amount:
+                              type: integer
+                        url:
+                          type: string
+                examples:
+                  Success:
+                    summary: Successful
+                    value:
+                        Code: 200
+                        Data:
+                            help:
+                              id: 1
+                              user_id: 13
+                              approval_id: 20
+                              amount: 100000
+                            url: https:localhost/user/helpHistory?vnp_Amount=16400000&vnp_BankCode=VNPAY&vnp_CardType=QRCODE&vnp_OrderInfo=Thanh+toan+cho+m%C3%A3+%C4%91%C6%A1n+h%C3%A0ng%3A66582ff7087d37000f4a0778&vnp_PayDate=20240530145120&vnp_ResponseCode=15&vnp_TmnCode=RNC7K06H&vnp_TransactionNo=0&vnp_TransactionStatus=02&vnp_TxnRef=66582ff7087d37000f4a0778&vnp_SecureHash=8dfd1060006303f6787f8280a082fc803ebbb5daac93076ed61f8b64c96e7fce1f39fe5795952131666e6808a314a998de00d8b9a23a04c99fb3af1fdbe29325
+                        Message: ""
+                        DataErrors: {}
+                  Bad request:
+                      $ref: "#/components/examples/bad_request"
+                  Not authentication:
+                      $ref: "#/components/examples/not_auth"
+                  Not access:
+                      $ref: "#/components/examples/not_access"
+                  Data invalid:
+                      $ref: "#/components/examples/data_invalid"
+                  Exception:
+                      $ref: "#/components/examples/exception"
+components:
+    schemas:
+        role:
+            type: object
+            properties:
+                id:
+                    type: integer
+                name:
+                    type: string
+        account:
+            type: object
+            properties:
+                id:
+                    type: integer
+                email:
+                    type: string
+                password:
+                    type: string
+                role_id:
+                    type: integer
+        user:
+            type: object
+            properties:
+                id:
+                    type: integer
+                first_name:
+                    type: string
+                last_name:
+                    type: string
+                avatar:
+                    type: string
+                tel:
+                    type: string
+                address:
+                    type: string
+                account_id:
+                    type: integer
+        proof:
+            type: object
+            properties:
+                image:
+                    type: string
+    examples:
+        "bad_request":
+            value:
+                Code: 400
+                Data: {}
+                Message: Bad request
+                DataErrors: {}
+        "not_auth":
+            value:
+                Code: 401
+                Data: {}
+                Message: Not authenticated
+                DataErrors: {}
+        "not_access":
+            value:
+                Code: 403
+                Data: {}
+                Message: Forbidden access
+                DataErrors: {}
+        "data_invalid":
+            value:
+                Code: 422
+                Data: {}
+                Message: Validation error
+                DataErrors: { "email": "email is error" }
+        "exception":
+            value:
+                Code: 500
+                Data: {}
+                Message: Server error
+                DataErrors:
+                    {
+                        Instance: ErrorException,
+                        Line: 37,
+                        File: account.js,
+                        Code: 0,
+                        Message: "Undefined mail",
+                    }
+    securitySchemes:
+        bearerAuth:
+            type: http
+            scheme: bearer
+            bearerFormat: JWT
