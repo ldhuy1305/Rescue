@@ -29,8 +29,8 @@ function route(app) {
     app.use("/api/v1/approval", approvalRoute);
     app.use("/api/v1/proof", proofRoute);
     app.use("/api/v1/help", helpRoute);
-
-    const file = fs.readFileSync("public/swagger.yaml", "utf8");
+    const file = fs.readFileSync(__dirname + "/swagger.yaml", "utf8");
+    const swaggerDocument = YAML.parse(file);
 
     app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
