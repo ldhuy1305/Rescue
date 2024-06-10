@@ -1,7 +1,7 @@
 const fs = require("fs");
 const YAML = require("yaml");
 const swaggerUi = require("swagger-ui-express");
-
+const fileSwagger = require("../swagger.json");
 const roleRoute = require("./role");
 const accountRoute = require("./account");
 const authRoute = require("./auth");
@@ -29,29 +29,7 @@ function route(app) {
     app.use("/api/v1/approval", approvalRoute);
     app.use("/api/v1/proof", proofRoute);
     app.use("/api/v1/help", helpRoute);
-    if (process.env.NODE_ENV == "development") {
-        const file = fs.readFileSync("./swagger.yaml", "utf8");
-        const swaggerDocument = YAML.parse(file);
-        app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-    } else
-        fetch("/swagger.yaml")
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                return response.text();
-            })
-            .then((yamlText) => {
-                const swaggerDocument = YAML.parse(yamlText);
-                console.log(swaggerDocument);
-                app.use(
-                    "/api-docs",
-                    swaggerUi.serve,
-                    swaggerUi.setup(swaggerDocument),
-                );
-            })
-            .catch((error) => console.log("Error:", error));
-
+    app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(fileSwagger));
     app.all("/*", (req, res, next) => {
         if (req.originalUrl === "/api-docs") {
             return next();
