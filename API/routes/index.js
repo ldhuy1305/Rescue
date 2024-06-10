@@ -33,7 +33,11 @@ function route(app) {
     app.use(
         "/api-docs",
         swaggerUi.serve,
-        swaggerUi.setup(fileSwagger, { customCssUrl: CSS_URL }),
+        swaggerUi.setup(fileSwagger, {
+            customCss:
+                ".swagger-ui .opblock .opblock-summary-path-description-wrapper { align-items: center; display: flex; flex-wrap: wrap; gap: 0 10px; padding: 0 10px; width: 100%; }",
+            customCssUrl: CSS_URL,
+        }),
     );
     app.all("/*", (req, res, next) => {
         if (req.originalUrl === "/api-docs") {
