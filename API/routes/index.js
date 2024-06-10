@@ -13,7 +13,8 @@ const transactionRoute = require("./transaction");
 const approvalRoute = require("./approval");
 const proofRoute = require("./proof");
 const helpRoute = require("./help");
-
+const CSS_URL =
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
 const globalErrorHandler = require("../controllers/errorController");
 const appError = require("../utils/appError");
 
@@ -29,7 +30,11 @@ function route(app) {
     app.use("/api/v1/approval", approvalRoute);
     app.use("/api/v1/proof", proofRoute);
     app.use("/api/v1/help", helpRoute);
-    app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(fileSwagger));
+    app.use(
+        "/api-docs",
+        swaggerUi.serve,
+        swaggerUi.setup(fileSwagger, { customCssUrl: CSS_URL }),
+    );
     app.all("/*", (req, res, next) => {
         if (req.originalUrl === "/api-docs") {
             return next();
