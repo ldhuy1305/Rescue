@@ -14,7 +14,7 @@ const approvalRoute = require("./approval");
 const proofRoute = require("./proof");
 const helpRoute = require("./help");
 const CSS_URL =
-    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.0.0/swagger-ui.min.css";
 const globalErrorHandler = require("../controllers/errorController");
 const appError = require("../utils/appError");
 
