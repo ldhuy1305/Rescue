@@ -1,12 +1,12 @@
-@import "../../assets/scss/common";
+@import '../../assets/scss/common';
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 #landing-page {
     background-color: white;
-    .main {       
-        margin-top: -50px; 
+    .main {
+        margin-top: -50px;
         height: 70vh;
         margin-bottom: 30vh;
-        .main-layout{
+        .main-layout {
             margin: 100px auto 0 auto;
             height: 100%;
             background-repeat: no-repeat;
@@ -16,30 +16,30 @@
             display: flex;
             align-items: center;
             flex-direction: column;
-            .layout-1{
+            .layout-1 {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 flex-direction: column;
                 margin-top: 20px;
-                h1{
+                h1 {
                     width: 100%;
                     font-size: 50px;
                     font-weight: bolder;
                     color: WHITE;
                     text-align: center;
                 }
-                h3{
+                h3 {
                     color: WHITE;
                     font-size: 25px;
                 }
-                img{
+                img {
                     width: 100%;
                     height: 80%;
                 }
             }
         }
-        .layout-2{
+        .layout-2 {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -47,19 +47,19 @@
             width: 80%;
             background-color: white;
             transform: translateY(calc(-100% + 30vh));
-            margin-bottom: -100px ;
+            margin-bottom: -100px;
             padding: 50px;
             .intro-text {
                 position: relative;
-                left:0;
-                top:0;
+                left: 0;
+                top: 0;
                 width: 90%;
-                h1{
+                h1 {
                     font-size: 48px;
                     font-weight: bolder;
                     color: rgb(0, 0, 0);
                 }
-                h2{
+                h2 {
                     font-size: 36px;
                     color: rgb(0, 0, 0);
                     font-weight: bolder;
@@ -69,36 +69,36 @@
                     font-size: 20px;
                     color: rgb(0, 0, 0);
                 }
-        
-            .btn {
-                margin-top: 1rem;
-                display: inline-block;
-                padding: 10px 20px 10px 20px;
-                border: none;
-                font-size: 1.4rem;
-                border-radius: 5px;
-                color: #fff;
-                border-radius: 30px;
-                margin-left: 50px;
-                &.red {
-                    background-color: $dangerColor;
-                    margin-right: 1.5rem;
-                    &:hover{
-                        background-color: $dangerHoverColor;
-                        color: #fff;
+
+                .btn {
+                    margin-top: 1rem;
+                    display: inline-block;
+                    padding: 10px 20px 10px 20px;
+                    border: none;
+                    font-size: 1.4rem;
+                    border-radius: 5px;
+                    color: #fff;
+                    border-radius: 30px;
+                    margin-left: 50px;
+                    &.red {
+                        background-color: $dangerColor;
+                        margin-right: 1.5rem;
+                        &:hover {
+                            background-color: $dangerHoverColor;
+                            color: #fff;
+                        }
                     }
-                }
-        
-                &.blue {
-                    background-color: $primaryColor;
-                    &:hover {
-                        background-color: #1959cf;
-                        color: #fff;
+
+                    &.blue {
+                        background-color: $primaryColor;
+                        &:hover {
+                            background-color: #1959cf;
+                            color: #fff;
+                        }
                     }
                 }
             }
-            }
-                .i-frame {
+            .i-frame {
                 position: relative;
                 img {
                     width: 100%;
@@ -117,38 +117,38 @@
         align-items: center;
         flex-direction: column;
         padding-top: 60px;
-        .title-news{       
+        .title-news {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-direction: column;     
-            h1{
+            flex-direction: column;
+            h1 {
                 width: 100%;
                 font-size: 50px;
                 font-weight: bold;
             }
-            h2{
+            h2 {
                 font-size: 20px;
             }
         }
-        .news-container{
+        .news-container {
             width: 100%;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             padding: 20px;
-            .news-item{
-                width:40%;
+            .news-item {
+                width: 40%;
                 margin: 0px 20px 40px 20px;
                 display: flex;
                 justify-content: center;
-                flex-direction: column; 
-                align-items: center;    
-                img{
+                flex-direction: column;
+                align-items: center;
+                img {
                     width: 100%;
                     height: 100%;
                 }
-                .title{
+                .title {
                     width: 90%;
                     max-height: 200px;
                     background-color: white;
@@ -158,11 +158,14 @@
                     transform: translateY(-50px);
                     padding: 40px;
                     font-weight: bolder;
-                    h1{
+                    h1 {
                         font-weight: bolder;
-                        height: 80%;
+                        height: 81%;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
                     }
-                    .detail{
+                    .detail {
                         padding-top: 20px;
                         height: 20%;
                         font-size: 24px;
@@ -177,19 +180,19 @@
                             background-color: $primaryHoverColor;
                             transform-origin: bottom right;
                             transition: transform 0.25s ease-out;
-                          }
-                          span:hover::after {
+                        }
+                        span:hover::after {
                             transform: scaleX(1);
                             transform-origin: bottom left;
-                          }
+                        }
                     }
                 }
                 &:hover {
-                    transform: translateY(-5px); 
+                    transform: translateY(-5px);
                     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
                     cursor: pointer;
-                    button:hover {       
-                        width: 100%;      
+                    button:hover {
+                        width: 100%;
                         background-color: #6999f3;
                         color: white;
                         border-radius: 0px;
@@ -220,33 +223,33 @@
         background-attachment: fixed;
         background-size: cover;
         padding: 60px 20px 50px 20px;
-        .title-honor{       
+        .title-honor {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-direction: column;     
+            flex-direction: column;
             color: white;
-            h1{
+            h1 {
                 width: 100%;
                 font-size: 50px;
                 font-weight: bold;
             }
-            h2{
+            h2 {
                 font-size: 20px;
             }
         }
-        .honor-container{
+        .honor-container {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 60%;
             height: 70%;
-            .honor-item{
-                height: 400px; 
+            .honor-item {
+                height: 400px;
                 width: 100%;
                 display: flex;
                 overflow: hidden;
-                .slide{
+                .slide {
                     background-image: url('https://img.freepik.com/free-vector/blue-curve-background_53876-113112.jpg');
                     background-repeat: no-repeat;
                     background-attachment: scroll;
@@ -256,21 +259,21 @@
                     height: 100%;
                     width: 100%;
                     transition: transform 2s ease;
-                    .avatar{
+                    .avatar {
                         height: 60%;
                         margin: 0px 50px 0px 50px;
                         border-radius: 50%;
                     }
-                    .content{
+                    .content {
                         padding: 0px 10px 0px 10px;
                         width: 500px;
-                        p{
+                        p {
                             text-align: justify;
                         }
-                        .description{
+                        .description {
                             margin-top: 5px;
                         }
-                        span{
+                        span {
                             width: 100%;
                         }
                     }
@@ -280,18 +283,18 @@
                 width: 50px;
                 height: 50px;
                 border-radius: 50%;
-                font-size: 36px;   
-                z-index: 1;         
+                font-size: 36px;
+                z-index: 1;
                 border: 0px;
                 background-color: #095cf7;
                 color: white;
                 &.fa-caret-left {
-                    transform: translateX(25px);  
+                    transform: translateX(25px);
                 }
                 &.fa-caret-right {
-                    transform: translateX(-25px);  
+                    transform: translateX(-25px);
                 }
-                &:hover{
+                &:hover {
                     color: #095cf7;
                     background-color: white;
                 }
@@ -306,71 +309,70 @@
         align-items: center;
         flex-direction: column;
         padding-top: 60px;
-        .title-share{       
+        .title-share {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-direction: column;     
-            h1{
+            flex-direction: column;
+            h1 {
                 width: 100%;
                 font-size: 50px;
                 font-weight: bold;
             }
-            h2{
+            h2 {
                 font-size: 20px;
             }
         }
-        .share-container{
+        .share-container {
             width: 100%;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             padding-top: 20px;
-            .share-item{
-                width:25%;
+            .share-item {
+                width: 25%;
                 height: 100%;
-                border : gray solid 1px;
+                border: gray solid 1px;
                 border-radius: 10px;
                 margin: 40px 20px 40px 20px;
                 padding: 20px 20px 0px 20px;
                 display: flex;
                 justify-content: space-between;
-                flex-direction: column;     
-                .avatar{
+                flex-direction: column;
+                .avatar {
                     width: 70%;
-                    height:40%;
+                    height: 40%;
                     position: relative;
                     text-align: center;
-                    transform: translate(45px,-100px);
+                    transform: translate(45px, -100px);
                     border-radius: 50%;
                 }
-                .name{
+                .name {
                     text-align: center;
                     transform: translateY(-50px);
                     font-size: 30px;
                 }
-                .result{
+                .result {
                     text-align: center;
                     transform: translateY(-50px);
                     font-size: 20px;
                 }
-                .quote{
+                .quote {
                     transform: translateY(-60px);
-                    .description{
+                    .description {
                         padding: 0px 40px 0px 40px;
                         font-size: 18px;
                         text-align: justify;
                     }
-                    .fa{
+                    .fa {
                         color: #095cf7;
                         font-size: 40px;
                     }
-                    .fa-quote-right{
-                        margin-left: 330px ;
+                    .fa-quote-right {
+                        margin-left: 200px;
                     }
                 }
             }
         }
     }
-  }
-  
+}
