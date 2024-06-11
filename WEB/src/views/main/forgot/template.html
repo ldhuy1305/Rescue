@@ -1,0 +1,31 @@
+<div id="forgot">
+    <div class="wrap-content">
+        <div class="form">
+            <div>
+                <span class="form-title p-t-26 p-b-54">Quên mật khẩu </span>
+                <p>
+                    Điền email đăng ký của bạn, RVN sẽ gửi cho bạn mã xác nhận
+                    để tạo mật khẩu mới.
+                </p>
+                <div class="wrap-input">
+                    <input
+                        class="input"
+                        type="text"
+                        name="email"
+                        id="email"
+                        ref="email"
+                        placeholder="Email"
+                        v-model="this.detail.email"
+                    />
+                    <i class="fa fa-envelope first-icon" aria-hidden="true"></i>
+                </div>
+                <div class="container-btn">
+                    <button class="btn" @click="sendEmail">
+                        <!-- <i class="fa fa-user icon" aria-hidden="true"></i> -->
+                        Gửi
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

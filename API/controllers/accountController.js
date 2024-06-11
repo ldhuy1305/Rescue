@@ -54,6 +54,19 @@ class accountController {
             return next(new appError("Không tìm thấy người dùng!", 404));
         }
     });
+    forgotPassword = catchAsync(async (req, res) => {
+        const password = await helpers.createHashPassword(req.body.password);
+        const rs = await accountModel.forgotPassword({
+            email: req.params.email,
+            password: password,
+        });
+        if (rs.affectedRows == 1)
+            res.status(200).json({
+                Code: 200,
+                Message:
+                    "Mật khẩu mới đã được gửi trên gmail. Vui lòng thay đổi mật khẩu trong lần đầu tiên đăng nhập",
+            });
+    });
 }
 
 module.exports = new accountController();

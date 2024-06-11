@@ -60,6 +60,7 @@ router.beforeEach((to, from, next) => {
         '/login',
         '/signup',
         '/home',
+        '/forgot',
         '/403',
         '/404',
         '/500',

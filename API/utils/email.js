@@ -63,10 +63,7 @@ module.exports = class Email {
     async sendPasswordReset() {
         await this.send(
             "passwordReset",
-            "Mã reset mật khẩu của bạn(Tồn tại trong 10 phút)",
+            "Thay đổi mật khẩu của bạn",
         );
-    }
-    async sendAcceptEmail() {
-        await this.send("acceptedEmail", "Đăng ký thành công");
     }
 };
