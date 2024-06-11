@@ -36,6 +36,14 @@ class Account {
             return rs[0][0];
         } catch (err) {}
     }
+    async forgotPassword(params) {
+        try {
+            params = objectToArray(params);
+            const rs = await sql.executeSPC("forgot_password", params);
+            console.log(rs);
+            return rs;
+        } catch (err) {}
+    }
 }
 
 module.exports = new Account();

@@ -53,17 +53,28 @@
                 </div>
                 <div class="container-btn">
                     <button class="btn" @click="checkForm">
-                        <i class="fa fa-user icon" aria-hidden="true"></i>
-                        Login
+                        <div>
+                            <i class="fa fa-user icon" aria-hidden="true"></i>
+                            <label>Đăng nhập</label>
+                        </div>
                     </button>
                 </div>
                 <div class="text-center pt-5">
-                    <a class="txt2" href="#"> Quên mật khẩu? </a>
+                    <!-- <router-link class="txt2" to="/forgot">
+                        Quên mật khẩu?</router-link
+                    > -->
+                    <router-link class="txt2" to="/forgot">
+                        <label>Quên mật khẩu?</label>
+                    </router-link>
                 </div>
             </div>
             <div class="text-center m-t-50">
-                <p>Bạn chưa có tài khoản?</p>
-                <a class="txt2 spacing" href="/signup"> Đăng kí </a>
+                <p>
+                    Bạn chưa có tài khoản?
+                    <router-link class="txt2 spacing" to="/signup">
+                        <label>Đăng kí</label>
+                    </router-link>
+                </p>
             </div>
         </div>
     </div>
