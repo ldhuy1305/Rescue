@@ -312,6 +312,14 @@ const helpers = {
     formatDate(date) {
         const momentDate = moment.utc(date);
         return momentDate.format('YYYY-MM-DD HH:mm:ss');
+    },
+    isError() {
+        // eslint-disable-next-line no-undef
+        if ($('.item-error').length > 0) {
+            // eslint-disable-next-line no-undef
+            $('.item-error').first().focus();
+            return true;
+        } else return false;
     }
 };
 export default helpers;

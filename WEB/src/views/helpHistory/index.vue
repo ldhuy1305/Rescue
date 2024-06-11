@@ -83,8 +83,10 @@ const helpHistory = {
             });
         },
         changeCurrentPage(data) {
-            this.setPageAndSize(data);
-            this.getListHelps();
+            if (!helpers.isError()) {
+                this.setPageAndSize(data);
+                this.getListHelps();
+            }
         },
         changePerPage() {
             this.changeCurrentPage({

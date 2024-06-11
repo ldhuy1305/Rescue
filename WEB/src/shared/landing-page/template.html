@@ -1,96 +1,114 @@
 <div id="landing-page">
-    <section class = "main">
-      <div class="main-layout">
-        <div class="layout-1">
-          <!-- <img src="https://image.giacngo.vn/w770/Uploaded/2024/qdhwqmrnd/2022_10_17/8-3497.jpg" alt=""> -->
+    <section class="main">
+        <div class="main-layout">
+            <div class="layout-1">
+                <!-- <img src="https://image.giacngo.vn/w770/Uploaded/2024/qdhwqmrnd/2022_10_17/8-3497.jpg" alt=""> -->
+            </div>
         </div>
-      </div>
-      
+
         <div class="layout-2">
-          <div class="intro-text">
-              <h1 > Bạn có thể làm được gì? </h1> <br />
-              <h2 > Hãy cùng nhau chung tay xây dựng</h2>
-            <p>
-              Chúng ta có thể cung cấp sự hỗ trợ cần thiết, từ việc cung cấp thực phẩm, nước uống đến việc xây dựng lại cơ sở hạ tầng và cung cấp dịch vụ y tế. Đồng thời, chúng ta cũng cần cung cấp tinh thần hy vọng và sự ủng hộ tinh thần cho những người bị ảnh hưởng, để họ có thể vượt qua khó khăn và tiếp tục tiến lên trong cuộc sống.
-            </p>
-            <a class="btn red" href="#">Ủng hộ</a>
-            <a class="btn blue" href="#">Tìm hiểu thêm</a>
-          </div>
-          <div class="i-frame">    
-            <img src="https://cafefcdn.com/203337114487263232/2021/7/1/photo-1-16251087510211532801206.png" alt="IMG">
-          </div>
+            <div class="intro-text">
+                <h1>Bạn có thể làm được gì?</h1>
+                <br />
+                <h2>Hãy cùng nhau chung tay xây dựng</h2>
+                <p>
+                    Chúng ta có thể cung cấp sự hỗ trợ cần thiết, từ việc cung
+                    cấp thực phẩm, nước uống đến việc xây dựng lại cơ sở hạ tầng
+                    và cung cấp dịch vụ y tế. Đồng thời, chúng ta cũng cần cung
+                    cấp tinh thần hy vọng và sự ủng hộ tinh thần cho những người
+                    bị ảnh hưởng, để họ có thể vượt qua khó khăn và tiếp tục
+                    tiến lên trong cuộc sống.
+                </p>
+                <a class="btn red" href="#">Ủng hộ</a>
+                <a class="btn blue" href="#">Tìm hiểu thêm</a>
+            </div>
+            <div class="i-frame">
+                <img
+                    src="https://cafefcdn.com/203337114487263232/2021/7/1/photo-1-16251087510211532801206.png"
+                    alt="IMG"
+                />
+            </div>
         </div>
     </section>
-    <section class="news" id = "news">
-      <div class="title-news">
-        <h1>
-          TIN TỨC MỚI NHẤT
-        </h1>
-        <h2>
-          Tin tức luôn luôn được cập nhật mới nhất
-        </h2>
-      </div>
-      <div class="news-container">
-        <template v-for="(item,key) in data.news.slice(0,index)" :key="key" >
-          <div class="news-item" @click="viewDetail">
-            <img :src=item.bg >
-            <div class="title">
-              <h1>{{item.title}}</h1>
-              <router-link to="" class="custom-link detail"> <span>Chi tiết</span></router-link>
-            </div>
-          </div>
-        </template>
-        <router-link to="" class="custom-link more"> <span>Xem thêm </span><i class="fa fa-arrow-right" aria-hidden="true"></i></router-link>
-      </div>
-    </section>
-    <section class="honor" id = "honor">
-      <div class="title-honor">
-        <h1>
-          GÓC VINH DANH
-        </h1>
-        <h2>
-          Những tấm gương xuất sắc, có thành tích cao
-        </h2>
-      </div>
-      <div class="honor-container">
-        <button class="fa fa-caret-left"aria-hidden="true" @click="preSlide"></button>
-          <div class="honor-item">
-            <div class = "slide" v-for = "(item,index) in data.honor" :key="index" :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
-              <img class ="avatar" :src="item.avatar" alt="avatar">
-              <div class="content">
-                <h3>{{item.name}}</h3>
-                <p>{{item.honor}}</p>
-                <div class ="description" v-for ="(el,key) in item.description">
-                  <span>{{el}}</span>
+    <section class="news" id="news">
+        <div class="title-news">
+            <h1>TIN TỨC MỚI NHẤT</h1>
+            <h2>Tin tức luôn luôn được cập nhật mới nhất</h2>
+        </div>
+        <div class="news-container">
+            <template v-for="(item,key) in data.news.slice(0,index)" :key="key">
+                <div class="news-item" @click="viewDetail">
+                    <img :src="item.bg" />
+                    <div class="title">
+                        <h1>{{item.title}}</h1>
+                        <router-link to="" class="custom-link detail">
+                            <span>Chi tiết</span></router-link
+                        >
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        <button class="fa fa-caret-right"aria-hidden="true" @click="nextSlide"></button>
-      </div>
+            </template>
+            <router-link to="/news" class="custom-link more">
+                <span>Xem thêm </span
+                ><i class="fa fa-arrow-right" aria-hidden="true"></i
+            ></router-link>
+        </div>
     </section>
-    <section class="share" id = "share">
-      <div class="title-share">
-        <h1>
-          CHIA SẺ CỦA CÁC MẠNH THƯỜNG QUÂN
-        </h1>
-        <h2>
-          Lời bày tỏ từ những con người có tâm và có tầm
-        </h2>
-      </div>
-      <div class="share-container">
-        <template v-for="(item,key) in share" :key="key" >
-          <div class="share-item">
-            <img class="avatar" :src="item.ava" alt="avatar">
-            <p class ="name">{{item.name}}</p>
-            <p class ="result">{{item.result}}</p>
-            <div class="quote"> 
-              <i class="fa fa-quote-left" aria-hidden="true"></i>
-              <p class ="description">{{item.description}}</p>
-              <i class="fa fa-quote-right" aria-hidden="true"></i>
+    <section class="honor" id="honor">
+        <div class="title-honor">
+            <h1>GÓC VINH DANH</h1>
+            <h2>Những tấm gương xuất sắc, có thành tích cao</h2>
+        </div>
+        <div class="honor-container">
+            <button
+                class="fa fa-caret-left"
+                aria-hidden="true"
+                @click="preSlide"
+            ></button>
+            <div class="honor-item">
+                <div
+                    class="slide"
+                    v-for="(item,index) in data.honor"
+                    :key="index"
+                    :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
+                >
+                    <img class="avatar" :src="item.avatar" alt="avatar" />
+                    <div class="content">
+                        <h3>{{item.name}}</h3>
+                        <p>{{item.honor}}</p>
+                        <div
+                            class="description"
+                            v-for="(el,key) in item.description"
+                        >
+                            <span>{{el}}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-      </template>
-      </div>
+            <button
+                class="fa fa-caret-right"
+                aria-hidden="true"
+                @click="nextSlide"
+            ></button>
+        </div>
     </section>
-  </div>
+    <section class="share" id="share">
+        <div class="title-share">
+            <h1>CHIA SẺ CỦA CÁC MẠNH THƯỜNG QUÂN</h1>
+            <h2>Lời bày tỏ từ những con người có tâm và có tầm</h2>
+        </div>
+        <div class="share-container">
+            <template v-for="(item,key) in share" :key="key">
+                <div class="share-item">
+                    <img class="avatar" :src="item.ava" alt="avatar" />
+                    <p class="name">{{item.name}}</p>
+                    <p class="result">{{item.result}}</p>
+                    <div class="quote">
+                        <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        <p class="description">{{item.description}}</p>
+                        <i class="fa fa-quote-right" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </section>
+</div>

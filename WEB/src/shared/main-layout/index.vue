@@ -31,11 +31,19 @@ export default {
         updateFooterPosition() {
             var totalHeight = $('#app').outerHeight(true);
             var windowHeight = $(window).height();
-            if (totalHeight < windowHeight || $('#app').hasClass('form')) {
+            if (
+                $('#header').siblings().outerHeight(true) +
+                    $('#contact').height() <
+                    windowHeight ||
+                $('#app').hasClass('form')
+            ) {
                 $('#contact').css('position', 'fixed');
             } else {
                 $('#contact').css('position', '');
+                console.log('nothing');
             }
+            console.log('12312', $('#header').siblings().height());
+            console.log(totalHeight, windowHeight);
         }
     }
 };
