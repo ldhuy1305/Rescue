@@ -7,6 +7,7 @@ export default {
     E006: 'Trường này là trường bắt buộc',
     E007: 'Xác nhận mật khẩu không trùng khớp ',
     E008: 'Thời gian không hợp lệ',
+    E009: 'Bạn cần đăng nhập tài khoản để có thể hỗ trợ',
     E063: 'Mật khẩu không hợp lệ',
     E064: 'Việc đăng kí đã quá hạn!',
     // Confirm message

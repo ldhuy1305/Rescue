@@ -38,7 +38,7 @@ const baseRoutes = [
     },
     {
         path: '/:catchAll(.*)',
-        redirect: '/404'
+        redirect: '/home'
     }
 ];
 const routes = mainRouter
@@ -64,7 +64,8 @@ router.beforeEach((to, from, next) => {
         '/404',
         '/500',
         '/news',
-        '/form'
+        '/form',
+        '/post'
     ];
     const authRequired = !publicPages.includes(to.path);
     const token = localStorage.getItem('token');
