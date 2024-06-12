@@ -38,20 +38,6 @@ class proofController {
             Data: req.params.publicId,
         });
     });
-    getProof = catchAsync(async (req, res, next) => {
-        // if (!req.body.reference) {
-        //     let body = {
-        //         ...req.body,
-        //     };
-        //     if (req.files) {
-        //         body = {
-        //             ...body,
-        //             images: req.files.map((image) => image.path),
-        //         };
-        //     }
-        // }
-        res.json({ status: 200 });
-    });
 }
 
 module.exports = new proofController();

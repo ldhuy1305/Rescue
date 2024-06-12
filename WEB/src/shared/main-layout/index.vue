@@ -29,7 +29,6 @@ export default {
     },
     methods: {
         updateFooterPosition() {
-            var totalHeight = $('#app').outerHeight(true);
             var windowHeight = $(window).height();
             if (
                 $('#header').siblings().outerHeight(true) +
@@ -40,10 +39,7 @@ export default {
                 $('#contact').css('position', 'fixed');
             } else {
                 $('#contact').css('position', '');
-                console.log('nothing');
             }
-            console.log('12312', $('#header').siblings().height());
-            console.log(totalHeight, windowHeight);
         }
     }
 };

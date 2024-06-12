@@ -93,9 +93,16 @@ const form = {
                 'code',
                 this.detail.city
             ).name;
+            wardName = !wardName || wardName == 'Phường/Xã' ? '' : wardName;
+            districtName =
+                !districtName || districtName == 'Quận/Huyện'
+                    ? ''
+                    : districtName;
+            cityName = !cityName || cityName == 'Tỉnh/Thành' ? '' : cityName;
+            let addressString = `${this.detail.address}${!this.detail.address && (wardName || districtName || cityName) ? ', ' : ''}${wardName || ''}${wardName && districtName ? ', ' : ''}${districtName || ''}${(wardName || districtName) && cityName ? ', ' : ''}${cityName}`;
             const payload = {
                 ...this.detail,
-                address: `${this.detail.address}, ${wardName} , ${districtName}, ${cityName}`
+                address: addressString
             };
             this.removeNullContent();
             this.addDataNull();

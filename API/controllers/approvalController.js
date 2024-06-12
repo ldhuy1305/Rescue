@@ -46,11 +46,11 @@ class approvalController {
 
     acceptApproval = catchAsync(async (req, res) => {
         const params = [req.user.id, req.params.id, req.query.accept];
-        const rs = await approvalModel.acceptApproval(params);
-        console.log(rs);
+        await approvalModel.acceptApproval(params);
         res.status(200).json({
             Code: 200,
-            Data: { rs },
+            Data: {},
+            Message: "Đơn đã được xử lý thành công",
         });
     });
 }
