@@ -17,24 +17,16 @@
         </div>
         <div class="sapo">{{this.paramSends.detail?.sapo}}</div>
         <div class="related"></div>
-        <div
-            class="body"
-            v-for="(el,key) in this.paramSends.content"
-            :index="key"
-        >
-            <div class="image" v-if="el.image != null && el.image !=''">
-                <img :src="el.image" alt="image" />
-            </div>
-            <div
-                class="content"
-                v-if="el.description!=null && el.description !=''"
-            >
-                <p>{{el.description}}</p>
-            </div>
+        <div class="body">
+            <div class="content ql-editor" v-html="formattedContent"></div>
         </div>
         <div class="approve">
-            <button class="app-btn" @click="approvePost(true)">Phê duyệt</button>
-            <button class="cncl-btn" @click="approvePost(false)">Từ chối</button>
+            <button class="app-btn" @click="approvePost(true)">
+                Phê duyệt
+            </button>
+            <button class="cncl-btn" @click="approvePost(false)">
+                Từ chối
+            </button>
         </div>
     </div>
 </div>

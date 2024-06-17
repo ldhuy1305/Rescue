@@ -12,7 +12,8 @@ export default {
             city: '',
             district: '',
             ward: '',
-            address: ''
+            address: '',
+            content: ''
         },
         contents: []
     },

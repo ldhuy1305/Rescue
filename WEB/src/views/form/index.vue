@@ -14,11 +14,19 @@ import Input from '@/components/input';
 import fileUpload from '@/components/fileUpload';
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
+import { QuillEditor, Quill } from '@vueup/vue-quill';
+import QuillResize from 'quill-resize-module';
+import ImageUploader from 'quill-image-uploader';
+import axios from 'axios';
+import 'quill-image-uploader/dist/quill.imageUploader.min.css';
 
+Quill.register('modules/resize', QuillResize);
+Quill.register('modules/imageUploader', ImageUploader);
 const form = {
     name: 'Form',
     template: template,
-    components: { Select, Input, fileUpload, VueDatePicker },
+    components: { Select, Input, fileUpload, VueDatePicker, QuillEditor },
     beforeCreate() {
         if (!store.hasModule('form')) {
             store.registerModule('form', formStore);
@@ -28,19 +36,75 @@ const form = {
         this.getInitData();
     },
     beforeMount() {},
-    mounted() {},
     beforeUpdate() {},
     updated() {},
     beforeUnmount() {},
     unmounted() {},
     data() {
         return {
-            // detail: {},
-            // contents: []
+            editorOption: {
+                placeholder: 'Nhập nội dung bài viết',
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                        [
+                            {
+                                font: [
+                                    'arial',
+                                    'times-new-roman',
+                                    'helvetica',
+                                    'georgia',
+                                    'verdana',
+                                    'calibri',
+                                    'roboto',
+                                    'open-sans'
+                                ]
+                            }
+                        ],
+                        [{ size: ['small', false, 'large', 'huge'] }],
+                        ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                        [{ color: [] }, { background: [] }],
+                        [{ script: 'sub' }, { script: 'super' }],
+                        [
+                            { list: 'ordered' },
+                            { list: 'bullet' },
+                            { list: 'check' }
+                        ],
+                        [{ indent: '-1' }, { indent: '+1' }, { align: [] }],
+                        [{ direction: 'rtl' }],
+                        ['link', 'image', 'video']
+                    ],
+                    clipboard: {
+                        matchVisual: false
+                    },
+                    resize: {
+                        modules: ['Resize']
+                    },
+                    imageUploader: {
+                        upload: async (file) => {
+                            const formData = new FormData();
+                            formData.append('file', file);
+                            formData.append('upload_preset', 'qfuacxsd');
+                            formData.append('folder', 'demo');
+
+                            try {
+                                const response = await axios.post(
+                                    `https://api.cloudinary.com/v1_1/dcyg1qwdc/image/upload`,
+                                    formData
+                                );
+                                return response.data.secure_url;
+                            } catch (error) {
+                                console.log(error.message);
+                            }
+                        }
+                    }
+                }
+            }
         };
     },
     computed: {
-        ...mapState('form', ['location', 'detail', 'contents'])
+        ...mapState('form', ['location', 'detail', 'contents', 'validRules'])
     },
     methods: {
         ...mapMutations('form', [
@@ -69,7 +133,6 @@ const form = {
             this.fileSelected = true;
             this.file = file;
         },
-
         validateDate() {
             if (moment(this.detail.dateTo) < moment(this.detail.dateFrom)) {
                 helpers.setItemError('dateFrom', messages.E008);
@@ -106,9 +169,10 @@ const form = {
             };
             this.removeNullContent();
             this.addDataNull();
+            if (!helpers.isValidData(this.detail, this.validRules)) return;
             this.save({
-                post: payload,
-                content: this.contents
+                post: payload
+                // content: this.contents
             });
         }
     }

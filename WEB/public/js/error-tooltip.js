@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 var ErrorTooltip = (function () {
     var _optionsErrorTooltip = {
-        xOffset: 10,
+        xOffset: 100,
         yOffset: 0,
         tooltipId: 'has-tooltip-class',
         tooltipAttr: 'has-tooltip-message',
@@ -35,6 +35,7 @@ var ErrorTooltip = (function () {
                             });
                             if (type === '') {
                                 $(this).AddTooltip(message);
+                                console.log(1);
                             } else {
                                 var parent = $(this).parents(
                                     '.' + _optionsErrorTooltip.parentOfItemError

@@ -4,6 +4,7 @@ import './style.scss';
 import messages, { MSG_TYPE, MSG_TITLE } from '@/utils/messages';
 import { mapMutations } from 'vuex';
 import repository from '@/utils/repository';
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 const Post = {
     template: template,
     props: {
@@ -29,6 +30,14 @@ const Post = {
                 return this.modelValue;
             },
             set() {}
+        },
+        formattedContent() {
+            const parser = new DOMParser();
+            const decodedString = parser.parseFromString(
+                this.paramSends.detail.content,
+                'text/html'
+            ).body.textContent;
+            return decodedString;
         }
     },
     methods: {
@@ -49,7 +58,7 @@ const Post = {
                     if (ok) {
                         const id = this.paramSends.detail.id;
                         repository
-                        .post(`/committee/approval/${id}?accept=${is_acp}`)
+                            .post(`/committee/approval/${id}?accept=${is_acp}`)
                             .then(() => {
                                 this.showModalMessage({
                                     type: MSG_TYPE.SUCCESS,
