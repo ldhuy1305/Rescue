@@ -7,7 +7,7 @@
         <input
             v-if="type != 'textarea'"
             :id="id"
-            class="form-control ans-custom-input"
+            class="form-control"
             :class="(inputClass ? inputClass : '')"
             :placeholder="placeholder"
             :value="vewValue"
@@ -19,7 +19,7 @@
             ref="input"
             @focus="focusInput"
             @blur="blurInput"
-            @change="updateInput"
+            @input="updateInput"
         />
         <textarea
             v-if="type == 'textarea'"

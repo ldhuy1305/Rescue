@@ -1,7 +1,10 @@
 import repository from './repository';
 const initConditions = {
+    keyword: '',
     page: 1,
-    size: 10
+    size: 10,
+    sort: 'name',
+    order: 'asc'
 };
 export default {
     namespaced: true,
@@ -66,6 +69,22 @@ export default {
                 });
             } catch (e) {
                 console.log('Action getInit: ' + e.message);
+            }
+        },
+        export(context) {
+            try {
+                let payload = { ...context.state.conditions };
+                payload.size = 0;
+                repository.export(payload).then((res) => {
+                    const url = URL.createObjectURL(new Blob([res.data]));
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.setAttribute('download', 'danh_sach_nguoi_dung.xlsx');
+                    document.body.appendChild(link);
+                    link.click();
+                });
+            } catch (e) {
+                console.log('Action export: ' + e.message);
             }
         }
     }

@@ -7,10 +7,12 @@ import './style.scss';
 import store from '@/store';
 import helpers from '@/utils/helpers';
 import acceptPostStore from './store';
+import debounce from 'lodash/debounce';
 
 import Paging from '@/components/pagination';
 import SelectBox from '@/components/select';
 import PopupPost from './popupPost';
+import Input from '@/components/input';
 const acceptPost = {
     name: 'acceptPost',
     template: template,
@@ -19,7 +21,7 @@ const acceptPost = {
             store.registerModule('acceptPost', acceptPostStore);
         }
     },
-    components: { Paging, SelectBox, PopupPost },
+    components: { Paging, SelectBox, PopupPost, Input },
     created() {
         this.getInitData();
     },
@@ -78,7 +80,20 @@ const acceptPost = {
         onClosePopup() {
             this.getInitData();
             this.showPopup = false;
-        }
+        },
+        sort(sortBy) {
+            if (this.conditions.sort === sortBy) {
+                this.conditions.order =
+                    this.conditions.order === 'asc' ? 'desc' : 'asc';
+            } else {
+                this.conditions.sort = sortBy;
+                this.conditions.order = 'asc';
+            }
+            this.getInitData();
+        },
+        debouncedSearch: debounce(function () {
+            this.getInitData();
+        }, 300)
     },
     watch: {}
 };

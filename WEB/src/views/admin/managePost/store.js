@@ -1,12 +1,10 @@
 import repository from './repository';
 const initConditions = {
     keyword: '',
-    city: '0',
-    district: '0',
-    ward: '0',
-    size: 10,
     page: 1,
-    is_all: true
+    size: 10,
+    sort: 'amount',
+    order: 'asc'
 };
 export default {
     namespaced: true,
@@ -94,8 +92,11 @@ export default {
         getListUser(context, id) {
             try {
                 const conditions = {
+                    keyword: '',
                     page: 1,
-                    size: 10
+                    size: 10,
+                    sort: 'name',
+                    order: 'asc'
                 };
                 repository.getListUser(id, conditions).then((res) => {
                     let data = res.data;
@@ -104,21 +105,40 @@ export default {
                         page: 1,
                         total: 1
                     };
-                    if ((data.Code = 200 && data.Data)) {
-                        context.commit('setParamSendsList', data.Data.list);
+                    if (data.Code == 200) {
                         context.commit('setParamSendsId', id);
-                        if (data.Data.list.length > 0) {
+                        if (data.Data.list && data.Data.list.length > 0) {
                             pagingData = {
                                 size: parseInt(data.Data.list[0].size),
                                 page: parseInt(data.Data.list[0].page),
                                 total: parseInt(data.Data.list[0].total)
                             };
-                            context.commit('setParamSendsPaging', pagingData);
                         }
+                        context.commit(
+                            'setParamSendsList',
+                            data.Data.list ?? []
+                        );
+                        context.commit('setParamSendsPaging', pagingData);
                     }
                 });
             } catch (e) {
                 console.log('Action getListUser: ' + e.message);
+            }
+        },
+        export(context) {
+            try {
+                let payload = { ...context.state.conditions };
+                payload.size = 0;
+                repository.export(payload).then((res) => {
+                    const url = URL.createObjectURL(new Blob([res.data]));
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.setAttribute('download', 'danh_sach_don_ho_tro.xlsx');
+                    document.body.appendChild(link);
+                    link.click();
+                });
+            } catch (e) {
+                console.log('Action export: ' + e.message);
             }
         }
     }

@@ -6,6 +6,8 @@ const catchAsync = require("../utils/catchAsync");
 const jwtToken = require("../utils/jwtToken");
 const cloudinary = require("cloudinary").v2;
 const fileUploader = require("../utils/uploadImage");
+const ExcelJS = require("exceljs");
+const moment = require("moment");
 class userController {
     updateImage = fileUploader.single("avatar");
     createUser = catchAsync(async (req, res) => {
@@ -94,7 +96,14 @@ class userController {
         });
     });
     getAllUsersByApprovalId = catchAsync(async (req, res, next) => {
-        const params = [req.params.id,req.query.page,req.query.size]
+        const params = [
+            req.params.id,
+            req.query.keyword,
+            req.query.page,
+            req.query.size,
+            req.query.sort,
+            req.query.order,
+        ];
         const rs = await userModel.getAllUsersByApprovalId(params);
         res.status(200).json({
             Code: 200,
@@ -102,6 +111,77 @@ class userController {
                 list: rs[0],
             },
         });
+    });
+    export = catchAsync(async (req, res, next) => {
+        const payload = req.query;
+        const rs = await userModel.getAllUsers(payload);
+        const data = rs[0];
+        const workbook = new ExcelJS.Workbook();
+
+        const sheet = workbook.addWorksheet("Sheet1");
+
+        sheet.columns = [
+            { header: "STT", key: "stt", width: 5 },
+            { header: "Tên", key: "name", width: 40 },
+            { header: "Email", key: "email", width: 30 },
+            { header: "Số điện thoại", key: "tel", width: 20 },
+            { header: "Địa chỉ", key: "address", width: 80 },
+        ];
+
+        data.forEach((row, index) => {
+            row.stt = index + 1;
+            sheet.addRow(row);
+        });
+        res.setHeader(
+            "Content-Type",
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        );
+        res.setHeader(
+            "Content-Disposition",
+            'attachment; filename="danh_sach_nguoi_dung.xlsx"',
+        );
+        await workbook.xlsx.write(res);
+        res.end();
+    });
+    exportByApprovalId = catchAsync(async (req, res, next) => {
+        const params = [
+            req.params.id,
+            req.query.keyword,
+            req.query.page,
+            req.query.size,
+            req.query.sort,
+            req.query.order,
+        ];
+        const rs = await userModel.getAllUsersByApprovalId(params);
+        const data = rs[0];
+        const workbook = new ExcelJS.Workbook();
+
+        const sheet = workbook.addWorksheet("Sheet1");
+
+        sheet.columns = [
+            { header: "STT", key: "stt", width: 5 },
+            { header: "Tên", key: "name", width: 40 },
+            { header: "Số điện thoại", key: "phoneNumber", width: 30 },
+            { header: "Địa chỉ", key: "address", width: 80 },
+            { header: "Thời gian ủng hộ", key: "cre_at", width: 20 },
+            { header: "Số tiền", key: "amount", width: 20 },
+        ];
+
+        data.forEach((row, index) => {
+            row.stt = index + 1;
+            row.cre_at = moment(row.cre_at).format("YYYY-MM-DD HH:mm:ss");
+            sheet.addRow(row);
+        });
+        res.setHeader(
+            "Content-Type",
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        );
+        res.setHeader(
+            "Content-Disposition",
+            'attachment; filename="danh_sach_nguoi_ho_tro.xlsx"',
+        );
+        await workbook.xlsx.write(res);
+        res.end();
     });
 }
 

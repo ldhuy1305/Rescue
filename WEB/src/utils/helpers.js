@@ -310,7 +310,7 @@ const helpers = {
         return rs;
     },
     formatDate(date) {
-        const momentDate = moment.utc(date);
+        const momentDate = moment(date);
         return momentDate.format('YYYY-MM-DD HH:mm:ss');
     },
     isError() {

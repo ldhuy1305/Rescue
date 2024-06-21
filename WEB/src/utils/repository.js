@@ -41,6 +41,15 @@ repository.interceptors.response.use(
             store.commit('app/hideLoading');
         }
         store.commit('app/decreaseCountLoading');
+        const contentType = response.headers['content-type'];
+        if (
+            contentType &&
+            contentType.includes(
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            )
+        ) {
+            return response;
+        }
         const { data } = response;
         if (data.Code !== 200) {
             if (data.Code == 500)

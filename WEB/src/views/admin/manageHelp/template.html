@@ -2,9 +2,15 @@
     <div class="header">Lịch sử hỗ trợ</div>
     <div class="content">
         <div class="history-table-container">
-            <div class="pagination flex-r">
+            <div class="pagination flex-r m-b-16">
+                <Input
+                    v-model="this.conditions.keyword"
+                    placeholder="Nhập thông tin tìm kiếm"
+                    inputClass="custom-input"
+                    @input="debouncedSearch"
+                />
                 <SelectBox
-                    class="col-sm-3 ms-2 m-b-16"
+                    class="col-sm-3 ms-2"
                     id="ward"
                     :options="options"
                     v-model="listData.pagination.size"
@@ -18,15 +24,46 @@
                         @change-page="changeCurrentPage"
                     />
                 </td>
+                <button
+                    type="button"
+                    class="btn btn-sm custom-input m-l-30"
+                    @click="handleExport"
+                >
+                    Xuất Excel
+                </button>
             </div>
             <table class="custom-table">
                 <thead class="fix-header">
                     <tr>
                         <th class="text-center">STT</th>
-                        <th class="text-center">Thời gian</th>
-                        <th class="text-left">Tên bài viết</th>
-                        <th class="text-left">Người hỗ trợ</th>
-                        <th class="text-center">Số tiền</th>
+                        <th
+                            class="text-center sortable"
+                            :class="{'asc': conditions.sort === 'cre_at' && conditions.order === 'asc', 'desc': conditions.sort === 'cre_at' && conditions.order === 'desc'}"
+                            @click='sort("cre_at")'
+                        >
+                            Thời gian
+                        </th>
+                        <th
+                            class="text-center sortable"
+                            :class="{'asc': conditions.sort === 'title' && conditions.order === 'asc', 'desc': conditions.sort === 'title' && conditions.order === 'desc'}"
+                            @click='sort("title")'
+                        >
+                            Tên bài viết
+                        </th>
+                        <th
+                            class="text-center sortable"
+                            :class="{'asc': conditions.sort === 'name' && conditions.order === 'asc', 'desc': conditions.sort === 'name' && conditions.order === 'desc'}"
+                            @click='sort("name")'
+                        >
+                            Người hỗ trợ
+                        </th>
+                        <th
+                            class="text-center sortable"
+                            :class="{'asc': conditions.sort === 'amount' && conditions.order === 'asc', 'desc': conditions.sort === 'amount' && conditions.order === 'desc'}"
+                            @click='sort("amount")'
+                        >
+                            Số tiền
+                        </th>
                     </tr>
                 </thead>
                 <tbody>

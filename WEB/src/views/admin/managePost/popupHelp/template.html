@@ -12,42 +12,93 @@
     </div>
     <div class="custom-modal-body">
         <div class="history-table-container">
-            <div class="pagination flex-r">
+            <div class="pagination flex-r m-b-16">
+                <Input
+                    v-model="this.conditions.keyword"
+                    placeholder="Nhập thông tin tìm kiếm"
+                    inputClass="custom-input"
+                    @input="debouncedSearch"
+                />
                 <SelectBox
                     v-if="paramSends.list.length > 0"
-                    class="col-sm-3 ms-2 m-b-16"
+                    class="col-sm-3 ms-2"
                     id="ward"
                     :options="options"
                     v-model="paramSends.pagination.size"
                 ></SelectBox>
                 <td class="td-paging">
                     <paging
-                        v-if="paramSends.list.length > 0"
+                        v-if=" paramSends.list.length > 0"
                         :size="paramSends.pagination.size"
                         :total="paramSends.pagination.total"
                         :page="paramSends.pagination.page"
                         @change-page="changeCurrentPage"
                     />
                 </td>
+                <button
+                    type="button"
+                    class="btn btn-sm custom-input m-l-30"
+                    @click="handleExport"
+                >
+                    Xuất Excel
+                </button>
             </div>
             <table class="custom-table">
                 <thead class="fix-header">
                     <tr>
-                        <th class="text-center">STT</th>
-                        <th class="text-left">Họ và tên</th>
-                        <th class="text-center">Số điện thoại</th>
-                        <th class="text-center">Địa chỉ</th>
-                        <th class="text-center">Thời gian ủng hộ</th>
-                        <th class="text-center">Số tiền</th>
+                        <th
+                            class="text-center"
+                        >
+                            STT
+                        </th>
+                        <th
+                            class="text-center sortable"
+                            :class="{'asc': conditions.sort === 'name' && conditions.order === 'asc', 'desc': conditions.sort === 'name' && conditions.order === 'desc'}"
+                            @click='sort("name")'
+                        >
+                            Họ và tên
+                        </th>
+                        <th
+                            class="text-center sortable"
+                            :class="{'asc': conditions.sort === 'tel' && conditions.order === 'asc', 'desc': conditions.sort === 'tel' && conditions.order === 'desc'}"
+                            @click='sort("tel")'
+                        >
+                            Số điện thoại
+                        </th>
+                        <th
+                            class="text-center sortable"
+                            :class="{'asc': conditions.sort === 'address' && conditions.order === 'asc', 'desc': conditions.sort === 'address' && conditions.order === 'desc'}"
+                            @click='sort("address")'
+                        >
+                            Địa chỉ
+                        </th>
+                        <th
+                            class="text-center sortable"
+                            :class="{'asc': conditions.sort === 'cre_at' && conditions.order === 'asc', 'desc': conditions.sort === 'cre_at' && conditions.order === 'desc'}"
+                            @click='sort("cre_at")'
+                        >
+                            Thời gian ủng hộ
+                        </th>
+                        <th
+                            class="text-center sortable"
+                            :class="{'asc': conditions.sort === 'amount' && conditions.order === 'asc', 'desc': conditions.sort === 'amount' && conditions.order === 'desc'}"
+                            @click='sort("amount")'
+                        >
+                            Số tiền
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-if="paramSends.list.length == 0">
+                    <tr v-if="!paramSends.list || paramSends.list.length == 0">
                         <td class="bg-gray-100 h-10 text-center" colspan="6">
                             Không tìm thấy dữ liệu
                         </td>
                     </tr>
-                    <tr class="tr-hover" v-for="(item, i) in paramSends.list">
+                    <tr
+                        v-else
+                        class="tr-hover"
+                        v-for="(item, i) in paramSends.list"
+                    >
                         <td class="text-center" style="width: 5%">{{i + 1}}</td>
                         <td class="text-left" style="width: 15%">
                             {{item.name}}

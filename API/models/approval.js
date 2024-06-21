@@ -31,6 +31,17 @@ class Approval {
             return rs;
         } catch (err) {}
     }
+    async getAllNewsByCommittee(params) {
+        try {
+            params = objectToArray(params);
+            const rs = await sql.executeSPC(
+                "get_all_news_by_committee",
+                params,
+            );
+            return rs;
+        } catch (err) {}
+    }
+
     async acceptApproval(params) {
         try {
             const rs = await sql.executeSPC("accept_approval", params);

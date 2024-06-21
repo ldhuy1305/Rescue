@@ -45,9 +45,9 @@
                 </div>
             
             </div>
-            <div class="pagination flex-r">
+            <div class="pagination flex-r m-b-16">
                 <Select 
-                v-if="listData.list.length > 0" class="col-sm-3 ms-2 m-b-16" id="ward" :options=options v-model="listData.pagination.size" :onChangeEvent="changePerPage"> </Select>
+                v-if="listData.list.length > 0" class="col-sm-3 ms-2" id="ward" :options=options v-model="listData.pagination.size" :onChangeEvent="changePerPage"> </Select>
                 <td class="td-paging">
                     <paging
                         v-if="listData.list.length > 0"
