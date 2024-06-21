@@ -24,13 +24,12 @@ class Help {
             return rs;
         } catch (err) {}
     }
-
-    // async getHelp(id) {
-    //     try {
-    //         const rs = await sql.executeSPC("get_help", [id]);
-    //         return rs[0][0];
-    //     } catch (err) {}
-    // }
+    async getRandom() {
+        try {
+            const rs = await sql.executeSPC("get_rand_help", []);
+            return rs[0][0];
+        } catch (err) {}
+    }
 }
 
 module.exports = new Help();

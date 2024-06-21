@@ -123,6 +123,15 @@ class helpController {
         await workbook.xlsx.write(res);
         res.end();
     });
+    getRandom = catchAsync(async (req, res, next) => {
+        const rs = await helpModel.getRandom();
+        res.status(200).json({
+            Code: 200,
+            Data: {
+                id: rs.id,
+            },
+        });
+    });
 }
 function sortObject(obj) {
     let sorted = {};

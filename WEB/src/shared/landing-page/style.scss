@@ -161,9 +161,10 @@
                     h1 {
                         font-weight: bolder;
                         height: 81%;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
-                        overflow: hidden;
+                        // text-overflow: ellipsis;
+                        white-space: wrap;
+                        // overflow: hidden;
+                        font-size: 24px;
                     }
                     .detail {
                         padding-top: 20px;

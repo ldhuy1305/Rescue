@@ -19,8 +19,8 @@
                     bị ảnh hưởng, để họ có thể vượt qua khó khăn và tiếp tục
                     tiến lên trong cuộc sống.
                 </p>
-                <a class="btn red" href="#">Ủng hộ</a>
-                <a class="btn blue" href="#">Tìm hiểu thêm</a>
+                <a class="btn red" @click="helpRandom">Ủng hộ</a>
+                <a class="btn blue">Tìm hiểu thêm</a>
             </div>
             <div class="i-frame">
                 <img
@@ -36,14 +36,14 @@
             <h2>Tin tức luôn luôn được cập nhật mới nhất</h2>
         </div>
         <div class="news-container">
-            <template v-for="(item,key) in data.news.slice(0,index)" :key="key">
+            <template v-for="(item,key) in this.news.slice(0,index)" :key="key">
                 <div class="news-item" @click="viewDetail">
-                    <img :src="item.bg" />
+                    <img :src="item.image" />
                     <div class="title">
                         <h1>{{item.title}}</h1>
-                        <router-link to="" class="custom-link detail">
-                            <span>Chi tiết</span></router-link
-                        >
+                        <div class="custom-link detail">
+                            <span @click="goToPage(item.id)">Chi tiết</span>
+                        </div>
                     </div>
                 </div>
             </template>

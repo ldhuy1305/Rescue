@@ -17,6 +17,9 @@ export default {
     C004: 'Bạn có muốn phê duyệt bài viết này không?',
     C005: 'Bạn có muốn từ chối bài viết này không?',
 
+    // Warning message
+    W005: 'Hiện tại chưa có bài viết nào cần hỗ trợ. Vui lòng quay lại sau!',
+
     // Success message
     S001: 'Đăng kí thành công. Vui lòng tải lại trang!',
     S002: 'Đơn đã được duyệt thành công',

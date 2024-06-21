@@ -3,11 +3,16 @@ import template from './template.html';
 import './style.scss';
 import data from '../../utils/mock_data';
 import $ from 'jquery';
+import repository from '@/utils/repository';
+import helpers from '@/utils/helpers';
+import messages, { MSG_TITLE, MSG_TYPE } from '@/utils/messages';
 const LandingPage = {
     name: 'LandingPage',
     template: template,
     beforeCreate() {},
-    created() {},
+    created() {
+        this.getInitData();
+    },
     beforeMount() {},
     mounted() {
         this.startAutoChange();
@@ -38,7 +43,8 @@ const LandingPage = {
             data: data,
             share: data.share,
             currentIndex: 0,
-            currentImage: 0
+            currentImage: 0,
+            news: []
         };
     },
     computed: {},
@@ -56,11 +62,6 @@ const LandingPage = {
             this.currentIndex =
                 (this.currentIndex - 1 + this.data.honor.length) %
                 this.data.honor.length;
-            // eslint-disable-next-line no-undef
-            // $('.slide').css({
-            //     // eslint-disable-next-line no-undef
-            //     'margin-left': -$('.slide').width() + 'px'
-            // });
         },
         nextSlide() {
             this.currentIndex =
@@ -73,6 +74,42 @@ const LandingPage = {
                 'background-image',
                 `url(${data.backgrounds[this.currentImage]})`
             );
+        },
+        goToPage(id) {
+            this.$router.push({
+                name: 'post',
+                query: {
+                    p: helpers.encodeParams(id)
+                }
+            });
+        },
+        async helpRandom() {
+            return repository.get('/help/random').then((res) => {
+                if (res.data.Data.id) this.goToPage(res.data.Data.id);
+                else
+                    this.showModalMessage({
+                        type: MSG_TYPE.WARNING,
+                        title: MSG_TITLE.C999,
+                        content: messages.W001
+                    });
+            });
+        },
+        getInitData() {
+            const payload = {
+                keyword: '',
+                city: '0',
+                district: '0',
+                ward: '0',
+                size: 4,
+                page: 1,
+                is_all: true
+            };
+            return repository
+                .get('/approval', { params: payload })
+                .then((res) => {
+                    console.log(res.data.Data);
+                    this.news = res.data.Data.list;
+                });
         }
     },
     watch: {},
