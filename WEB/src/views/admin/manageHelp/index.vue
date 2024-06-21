@@ -7,9 +7,11 @@ import './style.scss';
 import store from '@/store';
 import helpers from '@/utils/helpers';
 import manageHelpStore from './store';
+import debounce from 'lodash/debounce';
 
 import Paging from '@/components/pagination';
 import SelectBox from '@/components/select';
+import Input from '@/components/input';
 const manageHelp = {
     name: 'manageHelp',
     template: template,
@@ -18,7 +20,7 @@ const manageHelp = {
             store.registerModule('manageHelp', manageHelpStore);
         }
     },
-    components: { Paging, SelectBox },
+    components: { Paging, SelectBox, Input },
     created() {
         this.getInitData();
     },
@@ -34,7 +36,7 @@ const manageHelp = {
     },
     methods: {
         ...mapMutations('manageHelp', ['setPageAndSize']),
-        ...mapActions('manageHelp', ['getInitData']),
+        ...mapActions('manageHelp', ['getInitData', 'export']),
         format(value) {
             if (!helpers.isNullOrEmpty(value)) {
                 let formattedValue = value
@@ -59,6 +61,22 @@ const manageHelp = {
         },
         formatDate(date) {
             return helpers.formatDate(date);
+        },
+        sort(sortBy) {
+            if (this.conditions.sort === sortBy) {
+                this.conditions.order =
+                    this.conditions.order === 'asc' ? 'desc' : 'asc';
+            } else {
+                this.conditions.sort = sortBy;
+                this.conditions.order = 'asc';
+            }
+            this.getInitData();
+        },
+        debouncedSearch: debounce(function () {
+            this.getInitData();
+        }, 300),
+        handleExport() {
+            this.export();
         }
     },
     watch: {}

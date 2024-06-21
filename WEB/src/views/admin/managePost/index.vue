@@ -7,10 +7,12 @@ import './style.scss';
 import store from '@/store';
 import helpers from '@/utils/helpers';
 import managePostStore from './store';
+import debounce from 'lodash/debounce';
 
 import Paging from '@/components/pagination';
 import SelectBox from '@/components/select';
 import PopupHelp from './popupHelp';
+import Input from '@/components/input';
 const managePost = {
     name: 'managePost',
     template: template,
@@ -19,7 +21,7 @@ const managePost = {
             store.registerModule('managePost', managePostStore);
         }
     },
-    components: { Paging, SelectBox, PopupHelp },
+    components: { Paging, SelectBox, PopupHelp, Input },
     created() {
         this.getInitData();
     },
@@ -42,7 +44,7 @@ const managePost = {
     },
     methods: {
         ...mapMutations('managePost', ['setPageAndSize']),
-        ...mapActions('managePost', ['getInitData', 'getListUser']),
+        ...mapActions('managePost', ['getInitData', 'getListUser', 'export']),
         format(value) {
             if (!helpers.isNullOrEmpty(value)) {
                 let formattedValue = value
@@ -74,9 +76,24 @@ const managePost = {
             return toDate < now;
         },
         showPopupHelp(id) {
-            console.log(1);
             this.getListUser(id);
             this.showPopup = true;
+        },
+        sort(sortBy) {
+            if (this.conditions.sort === sortBy) {
+                this.conditions.order =
+                    this.conditions.order === 'asc' ? 'desc' : 'asc';
+            } else {
+                this.conditions.sort = sortBy;
+                this.conditions.order = 'asc';
+            }
+            this.getInitData();
+        },
+        debouncedSearch: debounce(function () {
+            this.getInitData();
+        }, 300),
+        handleExport() {
+            this.export();
         }
     },
     watch: {}

@@ -2,10 +2,16 @@
     <div class="header">Phê duyệt đơn hỗ trợ</div>
     <div class="content">
         <div class="history-table-container">
-            <div class="pagination flex-r">
+            <div class="pagination flex-r m-b-16">
+                <Input
+                    v-model="this.conditions.keyword"
+                    placeholder="Nhập thông tin tìm kiếm"
+                    inputClass="custom-input"
+                    @input="debouncedSearch"
+                />
                 <SelectBox
                     v-if="listData.list.length > 0"
-                    class="col-sm-3 ms-2 m-b-16"
+                    class="col-sm-3 ms-2"
                     id="ward"
                     :options="options"
                     v-model="listData.pagination.size"
@@ -24,8 +30,20 @@
                 <thead class="fix-header">
                     <tr>
                         <th class="text-center">STT</th>
-                        <th class="text-left">Tên bài viết</th>
-                        <th class="text-left">Tóm tắt</th>
+                        <th
+                            class="text-left sortable"
+                            :class="{'asc': conditions.sort === 'title' && conditions.order === 'asc', 'desc': conditions.sort === 'title' && conditions.order === 'desc'}"
+                            @click='sort("title")'
+                        >
+                            Tên bài viết
+                        </th>
+                        <th
+                            class="text-center sortable"
+                            :class="{'asc': conditions.sort === 'sapo' && conditions.order === 'asc', 'desc': conditions.sort === 'sapo' && conditions.order === 'desc'}"
+                            @click='sort("sapo")'
+                        >
+                            Tóm tắt
+                        </th>
                         <th class="text-center">Xem chi tiết</th>
                     </tr>
                 </thead>

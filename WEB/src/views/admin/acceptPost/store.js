@@ -1,7 +1,11 @@
 import repository from './repository';
 const initConditions = {
+    keyword:'',
     page: 1,
-    size: 10
+    size: 10,
+    sort: 'cre_at',
+    order: 'asc'
+
 };
 export default {
     namespaced: true,

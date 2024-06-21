@@ -3,6 +3,7 @@ const helpModel = require("../models/help");
 const appError = require("../utils/appError");
 const catchAsync = require("../utils/catchAsync");
 const moment = require("moment");
+const ExcelJS = require("exceljs");
 class helpController {
     createHelp = catchAsync(async (req, res, next) => {
         const userId = req.user.id;
@@ -87,6 +88,40 @@ class helpController {
                 list: rs[0],
             },
         });
+    });
+    export = catchAsync(async (req, res, next) => {
+        const payload = {
+            ...req.query,
+        };
+        const rs = await helpModel.getAllHelpsByCommittee(payload);
+        const data = rs[0];
+        const workbook = new ExcelJS.Workbook();
+
+        const sheet = workbook.addWorksheet("Sheet1");
+
+        sheet.columns = [
+            { header: "STT", key: "stt", width: 5 },
+            { header: "Thời gian", key: "cre_at", width: 40 },
+            { header: "Tên bài viết", key: "title", width: 80 },
+            { header: "Người hỗ trợ", key: "name", width: 30 },
+            { header: "Số tiền", key: "amount", width: 20 },
+        ];
+
+        data.forEach((row, index) => {
+            row.stt = index + 1;
+            row.cre_at = moment(row.cre_at).format("YYYY-MM-DD HH:mm:ss");
+            sheet.addRow(row);
+        });
+        res.setHeader(
+            "Content-Type",
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        );
+        res.setHeader(
+            "Content-Disposition",
+            'attachment; filename="danh_sach_ho_tro.xlsx"',
+        );
+        await workbook.xlsx.write(res);
+        res.end();
     });
 }
 function sortObject(obj) {

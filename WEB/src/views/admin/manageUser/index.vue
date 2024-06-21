@@ -6,9 +6,11 @@ import { mapActions, mapMutations, mapState } from 'vuex';
 import './style.scss';
 import store from '@/store';
 import manageUserStore from '@/views/admin/manageUser/store';
+import debounce from 'lodash/debounce';
 
 import Paging from '@/components/pagination';
 import SelectBox from '@/components/select';
+import Input from '@/components/input';
 import PopupUser from './popupUser';
 const manageUser = {
     name: 'manageUser',
@@ -18,7 +20,7 @@ const manageUser = {
             store.registerModule('manageUser', manageUserStore);
         }
     },
-    components: { Paging, SelectBox, PopupUser },
+    components: { Paging, SelectBox, PopupUser, Input },
     created() {
         this.getInitData();
     },
@@ -39,7 +41,7 @@ const manageUser = {
     },
     methods: {
         ...mapMutations('manageUser', ['setPageAndSize']),
-        ...mapActions('manageUser', ['getInitData']),
+        ...mapActions('manageUser', ['getInitData', 'export']),
         format(value) {
             let formattedValue = value
                 .toString()
@@ -68,6 +70,22 @@ const manageUser = {
                 address: item.address
             };
             this.showPopup = true;
+        },
+        sort(sortBy) {
+            if (this.conditions.sort === sortBy) {
+                this.conditions.order =
+                    this.conditions.order === 'asc' ? 'desc' : 'asc';
+            } else {
+                this.conditions.sort = sortBy;
+                this.conditions.order = 'asc';
+            }
+            this.getInitData();
+        },
+        debouncedSearch: debounce(function () {
+            this.getInitData();
+        }, 300),
+        handleExport() {
+            this.export();
         }
     },
     watch: {}
