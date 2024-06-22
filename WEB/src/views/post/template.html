@@ -44,9 +44,8 @@
     </div>
     <div v-if="showPopup" class="popup-container">
         <popup-amount
-            v-model="showPopup"
             :paramSends="this.paramSends"
-            :onClose="() => { showPopup = false }"
+            :onClose="() => { showPopup = false}"
         />
     </div>
 </div>

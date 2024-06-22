@@ -27,7 +27,8 @@ export default {
                             callback: (ok) => {
                                 if (ok) {
                                     const anchor = document.createElement('a');
-                                    anchor.href = 'http://localhost:8080/home';
+                                    // eslint-disable-next-line no-undef
+                                    anchor.href = process.env.VUE_APP_URL_WEBSITE;
                                     anchor.target = '_self';
                                     anchor.click();
                                 }
