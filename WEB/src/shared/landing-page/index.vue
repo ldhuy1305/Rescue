@@ -6,6 +6,8 @@ import $ from 'jquery';
 import repository from '@/utils/repository';
 import helpers from '@/utils/helpers';
 import messages, { MSG_TITLE, MSG_TYPE } from '@/utils/messages';
+// import store from '@/store';
+import { mapMutations } from 'vuex';
 const LandingPage = {
     name: 'LandingPage',
     template: template,
@@ -49,6 +51,7 @@ const LandingPage = {
     },
     computed: {},
     methods: {
+        ...mapMutations('app', ['showModalMessage']),
         startAutoChange() {
             this.autoChangeInterval = setInterval(() => {
                 this.changeImage();
@@ -88,7 +91,7 @@ const LandingPage = {
                 if (res.data.Data.id) this.goToPage(res.data.Data.id);
                 else
                     this.showModalMessage({
-                        type: MSG_TYPE.WARNING,
+                        type: MSG_TYPE.ERROR,
                         title: MSG_TITLE.C999,
                         content: messages.W001
                     });
@@ -107,7 +110,6 @@ const LandingPage = {
             return repository
                 .get('/approval', { params: payload })
                 .then((res) => {
-                    console.log(res.data.Data);
                     this.news = res.data.Data.list;
                 });
         }
