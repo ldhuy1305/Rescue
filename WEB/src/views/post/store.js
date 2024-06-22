@@ -15,7 +15,8 @@ const init = {
 export default {
     namespaced: true,
     state: {
-        detail: { ...init }
+        detail: { ...init },
+        users: []
     },
     mutations: {
         setDetail(state, payload) {
@@ -29,6 +30,7 @@ export default {
         },
         setInitMode(state) {
             state.detail = { ...init };
+            state.users = [];
         }
     },
     actions: {
