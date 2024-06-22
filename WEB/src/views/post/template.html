@@ -7,17 +7,10 @@
             </div>
             <div class="sapo">{{this.detail.sapo}}</div>
             <div class="related"></div>
-            <div class="body" v-for="(el,key) in this.content" :index="key">
-                <div class="image" v-if="el.image != null && el.image !=''">
-                    <img :src="el.image" alt="image" />
-                </div>
-                <div
-                    class="content"
-                    v-if="el.description!=null && el.description !=''"
-                >
-                    <p>{{el.description}}</p>
-                </div>
+            <div class="body">
+                <div class="content ql-editor" v-html="formattedContent"></div>
             </div>
+
             <div class="help">
                 <button @click="showPopupAmount">Hỗ trợ</button>
             </div>

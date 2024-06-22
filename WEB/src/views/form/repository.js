@@ -1,7 +1,9 @@
 import repository from '@/utils/repository';
 export default {
     save: (payload) => {
-        return repository.post(`approval`, payload);
+        return repository.post(`approval`, payload, {
+            headers: { 'Content-Type': 'application/json' }
+        });
         // {
         //     headers: {
         //         'Content-Type': 'multipart/form-data'

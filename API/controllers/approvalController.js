@@ -12,8 +12,14 @@ class approvalController {
     updateImage = fileUploader.array("images", 10);
     createApproval = catchAsync(async (req, res, next) => {
         const rs = await approvalModel.createApproval(req.body.post);
-        req.body.approvalId = rs[0][0].id;
-        next();
+        // req.body.approvalId = rs[0][0].id;
+        // next();
+        res.status(200).json({
+            Code: 200,
+            Data: {
+                post: rs[0][0],
+            },
+        });
     });
     getApproval = catchAsync(async (req, res) => {
         const rs = await approvalModel.getApproval(req.params);

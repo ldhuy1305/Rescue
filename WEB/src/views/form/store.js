@@ -39,7 +39,16 @@ export default {
             city: '',
             district: '',
             ward: '',
-            address: ''
+            address: '',
+            content: ''
+        },
+        validRules: {
+            content: 'required',
+            dateFrom: 'required',
+            dateTo: 'required',
+            title: 'required',
+            image: 'required',
+            sapo: 'required'
         },
         contents: []
     },

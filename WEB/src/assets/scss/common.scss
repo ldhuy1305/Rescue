@@ -283,4 +283,72 @@ button.btn-sm {
 }
 .pagination ul {
     margin-bottom: 0px;
+
+.ql-font-arial {
+    font-family: 'Arial, sans-serif';
+}
+.ql-font-times-new-roman {
+    font-family: 'Times New Roman, serif';
+}
+.ql-font-helvetica {
+    font-family: 'Helvetica, sans-serif';
+}
+.ql-font-georgia {
+    font-family: 'Georgia, serif';
+}
+.ql-font-verdana {
+    font-family: 'Verdana, sans-serif';
+}
+.ql-font-calibri {
+    font-family: 'Calibri, sans-serif';
+}
+.ql-font-roboto {
+    font-family: 'Roboto, sans-serif';
+}
+.ql-font-open-sans {
+    font-family: 'Open Sans, sans-serif';
+}
+
+.ql-editor {
+    box-sizing: border-box;
+    line-height: 1.42;
+    // height: 500px !important;
+    outline: none;
+    overflow-y: auto;
+    padding: 12px 15px;
+    tab-size: 4;
+    -moz-tab-size: 4;
+    text-align: left;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.ql-editor p {
+    margin-bottom: 25px !important;
+}
+.ql-toolbar.ql-snow {
+    background-color: #f0f0f0 !important;
+    border: 1px solid #ddd;
+    position: sticky !important;
+    top: 50px !important;
+    z-index: 9999;
+    /* Tùy chỉnh các nút trong toolbar */
+    // .ql-formats {
+    //     margin-right: 10px; /* Khoảng cách giữa các nhóm nút */
+    // }
+
+    // button {
+    //     background: #ffffff; /* Đặt màu nền cho các nút */
+    //     border: 1px solid #ccc; /* Đặt viền cho các nút */
+    //     border-radius: 4px; /* Bo góc cho các nút */
+    //     margin: 5px; /* Khoảng cách giữa các nút */
+    //     padding: 5px 10px; /* Khoảng cách bên trong nút */
+
+    //     &:hover {
+    //         background: #e0e0e0; /* Đổi màu nền khi hover */
+    //     }
+
+    //     &.ql-active {
+    //         background: #d0d0d0; /* Đổi màu nền khi nút đang được chọn */
+    //     }
+    // }
 }

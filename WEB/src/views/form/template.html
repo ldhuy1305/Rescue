@@ -1,58 +1,57 @@
 <div id="form">
-  <div class="main">
-    <div class="header-form">Thông tin hỗ trợ</div>
+    <div class="main">
+        <div class="header-form">Thông tin hỗ trợ</div>
     <div class="content-form">
-      <div class="title">Địa chỉ hỗ trợ</div>
+      <div class="header">Địa chỉ hỗ trợ</div>
       <div class="address">
         <Select id="city" :options=this.location.cities :onChangeEvent="setDistricts" v-model="this.detail.city"></Select>
         <Select id="district" :options=this.location.districts :onChangeEvent="setWards" v-model="this.detail.district"></Select>
         <Select id="ward" :options=this.location.wards v-model="this.detail.ward"> </Select>
       </div>
-      <Input id ='address' class="m-b-20" placeholder="Địa chỉ cụ thể" v-model ='detail.address'></Input>
-      <hr>
-      <div class="title">Thời gian diễn ra hỗ trợ</div>
-      <div class="date">
-          <span class="label">Bắt đầu từ ngày</span>
-          <VueDatePicker
-              id="dateFrom"
-              v-model="this.detail.dateFrom"
-              :enable-time-picker="false"
-              cancel-text="Hủy"
-              select-text="Chọn"
-              :clearable="false"
-              @update:modelValue="validateDate"
-          ></VueDatePicker>
-              <span class="label">Kết thúc vào ngày</span>
-              <VueDatePicker
-                  id="dateTo"
-                  v-model="this.detail.dateTo"
-                  :enable-time-picker="false"
-                  cancel-text="Hủy"
-                  select-text="Chọn"
-                  @update:modelValue="validateDate"
-                  :clearable="false"
-              ></VueDatePicker>
-      </div>
-      <hr>
-      <div class="title">Nội dung</div>
-      <div class="post">
-        <Input id ='title' placeholder="Tiêu đề" v-model ='detail.title'></Input>
-        <fileUpload id ='image' :maxSize="5" accept="jpg" @file-uploaded="getUploadedData" v-model ='detail.image'></fileUpload>
-        <Input class="m-t-15" type="textarea" :rows = '3' id ='sapo' placeholder="Tóm tắt nội dung" v-model ='detail.sapo'></Input>
-        <div v-for="(content, index) in contents" :key="index" :id="'content-' + index" class="content">
-          <button @click="removeContent(index)">X</button>
-          <fileUpload :maxSize="5" accept="jpg" @file-uploaded="getUploadedData" v-model ='contents[index].image'></fileUpload>
-          <Input class="m-t-15" type="textarea" :rows = '5' :id="'description-' + index" placeholder="Nội dung" v-model ='contents[index].description'></Input>
+        <Input id ='address' class="m-b-20" placeholder="Địa chỉ cụ thể" v-model ='detail.address'></Input>
+        <hr>
+        <div class="header">Thời gian diễn ra hỗ trợ</div>
+        <div class="date">
+            <span class="label">Bắt đầu từ ngày</span>
+            <VueDatePicker
+                id="dateFrom"
+                v-model="this.detail.dateFrom"
+                :enable-time-picker="false"
+                cancel-text="Hủy"
+                select-text="Chọn"
+                :clearable="false"
+                @update:modelValue="validateDate"
+            ></VueDatePicker>
+                <span class="label">Kết thúc vào ngày</span>
+                <VueDatePicker
+                    id="dateTo"
+                    v-model="this.detail.dateTo"
+                    :enable-time-picker="false"
+                    cancel-text="Hủy"
+                    select-text="Chọn"
+                    @update:modelValue="validateDate"
+                    :clearable="false"
+                ></VueDatePicker>
+        </div>
+        <hr>
+        <div class="header">Nội dung</div>
+        <div class="post">
+          <div>
+            <Input id="title" placeholder="Tiêu đề" v-model ='detail.title'></Input>
+          </div>
+          <div>
+            <fileUpload id="image" :maxSize="5" accept="jpg" @file-uploaded="getUploadedData" v-model ='detail.image'></fileUpload>
+          </div>
+          <Input id='sapo' class="m-t-15" type="textarea" :rows = '3' placeholder="Tóm tắt nội dung" v-model ='detail.sapo'></Input>
+          
+          <div class="m-t-15" >
+            <quill-editor id="content" ref="quillEditor" v-model:content="detail.content" contentType="html" :options="editorOption"/>
+          </div>
+          <p v-html="detail.content"></p>
+        </div>
+        <div class ='save'>
+          <button class="btn" @click="saveData"> Gửi đăng kí</button>
         </div>
       </div>
-      
-      <div class ='add-content'>
-        <button class="btn" @click="addContent"> Thêm nội dung</button>
-      </div>
-      <div class ='save'>
-        <button class="btn" @click="saveData"> Gửi đăng kí</button>
-      </div>
-      </div>
     </div>
-  </div>
 </div>
