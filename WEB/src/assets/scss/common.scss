@@ -283,7 +283,7 @@ button.btn-sm {
 }
 .pagination ul {
     margin-bottom: 0px;
-
+}
 .ql-font-arial {
     font-family: 'Arial, sans-serif';
 }
@@ -331,24 +331,4 @@ button.btn-sm {
     position: sticky !important;
     top: 50px !important;
     z-index: 9999;
-    /* Tùy chỉnh các nút trong toolbar */
-    // .ql-formats {
-    //     margin-right: 10px; /* Khoảng cách giữa các nhóm nút */
-    // }
-
-    // button {
-    //     background: #ffffff; /* Đặt màu nền cho các nút */
-    //     border: 1px solid #ccc; /* Đặt viền cho các nút */
-    //     border-radius: 4px; /* Bo góc cho các nút */
-    //     margin: 5px; /* Khoảng cách giữa các nút */
-    //     padding: 5px 10px; /* Khoảng cách bên trong nút */
-
-    //     &:hover {
-    //         background: #e0e0e0; /* Đổi màu nền khi hover */
-    //     }
-
-    //     &.ql-active {
-    //         background: #d0d0d0; /* Đổi màu nền khi nút đang được chọn */
-    //     }
-    // }
 }
