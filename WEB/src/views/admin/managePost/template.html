@@ -113,7 +113,7 @@
     </div>
     <div v-if="showPopup" class="popup-container">
         <popup-help
-            v-model="showPopup"
+            :showModal="showPopup"
             :paramSends="this.paramSends"
             :onClose="onClosePopup"
         ></popup-help>
