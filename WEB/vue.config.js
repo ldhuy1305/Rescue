@@ -6,7 +6,7 @@ const path = require('path');
 /* eslint-disable */
 module.exports = defineConfig({
     transpileDependencies: true,
-    runtimeCompiler: true,
+    runtimeCompiler: false,
     configureWebpack: {
         resolve: {
             alias: {
@@ -24,7 +24,7 @@ module.exports = defineConfig({
                     loader: 'html-loader',
                     include: [
                         // eslint-disable-next-line no-undef
-                        path.resolve(__dirname, './src'),
+                        path.resolve(__dirname, './src')
                     ]
                 }
             ]
