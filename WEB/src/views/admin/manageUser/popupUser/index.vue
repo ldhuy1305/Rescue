@@ -8,7 +8,8 @@ const User = {
     template: template,
     props: {
         showModal: Boolean,
-        paramSends: Object
+        paramSends: Object,
+        onClose: Function
     },
     created() {},
     beforeMount() {},
@@ -18,8 +19,7 @@ const User = {
     beforeUnmount() {},
     unmounted() {},
     data() {},
-    computed: {
-    },
+    computed: {},
     methods: {
         close() {
             if (this.onClose) {

@@ -78,7 +78,7 @@
     </div>
     <div v-if="showPopup" class="popup-container">
         <popup-post
-            v-model="showPopup"
+            :showModal="showPopup"
             :paramSends="this.paramSends"
             :onClose="onClosePopup"
         />
