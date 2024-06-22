@@ -34,13 +34,13 @@ const JWTErrorHandler = () => {
 const prodErrors = (res, err) => {
     if (err.isOperational) {
         res.status(err.statusCode).json({
-            status: err.statusCode,
-            message: err.message,
+            Code: err.statusCode,
+            Message: err.message,
         });
     } else {
         res.status(500).json({
-            status: "error",
-            message: "Đã xảy ra lỗi. Vui lòng thử lại sau!",
+            Code: 500,
+            Message: "Đã xảy ra lỗi. Vui lòng thử lại sau!",
         });
     }
 };

@@ -7,8 +7,9 @@ import './style.scss';
 const User = {
     template: template,
     props: {
-        modelValue: Boolean,
-        paramSends: Object
+        showModal: Boolean,
+        paramSends: Object,
+        onClose: Function
     },
     created() {},
     beforeMount() {},
@@ -18,21 +19,12 @@ const User = {
     beforeUnmount() {},
     unmounted() {},
     data() {},
-    computed: {
-        showModal: {
-            get() {
-                return this.modelValue;
-            },
-            set() {}
-        }
-    },
+    computed: {},
     methods: {
         close() {
-            this.$emit('update:modelValue', false);
             if (this.onClose) {
                 this.onClose();
             }
-            this.showModal = false;
         }
     }
 };

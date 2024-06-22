@@ -8,8 +8,9 @@ import $ from 'jquery';
 const Amount = {
     template: template,
     props: {
-        modelValue: Boolean,
-        paramSends: Object
+        showModal: Boolean,
+        paramSends: Object,
+        onClose: Function
     },
     created() {},
     beforeMount() {},
@@ -36,24 +37,23 @@ const Amount = {
     },
     computed: {
         ...mapState('post', ['detail', 'content']),
-        ...mapState('app', ['user']),
-        showModal: {
-            get() {
-                return this.modelValue;
-            },
-            set() {}
-        }
+        ...mapState('app', ['user'])
+        // showModal: {
+        //     get() {
+        //         return this.modelValue;
+        //     },
+        //     set() {}
+        // }
     },
     methods: {
         ...mapMutations('post', []),
         ...mapMutations('app', ['showModalMessage']),
         ...mapActions('post', []),
         close() {
-            this.$emit('update:modelValue', false);
+            // this.$emit('update:modelValue', false);
             if (this.onClose) {
                 this.onClose();
             }
-            this.showModal = false;
         },
         onShow() {
             this.hideHeaderError();
@@ -94,27 +94,36 @@ const Amount = {
             }
         },
         payment() {
-            var val = $('input.selected').val().replace(/\D/g, '');
-            const payload = {
-                title: this.paramSends.title,
-                amount: val
-            };
-            if (Object.keys(this.user).length === 0) {
+            var val = $('input.selected').val();
+            if (!val)
                 this.showModalMessage({
                     type: MSG_TYPE.ERROR,
                     title: MSG_TITLE.C999,
-                    content: messages.E009
+                    content: messages.E010
                 });
-            } else
-                repository
-                    .post(`help/post/${this.paramSends.id}`, payload)
-                    .then((res) => {
-                        let data = res.data;
-                        if (data.Code == 200 && data.Data) {
-                            const url = data.Data.url;
-                            window.open(url, '_blank');
-                        }
+            else {
+                val = val.replace(/\D/g, '');
+                const payload = {
+                    title: this.paramSends.title,
+                    amount: val
+                };
+                if (Object.keys(this.user).length === 0) {
+                    this.showModalMessage({
+                        type: MSG_TYPE.ERROR,
+                        title: MSG_TITLE.C999,
+                        content: messages.E009
                     });
+                } else
+                    repository
+                        .post(`help/post/${this.paramSends.id}`, payload)
+                        .then((res) => {
+                            let data = res.data;
+                            if (data.Code == 200 && data.Data) {
+                                const url = data.Data.url;
+                                window.open(url, '_blank');
+                            }
+                        });
+            }
         }
     }
 };

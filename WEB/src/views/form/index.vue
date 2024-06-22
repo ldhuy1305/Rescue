@@ -9,8 +9,8 @@ import helpers from '@/utils/helpers';
 import formStore from '@/views/form/store';
 import messages from '@/utils/messages';
 
-import Select from '@/components/select';
-import Input from '@/components/input';
+import RvnSelect from '@/components/select';
+import RvnInput from '@/components/input';
 import fileUpload from '@/components/fileUpload';
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
@@ -26,7 +26,7 @@ Quill.register('modules/imageUploader', ImageUploader);
 const form = {
     name: 'Form',
     template: template,
-    components: { Select, Input, fileUpload, VueDatePicker, QuillEditor },
+    components: { RvnSelect, RvnInput, fileUpload, VueDatePicker, QuillEditor },
     beforeCreate() {
         if (!store.hasModule('form')) {
             store.registerModule('form', formStore);

@@ -8,7 +8,7 @@ import '@vueup/vue-quill/dist/vue-quill.snow.css';
 const Post = {
     template: template,
     props: {
-        modelValue: Boolean,
+        showModal: Boolean,
         paramSends: Object,
         onClose: Function
     },
@@ -25,12 +25,6 @@ const Post = {
         };
     },
     computed: {
-        showModal: {
-            get() {
-                return this.modelValue;
-            },
-            set() {}
-        },
         formattedContent() {
             const parser = new DOMParser();
             const decodedString = parser.parseFromString(
@@ -43,11 +37,9 @@ const Post = {
     methods: {
         ...mapMutations('app', ['showModalMessage']),
         close() {
-            this.$emit('update:modelValue', false);
             if (this.onClose) {
                 this.onClose();
             }
-            this.showModal = false;
         },
         approvePost(is_acp) {
             this.showModalMessage({

@@ -8,6 +8,7 @@ export default {
     E007: 'Xác nhận mật khẩu không trùng khớp ',
     E008: 'Thời gian không hợp lệ',
     E009: 'Bạn cần đăng nhập tài khoản để có thể hỗ trợ',
+    E010: 'Bạn cần chọn mức hỗ trợ',
     E063: 'Mật khẩu không hợp lệ',
     E064: 'Việc đăng kí đã quá hạn!',
     // Confirm message
@@ -24,7 +25,7 @@ export default {
     S001: 'Đăng kí thành công. Vui lòng tải lại trang!',
     S002: 'Đơn đã được duyệt thành công',
     S003: 'Đơn đã được từ chối thành công',
-    
+
     // api error
     E400: 'Yêu cầu không hợp lệ. Vui lòng kiểm tra và thử lại.',
     E401: 'Bạn chưa được cấp quyền truy cập. Vui lòng đăng nhập và thử lại.',

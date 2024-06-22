@@ -17,8 +17,6 @@
             :maxlength="realMaxLength"
             :style="style"
             ref="input"
-            @focus="focusInput"
-            @blur="blurInput"
             @input="updateInput"
         />
         <textarea
@@ -34,9 +32,7 @@
             :cols="cols"
             :rows="rows"
             ref="input"
-            @focus="focusInput"
-            @blur="blurInput"
-            @change="updateInput"
+            @input="updateInput"
         ></textarea>
     </div>
 </div>

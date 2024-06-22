@@ -12,7 +12,7 @@ import Input from '@/components/input';
 const popupHelp = {
     template: template,
     props: {
-        modelValue: Boolean,
+        showModal: Boolean,
         paramSends: Object,
         onClose: Function
     },
@@ -50,22 +50,13 @@ const popupHelp = {
             ]
         };
     },
-    computed: {
-        showModal: {
-            get() {
-                return this.modelValue;
-            },
-            set() {}
-        }
-    },
+    computed: {},
     methods: {
         ...mapMutations('app', ['showModalMessage']),
         close() {
-            this.$emit('update:modelValue', false);
             if (this.onClose) {
                 this.onClose();
             }
-            this.showModal = false;
         },
         format(value) {
             if (!helpers.isNullOrEmpty(value)) {

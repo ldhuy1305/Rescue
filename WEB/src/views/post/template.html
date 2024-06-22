@@ -1,9 +1,9 @@
-<div id="post">
+<div id="post" class="post">
     <div class="container">
         <div class="main-col">
             <div class="title">{{this.detail.title}}</div>
             <div class="image">
-                <img :src="this.detail.image" alt="image" />
+                <img :src="this.detail.image" />
             </div>
             <div class="sapo">{{this.detail.sapo}}</div>
             <div class="related"></div>
@@ -44,9 +44,9 @@
     </div>
     <div v-if="showPopup" class="popup-container">
         <popup-amount
-            v-model="showPopup"
+            :showModal="showPopup"
             :paramSends="this.paramSends"
-            :onClose="() => { showPopup = false }"
+            :onClose="() => { showPopup = false}"
         />
     </div>
 </div>

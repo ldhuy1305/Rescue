@@ -100,7 +100,7 @@
 
     <div v-if="showPopup" class="popup-container">
         <popup-user
-            v-model="showPopup"
+            :showModal="showPopup"
             :paramSends="this.paramSends"
             :onClose="() => { showPopup = false }"
         />
