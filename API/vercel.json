@@ -9,6 +9,10 @@
     ],
     "routes": [
       {
+        "src": "/swagger.yaml", 
+        "dest": "swagger.yaml" 
+      },
+      {
         "src": "/(.*)",
         "dest": "/"
       }
