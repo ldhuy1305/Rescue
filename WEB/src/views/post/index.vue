@@ -32,9 +32,6 @@ const Post = {
             params: helpers.decodeParams(this.$route.query.p),
             showPopup: false,
             paramSends: {}
-            // content:
-            //     "<p class='ql-align-center'><img src='https://res.cloudinary.com/dcyg1qwdc/image/upload/v1718421499/demo/08_1_ypwlb8.jpg' class='selected' data-size='1035,1125' style='width: 614px;'></p><p class='ql-align-center'>hình ảnh mang tính chất minh họa</p>'"
-            // params: decodeURI(this.$route.query.p)
         };
     },
     computed: {
@@ -46,7 +43,7 @@ const Post = {
                 'text/html'
             ).body.textContent;
             return decodedString;
-        },
+        }
     },
     methods: {
         ...mapMutations('post', [

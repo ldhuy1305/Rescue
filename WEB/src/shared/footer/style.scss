@@ -1,5 +1,5 @@
 @import '@/assets/scss/common';
-#contact{
+#contact {
     background: url('https://res.cloudinary.com/dcyg1qwdc/image/upload/test/footer/toefq1mjxb59xex72jcc.jpg');
     color: white;
     // position: sticky;
@@ -9,7 +9,8 @@
     right: 0;
     z-index: -1;
     .contact-container {
-        background: url('https://res.cloudinary.com/dcyg1qwdc/image/upload/test/footer/ygojfhlamgjzb47faapc.png') no-repeat bottom;
+        background: url('https://res.cloudinary.com/dcyg1qwdc/image/upload/test/footer/ygojfhlamgjzb47faapc.png')
+            no-repeat bottom;
         display: flex;
         flex-direction: column;
         box-shadow: 0px 0px 4px #030303;
@@ -17,24 +18,36 @@
         margin: 0px auto 0 auto;
         gap: 10px;
         width: 100%;
-        .second{
-            .social{
+        .second {
+            .social {
                 display: flex;
-                a{
+                a {
                     margin: 0px 5px 0px 5px;
-                    i{
+                    i {
                         color: white;
                     }
                 }
             }
         }
-        .infor{
+        .infor {
             margin: 0px 2px 0px 2px;
+            p {
+                margin: 0px;
+                color: white !important;
+            }
         }
-        .copyright{
+        .copyright {
             display: flex;
             justify-content: center;
             margin: 0px 2px 0px 2px;
         }
     }
+}
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.container {
+    white-space: nowrap;
 }

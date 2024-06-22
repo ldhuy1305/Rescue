@@ -14,8 +14,7 @@ export default {
             ward: '',
             address: '',
             content: ''
-        },
-        contents: []
+        }
     },
     mutations: {
         setDetail(state, payload) {
@@ -36,11 +35,9 @@ export default {
                     if (
                         data.Code == 200 &&
                         data.Data.detail &&
-                        data.Data.content &&
                         data.Data.users
                     ) {
                         context.commit('setDetail', data.Data.detail);
-                        context.commit('setContent', data.Data.content);
                         context.commit('setUsers', data.Data.users);
                     } else Router.push('/404');
                 });
@@ -50,9 +47,8 @@ export default {
         },
         createTransaction(context, payload) {
             try {
-                repository.addTransaction(payload).then((res) => {
-                    let data = res.data;
-                    console.log(data);
+                repository.addTransaction(payload).then(() => {
+                    // let data = res.data;
                 });
             } catch (e) {
                 console.log('Action: ' + e.message);

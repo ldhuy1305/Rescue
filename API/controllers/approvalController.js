@@ -27,8 +27,8 @@ class approvalController {
             Code: 200,
             Data: {
                 detail: rs[0][0],
-                content: rs[1],
-                users: rs[2],
+                // content: rs[1],
+                users: rs[1],
             },
         });
     });

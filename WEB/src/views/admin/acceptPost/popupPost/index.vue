@@ -34,7 +34,7 @@ const Post = {
         formattedContent() {
             const parser = new DOMParser();
             const decodedString = parser.parseFromString(
-                this.paramSends.detail.content,
+                this.paramSends.detail?.content,
                 'text/html'
             ).body.textContent;
             return decodedString;
