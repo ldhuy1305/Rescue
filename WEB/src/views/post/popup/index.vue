@@ -8,7 +8,7 @@ import $ from 'jquery';
 const Amount = {
     template: template,
     props: {
-        modelValue: Boolean,
+        showModal: Boolean,
         paramSends: Object,
         onClose: Function
     },
@@ -37,13 +37,13 @@ const Amount = {
     },
     computed: {
         ...mapState('post', ['detail', 'content']),
-        ...mapState('app', ['user']),
-        showModal: {
-            get() {
-                return this.modelValue;
-            },
-            set() {}
-        }
+        ...mapState('app', ['user'])
+        // showModal: {
+        //     get() {
+        //         return this.modelValue;
+        //     },
+        //     set() {}
+        // }
     },
     methods: {
         ...mapMutations('post', []),
@@ -54,7 +54,6 @@ const Amount = {
             if (this.onClose) {
                 this.onClose();
             }
-            this.showModal = false;
         },
         onShow() {
             this.hideHeaderError();
