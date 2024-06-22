@@ -1,56 +1,97 @@
 <div id="form">
     <div class="main">
-      <div class="header-form">Thông tin hỗ trợ</div>
-      <div class="content-form">
-        <div class="header">Địa chỉ hỗ trợ</div>
-        <div class="address">
-          <Select id="city" :options="location.cities" :onChangeEvent="setDistricts" v-model="detail.city"></Select>
-          <Select id="district" :options="location.districts" :onChangeEvent="setWards" v-model="detail.district"></Select>
-          <Select id="ward" :options="location.wards" v-model="detail.ward"></Select>
+        <div class="header-form">Thông tin hỗ trợ</div>
+        <div class="content-form">
+            <div class="header">Địa chỉ hỗ trợ</div>
+            <div class="address">
+                <rvn-select
+                    id="city"
+                    :options="location.cities"
+                    :onChangeEvent="setDistricts"
+                    v-model="detail.city"
+                ></rvn-select>
+                <rvn-select
+                    id="district"
+                    :options="location.districts"
+                    :onChangeEvent="setWards"
+                    v-model="detail.district"
+                ></rvn-select>
+                <rvn-select
+                    id="ward"
+                    :options="location.wards"
+                    v-model="detail.ward"
+                ></rvn-select>
+            </div>
+            <rvn-input
+                id="address"
+                class="m-b-20"
+                placeholder="Địa chỉ cụ thể"
+                v-model="detail.address"
+            ></rvn-input>
+            <hr />
+            <div class="header">Thời gian diễn ra hỗ trợ</div>
+            <div class="date">
+                <span class="label">Bắt đầu từ ngày</span>
+                <vue-date-picker
+                    id="dateFrom"
+                    v-model="detail.dateFrom"
+                    :enable-time-picker="false"
+                    cancel-text="Hủy"
+                    select-text="Chọn"
+                    :clearable="false"
+                    @update:modelValue="validateDate"
+                ></vue-date-picker>
+                <span class="label">Kết thúc vào ngày</span>
+                <vue-date-picker
+                    id="dateTo"
+                    v-model="detail.dateTo"
+                    :enable-time-picker="false"
+                    cancel-text="Hủy"
+                    select-text="Chọn"
+                    @update:modelValue="validateDate"
+                    :clearable="false"
+                ></vue-date-picker>
+            </div>
+            <hr />
+            <div class="header">Nội dung</div>
+            <div class="post">
+                <div>
+                    <rvn-input
+                        id="title"
+                        placeholder="Tiêu đề"
+                        v-model="detail.title"
+                    ></rvn-input>
+                </div>
+                <div>
+                    <file-upload
+                        id="image"
+                        :maxSize="5"
+                        accept="jpg"
+                        @file-uploaded="getUploadedData"
+                        v-model="detail.image"
+                    ></file-upload>
+                </div>
+                <rvn-input
+                    id="sapo"
+                    class="m-t-15"
+                    type="textarea"
+                    :rows="3"
+                    placeholder="Tóm tắt nội dung"
+                    v-model="detail.sapo"
+                ></rvn-input>
+                <div class="m-t-15">
+                    <quill-editor
+                        id="content"
+                        ref="quillEditor"
+                        v-model:content="detail.content"
+                        contentType="html"
+                        :options="editorOption"
+                    ></quill-editor>
+                </div>
+            </div>
+            <div class="save">
+                <button class="btn" @click="saveData">Gửi đăng ký</button>
+            </div>
         </div>
-        <Input id="address" class="m-b-20" placeholder="Địa chỉ cụ thể" v-model="detail.address"></Input>
-        <hr>
-        <div class="header">Thời gian diễn ra hỗ trợ</div>
-        <div class="date">
-          <span class="label">Bắt đầu từ ngày</span>
-          <VueDatePicker
-            id="dateFrom"
-            v-model="detail.dateFrom"
-            :enable-time-picker="false"
-            cancel-text="Hủy"
-            select-text="Chọn"
-            :clearable="false"
-            @update:modelValue="validateDate"
-          ></VueDatePicker>
-          <span class="label">Kết thúc vào ngày</span>
-          <VueDatePicker
-            id="dateTo"
-            v-model="detail.dateTo"
-            :enable-time-picker="false"
-            cancel-text="Hủy"
-            select-text="Chọn"
-            @update:modelValue="validateDate"
-            :clearable="false"
-          ></VueDatePicker>
-        </div>
-        <hr>
-        <div class="header">Nội dung</div>
-        <div class="post">
-          <div>
-            <Input id="title" placeholder="Tiêu đề" v-model="detail.title"></Input>
-          </div>
-          <div>
-            <fileUpload id="image" :maxSize="5" accept="jpg" @file-uploaded="getUploadedData" v-model="detail.image"></fileUpload>
-          </div>
-          <Input id="sapo" class="m-t-15" type="textarea" :rows="3" placeholder="Tóm tắt nội dung" v-model="detail.sapo"></Input>
-          <div class="m-t-15">
-            <quill-editor id="content" ref="quillEditor" v-model:content="detail.content" contentType="html" :options="editorOption"></quill-editor>
-          </div>
-        </div>
-        <div class="save">
-          <button class="btn" @click="saveData">Gửi đăng ký</button>
-        </div>
-      </div>
     </div>
-  </div>
-  
+</div>
