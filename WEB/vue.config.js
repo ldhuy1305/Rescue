@@ -6,7 +6,6 @@ const path = require('path');
 /* eslint-disable */
 module.exports = defineConfig({
     transpileDependencies: true,
-    runtimeCompiler: false,
     configureWebpack: {
         resolve: {
             alias: {
