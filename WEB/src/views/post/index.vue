@@ -26,7 +26,9 @@ const Post = {
     beforeUpdate() {},
     updated() {},
     beforeUnmount() {},
-    unmounted() {},
+    unmounted() {
+        this.setInitMode();
+    },
     data() {
         return {
             params: helpers.decodeParams(this.$route.query.p),
@@ -51,7 +53,8 @@ const Post = {
             'setDistricts',
             'addContent',
             // 'removeDescription',
-            'removeNullContent'
+            'removeNullContent',
+            'setInitMode'
         ]),
         ...mapActions('post', [
             'getInitData',

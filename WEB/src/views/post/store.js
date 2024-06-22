@@ -1,20 +1,21 @@
 import repository from './repository';
 import Router from '@/router';
+const init = {
+    title: '',
+    image: '',
+    sapo: '',
+    start_date: new Date(),
+    end_date: new Date(),
+    city: '',
+    district: '',
+    ward: '',
+    address: '',
+    content: ''
+};
 export default {
     namespaced: true,
     state: {
-        detail: {
-            title: '',
-            image: '',
-            sapo: '',
-            start_date: new Date(),
-            end_date: new Date(),
-            city: '',
-            district: '',
-            ward: '',
-            address: '',
-            content: ''
-        }
+        detail: { ...init }
     },
     mutations: {
         setDetail(state, payload) {
@@ -25,6 +26,9 @@ export default {
         },
         setUsers(state, payload) {
             state.users = payload;
+        },
+        setInitMode(state) {
+            state.detail = { ...init };
         }
     },
     actions: {
