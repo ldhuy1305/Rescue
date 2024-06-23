@@ -1,6 +1,7 @@
 import repository from './repository';
 // import Router from '@/router';
 import store from '@/store';
+import messages, { MSG_TITLE, MSG_TYPE } from '@/utils/messages';
 const initData = {
     oldPass: '',
     newPass: '',
@@ -39,6 +40,11 @@ export default {
                     const { data } = res;
                     if (data.Code === 200 && data.Data) {
                         store.commit('app/setUser', data.Data.user);
+                        store.commit('app/showModalMessage', {
+                            type: MSG_TYPE.SUCCESS,
+                            title: MSG_TITLE.C999,
+                            content: messages.S005
+                        });
                     }
                 });
             } catch (e) {
@@ -63,6 +69,11 @@ export default {
                     const { data } = res;
                     if (data.Code === 200 && data.Data) {
                         context.commit('setPass', { ...initData });
+                        store.commit('app/showModalMessage', {
+                            type: MSG_TYPE.SUCCESS,
+                            title: MSG_TITLE.C999,
+                            content: messages.S004
+                        });
                     }
                 });
             } catch (e) {

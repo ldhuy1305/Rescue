@@ -59,10 +59,15 @@
         }
     }
 }
-.page-link.active,
-.active > .page-link {
-    z-index: 0;
-    color: var(--bs-pagination-active-color);
-    background-color: var(--bs-pagination-active-bg);
-    border-color: var(--bs-pagination-active-border-color);
+// .page-link.active,
+// .active > .page-link {
+//     z-index: 0;
+//     color: var(--bs-pagination-active-color);
+//     background-color: var(--bs-pagination-active-bg);
+//     border-color: var(--bs-pagination-active-border-color);
+// }
+.custom-selectbox,
+.custom-input {
+    height: 40px;
+    line-height: 40px;
 }

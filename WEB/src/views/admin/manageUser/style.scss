@@ -1,10 +1,9 @@
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 @import '@/assets/scss/common';
-* {
-    font-family: 'Source Sans Pro', sans-serif;
-}
+
 #manage-user {
     padding: 50px;
+    font-family: 'Source Sans Pro', sans-serif;
     .header {
         margin: 0px;
         line-height: 1.5;
