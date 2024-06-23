@@ -34,13 +34,10 @@ var Input = {
     emits: ['update:modelValue'],
     data() {
         return {
-            isFocus: false,
-            realMaxLength: undefined
+            isFocus: false
         };
     },
-    mounted() {
-        this.realMaxLength = this.getRealMaxLength();
-    },
+    mounted() {},
     computed: {
         vewValue: {
             get() {
@@ -51,17 +48,8 @@ var Input = {
         }
     },
     methods: {
-        getRealMaxLength() {
-            if (this.maxLength != undefined && this.maxLength != null)
-                return (
-                    this.maxLength +
-                    (parseInt(this.maxLength / 3) +
-                        (this.maxLength % 3 > 0 ? 0 : -1))
-                );
-        },
         focusInput(e) {
             this.isFocus = true;
-            this.realMaxLength = this.maxLength;
             if (this.onFocus) {
                 this.onFocus(e);
             }

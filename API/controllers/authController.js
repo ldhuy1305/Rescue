@@ -12,6 +12,9 @@ const accountModel = require("../models/account");
 exports.sendEmailVerify = catchAsync(async (req, res, next) => {
     try {
         const payload = { ...req.body, cre_at: new Date().toISOString() };
+
+        const account = await accountModel.checkMail({ email: payload.email });
+        if (account) return next(new appError("Người dùng đã tồn tại", 409));
         const url = `${process.env.URL_WEBSITE}?p=${helpers.encodeParams(payload)}`;
         await new Email(payload.email, payload.firstName, url).sendWelcome();
         res.status(200).json({
@@ -24,8 +27,7 @@ exports.sendEmailVerify = catchAsync(async (req, res, next) => {
     } catch (err) {
         console.log(err);
         return next(
-            new appError("Đã xuất hiện lỗi gửi email. Vui lòng thử lại!"),
-            500,
+            new appError("Đã xuất hiện lỗi gửi email. Vui lòng thử lại!", 500),
         );
     }
 });
@@ -38,14 +40,13 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
         );
     }
     try {
-        const url = "http://localhost:8080/home";
+        const url = process.env.URL_WEBSITE;
 
         await new Email(email, req.body.password, url).sendPasswordReset();
         next();
     } catch (error) {
         return next(
-            new appError("Đã xuất hiện lỗi gửi email. Vui lòng thử lại!"),
-            500,
+            new appError("Đã xuất hiện lỗi gửi email. Vui lòng thử lại!", 500),
         );
     }
 });
