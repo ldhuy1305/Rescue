@@ -9,7 +9,9 @@ export default {
             dateFrom: moment().subtract(1, 'month').format('YYYY-MM-DD'),
             dateTo: moment().format('YYYY-MM-DD'),
             page: 1,
-            size: 10
+            size: 10,
+            sort: 'cre_at',
+            order: 'asc'
         },
         listData: {
             list: [],

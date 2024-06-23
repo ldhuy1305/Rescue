@@ -11,12 +11,16 @@ const userModel = require("../models/user");
 const accountModel = require("../models/account");
 exports.sendEmailVerify = catchAsync(async (req, res, next) => {
     try {
-        const payload = { ...req.body, cre_at: new Date().toISOString() };
+        let payload = { ...req.body, cre_at: new Date().toISOString() };
 
         const account = await accountModel.checkMail({ email: payload.email });
         if (account) return next(new appError("Người dùng đã tồn tại", 409));
         const url = `${process.env.URL_WEBSITE}?p=${helpers.encodeParams(payload)}`;
-        await new Email(payload.email, payload.firstName, url).sendWelcome();
+        await new Email(
+            payload.email,
+            decodeURI(payload.firstName),
+            url,
+        ).sendWelcome();
         res.status(200).json({
             Code: 200,
             Data: {

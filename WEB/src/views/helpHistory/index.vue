@@ -93,6 +93,16 @@ const helpHistory = {
                 currentPage: 1,
                 perPage: this.listData.pagination.size
             });
+        },
+        sort(sortBy) {
+            if (this.conditions.sort === sortBy) {
+                this.conditions.order =
+                    this.conditions.order === 'asc' ? 'desc' : 'asc';
+            } else {
+                this.conditions.sort = sortBy;
+                this.conditions.order = 'asc';
+            }
+            this.getListHelps();
         }
     }
 };

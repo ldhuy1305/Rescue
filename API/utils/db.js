@@ -7,6 +7,12 @@ const config = {
         password: "duchuy123",
         database: "PBL7",
     },
+    // db: {
+    //     host: "localhost",
+    //     user: "root",
+    //     password: "",
+    //     database: "PBL7",
+    // },
 };
 
 const con = mysql.createConnection(config.db);

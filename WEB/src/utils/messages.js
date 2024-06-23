@@ -25,6 +25,8 @@ export default {
     S001: 'Đăng kí thành công. Vui lòng tải lại trang!',
     S002: 'Đơn đã được duyệt thành công',
     S003: 'Đơn đã được từ chối thành công',
+    S004: 'Đổi mật khẩu thành công',
+    S005: 'Cập nhật thông tin thành công',
 
     // api error
     E400: 'Yêu cầu không hợp lệ. Vui lòng kiểm tra và thử lại.',

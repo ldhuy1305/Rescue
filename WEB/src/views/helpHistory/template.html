@@ -51,8 +51,7 @@
             </div>
             <div class="pagination flex-r m-b-16">
                 <rvn-select
-                    v-if="listData.list.length > 0"
-                    class="col-sm-3 ms-2"
+                    class="col-sm-3 ms-2 custom-selectbox"
                     id="ward"
                     :options="options"
                     v-model="listData.pagination.size"
@@ -73,10 +72,34 @@
                 <thead class="fix-header">
                     <tr>
                         <th class="text-center">STT</th>
-                        <th class="text-center">Thời gian</th>
-                        <th class="text-center">Bài viết</th>
-                        <th class="text-center">Tóm tắt</th>
-                        <th class="text-center">Số tiền</th>
+                        <th
+                            class="text-center sortable"
+                            :class="{'asc': conditions.sort === 'cre_at' && conditions.order === 'asc', 'desc': conditions.sort === 'cre_at' && conditions.order === 'desc'}"
+                            @click='sort("cre_at")'
+                        >
+                            Thời gian
+                        </th>
+                        <th
+                            class="text-center sortable"
+                            :class="{'asc': conditions.sort === 'title' && conditions.order === 'asc', 'desc': conditions.sort === 'title' && conditions.order === 'desc'}"
+                            @click='sort("title")'
+                        >
+                            Bài viết
+                        </th>
+                        <th
+                            class="text-center sortable"
+                            :class="{'asc': conditions.sort === 'sapo' && conditions.order === 'asc', 'desc': conditions.sort === 'sapo' && conditions.order === 'desc'}"
+                            @click='sort("sapo")'
+                        >
+                            Tóm tắt
+                        </th>
+                        <th
+                            class="text-center sortable"
+                            :class="{'asc': conditions.sort === 'amount' && conditions.order === 'asc', 'desc': conditions.sort === 'amount' && conditions.order === 'desc'}"
+                            @click='sort("amount")'
+                        >
+                            Số tiền
+                        </th>
                     </tr>
                 </thead>
                 <tbody>

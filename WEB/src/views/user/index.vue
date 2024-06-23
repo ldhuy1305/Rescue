@@ -47,7 +47,16 @@ const User = {
                 helpers.setItemError('confirmedPass', messages.E007);
                 return;
             }
-            this.changePass();
+            this.showModalMessage({
+                type: MSG_TYPE.CONFIRM,
+                title: MSG_TITLE.C999,
+                content: messages.C003,
+                callback: (ok) => {
+                    if (ok) {
+                        this.changePass();
+                    }
+                }
+            });
         },
         saveAvatar() {
             if (this.avatar) {
