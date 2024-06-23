@@ -11,7 +11,9 @@ const helpers = {
         );
     },
     isPassword: (val) => {
-        return val.match('^(?=.*[A-Za-z])(?=.*d).{8,}$');
+        const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        const result = regex.test(val);
+        return result;
     },
     isEmail: (str) => {
         if (helpers.isNullOrEmpty(str)) {
