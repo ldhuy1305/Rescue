@@ -9,7 +9,7 @@ export default {
     E008: 'Thời gian không hợp lệ',
     E009: 'Bạn cần đăng nhập tài khoản để có thể hỗ trợ',
     E010: 'Bạn cần chọn mức hỗ trợ',
-    E063: 'Mật khẩu không gồm ít nhất 8 kí tự gồm chữ và số',
+    E063: 'Mật khẩu gồm ít nhất 8 kí tự gồm chữ và số',
     E064: 'Việc đăng kí đã quá hạn!',
     // Confirm message
     C001: '',

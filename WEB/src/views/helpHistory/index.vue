@@ -13,8 +13,8 @@ import label from './label';
 import helpHistoryStore from '@/views/helpHistory/store';
 
 import Paging from '@/components/pagination';
-import Input from '@/components/input';
-import Select from '@/components/select';
+import RvnInput from '@/components/input';
+import RvnSelect from '@/components/select';
 const helpHistory = {
     name: 'helpHistory',
     template: template,
@@ -27,7 +27,7 @@ const helpHistory = {
         this.getListHelps();
     },
 
-    components: { VueDatePicker, Input, Paging, Select },
+    components: { VueDatePicker, RvnInput, Paging, RvnSelect },
     beforeMount() {},
     mounted() {},
     beforeUpdate() {},

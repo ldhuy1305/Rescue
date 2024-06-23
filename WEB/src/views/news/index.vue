@@ -52,9 +52,11 @@ const News = {
 
         setDistricts() {
             this.getDistricts(this.conditions.city);
+            this.getInitData();
         },
         setWards() {
             this.getWards(this.conditions.district);
+            this.getInitData();
         },
         readMore(news) {
             this.$router.push({
@@ -89,7 +91,11 @@ const News = {
             this.search();
         }
     },
-    watch: {}
+    watch: {
+        'conditions.is_all'() {
+            this.getInitData();
+        }
+    }
 };
 export default News;
 </script>

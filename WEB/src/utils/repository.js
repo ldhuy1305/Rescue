@@ -98,6 +98,7 @@ repository.interceptors.response.use(
         store.commit('app/decreaseCountLoading');
         store.commit('app/showModalMessage', {
             type: MSG_TYPE.ERROR,
+            title: MSG_TITLE.E999,
             content: messages.E999
         });
         return Promise.reject(error);
