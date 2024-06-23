@@ -74,6 +74,9 @@ const Post = {
             }
             return formattedValue;
         },
+        encodePhoneNumber(value) {
+            return helpers.encodePhoneNumber(value);
+        },
         setDistricts() {
             this.getDistricts(this.detail.city);
         },

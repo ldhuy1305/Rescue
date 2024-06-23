@@ -1,8 +1,6 @@
 const express = require("express");
 const route = require("./routes");
 const cookieParser = require("cookie-parser");
-const session = require("express-session");
-// const MemoryStore = require("memorystore")(session);
 const passport = require("passport");
 
 const rateLimit = require("express-rate-limit");
@@ -12,19 +10,8 @@ const xss = require("xss-clean");
 const hsts = require("hsts");
 require("dotenv").config();
 const app = express();
-// app.use(
-//     session({
-//         secret: process.env.SECRET,
-//         resave: false,
-//         saveUninitialized: false,
-//         store: new MemoryStore({
-//             checkPeriod: 86400000, // prune expired entries every 24h
-//         }),
-//     }),
-// );
 
 app.use(passport.initialize());
-// app.use(passport.session());
 app.use(
     express.urlencoded({
         extended: true,
@@ -39,15 +26,15 @@ app.use(express.json({ limit: "100kb" }));
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 1000,
-    message: "You have exceeded the 1000 requests in 15 minutes limit!",
-    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+    message: "Bạn đã vượt quá giới hạn 1000 yêu cầu trong 15 phút!",
+    standardHeaders: true,
+    legacyHeaders: false,
 });
 app.use(limiter);
 app.use(
     cors({
-        origin: "*",
-        optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+        origin: process.env.URL_WEBSITE,
+        optionsSuccessStatus: 200,
     }),
 );
 app.use(xss());

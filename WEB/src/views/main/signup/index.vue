@@ -2,8 +2,8 @@
 import { mapState, mapMutations, mapActions } from 'vuex';
 
 import template from './template.html';
-import Input from '@/components/input/index.vue';
-import Select from '@/components/select/index.vue';
+import RvnInput from '@/components/input/index.vue';
+import RvnSelect from '@/components/select/index.vue';
 import messages from '@/utils/messages';
 import './style.scss';
 
@@ -13,7 +13,7 @@ import helpers from '@/utils/helpers';
 const signup = {
     name: 'Signup',
     template: template,
-    components: { Input, Select },
+    components: { RvnInput, RvnSelect },
     beforeCreate() {
         if (!store.hasModule('signup')) {
             store.registerModule('signup', signupStore);

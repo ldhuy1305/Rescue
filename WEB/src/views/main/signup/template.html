@@ -1,20 +1,20 @@
 <div id="signup">
     <div class ="container">
         <h3 class = "text-center"> ĐĂNG KÍ</h3>
-        <Input id="email" placeholder="Email" :maxLength="30" v-model="detail.email"/>
-        <Input id="password"  placeholder="Mật khẩu" :maxLength="30" v-model="detail.password"/>
-        <Input id="confirmPassword" placeholder="Xác nhận mật khẩu" :maxLength="30" v-model="detail.confirmPassword"/>
+        <rvn-input id="email" placeholder="Email" v-model="detail.email"/></rvn-input>
+        <rvn-input id="password"  placeholder="Mật khẩu" :maxLength="30" v-model="detail.password"/></rvn-input>
+        <rvn-input id="confirmPassword" placeholder="Xác nhận mật khẩu" :maxLength="30" v-model="detail.confirmPassword"/></rvn-input>
         <div class = 'group'>
-            <Input class="col-sm-5" id="lastName" placeholder="Họ" :maxLength="30" v-model="detail.lastName"/>
-            <Input class="col-sm-5" id="firstName" placeholder="Tên" :maxLength="30" v-model="detail.firstName"/>
+            <rvn-input class="col-sm-5" id="lastName" placeholder="Họ" :maxLength="30" v-model="detail.lastName"/></rvn-input>
+            <rvn-input class="col-sm-5" id="firstName" placeholder="Tên" :maxLength="30" v-model="detail.firstName"/></rvn-input>
         </div>
-        <Input id="phoneNumber" placeholder="Số điện thoại" :maxLength="10" v-model="detail.phoneNumber"/>
+        <rvn-input id="phoneNumber" placeholder="Số điện thoại" :maxLength="10" v-model="detail.phoneNumber"/></rvn-input>
         <div class = 'group'>
-            <Select class="col-sm-4" id="city" :options=this.location.cities :onChangeEvent="setDistricts" v-model="detail.city"></Select>
-            <Select class="col-sm-4" id="district" :options=this.location.districts :onChangeEvent="setWards" v-model="detail.district"></Select>
-            <Select class="col-sm-4" id="ward" :options=this.location.wards v-model="detail.ward"> </Select>
+            <rvn-select class="col-sm-4" id="city" :options=this.location.cities :onChangeEvent="setDistricts" v-model="detail.city"></rvn-select>
+            <rvn-select class="col-sm-4" id="district" :options=this.location.districts :onChangeEvent="setWards" v-model="detail.district"></rvn-select>
+            <rvn-select class="col-sm-4" id="ward" :options=this.location.wards v-model="detail.ward"> </rvn-select>
         </div>
-        <Input id="address" placeholder="Địa chỉ cụ thể" :maxLength="30" v-model="detail.address"/>
+        <rvn-input id="address" placeholder="Địa chỉ cụ thể" :maxLength="30" v-model="detail.address"/></rvn-input>
         <button @click="signUpUser">Đăng ký</button>
     </div>
 </div>

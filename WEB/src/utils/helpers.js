@@ -154,67 +154,6 @@ const helpers = {
             return false;
         }
     },
-    splitByType: (str) => {
-        str = str + '';
-        const length = str.length;
-        let beforeChar = '';
-        let childStr = '';
-        const result = [];
-        for (let i = 0; i < length; i++) {
-            const currentChar = str[i];
-            if (
-                (isNaN(beforeChar) && !isNaN(currentChar)) ||
-                (!isNaN(beforeChar) && isNaN(currentChar))
-            ) {
-                if (childStr != '') {
-                    const child = '00000000000000000000' + childStr;
-                    result.push(
-                        !isNaN(childStr)
-                            ? child.substring(child.length - 20, child.length)
-                            : childStr
-                    );
-                    childStr = currentChar;
-                } else {
-                    childStr = currentChar;
-                }
-            } else {
-                childStr += currentChar;
-            }
-            beforeChar = currentChar;
-        }
-        if (childStr != '') {
-            const child = '00000000000000000000' + childStr;
-            result.push(
-                !isNaN(childStr)
-                    ? child.substring(child.length - 20, child.length)
-                    : childStr
-            );
-        }
-        return result;
-    },
-    getNumber: (str, emptyIsMax) => {
-        if (str == null || str == undefined || str == '') {
-            if (emptyIsMax) {
-                return Number.MAX_SAFE_INTEGER;
-            }
-            return 0;
-        }
-        str = (str + '').replace(/\D/g, '');
-        if (str == '') {
-            if (emptyIsMax) {
-                return Number.MAX_SAFE_INTEGER;
-            }
-            return 0;
-        }
-        const number = parseInt(str);
-        if (isNaN(number)) {
-            if (emptyIsMax) {
-                return Number.MAX_SAFE_INTEGER;
-            }
-            return 0;
-        }
-        return number;
-    },
     isNullOrEmpty: (str, isCheckZero = false) => {
         if (str == undefined || str == null || str == '') {
             return true;
@@ -275,32 +214,6 @@ const helpers = {
             return {};
         }
     },
-    addPadLeft(value, char, length) {
-        return String(char.repeat(length) + value).slice(-1 * length);
-    },
-    convertDecimal(value, decimal = 1) {
-        if (value == undefined || value == '' || value == null) {
-            return '';
-        }
-        value = value + '';
-        let values = [];
-        let negative = '';
-        let dot = '';
-        let afterDot = '';
-        values = value.split('.');
-        values[0] = values[0].replace(/\D/g, '');
-        if (values.length > 1) {
-            afterDot = values[1].replace(/\D/g, '');
-            if (afterDot.length > decimal) {
-                afterDot = afterDot.substring(0, decimal);
-            }
-            dot = '.';
-        }
-        if (!values[0]) {
-            values[0] = 0;
-        }
-        return (value = negative + values[0] + dot + afterDot);
-    },
     findObjectInArrayByKey(array, key, value) {
         var rs = {};
         array.forEach((el) => {
@@ -322,6 +235,16 @@ const helpers = {
             $('.item-error').first().focus();
             return true;
         } else return false;
+    },
+    encodePhoneNumber(phone) {
+        const prefixLength = 4;
+        const suffixLength = 3;
+
+        const prefix = phone.substring(0, prefixLength);
+        const suffix = phone.slice(-suffixLength);
+        const nbStars = phone.length - (prefixLength + suffixLength);
+
+        return prefix + '*'.repeat(nbStars) + suffix;
     }
 };
 export default helpers;
