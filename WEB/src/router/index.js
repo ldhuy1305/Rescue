@@ -3,7 +3,7 @@ import mainRouter from './main-router';
 import formRouter from './form-router';
 import userRouter from './user-router';
 import adminRouter from './admin-router';
-
+// import store from '@/store';
 const NotAccess = () => import('../views/common/403');
 const PageNotFound = () => import('../views/common/404');
 const ServerError = () => import('../views/common/500');
@@ -51,10 +51,13 @@ const router = createRouter({
     history: createWebHistory(),
     routes
 });
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
     document.title = to.meta.title;
-    const checkPermission = () => {
-        return true;
+    const role = localStorage.getItem('role') ?? 0;
+    const checkPermission = (to) => {
+        if (to.meta.requiredRoles && to.meta.requiredRoles.includes(role))
+            return true;
+        return false;
     };
     const publicPages = [
         '/login',
@@ -77,17 +80,15 @@ router.beforeEach((to, from, next) => {
     } else {
         localStorage.removeItem('token');
         localStorage.removeItem('tokenTimeout');
+        localStorage.removeItem('role');
     }
     if (authRequired && !loggedIn) {
         return next('/login');
     }
-    if (!authRequired && !loggedIn) {
-        localStorage.removeItem('token');
-        localStorage.removeItem('tokenTimeout');
-    }
     if (!to.meta.forAll) {
         if (authRequired && !checkPermission(to)) {
-            return next('/403');
+            if (role == 1) return next('/admin/manage-user');
+            else return next('/home');
         }
     }
     next();

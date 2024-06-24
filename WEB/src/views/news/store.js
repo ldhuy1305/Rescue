@@ -1,6 +1,6 @@
 import repository from './repository';
 // import Router from '@/router';
-import store from '@/store';
+// import store from '@/store';
 import map from '@/utils/map';
 // import moment from 'moment';
 const initCondition = {
@@ -123,7 +123,7 @@ export default {
         },
         getDistricts(context, id) {
             try {
-                store.commit('app/showLoading');
+                // store.commit('app/showLoading');
                 map.getDistrictsByCity(id).then((res) => {
                     let data = res.data.data;
                     let newData = [
@@ -136,13 +136,14 @@ export default {
                         newData.push({ name: item.full_name, code: item.id });
                     });
                     context.commit('setDistricts', newData);
-                    store.commit('app/hideLoading');
+                    context.dispatch('search');
+                    // store.commit('app/hideLoading');
                 });
             } catch (e) {
                 console.log('Action: ' + e.message);
             }
         },
-        search(context) {
+        search(context, callback) {
             try {
                 context.commit('setAddressConditions');
                 repository.getInit(context.state.conditions).then((res) => {
@@ -162,6 +163,9 @@ export default {
                             };
                         }
                         context.commit('setPaging', pagingData);
+                        if (callback) {
+                            callback();
+                        }
                     }
                 });
             } catch (e) {
@@ -170,7 +174,7 @@ export default {
         },
         getWards(context, id) {
             try {
-                store.commit('app/showLoading');
+                // store.commit('app/showLoading');
                 map.getWardsByDistrict(id).then((res) => {
                     let data = res.data.data;
                     let newData = [
@@ -183,7 +187,7 @@ export default {
                         newData.push({ name: item.full_name, code: item.id });
                     });
                     context.commit('setWards', newData);
-                    store.commit('app/hideLoading');
+                    // store.commit('app/hideLoading');
                 });
             } catch (e) {
                 console.log('Action: ' + e.message);

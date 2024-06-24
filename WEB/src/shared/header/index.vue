@@ -36,6 +36,7 @@ const Header = {
             this.isUser = false;
             localStorage.removeItem('token');
             localStorage.removeItem('tokenTimeout');
+            localStorage.removeItem('role');
             this.setUser({});
             this.$router.push('/home');
         },

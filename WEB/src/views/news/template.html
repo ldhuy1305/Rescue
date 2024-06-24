@@ -42,7 +42,7 @@
                 </div>
                 <div class="filter-item">
                     <span class="filter-label">Phường xã</span>
-                    <Select class="col-sm-4" id="ward" :options=this.location.wards v-model="conditions.ward"> </Select>
+                    <Select class="col-sm-4" id="ward" :options=this.location.wards v-model="conditions.ward" :onChangeEvent="()=>{this.search()}"> </Select>
                 </div>
                 <div class="filter-item">                  
                     <label>

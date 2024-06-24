@@ -77,6 +77,7 @@ repository.interceptors.response.use(
                             );
                             localStorage.removeItem('token');
                             localStorage.removeItem('tokenTimeout');
+                            localStorage.removeItem('role');
                         }
                     }
                 });
