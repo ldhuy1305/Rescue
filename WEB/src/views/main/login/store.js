@@ -22,6 +22,7 @@ export default {
                     if (data.Code === 200 && data.Data.access_token) {
                         store.commit('app/setUser', data.Data.user);
                         localStorage.setItem('token', data.Data.access_token);
+                        localStorage.setItem('role', data.Data.user.role_id);
                         localStorage.setItem(
                             'tokenTimeout',
                             new Date(

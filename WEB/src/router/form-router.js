@@ -7,7 +7,8 @@ export default [
         name: 'form',
         component: form,
         meta: {
-            title: 'Biểu mẫu'
+            title: 'Biểu mẫu',
+            requiredRoles: ['0', '2']
         }
     },
     {
@@ -15,7 +16,8 @@ export default [
         name: 'post',
         component: post,
         meta: {
-            title: 'Bài viết'
+            title: 'Bài viết',
+            requiredRoles: ['0', '2']
         }
     },
     {
@@ -23,7 +25,8 @@ export default [
         name: 'news',
         component: news,
         meta: {
-            title: 'Tin tức'
+            title: 'Tin tức',
+            requiredRoles: ['0', '2']
         }
     }
 ];

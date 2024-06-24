@@ -12,7 +12,8 @@ export default [
         component: manageUser,
         meta: {
             title: 'Quản lý người dùng',
-            layout: 'AdminLayout'
+            layout: 'AdminLayout',
+            requiredRoles: ['1']
         }
     },
     {
@@ -21,7 +22,8 @@ export default [
         component: acceptPost,
         meta: {
             title: 'Phê duyệt bài hỗ trợ',
-            layout: 'AdminLayout'
+            layout: 'AdminLayout',
+            requiredRoles: ['1']
         }
     },
     {
@@ -30,7 +32,8 @@ export default [
         component: managePost,
         meta: {
             title: 'Quản lý bài hỗ trợ',
-            layout: 'AdminLayout'
+            layout: 'AdminLayout',
+            requiredRoles: ['1']
         }
     },
     {
@@ -39,7 +42,8 @@ export default [
         component: manageHelp,
         meta: {
             title: 'Lịch sử hỗ trợ',
-            layout: 'AdminLayout'
+            layout: 'AdminLayout',
+            requiredRoles: ['1']
         }
     },
     // {
@@ -57,7 +61,8 @@ export default [
         component: statistics,
         meta: {
             title: 'Thống kê',
-            layout: 'AdminLayout'
+            layout: 'AdminLayout',
+            requiredRoles: ['1']
         }
     }
 ];

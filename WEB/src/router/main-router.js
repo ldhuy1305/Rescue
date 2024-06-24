@@ -8,7 +8,8 @@ export default [
         name: 'home',
         component: home,
         meta: {
-            title: 'Trang chủ'
+            title: 'Trang chủ',
+            requiredRoles: ['0', '2']
         }
     },
     {

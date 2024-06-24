@@ -6,7 +6,8 @@ export default [
         name: 'user',
         component: user,
         meta: {
-            title: 'Thông tin cá nhân'
+            title: 'Thông tin cá nhân',
+            requiredRoles: ['2']
         }
     },
     {
@@ -14,7 +15,8 @@ export default [
         name: 'helpHistory',
         component: helpHistory,
         meta: {
-            title: 'Lịch sử hỗ trợ'
+            title: 'Lịch sử hỗ trợ',
+            requiredRoles: ['2']
         }
     }
 ];

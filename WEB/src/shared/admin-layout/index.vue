@@ -74,6 +74,7 @@ export default {
             if (item.title == 'Đăng xuất') {
                 localStorage.removeItem('token');
                 localStorage.removeItem('tokenTimeout');
+                localStorage.removeItem('role');
                 this.$router.push('/home');
             }
         }

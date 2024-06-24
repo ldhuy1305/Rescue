@@ -51,12 +51,14 @@ const News = {
         ]),
 
         setDistricts() {
-            this.getDistricts(this.conditions.city);
-            this.getInitData();
+            this.search(() => {
+                this.getDistricts(this.conditions.city);
+            });
         },
         setWards() {
-            this.getWards(this.conditions.district);
-            this.getInitData();
+            this.search(() => {
+                this.getWards(this.conditions.district);
+            });
         },
         readMore(news) {
             this.$router.push({
@@ -93,7 +95,7 @@ const News = {
     },
     watch: {
         'conditions.is_all'() {
-            this.getInitData();
+            this.search();
         }
     }
 };
