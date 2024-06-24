@@ -76,6 +76,9 @@ export default {
                 state.conditions.ward != '0'
             )
                 state.conditions.ward = '0';
+        },
+        setConditions(state, payload) {
+            state.conditions = payload;
         }
     },
     actions: {
@@ -124,6 +127,10 @@ export default {
         getDistricts(context, id) {
             try {
                 // store.commit('app/showLoading');
+                let payload = { ...context.state.conditions };
+                payload.district = '0';
+                payload.ward = '0';
+                context.commit('setConditions', payload);
                 map.getDistrictsByCity(id).then((res) => {
                     let data = res.data.data;
                     let newData = [
@@ -136,7 +143,6 @@ export default {
                         newData.push({ name: item.full_name, code: item.id });
                     });
                     context.commit('setDistricts', newData);
-                    context.dispatch('search');
                     // store.commit('app/hideLoading');
                 });
             } catch (e) {
@@ -145,7 +151,7 @@ export default {
         },
         search(context, callback) {
             try {
-                context.commit('setAddressConditions');
+                console.log(context.state.conditions);
                 repository.getInit(context.state.conditions).then((res) => {
                     const { data } = res;
                     let pagingData = {

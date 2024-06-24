@@ -41,7 +41,7 @@ const News = {
     },
     methods: {
         ...mapMutations('app', ['showModalMessage']),
-        ...mapMutations('news', ['setPageAndSize']),
+        ...mapMutations('news', ['setPageAndSize', 'setAddressConditions']),
         ...mapActions('app', []),
         ...mapActions('news', [
             'getInitData',
@@ -83,6 +83,7 @@ const News = {
             return date.toISOString().split('T')[0];
         },
         handleSearch() {
+            this.setAddressConditions();
             this.changeCurrentPage({
                 currentPage: 1,
                 perPage: this.listData.pagination.size
