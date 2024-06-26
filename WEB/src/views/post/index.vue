@@ -38,6 +38,11 @@ const Post = {
     },
     computed: {
         ...mapState('post', ['detail', 'content', 'users']),
+        isOutdate() {
+            const now = new Date();
+            const end = new Date(this.detail.end_date);
+            return end < now;
+        },
         formattedContent() {
             const parser = new DOMParser();
             const decodedString = parser.parseFromString(
