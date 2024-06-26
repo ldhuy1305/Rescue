@@ -226,7 +226,7 @@ const helpers = {
     },
     formatDate(date) {
         const momentDate = moment(date);
-        return momentDate.format('YYYY-MM-DD HH:mm:ss');
+        return momentDate.utc().format('YYYY-MM-DD HH:mm:ss');
     },
     isError() {
         // eslint-disable-next-line no-undef
