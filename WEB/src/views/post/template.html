@@ -10,8 +10,7 @@
             <div class="body">
                 <div class="content ql-editor" v-html="formattedContent"></div>
             </div>
-
-            <div class="help">
+            <div class="help" v-if="!isOutdate">
                 <button @click="showPopupAmount">Hỗ trợ</button>
             </div>
         </div>
