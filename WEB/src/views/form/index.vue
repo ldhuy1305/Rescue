@@ -7,7 +7,7 @@ import template from './template.html';
 import './style.scss';
 import helpers from '@/utils/helpers';
 import formStore from '@/views/form/store';
-import messages from '@/utils/messages';
+import messages, { MSG_TITLE, MSG_TYPE } from '@/utils/messages';
 
 import RvnSelect from '@/components/select';
 import RvnInput from '@/components/input';
@@ -114,6 +114,7 @@ const form = {
             'removeNullContent',
             'addDataNull'
         ]),
+        ...mapMutations('app', ['showModalMessage']),
         ...mapActions('form', [
             'getInitData',
             'getDistricts',
@@ -170,9 +171,17 @@ const form = {
             this.removeNullContent();
             this.addDataNull();
             if (!helpers.isValidData(this.detail, this.validRules)) return;
-            this.save({
-                post: payload
-                // content: this.contents
+            this.showModalMessage({
+                type: MSG_TYPE.CONFIRM,
+                title: MSG_TITLE.C999,
+                content: messages.C006,
+                callback: (ok) => {
+                    if (ok) {
+                        this.save({
+                            post: payload
+                        });
+                    }
+                }
             });
         }
     }

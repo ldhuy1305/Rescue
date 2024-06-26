@@ -17,6 +17,7 @@ export default {
     C003: 'Bạn có muốn đổi mật khẩu không?',
     C004: 'Bạn có muốn phê duyệt bài viết này không?',
     C005: 'Bạn có muốn từ chối bài viết này không?',
+    C006: 'Hãy kiểm tra trước khi gửi! Bạn có muốn gửi bài viết có nội dung này không?',
 
     // Warning message
     W005: 'Hiện tại chưa có bài viết nào cần hỗ trợ. Vui lòng quay lại sau!',
