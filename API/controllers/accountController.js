@@ -9,11 +9,9 @@ class accountController {
     createAccount = catchAsync(async (req, res, next) => {
         var payload = req.body;
         payload.password = await helpers.createHashPassword(payload.password);
-        const account = await accountModel.checkMail({ email });
+        const account = await accountModel.checkMail({ email: payload.email });
         if (account) {
-            return next(
-                new appError("Email đã được đăng kí!", 400),
-            );
+            return next(new appError("Email đã được đăng kí!", 400));
         }
         const rs = await accountModel.createAccount({
             email: payload.email,
