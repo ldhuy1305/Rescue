@@ -61,7 +61,13 @@ class approvalController {
         });
     });
     acceptApproval = catchAsync(async (req, res) => {
-        const params = [req.user.id, req.params.id, req.query.accept];
+        const params = [
+            req.user.id,
+            req.params.id,
+            req.query.accept,
+            req.query.dateFrom,
+            req.query.dateTo,
+        ];
         await approvalModel.acceptApproval(params);
         res.status(200).json({
             Code: 200,

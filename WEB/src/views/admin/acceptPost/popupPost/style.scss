@@ -1,7 +1,5 @@
 @import '@/assets/scss/var';
-@import 'quill/dist/quill.core.css';
-@import 'quill/dist/quill.snow.css';
-@import 'quill/dist/quill.bubble.css';
+@import '@/assets/scss/common';
 .custom-modal.post {
     z-index: 1000;
     width: 80%;
@@ -36,6 +34,13 @@
     .custom-modal-body {
         background-color: #fff;
         padding: 20px 100px;
+
+        .header-1 {
+            font-weight: 700;
+            font-size: 15px;
+            padding-bottom: 10px;
+            position: relative;
+        }
         .title {
             font-size: 2rem;
             line-height: 3rem;
@@ -55,8 +60,6 @@
             line-height: 1.3rem;
             font-weight: 700;
             margin-bottom: 10px;
-        }
-        .related {
         }
         .body {
             overflow-wrap: break-word;
@@ -103,4 +106,23 @@
 .custom-td {
     height: 40px;
     line-height: 40px;
+}
+.date {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+    min-width: 0;
+    margin: 0px 0px 25px 0px;
+    white-space: nowrap !important;
+    .label {
+        margin: 0px 10px;
+        width: 20%;
+        align-items: center;
+    }
+    input {
+        margin: 0px !important;
+    }
 }

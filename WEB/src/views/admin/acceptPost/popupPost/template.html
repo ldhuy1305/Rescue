@@ -11,6 +11,31 @@
         </button>
     </div>
     <div class="custom-modal-body">
+        <div class="header-1">Thời gian diễn ra hỗ trợ</div>
+        <div class="date">
+            <span class="label">Bắt đầu từ ngày</span>
+            <vue-date-picker
+                id="dateFrom"
+                v-model="dateFrom"
+                :enable-time-picker="false"
+                cancel-text="Hủy"
+                select-text="Chọn"
+                :clearable="false"
+                @update:modelValue="validateDate"
+            ></vue-date-picker>
+            <span class="label">Kết thúc vào ngày</span>
+            <vue-date-picker
+                id="dateTo"
+                v-model="dateTo"
+                :enable-time-picker="false"
+                cancel-text="Hủy"
+                select-text="Chọn"
+                @update:modelValue="validateDate"
+                :clearable="false"
+            ></vue-date-picker>
+        </div>
+        <hr />
+        <div class="header-1">Nội dung</div>
         <div class="title">{{this.paramSends.detail?.title}}</div>
         <div class="image">
             <img :src="this.paramSends.detail?.image" alt="image" />
