@@ -43,6 +43,10 @@ const Post = {
             const end = new Date(this.detail.end_date);
             return end < now;
         },
+        time() {
+            return `Thời gian hỗ trợ bắt đầu từ ${helpers.formatDate(this.detail.start_date)} đến
+                ${helpers.formatDate(this.detail.end_date)}`;
+        },
         formattedContent() {
             const parser = new DOMParser();
             const decodedString = parser.parseFromString(
