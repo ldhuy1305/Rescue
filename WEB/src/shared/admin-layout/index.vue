@@ -3,6 +3,7 @@ import template from './template.html';
 import Loading from '@/components/loading';
 import ModalMessage from '@/shared/modal-message';
 import { SidebarMenu } from 'vue-sidebar-menu';
+import { mapMutations } from 'vuex';
 import './style.scss';
 export default {
     name: 'MainLayout',
@@ -67,6 +68,7 @@ export default {
         };
     },
     methods: {
+        ...mapMutations('app', ['setUser']),
         onCollapse(collapsed) {
             this.collapsed = collapsed;
         },
@@ -76,6 +78,7 @@ export default {
                 localStorage.removeItem('tokenTimeout');
                 localStorage.removeItem('role');
                 this.$router.push('/home');
+                this.setUser({});
             }
         }
     }
