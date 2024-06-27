@@ -74,7 +74,7 @@ const helpHistory = {
             return formattedValue;
         },
         formatDate(dateString) {
-            return moment(dateString).utc().format('YYYY-MM-DD HH:mm:ss');
+            return moment(dateString).format('YYYY-MM-DD HH:mm:ss');
         },
         handleSearch() {
             this.changeCurrentPage({

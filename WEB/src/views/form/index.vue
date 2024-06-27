@@ -50,16 +50,7 @@ const form = {
                         [{ header: [1, 2, 3, 4, 5, 6, false] }],
                         [
                             {
-                                font: [
-                                    'arial',
-                                    'times-new-roman',
-                                    'helvetica',
-                                    'georgia',
-                                    'verdana',
-                                    'calibri',
-                                    'roboto',
-                                    'open-sans'
-                                ]
+                                font: ['open-sans']
                             }
                         ],
                         [{ size: ['small', false, 'large', 'huge'] }],
