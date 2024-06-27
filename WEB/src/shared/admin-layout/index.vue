@@ -54,10 +54,10 @@ export default {
                     title: 'Hệ thống',
                     icon: 'fa-solid fa-gear',
                     child: [
-                        {
-                            href: '/admin/statistics',
-                            title: 'Thống kê'
-                        },
+                        // {
+                        //     href: '/admin/statistics',
+                        //     title: 'Thống kê'
+                        // },
                         {
                             // href: '/logout',
                             title: 'Đăng xuất'
