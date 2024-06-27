@@ -3,7 +3,6 @@ const acceptPost = () => import('@/views/admin/acceptPost');
 const managePost = () => import('@/views/admin/managePost');
 const manageHelp = () => import('@/views/admin/manageHelp');
 // const createPost = () => import('@/views/admin/createPost');
-const statistics = () => import('@/views/admin/statistics');
 
 export default [
     {
@@ -45,7 +44,7 @@ export default [
             layout: 'AdminLayout',
             requiredRoles: ['1']
         }
-    },
+    }
     // {
     //     path: `/admin/create-Post`,
     //     name: 'createPost',
