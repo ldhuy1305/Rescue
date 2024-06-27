@@ -55,14 +55,14 @@ export default [
     //         layout: 'AdminLayout'
     //     }
     // },
-    {
-        path: `/admin/statistics`,
-        name: 'statistics',
-        component: statistics,
-        meta: {
-            title: 'Thống kê',
-            layout: 'AdminLayout',
-            requiredRoles: ['1']
-        }
-    }
+    // {
+    //     path: `/admin/statistics`,
+    //     name: 'statistics',
+    //     component: statistics,
+    //     meta: {
+    //         title: 'Thống kê',
+    //         layout: 'AdminLayout',
+    //         requiredRoles: ['1']
+    //     }
+    // }
 ];
