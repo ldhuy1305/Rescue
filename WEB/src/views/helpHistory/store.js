@@ -11,7 +11,7 @@ export default {
             page: 1,
             size: 10,
             sort: 'cre_at',
-            order: 'asc'
+            order: 'desc'
         },
         listData: {
             list: [],
