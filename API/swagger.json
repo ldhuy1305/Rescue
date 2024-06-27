@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Swagger PBL7 - OpenAPI 3.0",
+    "title": "Swagger RVN - OpenAPI 3.0",
     "description": "",
     "contact": {
       "email": "ldhuydn1305@gmail.com"
@@ -17,6 +17,9 @@
     "url": "http://swagger.io"
   },
   "servers": [
+    {
+      "url": "https://rvn-api.vercel.app/api/v1"
+    },
     {
       "url": "http://localhost:9090/api/v1"
     },
@@ -41,9 +44,6 @@
       "name": "ward"
     },
     {
-      "name": "transaction"
-    },
-    {
       "name": "committee"
     },
     {
@@ -59,7 +59,7 @@
         "tags": [
           "account"
         ],
-        "summary": "Send email",
+        "summary": "Gửi email đăng kí tài khoản",
         "description": "",
         "operationId": "sendEmail",
         "requestBody": {
@@ -156,7 +156,7 @@
         "tags": [
           "account"
         ],
-        "summary": "Create a new account",
+        "summary": "Tạo mới 1 tài khoản",
         "description": "",
         "operationId": "Sign up User",
         "requestBody": {
@@ -265,7 +265,7 @@
         "tags": [
           "account"
         ],
-        "summary": "",
+        "summary": "Đăng nhập",
         "description": "",
         "operationId": "loginUser",
         "requestBody": {
@@ -282,7 +282,7 @@
                   },
                   "password": {
                     "type": "string",
-                    "example": "admin001"
+                    "example": "Mo4MxgMFmKYGQNVmhjEV"
                   }
                 }
               }
@@ -354,13 +354,24 @@
         }
       }
     },
-    "/account/forgot-password": {
+    "/account/forgot-password/{email}": {
       "post": {
         "tags": [
           "account"
         ],
-        "summary": "",
+        "summary": "Quên mật khẩu",
         "description": "",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "description": "",
           "content": {
@@ -368,10 +379,10 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "email": {
+                  "password": {
                     "type": "string",
                     "format": "email",
-                    "example": "bongmaxuyentuong1@gmail.com"
+                    "example": null
                   }
                 }
               }
@@ -406,12 +417,7 @@
                     "summary": "Successful",
                     "value": {
                       "Code": 200,
-                      "Data": {
-                        "url": "http://localhost:8080/home?p=eyJlbWFpbCI6ImxkaHV5ZG4xMzA1QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiIiwiZmlyc3ROYW1lIjoiSHV5IiwiY3JlX2F0IjoiZnVuY3Rpb24gYXBwbHkoKSB7IFtuYXRpdmUgY29kZV0gfSJ90",
-                        "pass": "kaHV5ZG4xMzA1QGdtYWlsLmNvb"
-                      },
-                      "Message": "",
-                      "DataErrors": {}
+                      "Message": "Mật khẩu mới đã được gửi trên gmail. Vui lòng thay đổi mật khẩu trong lần đầu tiên đăng nhập"
                     }
                   },
                   "Bad request": {
@@ -441,7 +447,7 @@
         "tags": [
           "user"
         ],
-        "summary": "",
+        "summary": "Thay đổi mật khẩu",
         "description": "",
         "security": [
           {
@@ -534,101 +540,12 @@
         }
       }
     },
-    "/users": {
-      "get": {
-        "tags": [
-          "user"
-        ],
-        "summary": "",
-        "description": "",
-        "operationId": "",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Code": {
-                      "type": "integer",
-                      "example": 200
-                    },
-                    "Data": {
-                      "type": "object"
-                    },
-                    "Message": {
-                      "type": "string"
-                    },
-                    "DataErrors": {
-                      "type": "object"
-                    }
-                  }
-                },
-                "examples": {
-                  "Success": {
-                    "summary": "Successful",
-                    "value": {
-                      "Code": 200,
-                      "Data": {
-                        "users": [
-                          {
-                            "id": 1,
-                            "first_name": "Huy",
-                            "last_name": "Lê Đức",
-                            "avatar": "https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg",
-                            "tel": "0948942954",
-                            "address": "K1/17 Hà Thị Thân, Sơn Trà, Đà Nẵng",
-                            "account_id": 1
-                          },
-                          {
-                            "id": 2,
-                            "first_name": "Huy",
-                            "last_name": "Lê Đức",
-                            "avatar": "https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg",
-                            "tel": "0948942954",
-                            "address": "K1/15 Hà Thị Thân, Sơn Trà, Đà Nẵng",
-                            "account_id": 2
-                          }
-                        ]
-                      },
-                      "Message": "",
-                      "DataErrors": {}
-                    }
-                  },
-                  "Bad request": {
-                    "$ref": "#/components/examples/bad_request"
-                  },
-                  "Not authentication": {
-                    "$ref": "#/components/examples/not_auth"
-                  },
-                  "Not access": {
-                    "$ref": "#/components/examples/not_access"
-                  },
-                  "Data invalid": {
-                    "$ref": "#/components/examples/data_invalid"
-                  },
-                  "Exception": {
-                    "$ref": "#/components/examples/exception"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/user/me": {
       "get": {
         "tags": [
           "user"
         ],
-        "summary": "",
+        "summary": "Thông tin cá nhân của người dùng",
         "description": "",
         "operationId": "",
         "security": [
@@ -704,7 +621,7 @@
         "tags": [
           "user"
         ],
-        "summary": "",
+        "summary": "Thay đổi thông tin cá nhân của người dùng",
         "description": "",
         "operationId": "",
         "security": [
@@ -797,7 +714,7 @@
         "tags": [
           "user"
         ],
-        "summary": "",
+        "summary": "Thay đổi ảnh đại diện",
         "description": "",
         "operationId": "",
         "security": [
@@ -889,7 +806,7 @@
         "tags": [
           "proof"
         ],
-        "summary": "",
+        "summary": "Tải ảnh lên cloudinary",
         "description": "",
         "operationId": "",
         "requestBody": {
@@ -969,7 +886,7 @@
         "tags": [
           "proof"
         ],
-        "summary": "Delete image in cloudinary",
+        "summary": "Xóa ảnh trên cloudinary",
         "description": "",
         "operationId": "",
         "parameters": [
@@ -1063,29 +980,38 @@
             "required": false,
             "description": "Keyword to search approvals",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": " "
             }
           },
           {
-            "name": "dateFrom",
+            "name": "city",
             "in": "query",
             "required": false,
-            "description": "Start date for the approval list",
+            "description": "City ID to filter approvals",
             "schema": {
-              "type": "string",
-              "format": "date",
-              "example": "2024-05-01"
+              "type": "integer",
+              "example": 0
             }
           },
           {
-            "name": "dateTo",
+            "name": "district",
             "in": "query",
             "required": false,
-            "description": "End date for the approval list",
+            "description": "District ID to filter approvals",
             "schema": {
-              "type": "string",
-              "format": "date",
-              "example": "2024-06-01"
+              "type": "integer",
+              "example": 0
+            }
+          },
+          {
+            "name": "ward",
+            "in": "query",
+            "required": false,
+            "description": "Ward ID to filter approvals",
+            "schema": {
+              "type": "integer",
+              "example": 0
             }
           },
           {
@@ -1095,7 +1021,7 @@
             "description": "Page number for pagination",
             "schema": {
               "type": "integer",
-              "example": 1
+              "example": 2
             }
           },
           {
@@ -1106,6 +1032,16 @@
             "schema": {
               "type": "integer",
               "example": 10
+            }
+          },
+          {
+            "name": "is_all",
+            "in": "query",
+            "required": false,
+            "description": "Flag to retrieve all records",
+            "schema": {
+              "type": "boolean",
+              "example": true
             }
           }
         ],
@@ -2022,38 +1958,1473 @@
           }
         }
       }
+    },
+    "/committee/user": {
+      "get": {
+        "tags": [
+          "committee"
+        ],
+        "summary": "Lấy danh sách người dùng",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": false,
+            "description": "Từ khóa để tìm kiếm người dùng ủy ban",
+            "schema": {
+              "type": "string",
+              "example": ""
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Số trang để phân trang",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Số lượng bản ghi trên mỗi trang",
+            "schema": {
+              "type": "integer",
+              "example": 10
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "description": "Tiêu chí sắp xếp",
+            "schema": {
+              "type": "string",
+              "example": "name"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "description": "Thứ tự sắp xếp (tăng dần hoặc giảm dần)",
+            "schema": {
+              "type": "string",
+              "example": "asc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Code": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "Data": {
+                      "type": "object",
+                      "properties": {
+                        "list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "first_name": {
+                                "type": "string"
+                              },
+                              "last_name": {
+                                "type": "string"
+                              },
+                              "avatar": {
+                                "type": "string"
+                              },
+                              "tel": {
+                                "type": "string"
+                              },
+                              "address": {
+                                "type": "string"
+                              },
+                              "account_id": {
+                                "type": "integer"
+                              },
+                              "email": {
+                                "type": "string"
+                              },
+                              "amount": {
+                                "type": "integer"
+                              },
+                              "size": {
+                                "type": "integer"
+                              },
+                              "page": {
+                                "type": "integer"
+                              },
+                              "total": {
+                                "type": "integer"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "summary": "Successful",
+                    "value": {
+                      "Code": 200,
+                      "Data": {
+                        "list": [
+                          {
+                            "id": 49,
+                            "first_name": "Linh",
+                            "last_name": "Hà Nguyễn Quốc",
+                            "avatar": "https://res.cloudinary.com/dcyg1qwdc/image/upload/v1717731599/test/guewxjqmfp7rwpngyvmz.jpg",
+                            "tel": "0948942954",
+                            "address": "46 Trương Quyền, Phường Phước Mỹ , Quận Sơn Trà, Thành phố Đà Nẵng",
+                            "account_id": 66,
+                            "email": "linhnguyenha0204@gmail.com",
+                            "amount": 5000000,
+                            "size": 10,
+                            "page": 1,
+                            "total": 3
+                          },
+                          {
+                            "id": 13,
+                            "first_name": "Huy",
+                            "last_name": "Lê Đức",
+                            "avatar": "https://res.cloudinary.com/dcyg1qwdc/image/upload/v1717251314/test/fsktwbuwqyrv80rfyyan.jpg",
+                            "tel": "0948942954",
+                            "address": "K1/17 Hà Thị Thân, Sơn Trà, Đà Nẵng",
+                            "account_id": 46,
+                            "email": "ldhuydn1305@gmail.com",
+                            "amount": 220000,
+                            "size": 10,
+                            "page": 1,
+                            "total": 3
+                          },
+                          {
+                            "id": 44,
+                            "first_name": "Huy",
+                            "last_name": "Lê Đức",
+                            "avatar": "https://res.cloudinary.com/dcyg1qwdc/image/upload/v1716214328/ylflf79fkyjxfxmsfel2.jpg",
+                            "tel:\"": "0948942954",
+                            "address": "K1/17 Hà Thị Thân, Phường An Hải Tây , Quận Sơn Trà, Thành phố Đà Nẵng",
+                            "account_id": 65,
+                            "email": "bongmaxuyentuong1@gmail.com",
+                            "amount": 170000,
+                            "size": 10,
+                            "page": 1,
+                            "total": 3
+                          }
+                        ]
+                      },
+                      "Message": "",
+                      "DataErrors": {}
+                    }
+                  },
+                  "Bad request": {
+                    "$ref": "#/components/examples/bad_request"
+                  },
+                  "Not authentication": {
+                    "$ref": "#/components/examples/not_auth"
+                  },
+                  "Not access": {
+                    "$ref": "#/components/examples/not_access"
+                  },
+                  "Data invalid": {
+                    "$ref": "#/components/examples/data_invalid"
+                  },
+                  "Exception": {
+                    "$ref": "#/components/examples/exception"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/committee/user/export": {
+      "get": {
+        "tags": [
+          "committee"
+        ],
+        "summary": "Xuất dữ liệu danh sách người dùng",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": false,
+            "description": "Từ khóa để tìm kiếm người dùng",
+            "schema": {
+              "type": "string",
+              "example": ""
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Số trang để phân trang",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Số lượng bản ghi trên mỗi trang",
+            "schema": {
+              "type": "integer",
+              "example": 10
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "description": "Tiêu chí sắp xếp",
+            "schema": {
+              "type": "string",
+              "example": "name"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "description": "Thứ tự sắp xếp (tăng dần hoặc giảm dần)",
+            "schema": {
+              "type": "string",
+              "example": "asc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/committee/help": {
+      "get": {
+        "tags": [
+          "committee"
+        ],
+        "summary": "Lấy danh sách hỗ trợ",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": false,
+            "description": "Từ khóa để tìm kiếm người dùng",
+            "schema": {
+              "type": "string",
+              "example": ""
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Số trang để phân trang",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Số lượng bản ghi trên mỗi trang",
+            "schema": {
+              "type": "integer",
+              "example": 10
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "description": "Tiêu chí sắp xếp",
+            "schema": {
+              "type": "string",
+              "example": "name"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "description": "Thứ tự sắp xếp (tăng dần hoặc giảm dần)",
+            "schema": {
+              "type": "string",
+              "example": "asc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Code": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "Data": {
+                      "type": "object",
+                      "properties": {
+                        "list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "amount": {
+                                "type": "integer"
+                              },
+                              "cre_at": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "title": {
+                                "type": "string"
+                              },
+                              "size": {
+                                "type": "integer"
+                              },
+                              "page": {
+                                "type": "integer"
+                              },
+                              "total": {
+                                "type": "integer"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "summary": "Successful",
+                    "value": {
+                      "Code": 200,
+                      "Data": {
+                        "list": [
+                          {
+                            "amount": 10000,
+                            "cre_at": "2024-05-30T17:00:00.000Z",
+                            "name": "Lê Đức Huy",
+                            "title": "Nhân rộng mô hình câu lạc bộ liên thế hệ tự giúp nhau",
+                            "size": 10,
+                            "page": 1,
+                            "total": 11
+                          },
+                          {
+                            "amount": 10000,
+                            "cre_at": "2024-05-30T17:00:00.000Z",
+                            "name": "Lê Đức Huy",
+                            "title": "Nhân rộng mô hình câu lạc bộ liên thế hệ tự giúp nhau",
+                            "size": 10,
+                            "page": 1,
+                            "total": 11
+                          },
+                          {
+                            "amount": 10000,
+                            "cre_at": "2024-05-30T17:00:00.000Z",
+                            "name": "Lê Đức Huy",
+                            "title": "Nhân rộng mô hình câu lạc bộ liên thế hệ tự giúp nhau",
+                            "size": 10,
+                            "page": 1,
+                            "total": 11
+                          },
+                          {
+                            "amount": 10000,
+                            "cre_at": "2024-05-30T17:00:00.000Z",
+                            "name": "Lê Đức Huy",
+                            "title": "Nhân rộng mô hình câu lạc bộ liên thế hệ tự giúp nhau",
+                            "size": 10,
+                            "page": 1,
+                            "total": 11
+                          },
+                          {
+                            "amount": 10000,
+                            "cre_at": "2024-05-30T17:00:00.000Z",
+                            "name": "Lê Đức Huy",
+                            "title": "Nhân rộng mô hình câu lạc bộ liên thế hệ tự giúp nhau",
+                            "size": 10,
+                            "page": 1,
+                            "total": 11
+                          },
+                          {
+                            "amount": 10000,
+                            "cre_at": "2024-05-30T17:00:00.000Z",
+                            "name": "Lê Đức Huy",
+                            "title": "Nhân rộng mô hình câu lạc bộ liên thế hệ tự giúp nhau",
+                            "size": 10,
+                            "page": 1,
+                            "total": 11
+                          },
+                          {
+                            "amount": 10000,
+                            "cre_at": "2024-05-30T17:00:00.000Z",
+                            "name": "Lê Đức Huy",
+                            "title": "Nhân rộng mô hình câu lạc bộ liên thế hệ tự giúp nhau",
+                            "size": 10,
+                            "page": 1,
+                            "total": 11
+                          },
+                          {
+                            "amount": 100000,
+                            "cre_at": "2024-06-03T08:57:08.000Z",
+                            "name": "Lê Đức Huy",
+                            "title": "Tiếp nhận ủng hộ nạn nhân vụ cháy ở phố Trung Kính",
+                            "size": 10,
+                            "page": 1,
+                            "total": 11
+                          },
+                          {
+                            "amount": 200000,
+                            "cre_at": "2024-06-03T10:30:35.000Z",
+                            "name": "Lê Đức Huy",
+                            "title": "Tiếp nhận ủng hộ nạn nhân vụ cháy ở phố Trung Kính",
+                            "size": 10,
+                            "page": 1,
+                            "total": 11
+                          },
+                          {
+                            "amount": 20000,
+                            "cre_at": "2024-06-03T11:12:50.000Z",
+                            "name": "Lê Đức Huy",
+                            "title": "Tiếp nhận ủng hộ nạn nhân vụ cháy ở phố Trung Kính",
+                            "size": 10,
+                            "page": 1,
+                            "total": 11
+                          }
+                        ]
+                      },
+                      "Message": "",
+                      "DataErrors": {}
+                    }
+                  },
+                  "Bad request": {
+                    "$ref": "#/components/examples/bad_request"
+                  },
+                  "Not authentication": {
+                    "$ref": "#/components/examples/not_auth"
+                  },
+                  "Not access": {
+                    "$ref": "#/components/examples/not_access"
+                  },
+                  "Data invalid": {
+                    "$ref": "#/components/examples/data_invalid"
+                  },
+                  "Exception": {
+                    "$ref": "#/components/examples/exception"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/committee/help/export": {
+      "get": {
+        "tags": [
+          "committee"
+        ],
+        "summary": "Xuất dữ liệu danh sách hỗ trợ",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": false,
+            "description": "Từ khóa để tìm kiếm người dùng",
+            "schema": {
+              "type": "string",
+              "example": ""
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Số trang để phân trang",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Số lượng bản ghi trên mỗi trang",
+            "schema": {
+              "type": "integer",
+              "example": 10
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "description": "Tiêu chí sắp xếp",
+            "schema": {
+              "type": "string",
+              "example": "name"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "description": "Thứ tự sắp xếp (tăng dần hoặc giảm dần)",
+            "schema": {
+              "type": "string",
+              "example": "asc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/committee/post": {
+      "get": {
+        "tags": [
+          "committee"
+        ],
+        "summary": "Lấy danh sách đơn hỗ trợ",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": false,
+            "description": "Từ khóa để tìm kiếm đơn",
+            "schema": {
+              "type": "string",
+              "example": ""
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Số trang để phân trang",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Số lượng bản ghi trên mỗi trang",
+            "schema": {
+              "type": "integer",
+              "example": 10
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "description": "Tiêu chí sắp xếp",
+            "schema": {
+              "type": "string",
+              "example": "name"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "description": "Thứ tự sắp xếp (tăng dần hoặc giảm dần)",
+            "schema": {
+              "type": "string",
+              "example": "asc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Code": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "Data": {
+                      "type": "object",
+                      "properties": {
+                        "list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "title": {
+                                "type": "string"
+                              },
+                              "image": {
+                                "type": "string"
+                              },
+                              "sapo": {
+                                "type": "string"
+                              },
+                              "start_date": {
+                                "type": "string"
+                              },
+                              "end_date": {
+                                "type": "string"
+                              },
+                              "cre_at": {
+                                "type": "string"
+                              },
+                              "amount": {
+                                "type": "integer"
+                              },
+                              "size": {
+                                "type": "integer"
+                              },
+                              "page": {
+                                "type": "integer"
+                              },
+                              "total": {
+                                "type": "integer"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Message": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "DataErrors": {
+                      "type": "object",
+                      "example": {}
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "summary": "Successful",
+                    "value": {
+                      "Code": 200,
+                      "Data": {
+                        "list": [
+                          {
+                            "id": 45,
+                            "title": "Bão lũ ở miền Trung Việt Nam đe dọa hơn 1,5 triệu trẻ em",
+                            "image": "https://res.cloudinary.com/dcyg1qwdc/image/upload/v1717594019/mock_data/lu-lut_qnne1l.webp",
+                            "sapo": "Nhà nước ngay lập tức phân bổ 100.000 USD để cứu trợ khẩn cấp cho những người bị ảnh hưởng nặng nề nhất trong đợt bão lũ miền Trung vào tháng 10 năm 2020.",
+                            "start_date": "2024-06-04T17:00:00.000Z",
+                            "end_date": "2024-06-29T17:00:00.000Z",
+                            "cre_at": "2024-06-06T09:41:39.000Z",
+                            "amount": 500000,
+                            "size": 10,
+                            "page": 1,
+                            "total": 6
+                          },
+                          {
+                            "id": 38,
+                            "title": "Nhân rộng mô hình câu lạc bộ liên thế hệ tự giúp nhau",
+                            "image": "https://res.cloudinary.com/dcyg1qwdc/image/upload/v1716969569/mock_data/06_4_cpy4jl.jpg",
+                            "sapo": "(ĐCSVN) - Mô hình CLB Liên thế hệ tự giúp nhau theo Đề án 1533/QĐ-TTg giai đoạn 2016-2020 được triển khai mạnh mẽ và hoạt động rất hiệu quả tại các địa phương trong cả nước. Tại Tuyên Quang, việc triển khai thực hiện đã đạt được những kết quả đáng khích lệ, trở thành điểm đến, là sân chơi bổ ích, thiết thực, phù hợp với nhu cầu, tâm lý, lứa tuổi của người cao tuổi tại địa phương.",
+                            "start_date": "2024-05-29T17:00:00.000Z",
+                            "end_date": "2024-05-29T17:00:00.000Z",
+                            "cre_at": "2024-06-06T08:41:39.000Z",
+                            "amount": 70000,
+                            "size": 10,
+                            "page": 1,
+                            "total": 6
+                          },
+                          {
+                            "id": 44,
+                            "title": "Tiếp nhận ủng hộ nạn nhân vụ cháy ở phố Trung Kính",
+                            "image": "https://res.cloudinary.com/dcyg1qwdc/image/upload/v1717391820/mock_data/d0db4a70-dad8-454d-bd2f-a963a09002d5-7459_xl7eso.jpg",
+                            "sapo": "TPO - Ban Thường trực Ủy ban MTTQ Việt Nam phường Trung Hòa (Cầu Giấy, Hà Nội) đã thống nhất với Đảng ủy, UBND phường tiếp nhận của các tổ chức, cơ quan, đơn vị, cá nhân ủng hộ và chia sẻ trong vụ hỏa hoạn tại số nhà 1, hẻm 31, ngách 98, ngõ 43 đường Trung Kính.",
+                            "start_date": "2024-06-02T17:00:00.000Z",
+                            "end_date": "2024-06-09T17:00:00.000Z",
+                            "cre_at": "2024-06-05T09:41:39.000Z",
+                            "amount": 320000,
+                            "size": 10,
+                            "page": 1,
+                            "total": 6
+                          },
+                          {
+                            "id": 39,
+                            "title": "Địa chỉ tiếp nhận hỗ trợ các nạn nhân trong vụ cháy ở Trung Kính (Hà Nội)",
+                            "image": "https://res.cloudinary.com/dcyg1qwdc/image/upload/v1717214078/mock_data/d0db4a70-dad8-454d-bd2f-a963a09002d5-7459_apbxfp.jpg",
+                            "sapo": "(LSVN) - Các tổ chức, cá nhân ủng hộ nạn nhân vụ cháy nhà trọ ở phố Trung Kính sẽ được tiếp nhận tại Ủy ban MTTQ Việt Nam phường Trung Hòa, quận Cầu Giấy, Hà Nội.",
+                            "start_date": "2024-05-31T17:00:00.000Z",
+                            "end_date": "2024-06-07T17:00:00.000Z",
+                            "cre_at": "2024-06-06T07:41:39.000Z",
+                            "amount": null,
+                            "size": 10,
+                            "page": 1,
+                            "total": 6
+                          },
+                          {
+                            "id": 42,
+                            "title": "Tiếp nhận ủng hộ nạn nhân vụ cháy ở phố Trung Kính",
+                            "image": "https://res.cloudinary.com/dcyg1qwdc/image/upload/v1717389252/mock_data/chay-1041_ryk1tq.jpg",
+                            "sapo": "TPO - Ban Thường trực Ủy ban MTTQ Việt Nam phường Trung Hòa (Cầu Giấy, Hà Nội) đã thống nhất với Đảng ủy, UBND phường tiếp nhận của các tổ chức, cơ quan, đơn vị, cá nhân ủng hộ và chia sẻ trong vụ hỏa hoạn tại số nhà 1, hẻm 31, ngách 98, ngõ 43 đường Trung Kính.",
+                            "start_date": "2024-05-31T17:00:00.000Z",
+                            "end_date": "2024-06-09T17:00:00.000Z",
+                            "cre_at": "2024-06-06T10:41:39.000Z",
+                            "amount": null,
+                            "size": 10,
+                            "page": 1,
+                            "total": 6
+                          },
+                          {
+                            "id": 43,
+                            "title": "Tiếp nhận ủng hộ nạn nhân vụ cháy ở phố Trung Kính",
+                            "image": "https://res.cloudinary.com/dcyg1qwdc/image/upload/v1717390299/mock_data/chay-1041_jlhjvm.jpg",
+                            "sapo": "TPO - Ban Thường trực Ủy ban MTTQ Việt Nam phường Trung Hòa (Cầu Giấy, Hà Nội) đã thống nhất với Đảng ủy, UBND phường tiếp nhận của các tổ chức, cơ quan, đơn vị, cá nhân ủng hộ và chia sẻ trong vụ hỏa hoạn tại số nhà 1, hẻm 31, ngách 98, ngõ 43 đường Trung Kính.",
+                            "start_date": "2024-06-02T17:00:00.000Z",
+                            "end_date": "2024-06-09T17:00:00.000Z",
+                            "cre_at": "2024-06-06T12:41:39.000Z",
+                            "amount": null,
+                            "size": 10,
+                            "page": 1,
+                            "total": 6
+                          }
+                        ]
+                      },
+                      "Message": "",
+                      "DataErrors": {}
+                    }
+                  },
+                  "Bad request": {
+                    "$ref": "#/components/examples/bad_request"
+                  },
+                  "Not authentication": {
+                    "$ref": "#/components/examples/not_auth"
+                  },
+                  "Not access": {
+                    "$ref": "#/components/examples/not_access"
+                  },
+                  "Data invalid": {
+                    "$ref": "#/components/examples/data_invalid"
+                  },
+                  "Exception": {
+                    "$ref": "#/components/examples/exception"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/committee/post/export": {
+      "get": {
+        "tags": [
+          "committee"
+        ],
+        "summary": "Xuất dữ liệu danh sách đơn hỗ trợ",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": false,
+            "description": "Từ khóa để tìm kiếm đơn",
+            "schema": {
+              "type": "string",
+              "example": ""
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Số trang để phân trang",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Số lượng bản ghi trên mỗi trang",
+            "schema": {
+              "type": "integer",
+              "example": 10
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "description": "Tiêu chí sắp xếp",
+            "schema": {
+              "type": "string",
+              "example": "name"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "description": "Thứ tự sắp xếp (tăng dần hoặc giảm dần)",
+            "schema": {
+              "type": "string",
+              "example": "asc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/committee/user/{id}": {
+      "get": {
+        "tags": [
+          "committee"
+        ],
+        "summary": "Lấy danh sách người dùng đã hỗ trợ",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Mã đơn hỗ trợ",
+            "schema": {
+              "type": "integer",
+              "example": 45
+            }
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": false,
+            "description": "Từ khóa để tìm kiếm người dùng",
+            "schema": {
+              "type": "string",
+              "example": ""
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Số trang để phân trang",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Số lượng bản ghi trên mỗi trang",
+            "schema": {
+              "type": "integer",
+              "example": 10
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "description": "Tiêu chí sắp xếp",
+            "schema": {
+              "type": "string",
+              "example": "name"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "description": "Thứ tự sắp xếp (tăng dần hoặc giảm dần)",
+            "schema": {
+              "type": "string",
+              "example": "asc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Code": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "Data": {
+                      "type": "object",
+                      "properties": {
+                        "list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "address": {
+                                "type": "string"
+                              },
+                              "phoneNumber": {
+                                "type": "string"
+                              },
+                              "cre_at": {
+                                "type": "string",
+                                "format": "date-time"
+                              },
+                              "amount": {
+                                "type": "integer"
+                              },
+                              "page": {
+                                "type": "integer"
+                              },
+                              "size": {
+                                "type": "integer"
+                              },
+                              "total": {
+                                "type": "integer"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Message": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "DataErrors": {
+                      "type": "object",
+                      "example": {}
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "summary": "Successful",
+                    "value": {
+                      "Code": 200,
+                      "Data": {
+                        "list": [
+                          {
+                            "name": "Hà Nguyễn Quốc Linh",
+                            "address": "46 Trương Quyền, Phường Phước Mỹ , Quận Sơn Trà, Thành phố Đà Nẵng",
+                            "phoneNumber": "0948942954",
+                            "cre_at": "2024-06-07T03:40:48.000Z",
+                            "amount": 500000,
+                            "page": 1,
+                            "size": 10,
+                            "total": 1
+                          }
+                        ]
+                      },
+                      "Message": "",
+                      "DataErrors": {}
+                    }
+                  },
+                  "Bad request": {
+                    "$ref": "#/components/examples/bad_request"
+                  },
+                  "Not authentication": {
+                    "$ref": "#/components/examples/not_auth"
+                  },
+                  "Not access": {
+                    "$ref": "#/components/examples/not_access"
+                  },
+                  "Data invalid": {
+                    "$ref": "#/components/examples/data_invalid"
+                  },
+                  "Exception": {
+                    "$ref": "#/components/examples/exception"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/committee/user/{id}/export": {
+      "get": {
+        "tags": [
+          "committee"
+        ],
+        "summary": "Xuất dữ liệu người dùng theo đơn hỗ trợ",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Mã đơn hỗ trợ",
+            "schema": {
+              "type": "integer",
+              "example": 45
+            }
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": false,
+            "description": "Từ khóa để tìm kiếm người dùng",
+            "schema": {
+              "type": "string",
+              "example": ""
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Số trang để phân trang",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Số lượng bản ghi trên mỗi trang",
+            "schema": {
+              "type": "integer",
+              "example": 10
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "description": "Tiêu chí sắp xếp",
+            "schema": {
+              "type": "string",
+              "example": "name"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "description": "Thứ tự sắp xếp (tăng dần hoặc giảm dần)",
+            "schema": {
+              "type": "string",
+              "example": "asc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/committee/approval": {
+      "get": {
+        "tags": [
+          "committee"
+        ],
+        "summary": "Danh sách đơn cần duyệt",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": false,
+            "description": "Từ khóa để tìm kiếm đơn",
+            "schema": {
+              "type": "string",
+              "example": ""
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Số trang để phân trang",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Số lượng bản ghi trên mỗi trang",
+            "schema": {
+              "type": "integer",
+              "example": 10
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "description": "Tiêu chí sắp xếp",
+            "schema": {
+              "type": "string",
+              "example": "name"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "description": "Thứ tự sắp xếp (tăng dần hoặc giảm dần)",
+            "schema": {
+              "type": "string",
+              "example": "asc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Code": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "Data": {
+                      "type": "object",
+                      "properties": {
+                        "list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "title": {
+                                "type": "string"
+                              },
+                              "image": {
+                                "type": "string"
+                              },
+                              "sapo": {
+                                "type": "string"
+                              },
+                              "start_date": {
+                                "type": "string",
+                                "format": "date-time"
+                              },
+                              "end_date": {
+                                "type": "string",
+                                "format": "date-time"
+                              },
+                              "size": {
+                                "type": "integer"
+                              },
+                              "page": {
+                                "type": "integer"
+                              },
+                              "total": {
+                                "type": "integer"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Message": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "DataErrors": {
+                      "type": "object",
+                      "example": {}
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "summary": "Successful",
+                    "value": {
+                      "Code": 200,
+                      "Data": {
+                        "list": [
+                          {
+                            "id": 48,
+                            "title": "Mưa lũ lịch sử tại Hà Giang gây thiệt hại hơn 60 tỷ đồng",
+                            "image": "https://res.cloudinary.com/dcyg1qwdc/image/upload/v1718160961/mock_data/z5528077034409-3d229114cf1a83c4ae0ec21fad301807-1336_tds4sa.jpg",
+                            "sapo": "TPO - Cơn mưa lớn kéo dài từ đêm 9/6 đến sáng 10/6  tại Hà Giang được nhận định lớn nhất trong 30 năm qua, gây thiệt hại ước tính hơn 60 tỷ đồng.",
+                            "start_date": "2024-06-11T17:00:00.000Z",
+                            "end_date": "2024-06-29T17:00:00.000Z",
+                            "size": 10,
+                            "page": 1,
+                            "total": 1
+                          }
+                        ]
+                      },
+                      "Message": "",
+                      "DataErrors": {}
+                    }
+                  },
+                  "Bad request": {
+                    "$ref": "#/components/examples/bad_request"
+                  },
+                  "Not authentication": {
+                    "$ref": "#/components/examples/not_auth"
+                  },
+                  "Not access": {
+                    "$ref": "#/components/examples/not_access"
+                  },
+                  "Data invalid": {
+                    "$ref": "#/components/examples/data_invalid"
+                  },
+                  "Exception": {
+                    "$ref": "#/components/examples/exception"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/committee/approval/{id}": {
+      "get": {
+        "tags": [
+          "committee"
+        ],
+        "summary": "Kiểm duyệt đơn hỗ trợ",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Mã đơn hỗ trợ",
+            "schema": {
+              "type": "integer",
+              "example": 45
+            }
+          },
+          {
+            "in": "query",
+            "name": "accept",
+            "schema": {
+              "type": "string",
+              "example": true
+            },
+            "description": "Phê duyệt hoặc từ chối"
+          },
+          {
+            "in": "query",
+            "name": "dateFrom",
+            "schema": {
+              "type": "string",
+              "example": "2024-06-01"
+            },
+            "description": "Ngày bắt đầu hỗ trợ"
+          },
+          {
+            "in": "query",
+            "name": "dateTo",
+            "schema": {
+              "type": "string",
+              "example": "2024-06-30"
+            },
+            "description": "Ngày kết thúc hỗ trợ"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Code": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "Data": {
+                      "type": "object"
+                    },
+                    "Message": {
+                      "type": "string",
+                      "example": "Đơn đã được xử lý thành công"
+                    },
+                    "DataErrors": {
+                      "type": "object",
+                      "example": {}
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "summary": "Successful",
+                    "value": {
+                      "Code": 200,
+                      "Data": {},
+                      "Message": "Đơn đã được xử lý thành công",
+                      "DataErrors": {}
+                    }
+                  },
+                  "Bad request": {
+                    "$ref": "#/components/examples/bad_request"
+                  },
+                  "Not authentication": {
+                    "$ref": "#/components/examples/not_auth"
+                  },
+                  "Not access": {
+                    "$ref": "#/components/examples/not_access"
+                  },
+                  "Data invalid": {
+                    "$ref": "#/components/examples/data_invalid"
+                  },
+                  "Exception": {
+                    "$ref": "#/components/examples/exception"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "role": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string"
-          }
-        }
-      },
-      "account": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "email": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
-          "role_id": {
-            "type": "integer"
-          }
-        }
-      },
       "user": {
         "type": "object",
         "properties": {
@@ -2077,14 +3448,6 @@
           },
           "account_id": {
             "type": "integer"
-          }
-        }
-      },
-      "proof": {
-        "type": "object",
-        "properties": {
-          "image": {
-            "type": "string"
           }
         }
       }

@@ -83,6 +83,9 @@ const Post = {
             }
             return formattedValue;
         },
+        formatDate(date) {
+            return helpers.formatDate(date);
+        },
         encodePhoneNumber(value) {
             return helpers.encodePhoneNumber(value);
         },
